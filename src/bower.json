@@ -1,0 +1,31 @@
+{
+  "name": "nrdb",
+  "homepage": "https://github.com/peldax/NRDb",
+  "authors": [
+    "Vaclav Pelisek <peldax@gmail.com>"
+  ],
+  "description": "Nette Rating Database",
+  "main": "",
+  "keywords": [
+    "nette",
+    "rating",
+    "application",
+    "database"
+  ],
+  "license": "AGPLv3",
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "nette.ajax.js": "^2.2.0",
+    "chart.js": "^2.5.0",
+    "flag-icon-css": "^2.8.0",
+    "selectize": "selectize.js#^0.12.4",
+    "iCheck": "icheck#^1.0.2",
+    "magnific-popup": "^1.1.0",
+    "nette-forms": "^2.4.5",
+    "font-awesome": "^4.7.0",
+    "ublaboo-datagrid": "^5.4.5"
+  },
+  "resolutions": {
+    "jquery": "^3.1.1"
+  }
+}

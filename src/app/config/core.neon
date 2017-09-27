@@ -1,0 +1,71 @@
+includes:
+    - local.neon
+    - model.neon
+    - component.neon
+
+php:
+    date.timezone: Europe/Prague
+
+application:
+    errorPresenter: Error
+    mapping:
+        *: App\*Module\Presenter\*Presenter
+
+session:
+    name: peldax
+    expiration: 14 days
+    cookieHttpOnly: true
+
+http:
+    frames: 'SAMEORIGIN'
+    headers:
+        Server: 'peldax.com'
+        X-Powered-By: 'peldax.com'
+        #Strict-Transport-Security: 'max-age=15768000; includeSubDomains; preload'
+        #Public-Key-Pins:
+        X-Xss-Protection: '1; mode=block'
+        X-Content-Type-Options: 'nosniff'
+        Referrer-Policy: 'strict-origin'
+    csp:
+        default-src: [ self ]
+        img-src: [ self ]
+        media-src: [ self ]
+        connect-src: [ self ]
+        font-src: [
+            self
+            https://fonts.gstatic.com/ ]
+        frame-src: [
+            self
+            https://www.google.com/recaptcha/ ]
+        script-src: [
+            nonce
+            https://www.google.com/recaptcha/ ]
+        object-src: [ none ]
+        worker-src: [ none ]
+        manifest-src: [ none ]
+        base-uri: [ self ]
+        form-action: [ self ]
+        frame-ancestors: [ self ]
+        block-all-mixed-content: []
+
+forms:
+    messages:
+        FILLED: 'Please complete mandatory field.'
+        MIN_LENGTH: 'Please enter a value of at least %d characters.'
+        EMAIL: '%label must be valid e-mail'
+
+extensions:
+    reCaptcha: ReCaptchaControl\DI\Extension
+    redis: Kdyby\Redis\DI\RedisExtension
+    elasticSearch: Kdyby\ElasticSearch\DI\SearchExtension
+    htmlPanel: Kdyby\Extension\Diagnostics\HtmlValidator\DI\ValidatorExtension
+
+redis:
+	journal: on
+	storage: on
+	session: [ database: 1 ]
+
+services:
+    - App\RouterFactory
+    router: @App\RouterFactory::createRouter
+

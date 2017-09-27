@@ -1,0 +1,27 @@
+{layout @core.latte}
+
+{block bodyContent}
+
+<nav>
+    <div>
+        {control menu}
+    </div>
+</nav>
+<main>
+    <div id="flasharea">
+        {snippet flashMessages}
+            {foreach $flashes as $flash}
+                <div class="flash {$flash->type}">{$flash->message}</div>
+            {/foreach}
+        {/snippet}
+    </div>
+    <header>
+        <h1>{include title}</h1>
+    </header>
+
+    {include content}
+</main>
+<footer>
+    <p><a href="{$baseUrl}">www.peldax.com</a></p>
+    <p>Václav Pelíšek, 2017</p>
+</footer>

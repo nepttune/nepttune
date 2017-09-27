@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="{$presenter->lang}">
+    <head>
+        <title>{include #title} | peldax.com</title>
+        <base href="{$baseUrl}" />
+        <meta charset="UTF-8" />
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Václav Pelíšek, peldax" />
+        <meta name="keywords" content="václav, pelíšek, pelda, peldax" />
+        <meta name="description" content="peldax's multifunctional personal website" />
+        <link rel="icon" type="image/x-icon" href="/image/favicon.ico" sizes="48x48" />
+        <link rel="icon" type="image/png" href="/image/favicon.png" sizes="48x48" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,700" />
+        <link rel="stylesheet" type="text/css" href="/bower/flag-icon-css/css/flag-icon.min.css" />
+        <link rel="stylesheet" type="text/css" href="/bower/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="/bower/selectize/dist/css/selectize.default.css" />
+        <link rel="stylesheet" type="text/css" href="/bower/iCheck/skins/square/red.css" />
+        <link rel="stylesheet" type="text/css" href="/bower/magnific-popup/dist/magnific-popup.css" />
+        <link rel="stylesheet" type="text/css" href="/scss/common.css" />
+
+        {var moduleStyle = '/scss/module/' . $presenter->getModule() . '.css'}
+        {if file_exists(getcwd() . $moduleStyle)}
+            <link rel="stylesheet" type="text/css" href="{$moduleStyle}" />
+        {/if}
+
+        {var presenterStyle = '/scss/presenter/' . $presenter->getName() . '.css'}
+        {if file_exists(getcwd() . $presenterStyle)}
+            <link rel="stylesheet" type="text/css" href="{$presenterStyle}" />
+        {/if}
+    </head>
+    {ifset #bodyStart}
+        {include #bodyStart}
+    {else}
+        <body>
+    {/ifset}
+        {include #bodyContent}
+
+        {foreach $presenter->getStyles() as $style}
+            <link rel="stylesheet" type="text/css" href="{$style}" />
+        {/foreach}
+
+        {var moduleScript = '/js/module/' . $presenter->getModule() . '.min.js'}
+        {if file_exists(getcwd() . $moduleScript)}
+            {php $presenter->addScript($moduleScript)}
+        {/if}
+
+        {var presenterScript = '/js/presenter/' . $presenter->getName() . '.min.js'}
+        {if file_exists(getcwd() . $presenterScript)}
+            {php $presenter->addScript($presenterScript)}
+        {/if}
+
+        <script n:nonce type="text/javascript" src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script n:nonce>const redrawRowUrl = {plink :redrawRow!};const redrawControlUrl = {plink :redrawControl!};</script>
+
+        {foreach $presenter->getScripts() as $script}
+            <script n:nonce defer
+                crossorigin="anonymous"
+                integrity="{$presenter::generateChecksum(getcwd() . $script)}"
+                type="text/javascript"
+                src="{$script}">
+            </script>
+        {/foreach}
+    </body>
+</html>

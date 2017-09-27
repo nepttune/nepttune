@@ -1,0 +1,25 @@
+application:
+    catchExceptions: false
+
+session:
+    cookieSecure: false
+
+http:
+    csp:
+        style-src: [
+            self
+            https://fonts.googleapis.com/
+            unsafe-inline ]
+
+reCaptcha:
+    siteKey: 'X'
+    secretKey: 'X'
+
+database:
+    dsn: 'mysql:host=X;dbname=X'
+    user: X
+    password: 'X'
+    options:
+         PDO::ATTR_EMULATE_PREPARES: false
+         charset: 'utf8mb4'
+         sqlmode: 'STRICT_ALL_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,NO_UNSIGNED_SUBTRACTION,ERROR_FOR_DIVISION_BY_ZERO'
