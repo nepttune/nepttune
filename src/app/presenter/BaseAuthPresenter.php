@@ -8,9 +8,14 @@ abstract class BaseAuthPresenter extends BasePresenter
     {
         if (!$this->user->isLoggedIn() && $this->getName())
         {
-            $this->redirect(':User:Sign:in', ['backlink' => $this->storeRequest()]);
+            $this->redirect(':Admin:Sign:in', ['backlink' => $this->storeRequest()]);
         }
 
         parent::startup();
+    }
+
+    public static function getDefaultLayout() : string
+    {
+        return static::getAdminLayout();
     }
 }

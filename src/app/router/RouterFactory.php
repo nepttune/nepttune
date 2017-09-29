@@ -17,8 +17,7 @@ class RouterFactory
         $router[] = new Route('//<module>.%domain%/[<lang [a-z]{2}>/]<presenter>/<action>[/<id>]', [
             'module' => 'Www',
             'presenter' => 'Default',
-            'action' => 'default',
-            'lang' => 'en'
+            'action' => 'default'
         ]);
 
         return $router;

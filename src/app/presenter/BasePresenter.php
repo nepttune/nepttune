@@ -10,47 +10,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     /** @var  array */
     public $locale;
 
-    /** @var  array */
-    protected $styles = [];
-
-    /** @var  array */
-    protected $scripts = [
-        '/bower/jquery/dist/jquery.min.js',
-        '/bower/nette.ajax.js/nette.ajax.js',
-        '/bower/nette-forms/src/assets/netteForms.min.js',
-        '/bower/selectize/dist/js/standalone/selectize.min.js',
-        '/bower/iCheck/icheck.min.js',
-        '/bower/magnific-popup/dist/jquery.magnific-popup.min.js',
-        '/bower/chart.js/dist/Chart.min.js',
-        '/js/selectizePlugins.min.js',
-        '/js/coreValidator.min.js',
-        '/js/common.min.js'
-    ];
-
-    public function addStyle(string $path)
+    public static function generateChecksum(string $path) : string
     {
-        if (!in_array($path, $this->styles, true))
-        {
-            $this->styles[] = $path;
-        }
-    }
-
-    public function addScript(string $path)
-    {
-        if (!in_array($path, $this->scripts, true))
-        {
-            $this->scripts[] = $path;
-        }
-    }
-
-    public function getStyles() : array
-    {
-        return $this->styles;
-    }
-
-    public function getScripts() : array
-    {
-        return $this->scripts;
+        return 'sha256-' . base64_encode(hash_file('sha256', $path, true));
     }
 
     public function startup()
@@ -59,19 +21,25 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
         $this->autoCanonicalize = false;
 
-        switch ((string) $this->lang)
+        if ($this->context->parameters['multiLang'])
         {
-            default:
-                $this->lang = 'en';
-            case 'en':
-            case 'cs':
-            case 'de':
-            case 'es':
-            case 'fr':
-            case 'ru':
-                $this->locale = require __DIR__ . "/../locale/{$this->lang}.php";
-                break;
+            switch ((string) $this->lang)
+            {
+                default:
+                    $this->lang = $this->context->parameters['defaultLang'];
+                case 'en':
+                case 'cs':
+                case 'de':
+                case 'es':
+                case 'fr':
+                case 'ru':
+                    $this->locale = require __DIR__ . "/../locale/{$this->lang}.php";
+                    break;
+            }
         }
+
+        $this->template->appName = $this->context->parameters['appName'];
+        $this->template->appNameShort = $this->context->parameters['appNameShort'];
     }
 
     public function flashMessage($message, $type = 'info') : \stdClass
@@ -101,21 +69,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         return $this->context->createService($name);
     }
 
-    public function getPost()
-    {
-        return $this->getHttpRequest()->getPost();
-    }
-
-    public function getRemoteAddress()
-    {
-        return $this->getHttpRequest()->getRemoteAddress();
-    }
-
-    public function getId() : int
-    {
-        return (int) $this->getParameter('id');
-    }
-
     public function handleRedrawControl(string $control = null)
     {
         if ($control && $this->isAjax())
@@ -133,7 +86,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     {
         if ($this->isAjax() && $control && $rowId)
         {
-            /** @var \Nextras\Datagrid\Datagrid $grid */
             $grid = $this[$control]['dataGrid'];
 
             $grid->redrawRow($rowId);
@@ -172,12 +124,17 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
             return $primary;
         }
 
-        return self::getDefaultLayout();
+        return static::getDefaultLayout();
     }
 
     public static function getDefaultLayout() : string
     {
-        return __DIR__ . '/../templates/@layout.latte';
+        return static::getCoreLayout();
+    }
+
+    public static function getAdminLayout() : string
+    {
+        return __DIR__ . '/../templates/@admin.latte';
     }
 
     public static function getAjaxLayout() : string
@@ -195,13 +152,23 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         return __DIR__ .'/../templates/@core.latte';
     }
 
-    public static function generateChecksum(string $path) : string
-    {
-        return 'sha256-' . base64_encode(hash_file('sha256', $path, true));
-    }
-
     public function getModule() : string
     {
         return substr($this->getName(), 0, strpos($this->getName(), ':'));
+    }
+
+    public function getPost()
+    {
+        return $this->getHttpRequest()->getPost();
+    }
+
+    public function getRemoteAddress()
+    {
+        return $this->getHttpRequest()->getRemoteAddress();
+    }
+
+    public function getId() : int
+    {
+        return (int) $this->getParameter('id');
     }
 }

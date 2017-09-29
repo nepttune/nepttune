@@ -17,5 +17,3 @@ for FILE in `find ./www/js -type f -name '*.js' -not -name '*.min.js'`
 do
     uglifyjs "${FILE}" > "${FILE%.js}.min.js"
 done
-
-echo 'Combine SQL scripts'

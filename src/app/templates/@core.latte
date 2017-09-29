@@ -1,66 +1,89 @@
 <!DOCTYPE html>
-
+{spaceless}
 <html lang="{$presenter->lang}">
     <head>
         <title>{include #title} | peldax.com</title>
         <base href="{$baseUrl}" />
         <meta charset="UTF-8" />
         <meta name="robots" content="index, follow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="author" content="Václav Pelíšek, peldax" />
-        <meta name="keywords" content="václav, pelíšek, pelda, peldax" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="author" content="Václav Pelíšek" />
+        <meta name="keywords" content="václav, pelíšek, pelda, peldax, www.peldax.com" />
         <meta name="description" content="peldax's multifunctional personal website" />
         <link rel="icon" type="image/x-icon" href="/image/favicon.ico" sizes="48x48" />
         <link rel="icon" type="image/png" href="/image/favicon.png" sizes="48x48" />
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,700" />
-        <link rel="stylesheet" type="text/css" href="/bower/flag-icon-css/css/flag-icon.min.css" />
+        <link rel="stylesheet" type="text/css" href="/bower/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/bower/admin-lte/dist/css/AdminLTE.min.css" />
+        <link rel="stylesheet" type="text/css" href="/bower/admin-lte/dist/css/skins/skin-red.min.css" />
         <link rel="stylesheet" type="text/css" href="/bower/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="/bower/flag-icon-css/css/flag-icon.min.css" />
         <link rel="stylesheet" type="text/css" href="/bower/selectize/dist/css/selectize.default.css" />
-        <link rel="stylesheet" type="text/css" href="/bower/iCheck/skins/square/red.css" />
         <link rel="stylesheet" type="text/css" href="/bower/magnific-popup/dist/magnific-popup.css" />
+        <link rel="stylesheet" type="text/css" href="/bower/iCheck/skins/square/red.css" />
         <link rel="stylesheet" type="text/css" href="/scss/common.css" />
 
-        {var moduleStyle = '/scss/module/' . $presenter->getModule() . '.css'}
+        {var moduleStyle = '/scss/module/'.$presenter->getModule().'.css'}
         {if file_exists(getcwd() . $moduleStyle)}
             <link rel="stylesheet" type="text/css" href="{$moduleStyle}" />
         {/if}
 
-        {var presenterStyle = '/scss/presenter/' . $presenter->getName() . '.css'}
+        {var presenterStyle = '/scss/presenter/'.$presenter->getName().'.css'}
         {if file_exists(getcwd() . $presenterStyle)}
             <link rel="stylesheet" type="text/css" href="{$presenterStyle}" />
         {/if}
+
+        {var actionStyle = '/scss/action/'.$presenter->getName().':'.$presenter->getAction().'.css'}
+        {if file_exists(getcwd() . $actionStyle)}
+            <link rel="stylesheet" type="text/css" href="{$actionStyle}" />
+        {/if}
     </head>
-    {ifset #bodyStart}
-        {include #bodyStart}
+    {ifset #bodyTag}
+        {include #bodyTag}
     {else}
         <body>
     {/ifset}
-        {include #bodyContent}
 
-        {foreach $presenter->getStyles() as $style}
-            <link rel="stylesheet" type="text/css" href="{$style}" />
-        {/foreach}
+        {ifset #bodyContent}
+            {include #bodyContent}
+        {else}
+            {include #content}
+        {/ifset}
+
+        {var $scripts = [
+            '/bower/jquery/dist/jquery.min.js',
+            '/bower/bootstrap/dist/js/bootstrap.min.js',
+            '/bower/admin-lte/dist/js/adminlte.min.js',
+            '/bower/nette.ajax.js/nette.ajax.js',
+            '/bower/nette-forms/src/assets/netteForms.min.js',
+            '/bower/selectize/dist/js/standalone/selectize.min.js',
+            '/bower/magnific-popup/dist/jquery.magnific-popup.min.js',
+            '/bower/chart.js/dist/Chart.min.js',
+            '/bower/iCheck/icheck.min.js',
+            '/js/selectizePlugins.min.js',
+            '/js/coreValidator.min.js',
+            '/js/common.min.js']}
 
         {var moduleScript = '/js/module/' . $presenter->getModule() . '.min.js'}
-        {if file_exists(getcwd() . $moduleScript)}
-            {php $presenter->addScript($moduleScript)}
-        {/if}
+        {if file_exists(getcwd() . $moduleScript)}{php $scripts[] = $moduleScript}{/if}
 
         {var presenterScript = '/js/presenter/' . $presenter->getName() . '.min.js'}
-        {if file_exists(getcwd() . $presenterScript)}
-            {php $presenter->addScript($presenterScript)}
-        {/if}
+        {if file_exists(getcwd() . $presenterScript)}{php $scripts[] = $presenterScript}{/if}
 
-        <script n:nonce type="text/javascript" src="https://www.google.com/recaptcha/api.js" async defer></script>
-        <script n:nonce>const redrawRowUrl = {plink :redrawRow!};const redrawControlUrl = {plink :redrawControl!};</script>
+        {var actionScript = '/js/action/' . $presenter->getName() . $presenter->getAction() . '.min.js'}
+        {if file_exists(getcwd() . $actionScript)}{php $scripts[] = $actionScript}{/if}
 
-        {foreach $presenter->getScripts() as $script}
-            <script n:nonce defer
-                crossorigin="anonymous"
-                integrity="{$presenter::generateChecksum(getcwd() . $script)}"
-                type="text/javascript"
-                src="{$script}">
-            </script>
+        {foreach $presenter->getComponents() as $name => $component}
+            {var $componentScript = '/js/component/' . $name . '.min.js'}
+            {if file_exists(getcwd() . $componentScript)}{php $scripts[] = $componentScript}{/if}
         {/foreach}
+
+        {foreach $scripts as $script}
+            <script n:nonce defer crossorigin="anonymous" type="text/javascript" integrity="{$presenter::generateChecksum(getcwd() . $script)}" src="{$script}"></script>
+        {/foreach}
+
+        <script n:nonce async defer crossorigin="anonymous" type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+        <script n:nonce>const redrawRowUrl = {plink :redrawRow!};const redrawControlUrl = {plink :redrawControl!};</script>
     </body>
 </html>
+{/spaceless}
