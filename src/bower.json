@@ -18,14 +18,11 @@
     "nette-forms": "^2.4.5",
     "nette.ajax.js": "^2.2.0",
     "ublaboo-datagrid": "^5.4.5",
-
     "bootstrap": "^3.3.7",
     "admin-lte": "^2.4.0",
-
     "font-awesome": "^4.7.0",
     "flag-icon-css": "^2.8.0",
-
-    "selectize": "^0.12.4",
+    "select2": "^4.0.4",
     "magnific-popup": "^1.1.0",
     "chart.js": "^2.5.0",
     "iCheck": "^1.0.2"
