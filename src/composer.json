@@ -1,24 +1,26 @@
 {
-  "name": "NRDb",
-  "description": "Nette Rating Database",
-  "homepage": "http://movies.peldax.com",
-  "type": "project",
-  "license": ["Affero General Public Licence v3.0"],
+  "name": "peldax/nette-init",
+  "description": "Nette initialization + core components",
+  "homepage": "https://peldax.com",
+  "type": "library",
+  "license": ["MIT"],
   "authors": [
     {
       "name": "Václav Pelíšek",
-      "homepage": "http://peldax.com"
+      "homepage": "https://www.peldax.com"
     }
   ],
   "require": {
     "php" : ">=7.0",
     "nette/nette": ">=2.4.0",
     "ublaboo/datagrid": ">=5.4.0",
-    "uestla/recaptcha-control": "^6.0",
     "roave/security-advisories": "dev-master",
     "kdyby/redis": "dev-master",
+    "kdyby/translation": "^2.4",
     "kdyby/html-validator-panel": "^1.1",
-    "kdyby/elastic-search": "^1.1"
+    "kdyby/elastic-search": "^1.1",
+    "nextras/forms": "^2.0",
+    "uestla/recaptcha-control": "^6.0"
   },
   "minimum-stability": "stable"
 }

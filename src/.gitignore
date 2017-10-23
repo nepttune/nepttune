@@ -1,5 +1,5 @@
-www/bower/*
-!www/bower/.htaccess
+www/node_modules/*
+!www/node_modules/.htaccess
 
 vendor/*
 !vendor/.htaccess
@@ -16,7 +16,7 @@ nbproject/*
 www/scss/*.css
 www/js/*.min.js
 
-app/config/local.neon
+app/config/local/sensitive.neon
 
-*.lock
-
+composer.lock
+package-lock.json
