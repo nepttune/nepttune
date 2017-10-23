@@ -9,7 +9,10 @@ final class Authenticator extends \App\Model\UserModel implements NS\IAuthentica
     public function authenticate(array $credentials)
     {
         list($username, $password) = $credentials;
-        $row = $this->getTable()->where('username', $username)->fetch();
+        $row = $this->getTable()
+            ->where('username', $username)
+            ->where('active', 1)
+            ->fetch();
 
         if (!$row)
         {

@@ -1,0 +1,42 @@
+services:
+
+    loginForm:
+        class: App\Component\LoginForm
+    userList:
+        class: App\Component\UserList
+    userForm:
+        class: App\Component\UserForm
+
+    overviewList:
+        class: App\AdminModule\Component\OverviewList
+    categoryList:
+        class: App\AdminModule\Component\CategoryList
+    dailyMenuList:
+        class: App\AdminModule\Component\DailyMenuList
+    foodList:
+        class: App\AdminModule\Component\FoodList
+    guestList:
+        class: App\AdminModule\Component\GuestList
+    ingredientList:
+        class: App\AdminModule\Component\IngredientList
+    orderList:
+        class: App\AdminModule\Component\OrderList
+    tableList:
+        class: App\AdminModule\Component\TableList
+    recipeList:
+        class: App\AdminModule\Component\RecipeList
+    foodForm:
+        class: App\AdminModule\Component\FoodForm
+    dailyMenuForm:
+        class: App\AdminModule\Component\DailyMenuForm
+
+    orderForm:
+        class: App\WwwModule\Component\OrderForm
+    dailyMenu:
+        class: App\WwwModule\Component\DailyMenu
+    foodListFront:
+        class: App\WwwModule\Component\FoodList
+
+    - App\AdminModule\Component\IFoodIngredientListFactory
+    - App\AdminModule\Component\IFoodCategoryListFactory
+    - App\AdminModule\Component\IFoodDailyMenuListFactory

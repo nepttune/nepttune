@@ -1,0 +1,25 @@
+<ul class="sidebar-menu" data-widget="tree">
+    {foreach $menu as $section => $entries}
+        <li class="header">{$section}</li>
+        {foreach $entries as $entry}
+            {if is_array($entry['dest'])}
+                <li class="treeview">
+                    <a href="#">{icon $entry['icon']} <span>{$entry['name']}</span>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        {foreach $entry['dest'] as $subentry}
+                            <li><a href="{plink $subentry['dest']}">{$subentry['name']}</a></li>
+                        {/foreach}
+                    </ul>
+                </li>
+            {else}
+                <li {if $presenter->isLinkCurrent($entry['dest'])}class="active"{/if}>
+                    <a href="{plink $entry['dest']}">{icon $entry['icon']} <span>{$entry['name']}</span></a>
+                </li>
+            {/if}
+        {/foreach}
+    {/foreach}
+</ul>

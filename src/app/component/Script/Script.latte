@@ -1,0 +1,80 @@
+<script n:nonce>const redrawRowUrl = {plink :redrawRow!};const redrawControlUrl = {plink :redrawControl!};</script>
+
+{var $scripts = [
+    '/node_modules/jquery/dist/jquery.min.js',
+    '/node_modules/bootstrap/dist/js/bootstrap.min.js',
+    '/node_modules/nette.ajax.js/nette.ajax.js',
+    '/node_modules/magnific-popup/dist/jquery.magnific-popup.min.js',
+    '/js/common.min.js'
+]}
+
+{if $presenter instanceof \App\Presenter\BaseAuthPresenter}
+    {php $scripts[] = '/node_modules/admin-lte/dist/js/adminlte.min.js'}
+{/if}
+
+{var $moduleScript = '/js/module/' . $presenter->getModule() . '.min.js'}
+{if file_exists(getcwd() . $moduleScript)}{php $scripts[] = $moduleScript}{/if}
+
+{var $presenterScript = '/js/presenter/' . $presenter->getName() . '.min.js'}
+{if file_exists(getcwd() . $presenterScript)}{php $scripts[] = $presenterScript}{/if}
+
+{var $actionScript = '/js/action/' . $presenter->getName() . $presenter->getAction() . '.min.js'}
+{if file_exists(getcwd() . $actionScript)}{php $scripts[] = $actionScript}{/if}
+
+{var $formScripts = [
+    '/node_modules/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js',
+    '/node_modules/select2/dist/js/select2.min.js',
+    '/node_modules/icheck/icheck.min.js',
+    '/node_modules/nette-forms/src/assets/netteForms.min.js',
+    '/node_modules/nextras-forms/js/nextras.netteForms.js',
+    '/node_modules/nextras-forms/js/nextras.datetimepicker.init.js',
+    '/js/coreValidator.min.js',
+    '/js/form.min.js'
+]}
+
+{var $listScripts = [
+    '/node_modules/ublaboo-datagrid/assets/dist/datagrid.min.js',
+    '/node_modules/ublaboo-datagrid/assets/dist/datagrid-spinners.min.js'
+]}
+
+{var $statScripts = [
+    '/node_modules/chart.js/dist/Chart.min.js',
+    '/js/stat.min.js'
+]}
+
+{var $hasForm = false}
+{var $hasList = false}
+{var $hasStat = false}
+
+{foreach $presenter->getComponents() as $name => $component}
+    {var $componentScript = '/js/component/' . $name . '.min.js'}
+    {if file_exists(getcwd() . $componentScript)}{php $scripts[] = $componentScript}{/if}
+
+    {if !$hasForm && strpos($name, 'Form') !== false}
+        {php $hasForm = true}
+    {/if}
+
+    {if !$hasList && strpos($name, 'List') !== false}
+        {php $hasForm = true}
+        {php $hasList = true}
+    {/if}
+
+    {if !$hasStat && strpos($name, 'Stat') !== false}
+        {php $hasStat = true}
+    {/if}
+{/foreach}
+
+{if $hasForm}
+    <script n:nonce async defer type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+    {php $scripts = array_merge($scripts, $formScripts)}
+{/if}
+{if $hasList}
+    {php $scripts = array_merge($scripts, $listScripts)}
+{/if}
+{if $hasStat}
+    {php $scripts = array_merge($scripts, $statScripts)}
+{/if}
+
+{foreach $scripts as $path}
+    <script n:nonce defer crossorigin="anonymous" type="text/javascript" integrity="{$presenter->getIntegrity(getcwd() . $path)}" src="{$path}"></script>
+{/foreach}

@@ -1,0 +1,51 @@
+{var $styles = []}
+
+{var $formStyles = [
+    '/node_modules/bootstrap-datetime-picker/css/bootstrap-datetimepicker.min.css',
+    '/node_modules/select2/dist/css/select2.min.css',
+    '/node_modules/icheck/skins/square/red.css'
+]}
+
+{var $listStyles = [
+    '/node_modules/ublaboo-datagrid/assets/dist/datagrid.min.css',
+    '/node_modules/ublaboo-datagrid/assets/dist/datagrid-spinners.min.css',
+]}
+
+{var $statStyles = [
+]}
+
+{var $hasForm = false}
+{var $hasList = false}
+{var $hasStat = false}
+
+{foreach $presenter->getComponents() as $name => $component}
+    {var $componentStyle = '/scss/component/' . $name . '.min.css'}
+    {if file_exists(getcwd() . $componentStyle)}{php $styles[] = $componentStyle}{/if}
+
+    {if !$hasForm && strpos($name, 'Form') !== false}
+        {php $hasForm = true}
+    {/if}
+
+    {if !$hasList && strpos($name, 'List') !== false}
+        {php $hasForm = true}
+        {php $hasList = true}
+    {/if}
+
+    {if !$hasStat && strpos($name, 'Stat') !== false}
+        {php $hasStat = true}
+    {/if}
+{/foreach}
+
+{if $hasForm}
+    {php $styles = array_merge($styles, $formStyles)}
+{/if}
+{if $hasList}
+    {php $styles = array_merge($styles, $listStyles)}
+{/if}
+{if $hasStat}
+    {php $styles = array_merge($styles, $statStyles)}
+{/if}
+
+{foreach $styles as $path}
+    <link rel="stylesheet" type="text/css" crossorigin="anonymous" integrity="{$presenter->getIntegrity(getcwd() . $path)}" href="{$path}" />
+{/foreach}

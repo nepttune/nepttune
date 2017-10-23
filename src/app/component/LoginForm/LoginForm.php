@@ -11,12 +11,15 @@ final class LoginForm extends BaseComponent
     {
         $form = new \Nette\Application\UI\Form();
 
+        $form->setRenderer(new \Nextras\Forms\Rendering\Bs3FormRenderer());
+
         $form->addProtection('Security token has expired, please submit the form again');
         $form->addText('username', 'Username')->setRequired();
         $form->addPassword('password', 'Password')->setRequired();
 
-        $form->addSubmit('submit', 'Submit');
+        $form->addSubmit('submit', 'Uložit');
         $form->onSuccess[] = [$this, 'formSubmitted'];
+
         return $form;
     }
 

@@ -5,10 +5,26 @@ namespace App\Presenter;
 abstract class BasePresenter extends \Nette\Application\UI\Presenter
 {
     /** @persistent */
-    public $lang;
-
-    /** @var  array */
     public $locale;
+
+    /**
+     * @var \Kdyby\Translation\Translator
+     * @inject
+     */
+    public $translator;
+
+    /**
+     * @var \Kdyby\Redis\RedisStorage
+     * @inject
+     */
+    public $storage;
+
+    public function getIntegrity(string $path) : string
+    {
+        $cache = new \Nette\Caching\Cache($this->storage);
+
+        return $cache->call('App\Presenter\BasePresenter::generateChecksum', $path);
+    }
 
     public static function generateChecksum(string $path) : string
     {
@@ -20,26 +36,17 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         parent::startup();
 
         $this->autoCanonicalize = false;
+    }
 
-        if ($this->context->parameters['multiLang'])
-        {
-            switch ((string) $this->lang)
-            {
-                default:
-                    $this->lang = $this->context->parameters['defaultLang'];
-                case 'en':
-                case 'cs':
-                case 'de':
-                case 'es':
-                case 'fr':
-                case 'ru':
-                    $this->locale = require __DIR__ . "/../locale/{$this->lang}.php";
-                    break;
-            }
-        }
+    public function beforeRender()
+    {
+        parent::beforeRender();
 
         $this->template->appName = $this->context->parameters['appName'];
         $this->template->appNameShort = $this->context->parameters['appNameShort'];
+        $this->template->appDescription = $this->context->parameters['appDescription'];
+        $this->template->appKeywords = $this->context->parameters['appKeywords'];
+        $this->template->appAuthor = $this->context->parameters['appAuthor'];
     }
 
     public function flashMessage($message, $type = 'info') : \stdClass
@@ -69,7 +76,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         return $this->context->createService($name);
     }
 
-    public function handleRedrawControl(string $control = null)
+    public function handleRedrawControl(string $control = null) : void
     {
         if ($control && $this->isAjax())
         {
@@ -82,7 +89,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         }
     }
 
-    public function handleRedrawRow(string $control = null, int $rowId = null)
+    public function handleRedrawRow(string $control = null, int $rowId = null) : void
     {
         if ($this->isAjax() && $control && $rowId)
         {
@@ -92,7 +99,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         }
     }
 
-    public function actionCloseFancy($control = null, $rowId = null)
+    public function actionCloseFancy($control = null, $rowId = null) : void
     {
         $this->getFlashSession()->setExpiration(time() + 5);
 
@@ -155,6 +162,11 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     public function getModule() : string
     {
         return substr($this->getName(), 0, strpos($this->getName(), ':'));
+    }
+
+    public function getNameWM() : string
+    {
+        return substr($this->getName(), strpos($this->getName(), ':') + 1);
     }
 
     public function getPost()

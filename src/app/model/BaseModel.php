@@ -6,8 +6,7 @@ use Nette;
 
 abstract class BaseModel extends Nette\Object
 {
-    /** @var string Table name */
-    public $tableName;
+    const TABLE_NAME = '';
 
     /** @var Nette\Database\Context */
     protected $context;
@@ -24,12 +23,17 @@ abstract class BaseModel extends Nette\Object
 
     public function getTableName() : string
     {
-        return $this->tableName;
+        return static::TABLE_NAME;
     }
 
     public function getTable() : Nette\Database\Table\Selection
     {
-        return $this->context->table($this->tableName);
+        return $this->context->table(static::TABLE_NAME);
+    }
+
+    public function getActive() : Nette\Database\Table\Selection
+    {
+        return $this->getTable()->where('active', 1);
     }
 
     public function findByArray(array $filter) : Nette\Database\Table\Selection
@@ -37,7 +41,7 @@ abstract class BaseModel extends Nette\Object
         return $this->getTable()->where($filter);
     }
 
-    public function findBy(string $column, mixed $value) : Nette\Database\Table\Selection
+    public function findBy(string $column, $value) : Nette\Database\Table\Selection
     {
         return $this->getTable()->where($column, $value);
     }
@@ -74,7 +78,7 @@ abstract class BaseModel extends Nette\Object
             $data['id'] = (int) $data['id'];
             $row = $this->findRow($data['id']);
             $row->update($data);
-            return $row;
+            return $row->fetch();
         }
         unset($data['id']);
         return $this->insert($data);
