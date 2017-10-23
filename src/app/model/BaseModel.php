@@ -2,21 +2,21 @@
 
 namespace App\Model;
 
-use Nette;
-
-abstract class BaseModel extends Nette\Object
+abstract class BaseModel
 {
+    use \Nette\SmartObject;
+
     const TABLE_NAME = '';
 
-    /** @var Nette\Database\Context */
+    /** @var \Nette\Database\Context */
     protected $context;
 
-    public function __construct(Nette\Database\Context $context)
+    public function __construct(\Nette\Database\Context $context)
     {
         $this->context = $context;
     }
 
-    public function getConnection() : Nette\Database\Context
+    public function getConnection() : \Nette\Database\Context
     {
         return $this->context;
     }
@@ -26,32 +26,32 @@ abstract class BaseModel extends Nette\Object
         return static::TABLE_NAME;
     }
 
-    public function getTable() : Nette\Database\Table\Selection
+    public function getTable() : \Nette\Database\Table\Selection
     {
         return $this->context->table(static::TABLE_NAME);
     }
 
-    public function getActive() : Nette\Database\Table\Selection
+    public function getActive() : \Nette\Database\Table\Selection
     {
         return $this->getTable()->where('active', 1);
     }
 
-    public function findByArray(array $filter) : Nette\Database\Table\Selection
+    public function findByArray(array $filter) : \Nette\Database\Table\Selection
     {
         return $this->getTable()->where($filter);
     }
 
-    public function findBy(string $column, $value) : Nette\Database\Table\Selection
+    public function findBy(string $column, $value) : \Nette\Database\Table\Selection
     {
         return $this->getTable()->where($column, $value);
     }
 
-    public function findRow(int $rowId) : Nette\Database\Table\Selection
+    public function findRow(int $rowId) : \Nette\Database\Table\Selection
     {
         return $this->getTable()->wherePrimary($rowId);
     }
 
-    public function query($sql, ...$params) : Nette\Database\ResultSet
+    public function query($sql, ...$params) : \Nette\Database\ResultSet
     {
         return $this->context->query($sql, ...$params);
     }
@@ -61,7 +61,7 @@ abstract class BaseModel extends Nette\Object
         return $this->getTable()->count();
     }
 
-    public function insert($data) : Nette\Database\IRow
+    public function insert($data) : \Nette\Database\IRow
     {
         return $this->getTable()->insert($data);
     }
@@ -71,7 +71,7 @@ abstract class BaseModel extends Nette\Object
         $this->findRow($rowId)->delete();
     }
 
-    public function save($data) : Nette\Database\IRow
+    public function save($data) : \Nette\Database\IRow
     {
         if (isset($data['id']) && $data['id'])
         {
