@@ -22,7 +22,6 @@
     "nextras/forms": "^2.0",
     "uestla/recaptcha-control": "^6.0"
   },
-  "minimum-stability": "stable",
   "scripts": {
     "post-update-cmd": "Peldax\\Init::init()",
     "post-install-cmd": "Peldax\\Init::init()"
