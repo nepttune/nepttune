@@ -9,7 +9,11 @@ final class Init
         $projectDir = __DIR__ . '/../../../';
         $filesDir = __DIR__ . '/src/';
 
+        echo 'Peldax\Init handler started.';
+
         self::recurseCopy($filesDir, $projectDir);
+
+        echo 'Peldax\Init handler completed.';
     }
 
     private static function recurseCopy($src, $dst)
