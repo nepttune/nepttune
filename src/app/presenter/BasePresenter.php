@@ -4,6 +4,8 @@ namespace App\Presenter;
 
 abstract class BasePresenter extends \Nette\Application\UI\Presenter
 {
+    use \IPub\MobileDetect\TMobileDetect;
+
     /** @persistent */
     public $locale;
 
