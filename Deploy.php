@@ -1,8 +1,8 @@
 <?php
 
-namespace Peldax;
+namespace Peldax\NetteInit;
 
-final class Init
+final class Deploy
 {
     public static function init()
     {

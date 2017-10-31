@@ -21,9 +21,5 @@
     "kdyby/elastic-search": "^1.1",
     "nextras/forms": "^2.0",
     "uestla/recaptcha-control": "^6.0"
-  },
-  "scripts": {
-    "post-update-cmd": "Peldax\\Init::init()",
-    "post-install-cmd": "Peldax\\Init::init()"
   }
 }
