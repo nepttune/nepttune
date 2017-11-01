@@ -4,14 +4,20 @@ namespace Peldax\NetteInit;
 
 final class Deploy
 {
+    const PROJECT_DIR = __DIR__ . '/../../../../';
+    const FILES_DIR = __DIR__ . '/../copy/';
+
+    const DIRS = [
+        'app/model'
+    ];
+
     public static function init()
     {
-        $projectDir = __DIR__ . '/../../../../';
-        $filesDir = __DIR__ . '/../copy/';
-
         echo 'Peldax\Init handler started.';
 
-        self::recurseCopy($filesDir, $projectDir);
+        self::recurseCopy(self::FILES_DIR, self::PROJECT_DIR);
+
+        self::createDirs();
 
         echo 'Peldax\Init handler completed.';
     }
@@ -43,4 +49,16 @@ final class Deploy
         closedir($dir);
     }
 
+    private static function createDirs()
+    {
+        foreach (self::DIRS as $dir)
+        {
+            $dst = self::PROJECT_DIR . $dir;
+
+            if (!is_dir($dst))
+            {
+                mkdir($dst);
+            }
+        }
+    }
 }
