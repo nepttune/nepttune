@@ -2,7 +2,7 @@
 
 namespace App\WwwModule\Presenter;
 
-final class DefaultPresenter extends \App\Presenter\BasePresenter
+final class DefaultPresenter extends \Peldax\NetteInit\Presenter\BasePresenter
 {
     public function actionRobots()
     {

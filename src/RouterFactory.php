@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Peldax\NetteInit;
 
 use Nette\Application\Routers\RouteList,
     Nette\Application\Routers\Route;

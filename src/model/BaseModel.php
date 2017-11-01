@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace Peldax\NetteInit\Model;
 
 abstract class BaseModel
 {

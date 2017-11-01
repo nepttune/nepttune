@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Component;
+namespace Peldax\NetteInit\Component;
 
 final class LoginForm extends BaseComponent
 {
-    /** @var  \App\Model\UserModel */
+    /** @var  \Peldax\NetteInit\Model\UserModel */
     protected $logLoginModel;
 
     public function createComponentForm()

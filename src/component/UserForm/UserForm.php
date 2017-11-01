@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Component;
+namespace Peldax\NetteInit\Component;
 
 final class UserForm extends BaseComponent
 {
-    /** @var  \App\Model\UserModel */
+    /** @var  \Peldax\NetteInit\Model\UserModel */
     protected $userModel;
 
-    public function __construct(\App\Model\UserModel $userModel)
+    public function __construct(\Peldax\NetteInit\Model\UserModel $userModel)
     {
         $this->userModel = $userModel;
     }

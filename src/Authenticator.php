@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace Peldax\NetteInit;
 
 use Nette\Security as NS;
 
-final class Authenticator extends \App\Model\UserModel implements NS\IAuthenticator
+final class Authenticator extends \Peldax\NetteInit\Model\UserModel implements NS\IAuthenticator
 {
     public function authenticate(array $credentials)
     {

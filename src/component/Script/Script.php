@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Component;
+namespace Peldax\NetteInit\Component;
 
 class Script extends BaseComponent
 {

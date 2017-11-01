@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Component;
+namespace Peldax\NetteInit\Component;
 
 abstract class BaseGridComponent extends BaseComponent
 {
-    /** @var  \App\Model\BaseModel */
+    /** @var  \Peldax\NetteInit\Model\BaseModel */
     protected $repository;
 
     public function getDataSource()

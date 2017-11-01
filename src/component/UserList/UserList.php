@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Component;
+namespace Peldax\NetteInit\Component;
 
-class UserList extends \App\Component\BaseGridComponent
+class UserList extends \Peldax\NetteInit\Component\BaseGridComponent
 {
-    public function __construct(\App\Model\UserModel $userModel)
+    public function __construct(\Peldax\NetteInit\Model\UserModel $userModel)
     {
         $this->repository = $userModel;
     }

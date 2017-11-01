@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presenter;
+namespace Peldax\NetteInit\Presenter;
 
 abstract class BasePresenter extends \Nette\Application\UI\Presenter
 {
@@ -25,7 +25,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     {
         $cache = new \Nette\Caching\Cache($this->storage);
 
-        return $cache->call('App\Presenter\BasePresenter::generateChecksum', $path);
+        return $cache->call('Peldax\NetteInit\Presenter\BasePresenter::generateChecksum', $path);
     }
 
     public static function generateChecksum(string $path) : string
@@ -143,22 +143,22 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
     public static function getAdminLayout() : string
     {
-        return __DIR__ . '/../templates/@admin.latte';
+        return dirname(self::getReflection()->getFileName()) . '/../templates/@admin.latte';
     }
 
     public static function getAjaxLayout() : string
     {
-        return __DIR__ . '/../templates/@ajax.latte';
+        return dirname(self::getReflection()->getFileName()) . '/../templates/@ajax.latte';
     }
 
     public static function getIframeLayout() : string
     {
-        return __DIR__ . '/../templates/@iframe.latte';
+        return dirname(self::getReflection()->getFileName()) . '/../templates/@iframe.latte';
     }
 
     public static function getCoreLayout() : string
     {
-        return __DIR__ .'/../templates/@core.latte';
+        return dirname(self::getReflection()->getFileName()) .'/../templates/@core.latte';
     }
 
     public function getModule() : string

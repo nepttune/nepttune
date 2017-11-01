@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presenter;
+namespace Peldax\NetteInit\Presenter;
 
 abstract class BaseAuthPresenter extends BasePresenter
 {

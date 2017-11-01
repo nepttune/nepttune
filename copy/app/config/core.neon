@@ -40,7 +40,7 @@ database:
 
 latte:
     macros:
-        - App\Latte\IconMacro::install
+        - Peldax\NetteInit\Latte\IconMacro::install
 
 redis:
 	journal: on
@@ -56,17 +56,17 @@ translation:
         header: on
 
 services:
-    - App\RouterFactory
-    router: @App\RouterFactory::createRouter
+    - Peldax\NetteInit\RouterFactory
+    router: @Peldax\NetteInit\RouterFactory::createRouter
 
-    - App\Authenticator
-    authenticator: @App\Authenticator
+    - Peldax\NetteInit\Authenticator
+    authenticator: @Peldax\NetteInit\Authenticator
 
     breadcrumb:
-        class: App\Component\Breadcrumb
+        class: Peldax\NetteInit\Component\Breadcrumb
     menu:
-        class: App\Component\Menu(%configMenu%)
+        class: Peldax\NetteInit\Component\Menu(%configMenu%)
     script:
-        class: App\Component\Script
+        class: Peldax\NetteInit\Component\Script
     style:
-        class: App\Component\Style
+        class: Peldax\NetteInit\Component\Style

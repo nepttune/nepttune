@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Component;
+namespace Peldax\NetteInit\Component;
 
 class Menu extends BaseComponent
 {

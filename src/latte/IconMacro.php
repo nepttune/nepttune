@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Latte;
+namespace Peldax\NetteInit\Latte;
 
 class IconMacro extends \Latte\Macros\MacroSet
 {
@@ -9,7 +9,7 @@ class IconMacro extends \Latte\Macros\MacroSet
         $set = new static($compiler);
         $set->addMacro('icon', function($node, $writer)
         {
-            return $writer->write('echo \App\Latte\IconMacro::renderIcon(%node.word)');
+            return $writer->write('echo \Peldax\NetteInit\Latte\IconMacro::renderIcon(%node.word)');
         });
     }
 
