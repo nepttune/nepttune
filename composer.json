@@ -24,7 +24,7 @@
   },
   "autoload": {
     "psr-0": {
-      "Peldax\\NetteInit\\Deploy\\": "src/"
+      "Peldax\\NetteInit\\": "src/"
     }
   }
 }
