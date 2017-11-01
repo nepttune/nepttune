@@ -6,8 +6,8 @@ final class Deploy
 {
     public static function init()
     {
-        $projectDir = __DIR__ . '/../../../';
-        $filesDir = __DIR__ . '/src/';
+        $projectDir = __DIR__ . '/../../../../';
+        $filesDir = __DIR__ . '/../copy/';
 
         echo 'Peldax\Init handler started.';
 
