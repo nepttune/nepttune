@@ -1,4 +1,4 @@
-*.htaccess
+**/.htaccess
 
 .gitignore
 init.sh
@@ -30,12 +30,12 @@ www/index.php
 www/robots.txt
 www/image/logo*
 www/image/favicon*
-www/js/*.min.js
+www/js/**/*.min.js
 www/js/common.js
 www/js/coreValidator.js
 www/js/form.js
 www/js/stat.js
 www/node_modules/*
-www/scss/*.css
-www/scss/*.map
+www/scss/**/*.css
+www/scss/**/*.map
 www/scss/common.scss
