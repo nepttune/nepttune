@@ -23,7 +23,7 @@
     "uestla/recaptcha-control": "^6.0"
   },
   "autoload": {
-    "psr-4": {
+    "psr-0": {
       "Peldax\\NetteInit\\": "src/"
     }
   }
