@@ -7,7 +7,6 @@ includes:
 extensions:
     redis: Kdyby\Redis\DI\RedisExtension
     translation: Kdyby\Translation\DI\TranslationExtension
-    htmlPanel: Kdyby\Extension\Diagnostics\HtmlValidator\DI\ValidatorExtension
     reCaptcha: ReCaptchaControl\DI\Extension
     nextras.form: Nextras\Forms\Bridges\NetteDI\FormsExtension
 
