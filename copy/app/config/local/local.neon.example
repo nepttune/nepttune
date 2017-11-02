@@ -1,5 +1,8 @@
 # override any default settings / register your services
 
+includes:
+    - x.neon
+
 reCaptcha:
     siteKey: 'X'
     secretKey: 'X'
