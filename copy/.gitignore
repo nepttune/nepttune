@@ -7,16 +7,27 @@ log/*
 .idea/*
 nbproject/*
 
-www/scss/*.css
-www/js/*.min.js
+www/index.php
+www/robots.txt
 www/image/logo*
 www/image/favicon*
+www/js/*.min.js
+www/js/common.js
+www/js/coreValidator.js
+www/js/form.js
+www/js/stat.js
 www/node_modules/*
+www/scss/*.css
+www/scss/common.scss
 
+app/bootstrap.php
 app/config/core.neon
 app/config/headers.neon
 app/config/parameters.neon
 app/config/local/sensitive.neon
+app/module/AdminModule/presenter/DefaultPresenter.php
+app/module/AdminModule/presenter/SignPresenter.php
+app/module/WwwModule/presenter/DefaultPresenter.php
 
 composer.lock
 package-lock.json
