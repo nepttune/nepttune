@@ -13,13 +13,13 @@ final class Deploy
 
     public static function init()
     {
-        echo 'Peldax\Init handler started.';
+        echo 'Peldax\Init handler started.' . PHP_EOL;
 
         self::recurseCopy(self::FILES_DIR, self::PROJECT_DIR);
 
         self::createDirs();
 
-        echo 'Peldax\Init handler completed.';
+        echo 'Peldax\Init handler completed.' . PHP_EOL;
     }
 
     private static function recurseCopy($src, $dst)
