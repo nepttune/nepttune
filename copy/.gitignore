@@ -24,6 +24,7 @@ app/bootstrap.php
 app/config/core.neon
 app/config/headers.neon
 app/config/parameters.neon
+app/config/local/local.neon.example
 app/config/local/sensitive.neon
 app/module/AdminModule/presenter/DefaultPresenter.php
 app/module/AdminModule/presenter/SignPresenter.php
