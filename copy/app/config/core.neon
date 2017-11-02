@@ -5,6 +5,7 @@ includes:
     - parameters.neon
 
 extensions:
+    mobileDetect: IPub\MobileDetect\DI\MobileDetectExtension
     redis: Kdyby\Redis\DI\RedisExtension
     translation: Kdyby\Translation\DI\TranslationExtension
     reCaptcha: ReCaptchaControl\DI\Extension
