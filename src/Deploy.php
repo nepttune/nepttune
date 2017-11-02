@@ -8,7 +8,14 @@ final class Deploy
     const FILES_DIR = __DIR__ . '/../copy/';
 
     const DIRS = [
-        'app/model'
+        'app/model',
+        'app/component',
+        'www/js/module',
+        'www/js/presenter',
+        'www/js/action',
+        'www/scss/module',
+        'www/scss/presenter',
+        'www/scss/action'
     ];
 
     public static function init()
