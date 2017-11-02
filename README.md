@@ -12,6 +12,20 @@ This package aims to make creating new projects easier. It includes some base li
 
 ```
  {
-  TODO
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/peldax/nette-init"
+    }
+  ],
+  "require": {
+    "peldax/nette-init": "dev-master"
+  },
+  "scripts": {
+    "post-update-cmd": "Peldax\\NetteInit\\Deploy::init()",
+    "post-install-cmd": "Peldax\\NetteInit\\Deploy::init()"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
  }
 ```
