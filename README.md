@@ -21,8 +21,8 @@ Each project shares some base classes, configuration and practices with each oth
 
 ### Copied part
 
-- directory structure with standard files (bootstrap, index)
-- configuration files with extensions and security headers
+- Directory structure with standard files (bootstrap, index)
+- Configuration files with extensions and security headers
 
 
 ## How to use
