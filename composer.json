@@ -17,7 +17,7 @@
     "roave/security-advisories": "dev-master",
     "kdyby/redis": "dev-master",
     "kdyby/translation": "^2.4",
-    "kdyby/html-validator-panel": "^1.1",
+    "ipub/mobile-detect": "^2.0",
     "kdyby/elastic-search": "^1.1",
     "nextras/forms": "^2.0",
     "uestla/recaptcha-control": "^6.0"
