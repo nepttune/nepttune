@@ -15,9 +15,9 @@ Each project shares some base classes, configuration and practices with each oth
 - Base presenters and base components
 - Router
 - Authenticator
-- Custom Form Validators
+- Custom Form validators
 - Some Latte macros and filters
-- layout files (with AdminLTE for non public part and custom componenent for asset loading)
+- Layout files (with AdminLTE for non public part and custom componenent for asset loading)
 
 ### Copied part
 
