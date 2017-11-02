@@ -1,21 +1,21 @@
-www/node_modules/*
-!www/node_modules/.htaccess
+*.htaccess
 
 vendor/*
-!vendor/.htaccess
-
 temp/*
-!temp/.htaccess
-
 log/*
-!log/.htaccess
 
 .idea/*
 nbproject/*
 
 www/scss/*.css
 www/js/*.min.js
+www/image/logo*
+www/image/favicon*
+www/node_modules/*
 
+app/config/core.neon
+app/config/headers.neon
+app/config/parameters.neon
 app/config/local/sensitive.neon
 
 composer.lock
