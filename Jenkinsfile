@@ -4,6 +4,7 @@ pipeline {
     stage('test') {
       steps {
         pmd(canComputeNew: true, canResolveRelativePaths: true, canRunOnFailed: true)
+        sh 'composer install'
       }
     }
   }
