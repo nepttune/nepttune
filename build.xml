@@ -87,7 +87,7 @@
          description="Measure project size using PHPLOC and print human readable output. Intended for usage on the command line.">
   <exec executable="${phploc}" taskname="phploc">
    <arg value="--count-tests" />
-   <arg path="${basedir}/src" />
+   <arg path="${basedir}/app" />
    <arg path="${basedir}/tests" />
   </exec>
 
@@ -104,7 +104,7 @@
    <arg path="${basedir}/build/logs/phploc.csv" />
    <arg value="--log-xml" />
    <arg path="${basedir}/build/logs/phploc.xml" />
-   <arg path="${basedir}/src" />
+   <arg path="${basedir}/app" />
    <arg path="${basedir}/tests" />
   </exec>
 
@@ -119,7 +119,7 @@
    <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
    <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
    <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
-   <arg path="${basedir}/src" />
+   <arg path="${basedir}/app" />
   </exec>
 
   <property name="pdepend.done" value="true"/>
@@ -129,9 +129,9 @@
          unless="phpmd.done"
          description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
   <exec executable="${phpmd}" taskname="phpmd">
-   <arg path="${basedir}/src" />
+   <arg path="${basedir}/app" />
    <arg value="text" />
-   <arg path="${basedir}/build/phpmd.xml" />
+   <arg path="${basedir}/jenkins/phpmd.xml" />
   </exec>
 
   <property name="phpmd.done" value="true"/>
@@ -142,9 +142,9 @@
          depends="prepare"
          description="Perform project mess detection using PHPMD and log result in XML format. Intended for usage within a continuous integration environment.">
   <exec executable="${phpmd}" taskname="phpmd">
-   <arg path="${basedir}/src" />
+   <arg path="${basedir}/app" />
    <arg value="xml" />
-   <arg path="${basedir}/build/phpmd.xml" />
+   <arg path="${basedir}/jenkins/phpmd.xml" />
    <arg value="--reportfile" />
    <arg path="${basedir}/build/logs/pmd.xml" />
   </exec>
@@ -159,7 +159,7 @@
    <arg value="--standard=PSR2" />
    <arg value="--extensions=php" />
    <arg value="--ignore=autoload.php" />
-   <arg path="${basedir}/src" />
+   <arg path="${basedir}/app" />
    <arg path="${basedir}/tests" />
   </exec>
 
@@ -176,7 +176,7 @@
    <arg value="--standard=PSR2" />
    <arg value="--extensions=php" />
    <arg value="--ignore=autoload.php" />
-   <arg path="${basedir}/src" />
+   <arg path="${basedir}/app" />
    <arg path="${basedir}/tests" />
   </exec>
 
@@ -187,7 +187,7 @@
          unless="phpcpd.done"
          description="Find duplicate code using PHPCPD and print human readable output. Intended for usage on the command line before committing.">
   <exec executable="${phpcpd}" taskname="phpcpd">
-   <arg path="${basedir}/src" />
+   <arg path="${basedir}/app" />
   </exec>
 
   <property name="phpcpd.done" value="true"/>
@@ -200,7 +200,7 @@
   <exec executable="${phpcpd}" taskname="phpcpd">
    <arg value="--log-pmd" />
    <arg path="${basedir}/build/logs/pmd-cpd.xml" />
-   <arg path="${basedir}/src" />
+   <arg path="${basedir}/app" />
   </exec>
 
   <property name="phpcpd.done" value="true"/>
@@ -212,7 +212,7 @@
          description="Run unit tests with PHPUnit">
   <exec executable="${phpunit}" resultproperty="result.phpunit" taskname="phpunit">
    <arg value="--configuration"/>
-   <arg path="${basedir}/build/phpunit.xml"/>
+   <arg path="${basedir}/jenkins/phpunit.xml"/>
   </exec>
 
   <property name="phpunit.done" value="true"/>
@@ -224,7 +224,7 @@
          description="Run unit tests with PHPUnit (without generating code coverage reports)">
   <exec executable="${phpunit}" failonerror="true" taskname="phpunit">
    <arg value="--configuration"/>
-   <arg path="${basedir}/build/phpunit.xml"/>
+   <arg path="${basedir}/jenkins/phpunit.xml"/>
    <arg value="--no-coverage"/>
   </exec>
 
