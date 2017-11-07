@@ -5,6 +5,7 @@ http:
     headers:
         Server: 'peldax.com'
         X-Powered-By: 'peldax.com'
+        #Access-Control-Allow-Origin: 
         #Strict-Transport-Security: 'max-age=15768000; includeSubDomains; preload'
         #Public-Key-Pins:
         X-Xss-Protection: '1; mode=block'
