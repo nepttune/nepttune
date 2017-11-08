@@ -27,4 +27,5 @@ http:
         base-uri: [ self ]
         form-action: [ self ]
         frame-ancestors: [ self ]
+        require-sri-for: [ 'script style' ]
         block-all-mixed-content: []
