@@ -29,8 +29,8 @@ Each project shares some base classes, configuration and practices with each oth
 
 - Files copied into project are gitignored and should not be edited (including configuration files). Configuration can be overriden in local config. Authorizator, router and other services can be overriden in configuration as well.
 - Sensitive configuration, such as database connection, should be placed in app/config/local/sensitive.neon. which is gitignored.
-- Package uses Redis storage by default, so install redis on your machine or disable redis in configuration.
-- Package already requires Nette framework and other libraries, so it's no need to list them in your composer.json.
+- Package uses Redis storage by default. Redis server running on your machine is therefore required. Another option is to disable redis storage in configuration.
+- Package already depends on Nette framework and other libraries, so it's not needed to list them in your composer.json.
 - Here is example composer.json file used to initialize your project.
 
 ```
