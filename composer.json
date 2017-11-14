@@ -16,9 +16,10 @@
     "ublaboo/datagrid": ">=5.4.0",
     "roave/security-advisories": "dev-master",
     "kdyby/redis": "dev-master",
+    "kdyby/rabbitmq": "dev-master",
+    "kdyby/elastic-search": "^1.1",
     "kdyby/translation": "^2.4",
     "ipub/mobile-detect": "^2.0",
-    "kdyby/elastic-search": "^1.1",
     "nextras/forms": "^2.0",
     "uestla/recaptcha-control": "^6.0"
   },
