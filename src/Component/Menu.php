@@ -12,7 +12,7 @@ class Menu extends BaseComponent
         $this->menu = $menu;
     }
 
-    public function beforeRender()
+    protected function beforeRender()
     {
         $this->template->menu = $this->menu;
     }

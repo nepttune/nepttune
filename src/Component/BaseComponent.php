@@ -19,7 +19,7 @@ abstract class BaseComponent extends \Nette\Application\UI\Control
         return $this->getPresenter()->createComponent($name, $args);
     }
 
-    public function beforeRender()
+    protected function beforeRender()
     {
     }
 

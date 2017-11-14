@@ -4,7 +4,7 @@ namespace Peldax\NetteInit\Component;
 
 final class LoginForm extends BaseComponent
 {
-    /** @var  \Peldax\NetteInit\Model\UserModel */
+    /** @var  \Peldax\NetteInit\Model\LoginLogModel */
     protected $logLoginModel;
 
     protected function createComponentForm()
