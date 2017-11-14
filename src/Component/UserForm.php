@@ -12,7 +12,7 @@ final class UserForm extends BaseComponent
         $this->userModel = $userModel;
     }
 
-    public function createComponentForm()
+    protected function createComponentForm()
     {
         $form = new \Nette\Application\UI\Form();
 

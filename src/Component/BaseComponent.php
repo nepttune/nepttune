@@ -9,7 +9,7 @@ abstract class BaseComponent extends \Nette\Application\UI\Control
         return $this->getPresenter()->getPost();
     }
 
-    public function createComponent($name, array $args = null)
+    protected function createComponent($name, array $args = null)
     {
         if (method_exists($this, 'createComponent'.ucfirst($name)))
         {

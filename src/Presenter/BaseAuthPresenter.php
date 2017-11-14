@@ -4,7 +4,7 @@ namespace Peldax\NetteInit\Presenter;
 
 abstract class BaseAuthPresenter extends BasePresenter
 {
-    public function startup()
+    protected function startup()
     {
         if (!$this->user->isLoggedIn())
         {
@@ -14,7 +14,7 @@ abstract class BaseAuthPresenter extends BasePresenter
         parent::startup();
     }
 
-    public function beforeRender()
+    protected function beforeRender()
     {
         parent::beforeRender();
 

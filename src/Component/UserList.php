@@ -9,7 +9,7 @@ class UserList extends \Peldax\NetteInit\Component\BaseGridComponent
         $this->repository = $userModel;
     }
 
-    public function createComponentGrid()
+    protected function createComponentGrid()
     {
         $grid = new \Ublaboo\DataGrid\DataGrid();
         $grid->setDataSource($this->getDataSource());

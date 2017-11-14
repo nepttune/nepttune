@@ -7,7 +7,7 @@ final class LoginForm extends BaseComponent
     /** @var  \Peldax\NetteInit\Model\UserModel */
     protected $logLoginModel;
 
-    public function createComponentForm()
+    protected function createComponentForm()
     {
         $form = new \Nette\Application\UI\Form();
 
