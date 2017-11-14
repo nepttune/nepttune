@@ -143,22 +143,22 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
     public static function getAdminLayout() : string
     {
-        return dirname(self::getReflection()->getFileName()) . '/../templates/@admin.latte';
+        return __DIR__ . '/../templates/@admin.latte';
     }
 
     public static function getAjaxLayout() : string
     {
-        return dirname(self::getReflection()->getFileName()) . '/../templates/@ajax.latte';
+        return __DIR__ . '/../templates/@ajax.latte';
     }
 
     public static function getIframeLayout() : string
     {
-        return dirname(self::getReflection()->getFileName()) . '/../templates/@iframe.latte';
+        return __DIR__ . '/../templates/@iframe.latte';
     }
 
     public static function getCoreLayout() : string
     {
-        return dirname(self::getReflection()->getFileName()) .'/../templates/@core.latte';
+        return __DIR__ .'/../templates/@core.latte';
     }
 
     public function getModule() : string
