@@ -83,6 +83,11 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         if (!$key)
         {
             $key = $this->getParameter('backlink');
+
+            if (!$key)
+            {
+                $key = $this->context->parameters['signInRedirect'];
+            }
         }
 
         return parent::restoreRequest($key);
