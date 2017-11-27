@@ -86,7 +86,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
             if (!$key)
             {
-                $key = $this->context->parameters['signInRedirect'];
+                $this->redirect($this->context->parameters['signInRedirect']);
             }
         }
 
