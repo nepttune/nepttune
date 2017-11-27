@@ -18,6 +18,7 @@ final class LoginForm extends BaseComponent
         $form->addPassword('password', 'Password')->setRequired();
 
         $form->addSubmit('submit', 'Uložit');
+        $form->onError[] = [$this, 'formSubmitted'];
         $form->onSuccess[] = [$this, 'formSubmitted'];
 
         return $form;
@@ -36,6 +37,6 @@ final class LoginForm extends BaseComponent
         }
 
         $this->getPresenter()->flashMessage('Successfully logged in.', 'success');
-        $this->getPresenter()->redirect('Default:default');
+        $this->getPresenter()->redirect($this->getPresenter()->restoreRequest());
     }
 }
