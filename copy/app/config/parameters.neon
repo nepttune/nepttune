@@ -8,7 +8,7 @@ parameters:
     appAuthor: 'peldax.com'
 
     userProfileDest: ':User:profile:view'   # false or dest
-	signInDest: ':User:Sign:in'
+    signInDest: ':User:Sign:in'
     signOutDest: ':User:Sign:out'
 
     configMenu:
