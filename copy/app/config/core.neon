@@ -23,7 +23,7 @@ application:
 session:
     name: '%sessionName%'
     cookiePath: '/'
-    cookieDomain: '%domain%'
+    cookieDomain: '.%domain%'
     expiration: 14 days
     cookieHttpOnly: true
     cookieSecure: true
