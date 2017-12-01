@@ -1,0 +1,40 @@
+version: '2'
+services:
+
+  mariadb:
+      image: mariadb
+      container_name: mariadb
+      ports:
+        - '3306:3306'
+      environment:
+         MYSQL_ROOT_PASSWORD: example
+
+  redis:
+      image: redis
+      container_name: redis
+      ports:
+        - '6379:6379'
+
+  mongo:
+      image: mongo
+      container_name: mongo
+      ports:
+        - '27017:27017'
+
+  scylla:
+      image: scylladb/scylla
+      container_name: scylla
+      ports:
+        - '9160:9160'
+
+  rabbitmq:
+      image: rabbitmq:management
+      container_name: rabbitmq
+      ports:
+       - '5672:5672'
+       - '15672:15672'
+
+networks:
+  default:
+    driver: bridge
+
