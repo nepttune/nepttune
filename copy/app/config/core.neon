@@ -21,7 +21,9 @@ application:
         *: App\*Module\Presenter\*Presenter
 
 session:
-    name: %appName%
+    name: '%sessionName%'
+    cookiePath: '/'
+    cookieDomain: '.%domain%'
     expiration: 14 days
     cookieHttpOnly: true
     cookieSecure: true
@@ -46,7 +48,7 @@ latte:
 redis:
 	journal: on
 	storage: on
-	session: on
+	session: [ native: off ]
 
 translation:
     default: cs

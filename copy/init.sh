@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
 if [ ! -e node_modules ]; then
+    echo 'Create symlink'
     ln -s www/node_modules node_modules
 fi
 
 echo 'Composer'
-composer install &> /dev/null
+composer update --no-interaction &> /dev/null
 
 echo 'NPM'
-npm install &> /dev/null
+npm update &> /dev/null
 
 echo 'Compile SCSS'
 for FILE in `find ./www/scss -type f -name '*.scss' -not -name '_*'`

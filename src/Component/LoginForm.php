@@ -18,7 +18,6 @@ final class LoginForm extends BaseComponent
         $form->addPassword('password', 'Password')->setRequired();
 
         $form->addSubmit('submit', 'Uložit');
-        $form->onError[] = [$this, 'formSubmitted'];
         $form->onSuccess[] = [$this, 'formSubmitted'];
 
         return $form;
