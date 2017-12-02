@@ -78,21 +78,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         return $this->context->createService($name);
     }
 
-    public function restoreRequest($key = null)
-    {
-        if (!$key)
-        {
-            $key = $this->getParameter('backlink');
-
-            if (!$key)
-            {
-                $this->redirect($this->context->parameters['signInRedirect']);
-            }
-        }
-
-        return parent::restoreRequest($key);
-    }
-
     public function handleRedrawControl(string $control = null) : void
     {
         if ($control && $this->isAjax())

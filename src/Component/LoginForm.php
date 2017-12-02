@@ -36,6 +36,8 @@ final class LoginForm extends BaseComponent
         }
 
         $this->getPresenter()->flashMessage('Successfully logged in.', 'success');
-        $this->getPresenter()->redirect($this->getPresenter()->restoreRequest());
+
+        $this->getPresenter()->restoreRequest($this->getPresenter()->getParameter('backlink'));
+        $this->getPresenter()->redirect($this->getPresenter()->context->parameters['signInRedirect']);
     }
 }
