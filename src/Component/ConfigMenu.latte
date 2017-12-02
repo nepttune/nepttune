@@ -2,6 +2,7 @@
     {foreach $menu as $section => $entries}
         <li class="header">{$section}</li>
         {foreach $entries as $entry}
+            {continueIf isset($entry['role']) && !$user->isInRole($entry['role'])}
             {if is_array($entry['dest'])}
                 <li class="treeview">
                     <a href="#">{icon $entry['icon']} <span>{$entry['name']}</span>

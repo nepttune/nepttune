@@ -35,6 +35,7 @@ parameters:
                 name: 'Order'
                 icon: comments
                 dest: Order:default
+                role: 'administrator'
             settings:
                 name: 'Settings'
                 icon: cog
