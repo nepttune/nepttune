@@ -1,20 +1,7 @@
 <ol class="breadcrumb">
     <li>{icon angle-double-right}</li>
 
-    {if class_exists('\App\AppModule\Presenter\DefaultPresenter')}
-        <li><a {if $presenter->getName() !== 'App:Default'}href="{plink :App:Default:default}"{/if}>Home</a></li>
-    {/if}
-
-    {if $presenter->getNameWM() === 'Default'}
-        <li><a>{$presenter->getModule()}</a></li>
-    {else}
-        <li><a href="{plink Default:default}">{$presenter->getModule()}</a></li>
-
-        {if $presenter->getAction() === 'default'}
-            <li><a>{$presenter->getNameWM()}</a></li>
-        {else}
-            <li><a href="{plink :default}">{$presenter->getNameWM()}</a></li>
-            <li><a>{ucfirst($presenter->getAction())}</a></li>
-        {/if}
-    {/if}
+    {foreach $breadcrumbs as $action => $name}
+        <li><a {if !$iterator->isLast()}href="{plink $action}"{/if}>{$name}</a></li>
+    {/foreach}
 </ol>
