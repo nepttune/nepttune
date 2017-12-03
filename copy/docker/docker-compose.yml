@@ -15,17 +15,17 @@ services:
       ports:
         - '6379:6379'
 
-  mongo:
-      image: mongo
-      container_name: mongo
-      ports:
-        - '27017:27017'
+  #mongo:
+  #    image: mongo
+  #    container_name: mongo
+  #    ports:
+  #      - '27017:27017'
 
-  scylla:
-      image: scylladb/scylla
-      container_name: scylla
-      ports:
-        - '9160:9160'
+  #scylla:
+  #    image: scylladb/scylla
+  #    container_name: scylla
+  #    ports:
+  #      - '9160:9160'
 
   rabbitmq:
       image: rabbitmq:management
@@ -34,7 +34,12 @@ services:
        - '5672:5672'
        - '15672:15672'
 
+  #elasticsearch:
+  #    image: docker.elastic.co/elasticsearch/elasticsearch:6.0.0
+  #    container_name: elasticsearch
+  #    ports:
+  #     - '9200:9200'
+
 networks:
   default:
     driver: bridge
-
