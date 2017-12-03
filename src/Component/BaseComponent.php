@@ -19,11 +19,11 @@ abstract class BaseComponent extends \Nette\Application\UI\Control
         return $this->getPresenter()->createComponent($name, $args);
     }
 
-    protected function beforeRender()
+    protected function beforeRender() : void
     {
     }
 
-    public function render()
+    public function render() : void
     {
         $this->beforeRender();
         $this->template->setFile(str_replace(".php", ".latte", static::getReflection()->getFileName()));

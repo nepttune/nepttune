@@ -4,7 +4,7 @@ namespace Peldax\NetteInit\Component;
 
 class Breadcrumb extends BaseComponent
 {
-    public function render()
+    public function render() : void
     {
         $module = $this->getPresenter()->getModule();
         $presenter = $this->getPresenter()->getNameWM();

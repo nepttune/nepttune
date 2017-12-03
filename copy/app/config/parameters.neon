@@ -9,8 +9,10 @@ parameters:
     appKeywords: 'personal, webpage, peldax, application'
     appAuthor: 'peldax.com'
 
+    homepageDest: 'Default:default'
     userProfileDest: ':User:profile:view'   # false or dest
     signInRedirect: ':User:Default:default'
+    signOutRedirect: ':User:Sign:in'
     signInDest: ':User:Sign:in'
     signOutDest: ':User:Sign:out'
 
