@@ -13,6 +13,7 @@ package.json
 
 build.xml
 jenkins/*
+docker/*
 
 node_modules/*
 vendor/*
