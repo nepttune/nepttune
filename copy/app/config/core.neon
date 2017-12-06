@@ -6,8 +6,9 @@ includes:
 
 extensions:
     mobileDetect: IPub\MobileDetect\DI\MobileDetectExtension
-    redis: Kdyby\Redis\DI\RedisExtension
     translation: Kdyby\Translation\DI\TranslationExtension
+    redis: Kdyby\Redis\DI\RedisExtension
+    rabbitmq: Kdyby\RabbitMq\DI\RabbitMqExtension
     reCaptcha: ReCaptchaControl\DI\Extension
     nextras.form: Nextras\Forms\Bridges\NetteDI\FormsExtension
 
@@ -21,7 +22,9 @@ application:
         *: App\*Module\Presenter\*Presenter
 
 session:
-    name: %appName%
+    name: '%sessionName%'
+    cookiePath: '/'
+    cookieDomain: '.%domain%'
     expiration: 14 days
     cookieHttpOnly: true
     cookieSecure: true
@@ -33,19 +36,21 @@ forms:
         EMAIL: '%label must be valid e-mail'
 
 database:
-    options:
-         PDO::ATTR_EMULATE_PREPARES: false
-         charset: 'utf8mb4'
-         sqlmode: 'STRICT_ALL_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,NO_UNSIGNED_SUBTRACTION,ERROR_FOR_DIVISION_BY_ZERO'
+    default:
+        options:
+             PDO::ATTR_EMULATE_PREPARES: false
+             charset: 'utf8mb4'
+             sqlmode: 'STRICT_ALL_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,NO_UNSIGNED_SUBTRACTION,ERROR_FOR_DIVISION_BY_ZERO'
 
 latte:
     macros:
         - Peldax\NetteInit\Latte\IconMacro::install
 
 redis:
-	journal: on
-	storage: on
-	session: on
+    host: redis
+    journal: on
+    storage: on
+    session: [ native: off ]
 
 translation:
     default: cs
@@ -64,8 +69,6 @@ services:
 
     breadcrumb:
         class: Peldax\NetteInit\Component\Breadcrumb
-    menu:
-        class: Peldax\NetteInit\Component\Menu(%configMenu%)
     script:
         class: Peldax\NetteInit\Component\Script
     style:
