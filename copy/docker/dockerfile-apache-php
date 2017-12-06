@@ -1,0 +1,52 @@
+FROM debian:stretch-slim
+
+MAINTAINER Václav Pelíšek <peldax@gmail.com>
+
+# Install core utilities
+RUN apt-get -qq update
+RUN apt-get -qq install -y \
+    dialog apt-utils apt-transport-https lsb-release mc nano htop nmap wget curl ca-certificates git
+
+# Install apache
+RUN apt-get -qq install -y --no-install-recommends \
+    apache2
+RUN a2enmod deflate && a2enmod rewrite && a2enmod include && a2enmod autoindex
+
+# Add PHP repository
+RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+RUN sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+
+# Install PHP
+RUN apt-get -qq update
+RUN apt-get -qq install -y --no-install-recommends \
+    php7.1 \
+    php7.1-cli \
+    php7.1-curl \
+    php7.1-intl \
+    php7.1-gd \
+    php7.1-mbstring \
+    php7.1-mcrypt \
+    php7.1-pdo \
+    php7.1-mysql \
+    php7.1-json \
+    php7.1-zip \
+    php7.1-xml \
+    php7.1-imagick \
+    php7.1-redis \
+    php7.1-igbinary \
+    libapache2-mod-php7.1
+
+# Copy configuration
+COPY ./apache2/apache2.conf /etc/apache2/
+
+# Copy startup files
+COPY ./startup.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/startup.sh
+CMD /usr/local/bin/startup.sh
+
+# Enable ports
+EXPOSE 80
+EXPOSE 443
+
+# Cleanup
+RUN rm -rf /var/lib/apt/lists/* && apt-get clean

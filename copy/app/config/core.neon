@@ -36,20 +36,22 @@ forms:
         EMAIL: '%label must be valid e-mail'
 
 database:
-	default:
-		options:
-		     PDO::ATTR_EMULATE_PREPARES: false
-		     charset: 'utf8mb4'
-		     sqlmode: 'STRICT_ALL_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,NO_UNSIGNED_SUBTRACTION,ERROR_FOR_DIVISION_BY_ZERO'
+    default:
+        options:
+             PDO::ATTR_EMULATE_PREPARES: false
+             charset: 'utf8mb4'
+             sqlmode: 'STRICT_ALL_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,NO_UNSIGNED_SUBTRACTION,ERROR_FOR_DIVISION_BY_ZERO'
+
 
 latte:
     macros:
         - Peldax\NetteInit\Latte\IconMacro::install
 
 redis:
-	journal: on
-	storage: on
-	session: [ native: off ]
+    host: redis
+    journal: on
+    storage: on
+    session: [ native: off ]
 
 translation:
     default: cs
