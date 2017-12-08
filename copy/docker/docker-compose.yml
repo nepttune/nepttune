@@ -50,7 +50,3 @@ services:
     #    container_name: elasticsearch
     #    ports:
     #     - '9200:9200'
-
-networks:
-    default:
-      driver: bridge
