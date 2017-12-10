@@ -37,7 +37,8 @@ RUN apt-get update
 # Install Apache
 RUN apt-get install -y --no-install-recommends \
     apache2
-RUN a2enmod deflate && \
+RUN a2enmod ssl && \
+    a2enmod deflate && \
     a2enmod rewrite && \
     a2enmod include && \
     a2enmod autoindex
