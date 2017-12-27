@@ -7,11 +7,12 @@ package-lock.json
 **/.htaccess
 
 .gitignore
-init.sh
-rewrite.lua
 package.json
 
-build.xml
+docker.sh
+docker-js.sh
+docker-scss.sh
+
 jenkins/*
 docker/*
 
