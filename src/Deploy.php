@@ -88,7 +88,7 @@ final class Deploy
     {
         foreach (self::DIRS as $dir)
         {
-            $dst = self::PROJECT_DIR . $dir;
+            $dst = self::TARGET_DIR . $dir;
 
             if (!is_dir($dst))
             {
