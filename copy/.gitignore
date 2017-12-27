@@ -22,7 +22,9 @@ log/*
 
 app/bootstrap.php
 app/config/core.neon
-app/config/headers.neon
+app/config/database.neon
+app/config/security.neon
+app/config/services.neon
 app/config/parameters.neon
 app/config/local/local.neon.example
 app/config/local/sensitive.neon
