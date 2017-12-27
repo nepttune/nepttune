@@ -17,6 +17,8 @@ services:
         container_name: mariadb
         ports:
           - '3306:3306'
+        logging:
+            driver: none
         environment:
             MYSQL_ROOT_PASSWORD: example
 
@@ -25,6 +27,8 @@ services:
         container_name: redis
         ports:
           - '6379:6379'
+        logging:
+            driver: none
 
     #mongo:
     #    image: mongo
@@ -44,6 +48,8 @@ services:
         ports:
          - '5672:5672'
          - '15672:15672'
+        logging:
+            driver: none
 
     #elasticsearch:
     #    image: docker.elastic.co/elasticsearch/elasticsearch:6.0.0
