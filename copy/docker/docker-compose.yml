@@ -35,12 +35,16 @@ services:
     #    container_name: mongo
     #    ports:
     #      - '27017:27017'
+	#	 logging:
+    #        driver: none
 
     #scylla:
     #    image: scylladb/scylla
     #    container_name: scylla
     #    ports:
     #      - '9160:9160'
+	#    logging:
+    #        driver: none
 
     rabbitmq:
         image: rabbitmq:management
@@ -56,3 +60,6 @@ services:
     #    container_name: elasticsearch
     #    ports:
     #     - '9200:9200'
+	#    logging:
+    #        driver: none
+
