@@ -84,8 +84,10 @@ final class Deploy
     {
         foreach (self::DOCKER_FILES as $file)
         {
-            echo self::DOCKER_SOURCE_DIR . $file;
-            echo self::DOCKER_TARGET_DIR . $file;
+            echo self::DOCKER_SOURCE_DIR . $file . PHP_EOL;
+            echo self::DOCKER_TARGET_DIR . $file . PHP_EOL;
+            echo file_exists(self::DOCKER_SOURCE_DIR . $file);
+            echo file_exists(self::DOCKER_TARGET_DIR . $file);
             echo md5_file(self::DOCKER_SOURCE_DIR . $file) . PHP_EOL;
             echo md5_file(self::DOCKER_TARGET_DIR . $file) . PHP_EOL . PHP_EOL;
 
