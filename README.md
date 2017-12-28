@@ -23,7 +23,8 @@ Each project shares some base classes, configuration and practices with each oth
 
 - Directory structure with standard files (bootstrap, index)
 - Configuration files with extensions and security headers
-
+- Docker image
+- Jenkins configuration
 
 ## How to use
 
