@@ -31,6 +31,8 @@ final class Deploy
     {
         echo 'Peldax\Init handler started.' . PHP_EOL;
 
+        self::checkDockerFiles();
+
         self::recurseCopy(self::SOURCE_DIR, self::TARGET_DIR);
 
         self::createDirs();
@@ -43,30 +45,7 @@ final class Deploy
         $dir = opendir($src);
 
         echo $src . PHP_EOL;
-        echo self::DOCKER_SOURCE_DIR . PHP_EOL . PHP_EOL;
-
-        if ($src === self::DOCKER_SOURCE_DIR)
-        {
-            $change = false;
-
-            foreach (self::DOCKER_FILES as $file)
-            {
-                echo md5_file(self::DOCKER_SOURCE_DIR . $file) . PHP_EOL;
-                echo md5_file(self::DOCKER_TARGET_DIR . $file) . PHP_EOL . PHP_EOL;
-
-                if (!file_exists(self::DOCKER_TARGET_DIR . $file) ||
-                    md5_file(self::DOCKER_SOURCE_DIR . $file) === md5_file(self::DOCKER_TARGET_DIR . $file))
-                {
-                    $change = true;
-                    break;
-                }
-            }
-
-            if ($change)
-            {
-                echo "\033[31m WARNING: Docker files has changed, reload docker container. \033[0m" . PHP_EOL;
-            }
-        }
+        echo $dst . PHP_EOL;
 
         if (!is_dir($dst))
         {
@@ -77,13 +56,13 @@ final class Deploy
         {
             if (($file !== '.') && ($file !== '..'))
             {
-                if (is_dir($src . '/' . $file))
+                if (is_dir($src . $file))
                 {
-                    self::recurseCopy($src . '/' . $file,$dst . '/' . $file);
+                    self::recurseCopy($src . $file . '/', $dst . $file . '/');
                 }
                 else
                 {
-                    copy($src . '/' . $file,$dst . '/' . $file);
+                    copy($src . $file, $dst . $file);
                 }
             }
         }
@@ -101,6 +80,29 @@ final class Deploy
             {
                 mkdir($dst);
             }
+        }
+    }
+
+    private static function checkDockerFiles()
+    {
+        $change = false;
+
+        foreach (self::DOCKER_FILES as $file)
+        {
+            echo md5_file(self::DOCKER_SOURCE_DIR . $file) . PHP_EOL;
+            echo md5_file(self::DOCKER_TARGET_DIR . $file) . PHP_EOL . PHP_EOL;
+
+            if (!file_exists(self::DOCKER_TARGET_DIR . $file) ||
+                md5_file(self::DOCKER_SOURCE_DIR . $file) === md5_file(self::DOCKER_TARGET_DIR . $file))
+            {
+                $change = true;
+                break;
+            }
+        }
+
+        if ($change)
+        {
+            echo "\033[31m WARNING: Docker files has changed, reload docker container. \033[0m" . PHP_EOL;
         }
     }
 }
