@@ -33,7 +33,7 @@ fi
 
 printf '\n---> Fixing permissions\n\n'
 chown -R :www-data /var/log/apache2
-chown -R :www-data /var/www/html
+chown -R 1000:www-data /var/www/html
 find /var/www/html \( -type f -execdir chmod 660 {} \; \) \
                 -o \( -type d -execdir chmod 770 {} \; \)
 
