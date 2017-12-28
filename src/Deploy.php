@@ -44,9 +44,6 @@ final class Deploy
     {
         $dir = opendir($src);
 
-        echo $src . PHP_EOL;
-        echo $dst . PHP_EOL;
-
         if (!is_dir($dst))
         {
             mkdir($dst);
@@ -85,24 +82,19 @@ final class Deploy
 
     private static function checkDockerFiles()
     {
-        $change = false;
-
         foreach (self::DOCKER_FILES as $file)
         {
+            echo self::DOCKER_SOURCE_DIR . $file;
+            echo self::DOCKER_TARGET_DIR . $file;
             echo md5_file(self::DOCKER_SOURCE_DIR . $file) . PHP_EOL;
             echo md5_file(self::DOCKER_TARGET_DIR . $file) . PHP_EOL . PHP_EOL;
 
             if (!file_exists(self::DOCKER_TARGET_DIR . $file) ||
                 md5_file(self::DOCKER_SOURCE_DIR . $file) === md5_file(self::DOCKER_TARGET_DIR . $file))
             {
-                $change = true;
-                break;
+                echo "\033[31m WARNING: Docker files has changed, reload docker container. \033[0m" . PHP_EOL;
+                return;
             }
-        }
-
-        if ($change)
-        {
-            echo "\033[31m WARNING: Docker files has changed, reload docker container. \033[0m" . PHP_EOL;
         }
     }
 }
