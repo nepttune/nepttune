@@ -84,15 +84,8 @@ final class Deploy
     {
         foreach (self::DOCKER_FILES as $file)
         {
-            echo self::DOCKER_SOURCE_DIR . $file . PHP_EOL;
-            echo self::DOCKER_TARGET_DIR . $file . PHP_EOL;
-            echo file_exists(self::DOCKER_SOURCE_DIR . $file) ? 'exists' . PHP_EOL : 'doesnt exist' . PHP_EOL;
-            echo file_exists(self::DOCKER_TARGET_DIR . $file) ? 'exists' . PHP_EOL : 'doesnt exist' . PHP_EOL;
-            echo md5_file(self::DOCKER_SOURCE_DIR . $file) . PHP_EOL;
-            echo md5_file(self::DOCKER_TARGET_DIR . $file) . PHP_EOL . PHP_EOL;
-
             if (!file_exists(self::DOCKER_TARGET_DIR . $file) ||
-                md5_file(self::DOCKER_SOURCE_DIR . $file) === md5_file(self::DOCKER_TARGET_DIR . $file))
+                md5_file(self::DOCKER_SOURCE_DIR . $file) !== md5_file(self::DOCKER_TARGET_DIR . $file))
             {
                 echo "\033[31m WARNING: Docker files has changed, reload docker container. \033[0m" . PHP_EOL;
                 return;
