@@ -42,8 +42,8 @@ final class Deploy
     {
         $dir = opendir($src);
 
-        echo $src;
-        echo self::DOCKER_SOURCE_DIR;
+        echo $src . PHP_EOL;
+        echo self::DOCKER_SOURCE_DIR . PHP_EOL . PHP_EOL;
 
         if ($src === self::DOCKER_SOURCE_DIR)
         {
@@ -51,8 +51,8 @@ final class Deploy
 
             foreach (self::DOCKER_FILES as $file)
             {
-                echo md5_file(self::DOCKER_SOURCE_DIR . $file);
-                echo md5_file(self::DOCKER_TARGET_DIR . $file);
+                echo md5_file(self::DOCKER_SOURCE_DIR . $file) . PHP_EOL;
+                echo md5_file(self::DOCKER_TARGET_DIR . $file) . PHP_EOL . PHP_EOL;
 
                 if (!file_exists(self::DOCKER_TARGET_DIR . $file) ||
                     md5_file(self::DOCKER_SOURCE_DIR . $file) === md5_file(self::DOCKER_TARGET_DIR . $file))
