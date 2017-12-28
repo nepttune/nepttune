@@ -86,8 +86,8 @@ final class Deploy
         {
             echo self::DOCKER_SOURCE_DIR . $file . PHP_EOL;
             echo self::DOCKER_TARGET_DIR . $file . PHP_EOL;
-            echo file_exists(self::DOCKER_SOURCE_DIR . $file);
-            echo file_exists(self::DOCKER_TARGET_DIR . $file);
+            echo file_exists(self::DOCKER_SOURCE_DIR . $file) ? 'exists' . PHP_EOL : 'doesnt exist' . PHP_EOL;
+            echo file_exists(self::DOCKER_TARGET_DIR . $file) ? 'exists' . PHP_EOL : 'doesnt exist' . PHP_EOL;
             echo md5_file(self::DOCKER_SOURCE_DIR . $file) . PHP_EOL;
             echo md5_file(self::DOCKER_TARGET_DIR . $file) . PHP_EOL . PHP_EOL;
 
