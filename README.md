@@ -38,7 +38,7 @@ Each project shares some base classes, configuration and practices with each oth
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/peldax/nette-init"
+      "url": "https://github.com/peldax/nette-init.git"
     }
   ],
   "require": {
