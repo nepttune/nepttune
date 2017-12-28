@@ -10,6 +10,7 @@ final class Deploy
     const DOCKER_TARGET_DIR = self::TARGET_DIR . 'docker/';
     const DOCKER_SOURCE_DIR = self::SOURCE_DIR . 'docker/';
     const DOCKER_FILES = [
+        'apache2/000-default.conf',
         'bin/startup.sh',
         'docker-compose.yml',
         'dockerfile-apache-php'
@@ -41,14 +42,20 @@ final class Deploy
     {
         $dir = opendir($src);
 
+        echo $src;
+        echo self::DOCKER_SOURCE_DIR;
+
         if ($src === self::DOCKER_SOURCE_DIR)
         {
             $change = false;
 
             foreach (self::DOCKER_FILES as $file)
             {
+                echo md5_file(self::DOCKER_SOURCE_DIR . $file);
+                echo md5_file(self::DOCKER_TARGET_DIR . $file);
+
                 if (!file_exists(self::DOCKER_TARGET_DIR . $file) ||
-                    hash_file('sha256̈́', self::DOCKER_SOURCE_DIR . $file) === hash_file('sha256', self::DOCKER_TARGET_DIR . $file))
+                    md5_file(self::DOCKER_SOURCE_DIR . $file) === md5_file(self::DOCKER_TARGET_DIR . $file))
                 {
                     $change = true;
                     break;
