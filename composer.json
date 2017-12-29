@@ -11,14 +11,14 @@
     }
   ],
   "require": {
-    "php" : ">=7.0",
+    "php" : ">=7.1",
     "nette/nette": ">=2.4.0",
     "ublaboo/datagrid": ">=5.4.0",
     "roave/security-advisories": "dev-master",
     "kdyby/redis": "dev-master",
     "kdyby/rabbitmq": "dev-master",
-    "kdyby/elastic-search": "^1.1",
-    "kdyby/translation": "^2.4",
+    "kdyby/elastic-search": "dev-master",
+    "kdyby/translation": "dev-master",
     "ipub/mobile-detect": "^2.0",
     "nextras/forms": "^2.0",
     "uestla/recaptcha-control": "^6.0"
