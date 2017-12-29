@@ -10,7 +10,6 @@ fi
 
 printf '\n---> Running Composer\n\n'
 export COMPOSER_ALLOW_SUPERUSER=1
-rm -R /root/.composer
 composer update --no-interaction
 
 printf '\n---> Running NPM\n\n'
