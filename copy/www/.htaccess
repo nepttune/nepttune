@@ -5,9 +5,11 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine On
 
+    # URL doesnt have WWW
 	RewriteCond %{HTTP_HOST} !^www\. [NC]
     RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=302,L]
 
+    # URL has WWW but is not HTTPS
 	#RewriteCond %{HTTP:X-Forwarded-Proto} !https
     RewriteCond %{HTTPS} off
     RewriteCond %{HTTP_HOST} ^www\. [NC]
@@ -26,4 +28,3 @@
 		AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/xml image/svg+xml
 	</IfModule>
 </IfModule>
-

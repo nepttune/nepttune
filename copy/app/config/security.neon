@@ -13,9 +13,9 @@ http:
     headers:
         Server: 'peldax.com'
         X-Powered-By: 'peldax.com'
-        #Access-Control-Allow-Origin: 
-        #Strict-Transport-Security: 'max-age=15768000; includeSubDomains; preload'
+
         #Public-Key-Pins:
+        Strict-Transport-Security: 'max-age=60; includeSubDomains; preload'
         X-Xss-Protection: '1; mode=block'
         X-Content-Type-Options: 'nosniff'
         Referrer-Policy: 'strict-origin'
