@@ -78,6 +78,6 @@ curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/
 
 ## Filters
 
-# <a name="docker"></a> Docker
+# Docker
 
 # Jenkins
