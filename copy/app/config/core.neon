@@ -11,7 +11,7 @@ extensions:
     translation: Kdyby\Translation\DI\TranslationExtension
     redis: Kdyby\Redis\DI\RedisExtension
     rabbitmq: Kdyby\RabbitMq\DI\RabbitMqExtension
-    reCaptcha: ReCaptchaControl\DI\Extension
+    recaptcha: ReCaptchaControl\DI\Extension
     nextras.form: Nextras\Forms\Bridges\NetteDI\FormsExtension
 
 php:

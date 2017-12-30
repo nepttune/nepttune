@@ -3,25 +3,7 @@
 includes:
     - sensitive.neon
 
-reCaptcha:
-    siteKey: 'X'
-    secretKey: 'X'
-
-database:
-    default:
-        dsn: 'mysql:host=X;dbname=X'
-        user: 'X'
-        password: 'X'
-
 rabbitmq:
-    connection:
-        default:
-            host: 'X'
-            port: 5672
-            user: 'X'
-            password: 'X'
-            vhost: '/'
-
     producers:
 
     consumers:
