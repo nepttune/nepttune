@@ -53,6 +53,7 @@ Project runs in [docker](#docker) container. This approach brings many advantage
 - The container is identical on all machines. Identical versions of PHP and other libraries make collaboration easier.
 - There is no need to install any development tools on your machine.
 - There is no need to have multiple services running on your machine (apache, mysql, redis, ...).
+
 There are also few disadvantages of this approach, but this project is designed to minimise their impact.
 - Docker is slow on Windows machines. 
   - Whoever is using Windows obviously doesn't care about speed anyway.
