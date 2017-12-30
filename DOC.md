@@ -117,9 +117,6 @@ Menu2:
             category:
                 name: 'Category'
                 dest: Category:default
-            ingredient:
-                name: 'Ingredient'
-                dest: Ingredient:default
 ```
 Which renders as follwoing HTML.
 ```
@@ -144,27 +141,36 @@ Which renders as follwoing HTML.
       <li>
         <a href="/category/">Category</a>
       </li> 
-      <li>
-        <a href="/ingredient/">Ingredient</a>
-      </li> 
     </ul> 
   </li> 
 </ul>
 ```
-- `Menu` and `Menu2` are non clickable items. Can be used as header or multiple sections.
+- `Menu` and `Menu2` are non clickable items. Can be used as header or for multiple menu sections.
 - `order` and `settings` are containers to link options:
-  - `dest` - link destination. Can be array, to create expandable sub-menu.
-  - `icon` - displayed FA icon.
-  - `name` - displayed name.
-  - `role` - role required for user to have in order to display this link. (OPTIONAL)
+  - `dest` - Link destination. Can be array, to create expandable sub-menu.
+  - `icon` - Displayed FA icon.
+  - `name` - Displayed name.
+  - `role` - Role required for user to have in order to display this link. (OPTIONAL)
 - `category` and `ingredient` are containers to submenu options.
-  - `dest` - link destination.
-  - `name` - displayed name.
-  - `role` - role required for user to have in order to display this link. (OPTIONAL)
+  - `dest` - Link destination.
+  - `name` - Displayed name.
+  - `role` - Role required for user to have in order to display this link. (OPTIONAL)
 
+### Recommended usage
 
-Array can specify `role` value (as seen below). Menu then omits this option, if user doesn't have such role.
-
+```
+services:
+    menu:
+        class: Peldax\NetteInit\Component\ConfigMenu(%configMenu%)
+parameters:
+    configMenu:
+        Menu:
+            order:
+                name: 'Order'
+                icon: comments
+                dest: Order:default
+                role: 'user'
+```
 
 ## Breadcrumbs
 
