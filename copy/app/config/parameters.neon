@@ -18,4 +18,4 @@ parameters:
     signInDest: ':User:Sign:in'
     signOutDest: ':User:Sign:out'
 
-    configMenu:
+    configMenu: []
