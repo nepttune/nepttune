@@ -27,8 +27,11 @@ cd ..
 
 mkdir bin
 cd bin
-curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/js.sh
+curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/composer.sh
+curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/npm.sh
 curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/scss.sh
+curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/js.sh
+curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/permission.sh
 curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/startup.sh
 cd ..
 
