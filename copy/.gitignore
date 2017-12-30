@@ -10,8 +10,11 @@ package-lock.json
 package.json
 
 docker.sh
+docker-composer.sh
+docker-npm.sh
 docker-js.sh
 docker-scss.sh
+docker-permission.sh
 
 jenkins/*
 docker/*

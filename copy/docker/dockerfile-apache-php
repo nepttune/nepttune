@@ -86,11 +86,17 @@ COPY ./ssl/example ./ssl/*.key /etc/ssl/private/
 
 # Copy executable files
 COPY ./bin/startup.sh /usr/local/bin/
+COPY ./bin/composer.sh /usr/local/bin/
+COPY ./bin/npm.sh /usr/local/bin/
 COPY ./bin/scss.sh /usr/local/bin/
 COPY ./bin/js.sh /usr/local/bin/
+COPY ./bin/permission.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/startup.sh
+RUN chmod +x /usr/local/bin/composer.sh
+RUN chmod +x /usr/local/bin/npm.sh
 RUN chmod +x /usr/local/bin/scss.sh
 RUN chmod +x /usr/local/bin/js.sh
+RUN chmod +x /usr/local/bin/permission.sh
 
 CMD /usr/local/bin/startup.sh
 
