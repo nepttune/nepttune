@@ -1,6 +1,6 @@
 # Core rules
 
-- Project runs in docker container. Docker and docker-compose are **only** tools required.
+- Project runs in [docker](#docker) container. `docker` and `docker-compose` are the **only** tools required.
 - HTTPS is standard. Self signed certificate is created if other isn't provided.
 - Files copied into project are gitignored and should not be edited.
 - Package already depends on Nette framework and some other libraries, so it's not needed to list them in `composer.json`.
