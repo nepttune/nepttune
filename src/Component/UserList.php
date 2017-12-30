@@ -2,7 +2,7 @@
 
 namespace Peldax\NetteInit\Component;
 
-class UserList extends \Peldax\NetteInit\Component\BaseGridComponent
+final class UserList extends \Peldax\NetteInit\Component\BaseGridComponent
 {
     public function __construct(\Peldax\NetteInit\Model\UserModel $userModel)
     {
