@@ -7,7 +7,7 @@
 
 # Initialization
 
-First time setup requires some extra effort - download of `composer.json` and other necessary [docker](#docker) files. One your project is set up, you dont have to follow this procedure again.
+First time setup requires some extra effort - download of `composer.json` and other necessary [docker](#docker) files. Once your project is set up, you dont have to follow this procedure again.
 
 1. Create script with following content in projects directory and run it.
 ```
@@ -43,7 +43,7 @@ curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/
 
 2. Go to docker directory and run `docker-compose up`.
 
-> [Docker](#docker) executes `composer`, `npm` and other tools to initiate project automatically.
+[Docker](#docker) executes `composer`, `npm` and other tools to initiate project automatically.
 
 # Basic usage
 
@@ -61,7 +61,7 @@ There are also few disadvantages of this approach, but this project is designed 
 
 ### Starting Docker
 
-Docker is started in step 2 of [introduction](#introduction) using `docker-compose up` run in `docker` directory. There is also a script in project root called `docker.sh`, which does it for you.
+Docker is manually started in step 2 of [introduction](#introduction) using `docker-compose up` run in `docker` directory. There is also a script in project root called `docker.sh`, which does it for you.
 
 ## Helper scripts
 
@@ -96,6 +96,75 @@ This project also includes several helper scripts to run usefull tools right ins
 # Components
 
 ## ConfigMenu
+
+Config Menu is simple component for generating static menu. It is designed to be used as static menu in admininstration layout, but can be used anywehre else. 
+
+Component takes an array as constructor parameter. 
+
+Array has to have following format.
+```
+Menu:
+    order:
+        name: 'Order'
+        icon: comments
+        dest: Order:default
+        role: 'administrator'
+Menu2:
+    settings:
+        name: 'Settings'
+        icon: cog
+        dest:
+            category:
+                name: 'Category'
+                dest: Category:default
+            ingredient:
+                name: 'Ingredient'
+                dest: Ingredient:default
+```
+Which renders as follwoing HTML.
+```
+<ul class="sidebar-menu" data-widget="tree"> 
+  <li class="header">Menu</li> 
+  <li>
+    <a href="/order/">
+      <i class="fa fa-comments"></i> 
+      <span>Order</span>
+    </a> 
+  </li> 
+  <li class="header">Menu2</li> 
+  <li class="treeview">
+    <a href="#">
+      <i class="fa fa-cog"></i> 
+      <span>Settings</span> 
+      <span class="pull-right-container"> 
+        <i class="fa fa-angle-left pull-right"></i> 
+      </span> 
+    </a> 
+    <ul class="treeview-menu"> 
+      <li>
+        <a href="/category/">Category</a>
+      </li> 
+      <li>
+        <a href="/ingredient/">Ingredient</a>
+      </li> 
+    </ul> 
+  </li> 
+</ul>
+```
+- `Menu` and `Menu2` are non clickable items. Can be used as header or multiple sections.
+- `order` and `settings` are containers to link options:
+  - `dest` - link destination. Can be array, to create expandable sub-menu.
+  - `icon` - displayed FA icon.
+  - `name` - displayed name.
+  - `role` - role required for user to have in order to display this link. (OPTIONAL)
+- `category` and `ingredient` are containers to submenu options.
+  - `dest` - link destination.
+  - `name` - displayed name.
+  - `role` - role required for user to have in order to display this link. (OPTIONAL)
+
+
+Array can specify `role` value (as seen below). Menu then omits this option, if user doesn't have such role.
+
 
 ## Breadcrumbs
 
