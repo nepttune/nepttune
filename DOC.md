@@ -42,7 +42,7 @@ curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/
 
 [Docker](#docker) runs `composer`, `npm` and other tools to initiate project automatically. 
 
-# Base usage
+# Basic usage
 
 Project runs in docker container. This approach brings many advantages, here are the most most notable ones.
 - Docker container is identical on all machines. Identical versions of PHP and other libraries make collaboration easier.
