@@ -97,11 +97,9 @@ This project also includes several helper scripts to run usefull tools right ins
 
 ## ConfigMenu
 
-Config Menu is simple component for generating static menu. It is designed to be used as static menu in admininstration layout, but can be used anywehre else. 
+Config Menu is simple component for generating static menu. It is designed to be used as static menu in admininstration layout, but can be used anywhere else. 
 
-Component takes an array as constructor parameter. 
-
-Array has to have following format.
+Component takes an array as constructor parameter. Array has to have following format.
 ```
 Menu:
     order:
@@ -118,7 +116,7 @@ Menu2:
                 name: 'Category'
                 dest: Category:default
 ```
-Which renders as follwoing HTML.
+Which renders as following HTML.
 ```
 <ul class="sidebar-menu" data-widget="tree"> 
   <li class="header">Menu</li> 
