@@ -65,9 +65,9 @@ mkdir ssl
 cd ssl
 curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/ssl/example
 ```
-This script populates your projects directory with docker files and composer.json
+This script populates your projects directory with docker files and `composer.json`.
 
-3. Go to docker directory and run docker-compose.
+2. Go to docker directory and run docker-compose.
 
 Docker runs composer and other tools to initiate your project. Composer handler creates directory structure and copies all library files.
 
