@@ -12,7 +12,7 @@ class ConfigMenu extends BaseComponent
         $this->menu = $menu;
     }
 
-    protected function beforeRender()
+    protected function beforeRender() : void
     {
         $this->template->menu = $this->menu;
     }
