@@ -38,29 +38,11 @@ Each project shares some base classes, configuration and practices with each oth
 
 First time setup requires creating `composer.json` and manual download of necessary docker files. 
 
-1. Create file named `composer.json`.
-```
-{
-    "repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/peldax/nette-init.git"
-    }
-    ],
-    "require": {
-        "peldax/nette-init": "dev-master"
-    },
-    "scripts": {
-        "post-update-cmd": "Peldax\\NetteInit\\Deploy::init",
-        "post-install-cmd": "Peldax\\NetteInit\\Deploy::init"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
-}
-```
-2. Create docker directory and download docker files manually. Or use following helper script, which does it for you.
+1. Create script with following content in your projects directory.
 ```
 #!/usr/bin/env bash
+
+curl -s https://raw.githubusercontent.com/peldax/nette-init/master/default-composer.json > composer.json
 
 mkdir docker
 cd docker
@@ -83,7 +65,9 @@ mkdir ssl
 cd ssl
 curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/ssl/example
 ```
-3. Run docker-compose.
+This script populates your projects directory with docker files and composer.json
+
+3. Go to docker directory and run docker-compose.
 
 Docker runs composer and other tools to initiate your project. Composer handler creates directory structure and copies all library files.
 
