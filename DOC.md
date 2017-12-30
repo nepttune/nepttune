@@ -179,7 +179,12 @@ parameters:
 
 ## Breadcrumbs
 
+> Loaded by default
+
+
 ## Asset loaders (Script and Style)
+
+> Loaded by default
 
 ## Login Form
 
