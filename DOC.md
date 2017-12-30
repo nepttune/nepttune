@@ -104,20 +104,20 @@ Component takes an array as constructor parameter. Array has to have following f
 Menu:
     order:
         name: 'Order'
-        icon: comments
-        dest: Order:default
+        icon: 'comments'
+        dest: 'Order:default'
         role: 'administrator'
 Menu2:
     settings:
         name: 'Settings'
-        icon: cog
+        icon: 'cog'
         dest:
             category:
                 name: 'Category'
-                dest: Category:default
+                dest: 'Category:default'
             ingredient:
                 name: 'Ingredient'
-                dest: Ingredient:default
+                dest: 'Ingredient:default'
 ```
 Which renders as following HTML.
 ```
