@@ -1,15 +1,15 @@
 # Core rules
 
-- Project is run in docker container. Docker and docker-compose are **only** tools required.
+- Project runs in docker container. Docker and docker-compose are **only** tools required.
 - HTTPS is standard. Self signed certificate is created if other isn't provided.
 - Files copied into project are gitignored and should not be edited.
-- Package already depends on Nette framework and some other libraries, so it's not needed to list them in your `composer.json`.
+- Package already depends on Nette framework and some other libraries, so it's not needed to list them in `composer.json`.
 
-# Project initialization
+# Initialization
 
 First time setup requires manual download of `composer.json` and other necessary docker files. 
 
-1. Create script with following content in your projects directory and run it.
+1. Create script with following content in projects directory and run it.
 ```
 #!/usr/bin/env bash
 
@@ -36,11 +36,34 @@ mkdir ssl
 cd ssl
 curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/ssl/example
 ```
-> This script populates your projects directory with docker files and `composer.json`.
+> This script populates projects directory with docker files and `composer.json`.
 
 2. Go to docker directory and run docker-compose.
 
-[Docker](#docker) runs `composer`, `npm` and other tools to initiate your project. 
+[Docker](#docker) runs `composer`, `npm` and other tools to initiate project automatically. 
+
+# Base usage
+
+Project runs in docker container. This approach brings many advantages, here are the most most notable ones.
+- Docker container is identical on all machines. Identical versions of PHP and other libraries make collaboration easier.
+- There is no need to install any development tools on your machine.
+There are also few disadvantages of this approach, but this project is designed to minimise their impact.
+- Docker is slow on Windows machines. 
+  - Whoever is using Windows obviously doesn't care about speed anyway.
+- Docker volumes have messy configuration of filesystem permissions.
+  - Project includes script to fix filesystem permissions.
+
+This project also includes scripts to run usefull tools right inside running docker container. Those scripts are located at project root.
+- `docker-composer.sh` runs `composer update`.
+- `docker-npm.sh` runs `npm update`.
+- `docker-scss.sh` minimises `*.scss` files into `*.min.css`.
+- `docker-js.sh` minimises `*.js` files using `uglify-es`.
+- `docker-permission.sh` fixes filesystem permission for project files. 
+  - Sets user ownership to you, so you could access and edit the files.
+  - Sets group ownership to apache (`www-data`), so the webserver can read the files.
+  - Sets 770 to directories and 660 to regular files.
+  - All scripts above run this script automaticaly, there is no need to run it after running `composer` or `uglify-es`.
+  - You ming need to call this script after adding new file.
 
 # Configuration
 
