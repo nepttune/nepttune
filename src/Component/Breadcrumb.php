@@ -2,7 +2,7 @@
 
 namespace Peldax\NetteInit\Component;
 
-class Breadcrumb extends BaseComponent
+final class Breadcrumb extends BaseComponent
 {
     public function render() : void
     {
