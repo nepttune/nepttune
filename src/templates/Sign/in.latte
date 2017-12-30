@@ -1,0 +1,22 @@
+{layout $presenter->getCoreLayout()}
+
+{block #title}
+    Login
+{/block}
+
+{block #bodyContent}
+
+<div class="container">
+    <div class="jumbotron">
+        <center>
+            <h1>
+                {$appName} <small>{$appVersion}</small>
+            </h1>
+        </center>
+        {include $presenter->getFlashArea()}
+        <h2>
+            {icon unlock} Přihlášení
+        </h2>
+        {control loginForm}
+    </div>
+</div>

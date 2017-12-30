@@ -1,0 +1,10 @@
+<div class="flasharea">
+    {snippet flashMessages}
+        {foreach $flashes as $flash}
+            <div class="alert alert-dismissable alert-{$flash->type}">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {$flash->message}
+            </div>
+        {/foreach}
+    {/snippet}
+</div>

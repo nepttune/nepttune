@@ -1,10 +1,10 @@
 {layout @core.latte}
 
-{block bodyTag}
+{block #bodyTag}
     <body class="hold-transition sidebar-mini skin-red">
 {/block}
 
-{block bodyContent}
+{block #bodyContent}
 
 <div class="wrapper">
     <header class="main-header">
@@ -81,14 +81,8 @@
             {control breadcrumb}
         </section>
         <section class="content container-fluid">
-            <div id="flasharea">
-                {snippet flashMessages}
-                    {foreach $flashes as $flash}
-                        <div class="flash {$flash->type}">{$flash->message}</div>
-                    {/foreach}
-                {/snippet}
-            </div>
-            {include content}
+            {include $presenter->getFlashArea()}
+            {include #content}
         </section>
     </div>
     {if $presenter->useSidebar()}

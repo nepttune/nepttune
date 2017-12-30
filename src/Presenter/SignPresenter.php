@@ -14,4 +14,9 @@ abstract class SignPresenter extends BasePresenter
         $this->flashMessage('Successfully logged out.', 'success');
         $this->redirect($this->context->parameters['signOutRedirect']);
     }
+
+    public function renderIn()
+    {
+        $this->template->setFile(__DIR__ . '/../templates/Sign/in.latte');
+    }
 }

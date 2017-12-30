@@ -1,17 +1,11 @@
 {layout @core.latte}
 
-{block bodyContent}
+{block #bodyContent}
 
 <div class="white-popup">
-    <div id="flasharea">
-        {snippet flash}
-            {foreach $flashes as $flash}
-                <div class="flash {$flash->type}">{$flash->message}</div>
-            {/foreach}
-        {/snippet}
-    </div>
+    {include $presenter->getFlashArea()}
     <header>
-        <h1>{include title}</h1>
+        <h1>{include #title}</h1>
     </header>
-    {include content}
+    {include #content}
 </div>

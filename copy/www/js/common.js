@@ -31,17 +31,6 @@ function debounce(func, wait, immediate) {
     };
 }
 
-jQuery.fn.fade = function()
-{
-    this.fadeTo('slow', 0, 'linear').slideUp('slow', 'linear', function() { $(this).remove(); });
-};
-
-
-function flashFadeOut()
-{
-    $('.flash').delay(2000).fade();
-}
-
 function refreshPlugins(context)
 {
     $(context).find('.iframePopup').magnificPopup({type: 'iframe'});
@@ -50,8 +39,6 @@ function refreshPlugins(context)
 
 $(document).ready(function ()
 {
-    flashFadeOut();
-
     $.nette.ext('snippets').after(function (el)
     {
         refreshPlugins(el);

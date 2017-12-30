@@ -2,13 +2,7 @@
 
 namespace App\AdminModule\Presenter;
 
-final class SignPresenter extends \Peldax\NetteInit\Presenter\BasePresenter
+final class SignPresenter extends \Peldax\NetteInit\Presenter\SignPresenter
 {
-    public function actionOut()
-    {
-        $this->getUser()->logout();
 
-        $this->flashMessage('Successfully logged out.', 'success');
-        $this->redirect('Sign:in');
-    }
 }

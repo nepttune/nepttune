@@ -32,7 +32,8 @@ final class LoginForm extends BaseComponent
         }
         catch (\Nette\Security\AuthenticationException $e)
         {
-            return $this->getPresenter()->flashMessage($e->getMessage());
+            $this->getPresenter()->flashMessage($e->getMessage(), 'danger');
+            return;
         }
 
         $this->getPresenter()->flashMessage('Successfully logged in.', 'success');

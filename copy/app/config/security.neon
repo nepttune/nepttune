@@ -11,8 +11,8 @@ session:
 http:
     frames: 'SAMEORIGIN'
     headers:
-        Server: 'peldax.com'
-        X-Powered-By: 'peldax.com'
+        Server: '%domain%'
+        X-Powered-By: '%domain%'
 
         #Public-Key-Pins:
         Strict-Transport-Security: 'max-age=60; includeSubDomains; preload'

@@ -46,6 +46,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
         $this->template->appName = $this->context->parameters['appName'];
         $this->template->appNameShort = $this->context->parameters['appNameShort'];
+        $this->template->appVersion = $this->context->parameters['appVersion'];
         $this->template->appDescription = $this->context->parameters['appDescription'];
         $this->template->appKeywords = $this->context->parameters['appKeywords'];
         $this->template->appAuthor = $this->context->parameters['appAuthor'];
@@ -159,6 +160,11 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     public static function getCoreLayout() : string
     {
         return __DIR__ .'/../templates/@core.latte';
+    }
+
+    public static function getFlashArea() : string
+    {
+        return __DIR__ . '/../templates/flasharea.latte';
     }
 
     public function getModule() : string
