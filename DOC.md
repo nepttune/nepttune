@@ -62,7 +62,7 @@ There are also few disadvantages of this approach, but this project is designed 
 
 ### Starting Docker
 
-Docker is manually started in step 2 of [introduction](#introduction) using `docker-compose up` run in `docker` directory. There is also a script in project root called `docker.sh`, which does it for you.
+Docker is manually started in step 2 of [initialization](#initialization) using `docker-compose up` run in `docker` directory. There is also a script in project root called `docker.sh`, which does it for you.
 
 ## Helper scripts
 
