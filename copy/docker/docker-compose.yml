@@ -1,4 +1,5 @@
 version: '3'
+
 services:
 
     apache-php:
@@ -21,10 +22,12 @@ services:
         container_name: mariadb
         ports:
           - '3306:3306'
-        logging:
-            driver: none
+        volumes:
+         - '/var/lib/mysql:/var/lib/mysql'
         environment:
             MYSQL_ROOT_PASSWORD: example
+        logging:
+            driver: none
 
     redis:
         image: redis
