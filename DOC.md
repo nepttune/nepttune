@@ -171,8 +171,8 @@ parameters:
         Menu:
             order:
                 name: 'Order'
-                icon: comments
-                dest: Order:default
+                icon: 'comments'
+                dest: 'Order:default'
                 role: 'user'
 ```
 
