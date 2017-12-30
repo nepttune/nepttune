@@ -36,11 +36,11 @@ mkdir ssl
 cd ssl
 curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/ssl/example
 ```
-This script populates your projects directory with docker files and `composer.json`.
+> This script populates your projects directory with docker files and `composer.json`.
 
 2. Go to docker directory and run docker-compose.
 
-Docker runs `composer`, `npm` and other tools to initiate your project.
+[Docker](#Docker) runs `composer`, `npm` and other tools to initiate your project. 
 
 # Configuration
 
@@ -48,9 +48,28 @@ Docker runs `composer`, `npm` and other tools to initiate your project.
 - Sensitive configuration, such as database connection, should be placed in app/config/local/sensitive.neon. which is gitignored.
 (including configuration files). Configuration can be overriden in local config. Authorizator, router and other services can be overriden in configuration as well.
 
+## Router
+
+## Authenticator
 
 # Presenters
 
 # Components
 
 ## ConfigMenu
+
+## Breadcrumbs
+
+## Asset loaders (Script and Style)
+
+# Form Validator
+
+# Latte extensions
+
+## Macros
+
+## Filters
+
+# Docker
+
+# Jenkins
