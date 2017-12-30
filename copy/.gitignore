@@ -28,6 +28,7 @@ app/config/security.neon
 app/config/services.neon
 app/config/parameters.neon
 app/config/local/local.neon.example
+app/config/local/sensitive.neon.example
 app/config/local/sensitive.neon
 app/module/AdminModule/presenter/DefaultPresenter.php
 app/module/AdminModule/presenter/SignPresenter.php
@@ -37,6 +38,7 @@ www/index.php
 www/robots.txt
 www/image/logo*
 www/image/favicon*
+www/image/sign-background.jpg
 www/js/**/*.min.js
 www/js/common.js
 www/js/coreValidator.js
@@ -46,3 +48,5 @@ www/node_modules/*
 www/scss/**/*.css
 www/scss/**/*.map
 www/scss/common.scss
+www/scss/presenter/Admin:Sign.scss
+
