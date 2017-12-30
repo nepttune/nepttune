@@ -7,7 +7,7 @@
 
 # Initialization
 
-First time setup requires manual download of `composer.json` and other necessary docker files. 
+First time setup requires some extra effort - download of `composer.json` and other necessary [docker](#docker) files. One your project is set up, you dont have to follow this procedure again.
 
 1. Create script with following content in projects directory and run it.
 ```
@@ -41,32 +41,43 @@ curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/
 ```
 > This script populates projects directory with docker files and `composer.json`.
 
-2. Go to docker directory and run docker-compose.
+2. Go to docker directory and run `docker-compose up`.
 
-[Docker](#docker) runs `composer`, `npm` and other tools to initiate project automatically. 
+> [Docker](#docker) executes `composer`, `npm` and other tools to initiate project automatically.
 
 # Basic usage
 
-Project runs in docker container. This approach brings many advantages, here are the most most notable ones.
-- Docker container is identical on all machines. Identical versions of PHP and other libraries make collaboration easier.
+## Docker introduction
+
+Project runs in [docker](#docker) container. This approach brings many advantages, here are the most most notable ones.
+- The container is identical on all machines. Identical versions of PHP and other libraries make collaboration easier.
 - There is no need to install any development tools on your machine.
+- There is no need to have multiple services running on your machine (apache, mysql, redis, ...).
 There are also few disadvantages of this approach, but this project is designed to minimise their impact.
 - Docker is slow on Windows machines. 
   - Whoever is using Windows obviously doesn't care about speed anyway.
 - Docker volumes have messy configuration of filesystem permissions.
   - Project includes script to fix filesystem permissions.
 
-This project also includes scripts to run usefull tools right inside running docker container. Those scripts are located at project root.
-- `docker-composer.sh` runs `composer update`.
-- `docker-npm.sh` runs `npm update`.
+### Starting Docker
+
+Docker is started in step 2 of [introduction](#introduction) using `docker-compose up` run in `docker` directory. There is also a script in project root called `docker.sh`, which does it for you.
+
+## Helper scripts
+
+This project also includes several helper scripts to run usefull tools right inside running docker container. Those scripts are located at project root.
+- `docker-composer.sh` executes `composer update`.
+- `docker-npm.sh` executes `npm update`.
 - `docker-scss.sh` minimises `*.scss` files into `*.min.css`.
 - `docker-js.sh` minimises `*.js` files using `uglify-es`.
 - `docker-permission.sh` fixes filesystem permission for project files. 
   - Sets user ownership to you, so you could access and edit the files.
   - Sets group ownership to apache (`www-data`), so the webserver can read the files.
   - Sets 770 to directories and 660 to regular files.
-  - All scripts above run this script automaticaly, there is no need to run it after running `composer` or `uglify-es`.
-  - You ming need to call this script after adding new file.
+  - **All scripts above execute this script automaticaly**, there is no need to run it after running `composer` or `uglify-es`.
+  - You ming need to call this script after adding a new file.
+  
+**All helper scripts are automatically executed on container startup.** You dont have to call them manually on every startup.
 
 # Configuration
 
