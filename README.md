@@ -36,9 +36,9 @@ Each project shares some base classes, configuration and practices with each oth
 
 ## How to setup
 
-First time setup requires creating `composer.json` and manual download of necessary docker files. 
+First time setup requires manual download of `composer.json` and other necessary docker files. 
 
-1. Create script with following content in your projects directory.
+1. Create script with following content in your projects directory and run it.
 ```
 #!/usr/bin/env bash
 
