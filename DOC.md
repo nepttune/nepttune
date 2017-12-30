@@ -40,7 +40,7 @@ curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/
 
 2. Go to docker directory and run docker-compose.
 
-[Docker](#Docker) runs `composer`, `npm` and other tools to initiate your project. 
+[Docker](#docker) runs `composer`, `npm` and other tools to initiate your project. 
 
 # Configuration
 
@@ -48,9 +48,11 @@ curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/
 - Sensitive configuration, such as database connection, should be placed in app/config/local/sensitive.neon. which is gitignored.
 (including configuration files). Configuration can be overriden in local config. Authorizator, router and other services can be overriden in configuration as well.
 
-## Router
+## Extensions
 
-## Authenticator
+# Router
+
+# Authenticator
 
 # Presenters
 
@@ -62,6 +64,12 @@ curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/
 
 ## Asset loaders (Script and Style)
 
+## Login Form
+
+## User List & Form
+
+# Model
+
 # Form Validator
 
 # Latte extensions
@@ -70,6 +78,6 @@ curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/
 
 ## Filters
 
-# Docker
+# <a name="docker"></a> Docker
 
 # Jenkins
