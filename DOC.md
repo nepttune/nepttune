@@ -115,6 +115,9 @@ Menu2:
             category:
                 name: 'Category'
                 dest: Category:default
+            ingredient:
+                name: 'Ingredient'
+                dest: Ingredient:default
 ```
 Which renders as following HTML.
 ```
@@ -138,6 +141,9 @@ Which renders as following HTML.
     <ul class="treeview-menu"> 
       <li>
         <a href="/category/">Category</a>
+      </li>
+      <li>
+        <a href="/ingredient/">Ingredient</a>
       </li> 
     </ul> 
   </li> 
