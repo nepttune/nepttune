@@ -3,7 +3,7 @@
 - Project is run in docker container. Docker and docker-compose are **only** tools required.
 - HTTPS is standard. Self signed certificate is created if other isn't provided.
 - Files copied into project are gitignored and should not be edited.
-- Package already depends on Nette framework and some other libraries, so it's not needed to list them in your composer.json.
+- Package already depends on Nette framework and some other libraries, so it's not needed to list them in your `composer.json`.
 
 # Project initialization
 
@@ -40,7 +40,7 @@ This script populates your projects directory with docker files and `composer.js
 
 2. Go to docker directory and run docker-compose.
 
-Docker runs composer, anp and other tools to initiate your project.
+Docker runs `composer`, `npm` and other tools to initiate your project.
 
 # Configuration
 
