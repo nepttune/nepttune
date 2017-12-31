@@ -43,9 +43,6 @@ $(document).ready(function ()
     {
         refreshPlugins(el);
     });
-    $.nette.ext('flash', {
-        complete: flashFadeOut
-    });
     $.nette.init();
 
     refreshPlugins(document.body);
