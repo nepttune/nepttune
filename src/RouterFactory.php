@@ -5,7 +5,7 @@ namespace Peldax\NetteInit;
 use Nette\Application\Routers\RouteList,
     Nette\Application\Routers\Route;
 
-class RouterFactory
+final class RouterFactory
 {
     /**
      * @return \Nette\Application\IRouter
@@ -15,7 +15,6 @@ class RouterFactory
         $router = new RouteList();
 
         $router[] = new Route('//<module>.%domain%/[<lang [a-z]{2}>/]<presenter>/<action>[/<id>]', [
-            'module' => 'Www',
             'presenter' => 'Default',
             'action' => 'default'
         ]);
