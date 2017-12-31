@@ -33,13 +33,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         return 'sha256-' . base64_encode(hash_file('sha256', $path, true));
     }
 
-    protected function startup()
-    {
-        parent::startup();
-
-        $this->autoCanonicalize = false;
-    }
-
     protected function beforeRender()
     {
         parent::beforeRender();
