@@ -200,6 +200,12 @@ Project includes some extra form validators.
 
 This validator ensures that inputs from two controls has the same length - same number of characters. Required parameter is name of second control to test.
 
+```
+$form->addText('a', 'A');
+$form->addText('b', 'B')
+    ->addRule(\Peldax\NetteInit\Validator\CoreValidator::SAME_LENGTH, 'a')
+```
+
 # Latte extensions
 
 ## Macros
