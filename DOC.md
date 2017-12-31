@@ -192,7 +192,13 @@ parameters:
 
 # Model
 
-# Form Validator
+# Form Validators
+
+Project includes some extra form validators.
+
+## Same length
+
+This validator ensures that inputs from two controls has the same length - same number of characters. Required parameter is name of second control to test.
 
 # Latte extensions
 
