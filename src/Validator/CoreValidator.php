@@ -8,6 +8,6 @@ final class CoreValidator
     
     public static function sameLength(\Nette\Forms\IControl $control, string $controlName)
     {
-        return strlen($control->getValue()) == strlen($control->getForm()[$controlName]->getValue());
+        return mb_strlen($control->getValue()) === mb_strlen($control->getForm()[$controlName]->getValue());
     }
 }
