@@ -47,5 +47,5 @@
 {/if}
 
 {foreach $styles as $path}
-    <link rel="stylesheet" type="text/css" crossorigin="anonymous" integrity="{$presenter->getIntegrity(getcwd() . $path)}" href="{$path}" />
+    <link rel="stylesheet" type="text/css" crossorigin="anonymous" integrity="{$control->getIntegrity($path)}" href="{$path}" />
 {/foreach}
