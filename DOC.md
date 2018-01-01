@@ -96,6 +96,12 @@ This project also includes several helper scripts to run usefull tools right ins
 
 # Components
 
+## BaseComponent
+
+## BaseFormComponent
+
+## BaseListComponent
+
 ## ConfigMenu
 
 Config Menu is simple component for generating static menu. It is designed to be used as static menu in admininstration layout, but can be used anywhere else. 
