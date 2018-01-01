@@ -6,6 +6,8 @@ use \Ublaboo\DataGrid\DataGrid;
 
 final class UserList extends BaseListComponent
 {
+    const INLINE = 0;
+
     public function __construct(\Peldax\NetteInit\Model\UserModel $userModel)
     {
         $this->repository = $userModel;
@@ -15,19 +17,6 @@ final class UserList extends BaseListComponent
     {
         $grid->addColumnText('username', 'Přihlašovací jméno')
             ->setSortable();
-        $grid->addColumnStatus('active', 'Aktivní')
-            ->setSortable()
-            ->addOption(1, 'Ano')
-            ->endOption()
-            ->addOption(0, 'Ne')
-            ->endOption()
-            ->onChange[] = [$this, 'statusChange'];
-
-        $grid->addAction('delete', '', 'delete!')
-            ->setIcon('trash')
-            ->setTitle('Smazat')
-            ->setClass('btn btn-xs btn-danger ajax')
-            ->setConfirm('Opravdu odstranit?');
 
         $grid->addToolbarButton(':Admin:User:add', 'Přidat');
 

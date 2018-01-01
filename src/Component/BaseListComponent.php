@@ -7,6 +7,9 @@ use \Ublaboo\DataGrid\DataGrid;
 abstract class BaseListComponent extends BaseComponent
 {
     const ACTIVE = 1;
+    const INLINE = 1;
+    const DELETE = 1;
+    const SORT = ['active' => 'DESC'];
 
     /** @var  \Peldax\NetteInit\Model\BaseModel */
     protected $repository;
@@ -14,7 +17,7 @@ abstract class BaseListComponent extends BaseComponent
     public function render() : void
     {
         $this->beforeRender();
-        $this->template->setFile(__DIR__. '/BaseListComponent.php');
+        $this->template->setFile(__DIR__. '/BaseListComponent.latte');
         $this->template->render();
     }
 
@@ -23,7 +26,48 @@ abstract class BaseListComponent extends BaseComponent
         $grid = new DataGrid();
         $grid->setDataSource($this->getDataSource());
 
-        return $this->modifyList($grid);
+        $grid = $this->modifyList($grid);
+
+        if (static::ACTIVE)
+        {
+            $grid->addColumnStatus('active', 'Active')
+                ->setSortable()
+                ->addOption(1, 'Yes')
+                ->endOption()
+                ->addOption(0, 'No')
+                ->endOption()
+                ->onChange[] = [$this, 'statusChange'];
+        }
+
+        if (static::INLINE)
+        {
+            $grid->addInlineAdd()
+                ->setTitle('Add')
+                ->onControlAdd[] = [$this, 'modifyInlineForm'];
+            $grid->getInlineAdd()->onSubmit[] = [$this, 'saveInlineAdd'];
+
+            $grid->addInlineEdit()
+                ->setTitle('Edit')
+                ->onControlAdd[] = [$this, 'modifyInlineForm'];
+            $grid->getInlineEdit()->onSubmit[] = [$this, 'saveInlineEdit'];
+            $grid->getInlineEdit()->onSetDefaults[] = [$this, 'setInlineDefaults'];
+        }
+
+        if (static::DELETE)
+        {
+            $grid->addAction('delete', '', 'delete!')
+                ->setIcon('trash')
+                ->setTitle('Delete')
+                ->setClass('btn btn-xs btn-danger ajax')
+                ->setConfirm('Are you sure you want to delete this record?');
+        }
+
+        if (static::SORT)
+        {
+            $grid->setDefaultSort(static::SORT);
+        }
+
+        return $grid;
     }
 
     abstract protected function modifyList(DataGrid $grid) : DataGrid;
@@ -48,23 +92,28 @@ abstract class BaseListComponent extends BaseComponent
         }
 
         $this->repository->findRow($id)->update(['active' => $status]);
-        $this['grid']->redrawItem($id);
+        $this['list']->redrawItem($id);
     }
 
-    public function inlineAdd($values) : void
+    public function saveInlineAdd($values) : void
     {
         $this->repository->save($values);
-        $this['grid']->redrawControl();
+        $this['list']->redrawControl();
     }
 
-    public function inlineEdit(int $id, $values) : void
+    public function saveInlineEdit(int $id, $values) : void
     {
         $values['id'] = $id;
         $this->repository->save($values);
-        $this['grid']->redrawItem($id);
+        $this['list']->redrawItem($id);
     }
 
-    public function setDefaults($container, $item) : void
+    public function modifyInlineForm(\Nette\Forms\Container $container) : void
+    {
+
+    }
+
+    public function setInlineDefaults($container, $item) : void
     {
         $container->setDefaults($item);
     }
@@ -72,6 +121,6 @@ abstract class BaseListComponent extends BaseComponent
     public function handleDelete(int $id) : void
     {
         $this->repository->findRow($id)->update(['active' => -1]);
-        $this['grid']->redrawControl();
+        $this['list']->redrawControl();
     }
 }
