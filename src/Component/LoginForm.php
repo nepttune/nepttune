@@ -2,33 +2,27 @@
 
 namespace Peldax\NetteInit\Component;
 
-final class LoginForm extends BaseComponent
+use \Nette\Application\UI\Form;
+
+final class LoginForm extends BaseFormComponent
 {
     /** @var  \Peldax\NetteInit\Model\LoginLogModel */
     protected $logLoginModel;
 
-    protected function createComponentForm()
+    protected function modifyForm(Form $form) : Form
     {
-        $form = new \Nette\Application\UI\Form();
-
-        $form->setRenderer(new \Nextras\Forms\Rendering\Bs3FormRenderer());
-
-        $form->addProtection('Security token has expired, please submit the form again');
         $form->addText('username', 'Username')->setRequired();
         $form->addPassword('password', 'Password')->setRequired();
-
-        $form->addSubmit('submit', 'Uložit');
-        $form->onSuccess[] = [$this, 'formSubmitted'];
 
         return $form;
     }
 
-    public function formSubmitted(\Nette\Application\UI\Form $form, \stdClass $values)
+    public function formSuccess(\Nette\Application\UI\Form $form, \stdClass $values) : void
     {
         try
         {
-            $this->getPresenter()->user->login($values->username, $values->password);
-            $this->getPresenter()->user->setExpiration(0, TRUE);
+            $this->getPresenter()->getUser()->login($values->username, $values->password);
+            $this->getPresenter()->getUser()->setExpiration(0, TRUE);
         }
         catch (\Nette\Security\AuthenticationException $e)
         {

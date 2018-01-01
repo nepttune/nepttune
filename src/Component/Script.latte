@@ -76,5 +76,5 @@
 {/if}
 
 {foreach $scripts as $path}
-    <script n:nonce defer crossorigin="anonymous" type="text/javascript" integrity="{$presenter->getIntegrity(getcwd() . $path)}" src="{$path}"></script>
+    <script n:nonce defer crossorigin="anonymous" type="text/javascript" integrity="{$control->getIntegrity($path)}" src="{$path}"></script>
 {/foreach}

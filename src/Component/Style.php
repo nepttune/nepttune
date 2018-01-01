@@ -2,7 +2,7 @@
 
 namespace Peldax\NetteInit\Component;
 
-class Style extends BaseComponent
+final class Style extends BaseAssetComponent
 {
     public function renderComponent()
     {

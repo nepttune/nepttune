@@ -2,7 +2,7 @@
 
 namespace Peldax\NetteInit\Component;
 
-class ConfigMenu extends BaseComponent
+final class ConfigMenu extends BaseComponent
 {
     /** @var array */
     protected $menu;

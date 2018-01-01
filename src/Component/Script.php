@@ -2,6 +2,7 @@
 
 namespace Peldax\NetteInit\Component;
 
-class Script extends BaseComponent
+final class Script extends BaseAssetComponent
 {
+
 }

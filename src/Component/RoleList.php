@@ -4,11 +4,11 @@ namespace Peldax\NetteInit\Component;
 
 use \Ublaboo\DataGrid\DataGrid;
 
-final class UserList extends BaseListComponent
+final class RoleList extends BaseListComponent
 {
-    public function __construct(\Peldax\NetteInit\Model\UserModel $userModel)
+    public function __construct(\Peldax\NetteInit\Model\RoleModel $roleModel)
     {
-        $this->repository = $userModel;
+        $this->repository = $roleModel;
     }
 
     protected function modifyList(DataGrid $grid) : DataGrid

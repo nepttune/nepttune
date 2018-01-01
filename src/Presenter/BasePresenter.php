@@ -15,31 +15,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
      */
     public $translator;
 
-    /**
-     * @var \Kdyby\Redis\RedisStorage
-     * @inject
-     */
-    public $storage;
-
-    public function getIntegrity(string $path) : string
-    {
-        $cache = new \Nette\Caching\Cache($this->storage);
-
-        return $cache->call('Peldax\NetteInit\Presenter\BasePresenter::generateChecksum', $path);
-    }
-
-    public static function generateChecksum(string $path) : string
-    {
-        return 'sha256-' . base64_encode(hash_file('sha256', $path, true));
-    }
-
-    protected function startup()
-    {
-        parent::startup();
-
-        $this->autoCanonicalize = false;
-    }
-
     protected function beforeRender()
     {
         parent::beforeRender();
@@ -126,7 +101,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
     public function findLayoutTemplateFile() : string
     {
-        $dir = dirname(self::getReflection()->getFileName());
+        $dir = dirname(static::getReflection()->getFileName());
         $primary = $dir . '/../templates/@layout.latte';
 
         if (is_file($primary))
