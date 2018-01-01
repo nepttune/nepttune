@@ -15,7 +15,7 @@ abstract class BaseFormComponent extends BaseComponent
     public function render() : void
     {
         $this->beforeRender();
-        $this->template->setFile(__DIR__. '/BaseFormComponent.php');
+        $this->template->setFile(__DIR__. '/BaseFormComponent.latte');
         $this->template->render();
     }
 
