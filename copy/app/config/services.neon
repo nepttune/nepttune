@@ -13,3 +13,8 @@ services:
         class: Peldax\NetteInit\Component\Script
     style:
         class: Peldax\NetteInit\Component\Style
+
+decorator:
+    Peldax\NetteInit\Component\BaseAssetComponent:
+        setup:
+            - injectStorage

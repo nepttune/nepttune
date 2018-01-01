@@ -7,12 +7,12 @@
 
     # URL doesnt have WWW
     RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]+$
-    RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=302,L]
+    RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
     # URL doesnt have HTTPS
     #RewriteCond %{HTTP:X-Forwarded-Proto} !https
     RewriteCond %{HTTPS} off
-    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=302,L]
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
     RewriteRule /\.|^\.(?!well-known/) - [F]
     RewriteCond %{REQUEST_FILENAME} !-f
