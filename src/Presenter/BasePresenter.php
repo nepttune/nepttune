@@ -22,6 +22,8 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         $this->template->appName = $this->context->parameters['appName'];
         $this->template->appNameShort = $this->context->parameters['appNameShort'];
         $this->template->appVersion = $this->context->parameters['appVersion'];
+        $this->template->appFaviconIco = $this->context->parameters['appFaviconIco'];
+        $this->template->appFaviconPng = $this->context->parameters['appFaviconPng'];
         $this->template->appDescription = $this->context->parameters['appDescription'];
         $this->template->appKeywords = $this->context->parameters['appKeywords'];
         $this->template->appAuthor = $this->context->parameters['appAuthor'];

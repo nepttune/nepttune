@@ -7,6 +7,8 @@ parameters:
     appName: 'peldax.com'
     appNameShort: 'PLX'
     appVersion: '1.0'
+    appFaviconIco: '/image/favicon.ico'
+    appFaviconPng: '/image/favicon.png'
     appDescription: 'peldax.com - personal multi-purpose webpage'
     appKeywords: 'personal, webpage, peldax, application'
     appAuthor: 'peldax.com'
