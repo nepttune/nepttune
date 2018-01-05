@@ -7,7 +7,8 @@ use \Ublaboo\DataGrid\DataGrid;
 abstract class BaseListComponent extends BaseComponent
 {
     const ACTIVE = 1;
-    const INLINE = 1;
+    const INLINE_ADD = 1;
+    const INLINE_EDIT = 1;
     const DELETE = 1;
     const SORT = ['active' => 'DESC'];
 
@@ -39,13 +40,16 @@ abstract class BaseListComponent extends BaseComponent
                 ->onChange[] = [$this, 'statusChange'];
         }
 
-        if (static::INLINE)
+        if (static::INLINE_ADD)
         {
             $grid->addInlineAdd()
                 ->setTitle('Add')
                 ->onControlAdd[] = [$this, 'modifyInlineForm'];
             $grid->getInlineAdd()->onSubmit[] = [$this, 'saveInlineAdd'];
+        }
 
+        if (static::INLINE_EDIT)
+        {
             $grid->addInlineEdit()
                 ->setTitle('Edit')
                 ->onControlAdd[] = [$this, 'modifyInlineForm'];
