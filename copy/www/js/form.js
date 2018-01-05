@@ -14,7 +14,8 @@ Nette.showFormErrors = function (form, errors)
 
     for (var i = 0; i < errors.length; i++)
     {
-        $(errors[i].element).parent().parent().find('th').append('<span class="form-error">' + errors[i].message + '</span>');
+        $(errors[i].element).parent().addClass('has-error');
+        $(errors[i].element).parent().append('<span class="help-block">' + errors[i].message + '</span>');
     }
 
     if (errors.length > 0)
