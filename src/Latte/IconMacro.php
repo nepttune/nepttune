@@ -9,14 +9,19 @@ class IconMacro extends \Latte\Macros\MacroSet
         $set = new static($compiler);
         $set->addMacro('icon', function($node, $writer)
         {
-            return $writer->write('echo \Peldax\NetteInit\Latte\IconMacro::renderIcon(%node.word)');
+            return $writer->write('echo \Peldax\NetteInit\Latte\IconMacro::renderIcon(%node.word, %node.array)');
         });
     }
 
-    public static function renderIcon($icon)
+    public static function renderIcon($icon, array $params = [])
     {
         $el = \Nette\Utils\Html::el('i');
         $el->addAttributes(['class' => 'fa fa-'.$icon]);
+
+        if (isset($params['size']))
+        {
+            $el->appendAttribute('class', 'fa-'.$params['size'].'x');
+        }
 
         return $el;
     }
