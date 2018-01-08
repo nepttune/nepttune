@@ -101,6 +101,21 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         }
     }
 
+    public function getModule() : string
+    {
+        return substr($this->getName(), 0, strpos($this->getName(), ':'));
+    }
+
+    public function getNameWM() : string
+    {
+        return substr($this->getName(), strpos($this->getName(), ':') + 1);
+    }
+
+    public function getId() : int
+    {
+        return (int) $this->getParameter('id');
+    }
+    
     public function findLayoutTemplateFile() : string
     {
         $dir = dirname(static::getReflection()->getFileName());
@@ -142,30 +157,5 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     public static function getFlashArea() : string
     {
         return __DIR__ . '/../templates/flasharea.latte';
-    }
-
-    public function getModule() : string
-    {
-        return substr($this->getName(), 0, strpos($this->getName(), ':'));
-    }
-
-    public function getNameWM() : string
-    {
-        return substr($this->getName(), strpos($this->getName(), ':') + 1);
-    }
-
-    public function getPost()
-    {
-        return $this->getHttpRequest()->getPost();
-    }
-
-    public function getRemoteAddress()
-    {
-        return $this->getHttpRequest()->getRemoteAddress();
-    }
-
-    public function getId() : int
-    {
-        return (int) $this->getParameter('id');
     }
 }
