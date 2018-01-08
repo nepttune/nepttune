@@ -2,7 +2,7 @@
 
 services:
     - Peldax\NetteInit\RouterFactory
-    router: @Peldax\NetteInit\RouterFactory::createRouter
+    router: @Peldax\NetteInit\RouterFactory::createSubdomainRouter
 
     - Peldax\NetteInit\Authenticator
     authenticator: @Peldax\NetteInit\Authenticator
