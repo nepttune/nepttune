@@ -26,6 +26,7 @@ log/*
 
 app/bootstrap.php
 app/config/core.neon
+app/config/forms.neon
 app/config/database.neon
 app/config/security.neon
 app/config/services.neon
