@@ -52,5 +52,6 @@ www/node_modules/*
 www/scss/**/*.css
 www/scss/**/*.map
 www/scss/common.scss
+www/scss/presenter/Error.scss
 www/scss/presenter/Admin:Sign.scss
 
