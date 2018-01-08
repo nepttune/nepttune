@@ -242,7 +242,7 @@ Which renders as following HTML.
 - If `brand` key exists, it is used as brand (header) item with following options.
   - `dest` - Link destination.
   - `name` - Displayed name.
-  - `image` - 30x30 Image
+  - `image` - Header image.
 
 ### Recommended usage
 
