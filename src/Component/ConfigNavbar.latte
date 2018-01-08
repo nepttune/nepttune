@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    {if isset($navbar['brand'])}
+        <a class="navbar-brand" href="{$navbar['brand']['dest']}">
+            {if isset($navbar['brand']['image'])}
+                <img src="{$navbar['brand']['image']}" width="30" height="30" alt="{$navbar['brand']['name']}">
+            {/if}
+            {$navbar['brand']['name']}
+        </a>
+    {/if}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDropdown">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarDropdown">
+        <ul class="navbar-nav">
+        {foreach $navbar as $key => $entry}
+            {continueIf isset($entry['role']) && !$user->isInRole($entry['role'])}
+
+            {if is_array($entry['dest'])}
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{$key}" data-toggle="dropdown">
+                        {$entry['name']}
+                    </a>
+                    <div class="dropdown-menu">
+                    {foreach $entry['dest'] as $subentry}
+                        {continueIf isset($subentry['role']) && !$user->isInRole($subentry['role'])}
+
+                        <a href="{plink $subentry['dest']}" n:class="dropdown-item, isset($subentry['class']) ? $subentry['class']">
+                            {$subentry['name']}
+                        </a>
+                    {/foreach}
+                    </div>
+                </li>
+            {else}
+                <li n:class="nav-item, $presenter->isLinkCurrent($entry['dest']) ? active">
+                    <a href="{plink $entry['dest']}" n:class="nav-link, isset($entry['class']) ? $entry['class']">
+                        {$entry['name']}
+                    </a>
+                </li>
+            {/if}
+        {/foreach}
+        </ul>
+    </div>
+</nav>
