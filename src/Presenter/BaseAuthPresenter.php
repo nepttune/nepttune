@@ -18,8 +18,10 @@ abstract class BaseAuthPresenter extends BasePresenter
     {
         parent::beforeRender();
 
-        $this->template->signOutDest = $this->context->parameters['signOutDest'];
-        $this->template->userProfileDest = $this->context->parameters['userProfileDest'];
+        $this->template->destSignOut = $this->context->parameters['destSignOut'];
+        $this->template->destUserProfile = $this->context->parameters['destUserProfile'];
+
+        $this->template->destAuthHomepage = $this->context->parameters['destAuthHomepage'];
     }
 
     public static function getDefaultLayout() : string
