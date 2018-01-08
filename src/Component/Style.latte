@@ -1,17 +1,20 @@
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,700" />
 
 {var $styles = [
-    '/node_modules/bootstrap/dist/css/bootstrap.min.css',
     '/node_modules/font-awesome/css/font-awesome.min.css',
     '/node_modules/flag-icon-css/css/flag-icon.min.css',
-    '/node_modules/magnific-popup/dist/magnific-popup.css',
-    '/scss/common.min.css'
+    '/node_modules/magnific-popup/dist/magnific-popup.css'
 ]}
 
 {if $presenter instanceof \Peldax\NetteInit\Presenter\BaseAuthPresenter}
+    {php $styles[] = '/node_modules/bootstrap/dist/css/bootstrap.min.css'}
     {php $styles[] = '/node_modules/admin-lte/dist/css/AdminLTE.min.css'}
     {php $styles[] = '/node_modules/admin-lte/dist/css/skins/skin-red.min.css'}
+{else}
+    {php $styles[] = '/node_modules/bootstrap-beta/dist/css/bootstrap.min.css'}
 {/if}
+
+{php $styles[] = '/scss/common.min.css'}
 
 {var $moduleStyle = '/scss/module/' . $presenter->getModule() . '.min.css'}
 {if file_exists(getcwd() . $moduleStyle)}{php $styles[] = $moduleStyle}{/if}
