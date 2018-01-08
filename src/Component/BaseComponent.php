@@ -4,11 +4,6 @@ namespace Peldax\NetteInit\Component;
 
 abstract class BaseComponent extends \Nette\Application\UI\Control
 {
-    protected function getPost()
-    {
-        return $this->getPresenter()->getPost();
-    }
-
     protected function createComponent($name, array $args = null)
     {
         if (method_exists($this, 'createComponent'.ucfirst($name)))
