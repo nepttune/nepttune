@@ -16,7 +16,7 @@
                     {continueIf isset($subentry['role']) && !$user->isInRole($subentry['role'])}
 
                     <li>
-                        <a href="{plink $subentry['dest']}" n:class="isset($subentry['class']) ? $subentry['class']">
+                        <a href="{plink $subentry['dest']}" n:class="isset($entry['class']) ? $entry['class'], isset($subentry['class']) ? $subentry['class']">
                             {$subentry['name']}
                         </a>
                     </li>
