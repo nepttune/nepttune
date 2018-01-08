@@ -4,15 +4,18 @@
 
 {var $scripts = [
     '/node_modules/jquery/dist/jquery.min.js',
-    '/node_modules/bootstrap/dist/js/bootstrap.min.js',
     '/node_modules/nette.ajax.js/nette.ajax.js',
-    '/node_modules/magnific-popup/dist/jquery.magnific-popup.min.js',
-    '/js/common.min.js'
+    '/node_modules/magnific-popup/dist/jquery.magnific-popup.min.js'
 ]}
 
 {if $presenter instanceof \Peldax\NetteInit\Presenter\BaseAuthPresenter}
+    {php $scripts[] = '/node_modules/bootstrap/dist/js/bootstrap.min.js'}
     {php $scripts[] = '/node_modules/admin-lte/dist/js/adminlte.min.js'}
+{else}
+    {php $scripts[] = '/node_modules/bootstrap-beta/dist/js/bootstrap.bundle.min.js'}
 {/if}
+
+{php $scripts[] = '/js/common.min.js'}
 
 {var $moduleScript = '/js/module/' . $presenter->getModule() . '.min.js'}
 {if file_exists(getcwd() . $moduleScript)}{php $scripts[] = $moduleScript}{/if}
