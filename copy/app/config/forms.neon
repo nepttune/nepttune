@@ -2,24 +2,24 @@
 
 forms:
     messages:
-        FILLED: 'Please complete mandatory field.'
-        BLANK: ''
+        FILLED: 'This input is required.'
+        BLANK: 'This input is required to be blank.'
 
         LENGTH: 'Please enter a value of exactly %d characters.'
-        RANGE: 'Please enter a value of %d characters.'
+        RANGE: 'Please enter a value of at least %d characters and at most %d characters.'
         MIN_LENGTH: 'Please enter a value of at least %d characters.'
-        MAX_LENGTH: 'Please enter a value of at least %d characters.'
+        MAX_LENGTH: 'Please enter a value of at most %d characters.'
 
-        PATTERN: ''
-        EMAIL: '%label must be valid e-mail'
-        URL: 'Políčko „%label“ musí byť platná URL adresa!'
+        PATTERN: 'Input is required to match %d pattern.'
+        EMAIL: 'Please enter a valid email adress.'
+        URL: 'Please enter a valid URL adress.'
 
-        NUMERIC: 'Políčko „%label“ musí byť číslo!'
-        INTEGER: 'Políčko „%label“ musí byť celé číslo!'
-        FLOAT: 'Políčko „%label“ musí byť desatinné číslo!'
-        MIN: ''
-        MAX: ''
+        NUMERIC: 'Please enter numeric value.'
+        INTEGER: 'Please enter integer value.'
+        FLOAT: 'Please enter decimal value.'
+        MIN: 'Please enter a value greater than minimal value of %d.'
+        MAX: 'Please enter a value leasser than maximal value of %d.'
 
-        IMAGE: 'Políčko „%label“ musí byť obrázok!'
-        MIME_TYPE: ''
-        MAX_FILE_SIZE: ''
+        IMAGE: 'Please upload a file of image MIME type.'
+        MIME_TYPE: 'Please upload a file of %d MIME type.'
+        MAX_FILE_SIZE: 'Please upload a file of maximum size %d kb.'
