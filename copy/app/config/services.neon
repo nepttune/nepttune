@@ -2,7 +2,7 @@
 
 services:
     - Peldax\NetteInit\RouterFactory
-    router: @Peldax\NetteInit\RouterFactory::createSubdomainRouter
+    router: @Peldax\NetteInit\RouterFactory::createRouter
 
     - Peldax\NetteInit\Authenticator
     authenticator: @Peldax\NetteInit\Authenticator
@@ -18,3 +18,15 @@ decorator:
     Peldax\NetteInit\Component\BaseAssetComponent:
         setup:
             - injectStorage
+
+latte:
+    macros:
+        - Peldax\NetteInit\Latte\IconMacro::install
+
+translation:
+    default: cs
+    whitelist: [en, cs, de, es, fr, ru]
+    resolvers:
+        session: off
+        request: on
+        header: on
