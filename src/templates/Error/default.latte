@@ -1,0 +1,23 @@
+{layout $presenter->getCoreLayout()}
+{block title}{$msg}{/block}
+{block content}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>Oops!</h1>
+                <h2>{$code} {$msg}</h2>
+                <div class="error-details">
+                    Sorry, an error has occurred, Requested page not found!
+                </div>
+                <div class="error-actions">
+                    <a href="{plink $destHomepage}" class="btn btn-primary btn-lg">
+                        {icon home}
+                        Take Me Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
