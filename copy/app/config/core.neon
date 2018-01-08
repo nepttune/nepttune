@@ -4,15 +4,16 @@ includes:
     - database.neon
     - security.neon
     - services.neon
+    - forms.neon
     - parameters.neon
 
 extensions:
-    mobileDetect: IPub\MobileDetect\DI\MobileDetectExtension
-    translation: Kdyby\Translation\DI\TranslationExtension
     redis: Kdyby\Redis\DI\RedisExtension
     rabbitmq: Kdyby\RabbitMq\DI\RabbitMqExtension
+    translation: Kdyby\Translation\DI\TranslationExtension
+    mobileDetect: IPub\MobileDetect\DI\MobileDetectExtension
     recaptcha: ReCaptchaControl\DI\Extension
-    nextras.form: Nextras\Forms\Bridges\NetteDI\FormsExtension
+    nextrasForm: Nextras\Forms\Bridges\NetteDI\FormsExtension
 
 php:
     date.timezone: Europe/Prague
@@ -22,21 +23,4 @@ application:
     errorPresenter: Error
     mapping:
         *: App\*Module\Presenter\*Presenter
-
-forms:
-    messages:
-        FILLED: 'Please complete mandatory field.'
-        MIN_LENGTH: 'Please enter a value of at least %d characters.'
-        EMAIL: '%label must be valid e-mail'
-
-latte:
-    macros:
-        - Peldax\NetteInit\Latte\IconMacro::install
-
-translation:
-    default: cs
-    whitelist: [en, cs, de, es, fr, ru]
-    resolvers:
-        session: off
-        request: on
-        header: on
+        Error: App\Presenter\ErrorPresenter
