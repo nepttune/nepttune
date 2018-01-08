@@ -13,12 +13,13 @@ parameters:
     appKeywords: 'personal, webpage, peldax, application'
     appAuthor: 'peldax.com'
 
-    homepageDest: ':Www:Default:default'
+    destHomepage: ':Www:Default:default'
+    destAuthHomepage: ':Admin:default:default'
+    destUserProfile: ':Admin:profile:view'   # false or dest
+    destSignIn: ':Admin:Sign:in'
+    destSignOut: ':Admin:Sign:out'
 
-    userProfileDest: ':User:profile:view'   # false or dest
-    signInRedirect: ':User:Default:default'
-    signOutRedirect: ':User:Sign:in'
-    signInDest: ':User:Sign:in'
-    signOutDest: ':User:Sign:out'
+    redirectSignIn: ':Admin:Default:default'
+    redirectSignOut: ':Admin:Sign:in'
 
     configMenu: []
