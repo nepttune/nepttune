@@ -12,7 +12,7 @@ abstract class SignPresenter extends BasePresenter
         $this->user->logout();
 
         $this->flashMessage('Successfully logged out.', 'success');
-        $this->redirect($this->context->parameters['signOutRedirect']);
+        $this->redirect($this->context->parameters['redirectSignOut']);
     }
 
     public function renderIn()
