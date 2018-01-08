@@ -27,6 +27,8 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         $this->template->appDescription = $this->context->parameters['appDescription'];
         $this->template->appKeywords = $this->context->parameters['appKeywords'];
         $this->template->appAuthor = $this->context->parameters['appAuthor'];
+        
+        $this->template->homepageDest = $this->context->parameters['homepageDest'];
     }
 
     public function flashMessage($message, $type = 'info') : \stdClass
