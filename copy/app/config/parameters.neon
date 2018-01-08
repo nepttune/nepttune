@@ -14,8 +14,8 @@ parameters:
     appAuthor: 'peldax.com'
 
     destHomepage: ':Www:Default:default'
-    destAuthHomepage: ':Admin:default:default'
-    destUserProfile: ':Admin:profile:view'   # false or dest
+    destAuthHomepage: ':Admin:Default:default'
+    destUserProfile: ':Admin:Profile:view'   # false or dest
     destSignIn: ':Admin:Sign:in'
     destSignOut: ':Admin:Sign:out'
 
