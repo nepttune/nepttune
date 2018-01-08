@@ -8,7 +8,7 @@ abstract class BaseAuthPresenter extends BasePresenter
     {
         if (!$this->user->isLoggedIn())
         {
-            $this->redirect($this->context->parameters['signInDest'], ['backlink' => $this->storeRequest()]);
+            $this->redirect($this->context->parameters['destSignIn'], ['backlink' => $this->storeRequest()]);
         }
 
         parent::startup();
