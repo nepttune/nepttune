@@ -42,13 +42,13 @@
                                 {control userDetail}
                             {/if}
                             <li class="user-footer">
-                                {if $userProfileDest}
+                                {if $destUserProfile}
                                     <div class="pull-left">
-                                        <a href="{plink $userProfileDest, id => $user->getId()}" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="{plink $destUserProfile, id => $user->getId()}" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                 {/if}
                                 <div class="pull-right">
-                                    <a href="{plink $signOutDest}" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="{plink $destSignOut}" class="btn btn-default btn-flat">Sign out</a>
                                 </div>
                             </li>
                         </ul>
