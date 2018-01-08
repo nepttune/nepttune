@@ -3,6 +3,7 @@
         <li class="header">{$section}</li>
         {foreach $entries as $entry}
             {continueIf isset($entry['role']) && !$user->isInRole($entry['role'])}
+            
             {if is_array($entry['dest'])}
                 <li class="treeview">
                     <a href="#">{icon $entry['icon']} <span>{$entry['name']}</span>
@@ -12,6 +13,8 @@
                     </a>
                     <ul class="treeview-menu">
                         {foreach $entry['dest'] as $subentry}
+                            {continueIf isset($subentry['role']) && !$user->isInRole($subentry['role'])}
+                        
                             <li><a href="{plink $subentry['dest']}">{$subentry['name']}</a></li>
                         {/foreach}
                     </ul>
