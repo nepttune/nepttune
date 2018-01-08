@@ -1,4 +1,6 @@
-<script n:nonce>const redrawRowUrl = {plink :redrawRow!};const redrawControlUrl = {plink :redrawControl!};</script>
+{if $presenter->name !== 'Error'}
+    <script n:nonce>const redrawRowUrl = {plink :redrawRow!};const redrawControlUrl = {plink :redrawControl!};</script>
+{/if}
 
 {var $scripts = [
     '/node_modules/jquery/dist/jquery.min.js',
