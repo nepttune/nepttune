@@ -2,7 +2,7 @@
 
 namespace App\Presenter;
 
-final class ErroPresenter extends \Peldax\NetteInit\Presenter\ErroPresenter
+final class ErrorPresenter extends \Peldax\NetteInit\Presenter\ErrorPresenter
 {
 
 }
