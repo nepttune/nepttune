@@ -34,9 +34,8 @@ app/config/parameters.neon
 app/config/local/local.neon.example
 app/config/local/sensitive.neon.example
 app/config/local/sensitive.neon
-app/module/AdminModule/presenter/DefaultPresenter.php
+app/presenter/ErrorPresenter.php
 app/module/AdminModule/presenter/SignPresenter.php
-app/module/WwwModule/presenter/DefaultPresenter.php
 
 www/index.php
 www/robots.txt
