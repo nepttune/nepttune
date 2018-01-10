@@ -1,6 +1,6 @@
 const selectOptions =
 {
-    width: 'auto'
+    width: '100%'
 };
 const iCheckOptions =
 {
