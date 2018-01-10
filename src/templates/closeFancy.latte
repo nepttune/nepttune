@@ -1,0 +1,11 @@
+<script n:nonce>
+    {if $redrawControl}
+        window.parent.redrawControl({$control});
+    {/if}
+
+    {if $redrawRow}
+        window.parent.redrawRow({$control}, {$rowId});
+    {/if}
+
+    window.parent.$.magnificPopup.close();
+</script>
