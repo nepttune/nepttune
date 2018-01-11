@@ -29,7 +29,13 @@ final class RouterFactory
     {
         $router = new RouteList();
 
-        $router[] = new Route('/[<lang [a-z]{2}>/]<module>/<presenter>/<action>[/<id>]', [
+        $router[] = new Route('/[<lang [a-z]{2}>/]admin/<presenter>/<action>[/<id>]', [
+            'module' => 'Admin',
+            'presenter' => 'Default',
+            'action' => 'default'
+        ]);
+        
+        $router[] = new Route('/[<lang [a-z]{2}>/]<presenter>/<action>[/<id>]', [
             'module' => 'Www',
             'presenter' => 'Default',
             'action' => 'default'
