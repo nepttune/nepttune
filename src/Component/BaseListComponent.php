@@ -15,6 +15,9 @@ abstract class BaseListComponent extends BaseComponent
     /** @var  \Peldax\NetteInit\Model\BaseModel */
     protected $repository;
 
+    /** @var  \Kdyby\Translation\Translator */
+    protected $translator;
+
     public function render() : void
     {
         $this->beforeRender();
@@ -25,17 +28,18 @@ abstract class BaseListComponent extends BaseComponent
     protected function createComponentList() : DataGrid
     {
         $grid = new DataGrid();
+        $grid->setTranslator($this->translator);
         $grid->setDataSource($this->getDataSource());
 
         $grid = $this->modifyList($grid);
 
         if (static::ACTIVE)
         {
-            $grid->addColumnStatus('active', 'Active')
+            $grid->addColumnStatus('active', 'list.column.active')
                 ->setSortable()
-                ->addOption(1, 'Yes')
+                ->addOption(1, 'global.yes')
                 ->endOption()
-                ->addOption(0, 'No')
+                ->addOption(0, 'global.no')
                 ->endOption()
                 ->onChange[] = [$this, 'statusChange'];
         }
@@ -43,7 +47,8 @@ abstract class BaseListComponent extends BaseComponent
         if (static::INLINE_ADD)
         {
             $grid->addInlineAdd()
-                ->setTitle('Add')
+                ->setTitle('global.add')
+                ->setClass('btn btn-md btn-primary')
                 ->onControlAdd[] = [$this, 'modifyInlineForm'];
             $grid->getInlineAdd()->onSubmit[] = [$this, 'saveInlineAdd'];
         }
@@ -51,7 +56,8 @@ abstract class BaseListComponent extends BaseComponent
         if (static::INLINE_EDIT)
         {
             $grid->addInlineEdit()
-                ->setTitle('Edit')
+                ->setTitle('global.edit')
+                ->setClass('btn btn-xs btn-primary')
                 ->onControlAdd[] = [$this, 'modifyInlineForm'];
             $grid->getInlineEdit()->onSubmit[] = [$this, 'saveInlineEdit'];
             $grid->getInlineEdit()->onSetDefaults[] = [$this, 'setInlineDefaults'];
@@ -61,9 +67,9 @@ abstract class BaseListComponent extends BaseComponent
         {
             $grid->addAction('delete', '', 'delete!')
                 ->setIcon('trash')
-                ->setTitle('Delete')
-                ->setClass('btn btn-xs btn-danger ajax')
-                ->setConfirm('Are you sure you want to delete this record?');
+                ->setTitle('global.delete')
+                ->setClass('btn btn-xs btn-danger')
+                ->setConfirm('global.confirm.delete');
         }
 
         if (static::SORT)
@@ -126,5 +132,10 @@ abstract class BaseListComponent extends BaseComponent
     {
         $this->repository->findRow($id)->update(['active' => -1]);
         $this['list']->redrawControl();
+    }
+
+    public function injectTranslator(\Kdyby\Translation\Translator $translator)
+    {
+        $this->translator = $translator;
     }
 }

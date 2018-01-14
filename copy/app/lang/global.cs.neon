@@ -1,0 +1,14 @@
+add: 'Přidat'
+edit: 'Upravit'
+delete: 'Smazat'
+yes: 'Ano'
+no: 'Ne'
+
+save: 'Uložit'
+save_next: 'Uložit a přidat další'
+
+confirm:
+    delete: 'Opravdu chcete smazat tento záznam?'
+
+flash:
+    save_success: 'Úspěšně uloženo.'

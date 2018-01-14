@@ -7,10 +7,12 @@ use \Nette\Application\UI\Form;
 abstract class BaseFormComponent extends BaseComponent
 {
     const REDIRECT = ':default';
-    const MESSAGE = 'Successfully saved.';
 
     /** @var  \Peldax\NetteInit\Model\BaseModel */
     protected $repository;
+
+    /** @var  \Kdyby\Translation\Translator */
+    protected $translator;
 
     public function render() : void
     {
@@ -23,12 +25,14 @@ abstract class BaseFormComponent extends BaseComponent
     {
         $form = new Form();
 
+        $form->setTranslator($this->translator);
+
         $form->setRenderer(new \Nextras\Forms\Rendering\Bs3FormRenderer());
-        $form->addProtection('Security token has expired, please submit the form again');
+        $form->addProtection('form.error.csrf');
 
         $form = $this->modifyForm($form);
 
-        $form->addSubmit('submit', 'Uložit');
+        $form->addSubmit('submit', 'global.save');
         $form->onSuccess[] = [$this, 'formSuccess'];
 
         return $form;
@@ -40,7 +44,12 @@ abstract class BaseFormComponent extends BaseComponent
     {
         $this->repository->save($values);
 
-        $this->getPresenter()->flashMessage(static::MESSAGE, 'success');
+        $this->getPresenter()->flashMessage('global.flash.save_success', 'success');
         $this->getPresenter()->redirect(static::REDIRECT);
+    }
+
+    public function injectTranslator(\Kdyby\Translation\Translator $translator)
+    {
+        $this->translator = $translator;
     }
 }

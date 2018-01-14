@@ -1,0 +1,24 @@
+error:
+    filled: 'This input is required.'
+    blank: 'This input is required to be blank.'
+
+    length: 'Enter a value of exactly %d characters.'
+    range: 'Enter a value of at least %d characters and at most %d characters.'
+    min_length: 'Enter a value of at least %d characters.'
+    max_length: 'Enter a value of at most %d characters.'
+
+    pattern: 'Enter a value which match %d pattern.'
+    email: 'Enter a valid email adress.'
+    url: 'Enter a valid URL adress.'
+
+    numeric: 'Enter numeric value.'
+    integer: 'Enter integer value.'
+    float: 'Enter decimal value.'
+    min: 'Enter a value greater than minimal value of %d.'
+    max: 'Enter a value leasser than maximal value of %d.'
+
+    image: 'Select a file of image MIME type.'
+    mime_type: 'Select a file of %d MIME type.'
+    max_file_size: 'Select a file of maximum size %d kb.'
+
+    csrf: 'Security token has expired, submit the form again.'
