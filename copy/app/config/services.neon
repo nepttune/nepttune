@@ -18,6 +18,12 @@ decorator:
     Peldax\NetteInit\Component\BaseAssetComponent:
         setup:
             - injectStorage
+    Peldax\NetteInit\Component\BaseFormComponent:
+        setup:
+            - injectTranslator
+    Peldax\NetteInit\Component\BaseListComponent:
+        setup:
+            - injectTranslator
 
 latte:
     macros:
