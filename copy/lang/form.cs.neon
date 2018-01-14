@@ -1,0 +1,30 @@
+save: 'Uložit'
+save_next: 'Uložit a přidat další'
+
+flash:
+    success: 'Úspěšně uloženo.'
+
+error:
+    filled: 'Toto políčko je povinné.'
+    blank: 'Toto políčko musí zůstat prázdné.'
+
+    length: 'Vložte hodnotu o přesně %d znacích.'
+    range: 'Vložte hodnotu o nejméně %d znacích a nejvýše %d znacích.'
+    min_length: 'Vložte hodnotu o nejméně %d znacích.'
+    max_length: 'Vložte hodnotu o nejvíce %d znacích.'
+
+    pattern: 'Vložte hodnotu, která splnujě %d schěma.'
+    email: 'Vložte platný email.'
+    url: 'Vložte platnou URL adresu.'
+
+    numeric: 'Vložte číselnou hodnotu.'
+    integer: 'Vložte celé číslo.'
+    float: 'Vložte desetinné číslo.'
+    min: 'Vložte hodnotu větší než %d.'
+    max: 'Vložte hodnotu menší než %d.'
+
+    image: 'Zvolte obrázek.'
+    mime_type: 'Zvolte soubor %d MIME typu.'
+    max_file_size: 'Zvolte soubor o maximální velikosti %d kb.'
+
+    csrf: 'Bezpečnostní token vypršel, odešlete formulář znovu.'
