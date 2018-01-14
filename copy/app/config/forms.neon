@@ -2,24 +2,25 @@
 
 forms:
     messages:
-        FILLED: 'This input is required.'
-        BLANK: 'This input is required to be blank.'
+        FILLED: 'form.error.filled'
+        BLANK: 'form.error.blank'
 
-        LENGTH: 'Please enter a value of exactly %d characters.'
-        RANGE: 'Please enter a value of at least %d characters and at most %d characters.'
-        MIN_LENGTH: 'Please enter a value of at least %d characters.'
-        MAX_LENGTH: 'Please enter a value of at most %d characters.'
+        LENGTH: 'form.error.length'
+        RANGE: 'form.error.range'
+        MIN_LENGTH: 'form.error.min_length'
+        MAX_LENGTH: 'form.error.max_length'
 
-        PATTERN: 'Input is required to match %d pattern.'
-        EMAIL: 'Please enter a valid email adress.'
-        URL: 'Please enter a valid URL adress.'
+        PATTERN: 'form.error.pattern'
+        EMAIL: 'form.error.email'
+        URL: 'form.error.url'
 
-        NUMERIC: 'Please enter numeric value.'
-        INTEGER: 'Please enter integer value.'
-        FLOAT: 'Please enter decimal value.'
-        MIN: 'Please enter a value greater than minimal value of %d.'
-        MAX: 'Please enter a value leasser than maximal value of %d.'
+        NUMERIC: 'form.error.numeric'
+        INTEGER: 'form.error.integer'
+        FLOAT: 'form.error.float'
+        MIN: 'form.error.min'
+        MAX: 'form.error.max'
 
-        IMAGE: 'Please upload a file of image MIME type.'
-        MIME_TYPE: 'Please upload a file of %d MIME type.'
-        MAX_FILE_SIZE: 'Please upload a file of maximum size %d kb.'
+        IMAGE: 'form.error.image'
+        MIME_TYPE: 'form.error.mime_type'
+        MAX_FILE_SIZE: 'form.error.max_file_size'
+
