@@ -44,7 +44,7 @@ abstract class BaseFormComponent extends BaseComponent
     {
         $this->repository->save($values);
 
-        $this->getPresenter()->flashMessage('global.flash.save_success', 'success');
+        $this->getPresenter()->flashMessage($this->translator->translate('global.flash.save_success'), 'success');
         $this->getPresenter()->redirect(static::REDIRECT);
     }
 
