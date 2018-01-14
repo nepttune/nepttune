@@ -11,6 +11,9 @@ abstract class BaseListComponent extends BaseComponent
     const INLINE_EDIT = 1;
     const DELETE = 1;
     const SORT = ['active' => 'DESC'];
+    
+    const MESSAGE_SAVE = 'Successfully saved.';
+    const MESSAGE_DELETE = 'Successfully deleted.';
 
     /** @var  \Peldax\NetteInit\Model\BaseModel */
     protected $repository;

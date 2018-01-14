@@ -85,7 +85,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     {
         $this->getFlashSession()->setExpiration(time() + 5);
 
-        $this->template->setFile(__DIR__.'/closeFancy.latte');
+        $this->template->setFile(__DIR__.'/../templates/closeFancy.latte');
 
         $this->template->redrawControl = false;
         $this->template->redrawRow = false;

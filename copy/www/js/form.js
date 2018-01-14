@@ -1,6 +1,6 @@
 const selectOptions =
 {
-    width: 'auto'
+    width: '100%'
 };
 const iCheckOptions =
 {
@@ -10,7 +10,8 @@ const iCheckOptions =
 
 Nette.showFormErrors = function (form, errors)
 {
-    $(form).find('ul.form-errors, span.form-error').remove();
+    $(form).find('.has-error').removeClass('has-error');
+    $(form).find('span.help-block').remove();
 
     for (var i = 0; i < errors.length; i++)
     {

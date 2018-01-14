@@ -14,7 +14,7 @@ final class RouterFactory
     {
         $router = new RouteList();
 
-        $router[] = new Route('//<module>.%domain%/[<lang [a-z]{2}>/]<presenter>/<action>[/<id>]', [
+        $router[] = new Route('//<module>.%domain%/[<locale [a-z]{2}>/]<presenter>/<action>[/<id>]', [
             'presenter' => 'Default',
             'action' => 'default'
         ]);
@@ -29,7 +29,13 @@ final class RouterFactory
     {
         $router = new RouteList();
 
-        $router[] = new Route('/[<lang [a-z]{2}>/]<module>/<presenter>/<action>[/<id>]', [
+        $router[] = new Route('/[<locale [a-z]{2}>/]admin/<presenter>/<action>[/<id>]', [
+            'module' => 'Admin',
+            'presenter' => 'Default',
+            'action' => 'default'
+        ]);
+        
+        $router[] = new Route('/[<locale [a-z]{2}>/]<presenter>/<action>[/<id>]', [
             'module' => 'Www',
             'presenter' => 'Default',
             'action' => 'default'

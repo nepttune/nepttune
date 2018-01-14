@@ -14,8 +14,9 @@ final class ConfigNavbar extends BaseComponent
 
     protected function beforeRender() : void
     {
-        $this->template->background = $this->navbar['background'];
-        $this->template->brand = $this->navbar['brand'];
+        $this->template->background = isset($this->navbar['background']) ?: false;
+        $this->template->breakpoint = isset($this->navbar['breakpoint']) ?: false;
+        $this->template->brand = isset($this->navbar['brand']) ?: false;
         $this->template->items = $this->navbar['items'];
     }
 }

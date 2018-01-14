@@ -1,4 +1,19 @@
-.select2-container--default .select2-selection--single .select2-selection__rendered
+.select2-container .select2-selection
 {
-    line-height: 21px;
+    height: 32px !important;
+}
+
+.white-popup 
+{
+    position: relative;
+    background: #FFF;
+    padding: 20px;
+    width: auto;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.icheckbox_square-red
+{
+    margin-right: 15px !important;
 }
