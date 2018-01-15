@@ -26,7 +26,6 @@ abstract class BaseFormComponent extends BaseComponent
         $form = new Form();
 
         $form->setTranslator($this->translator);
-
         $form->setRenderer(new \Nextras\Forms\Rendering\Bs3FormRenderer());
         $form->addProtection('form.error.csrf');
 
