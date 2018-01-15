@@ -7,6 +7,8 @@ use \Nette\Application\UI\Form;
 abstract class BaseFormComponent extends BaseComponent
 {
     const REDIRECT = ':default';
+    
+    const PATTERN_PHONE = '^[+(]{0,2}[0-9 ().-]{9,}';
 
     /** @var  \Peldax\NetteInit\Model\BaseModel */
     protected $repository;
