@@ -10,6 +10,7 @@ error:
     pattern: 'Vložte hodnotu, která splnujě %d schěma.'
     email: 'Vložte platný email.'
     url: 'Vložte platnou URL adresu.'
+    phone: 'Vložte platné telefonní číslo.'
 
     numeric: 'Vložte číselnou hodnotu.'
     integer: 'Vložte celé číslo.'
