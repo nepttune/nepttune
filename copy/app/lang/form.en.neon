@@ -10,6 +10,7 @@ error:
     pattern: 'Enter a value which match %d pattern.'
     email: 'Enter a valid email adress.'
     url: 'Enter a valid URL adress.'
+    phone: 'Enter a valid phone number.'
 
     numeric: 'Enter numeric value.'
     integer: 'Enter integer value.'
