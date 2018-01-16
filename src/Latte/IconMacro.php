@@ -16,7 +16,7 @@ class IconMacro extends \Latte\Macros\MacroSet
     public static function renderIcon($icon, array $params = [])
     {
         $el = \Nette\Utils\Html::el('i');
-        $el->addAttributes(['class' => 'fa fa-'.$icon]);
+        $el->addAttributes(['class' => 'fa fa-fw fa-'.$icon]);
 
         if (isset($params['size']))
         {
