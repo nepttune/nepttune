@@ -32,6 +32,18 @@ Nette.showFormErrors = function (form, errors)
     }
 };
 
+Nette.showFormErrorsBS4 = function (form, errors)
+{
+    $(form).find('.is-invalid').removeClass('is-invalid');
+    $(form).find('.invalid-feedback').remove();
+
+    for (var i = 0; i < errors.length; i++)
+    {
+        $(errors[i].element).addClass('is-invalid');
+        $(errors[i].element).closest('.form-group').children().last().append('<div class="invalid-feedback d-block">' + errors[i].message + '</div>');
+    }
+};
+
 form_refereshPlugins = refreshPlugins;
 
 refreshPlugins = function (el)
