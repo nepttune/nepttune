@@ -21,7 +21,8 @@
     "kdyby/translation": "dev-master",
     "ipub/mobile-detect": "^2.0",
     "nextras/forms": "^2.0",
-    "uestla/recaptcha-control": "^6.0"
+    "uestla/recaptcha-control": "^6.0",
+    "nasext/dependent-select-box": "^3.1"
   },
   "autoload": {
     "psr-4": {
