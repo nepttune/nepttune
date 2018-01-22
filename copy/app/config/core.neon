@@ -13,7 +13,7 @@ extensions:
     translation: Kdyby\Translation\DI\TranslationExtension
     mobileDetect: IPub\MobileDetect\DI\MobileDetectExtension
     nextrasForm: Nextras\Forms\Bridges\NetteDI\FormsExtension
-	dependentSelectBox: NasExt\Forms\DependentExtension
+    dependentSelectBox: NasExt\Forms\DependentExtension
     recaptcha: ReCaptchaControl\DI\Extension
 
 php:
