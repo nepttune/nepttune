@@ -35,7 +35,7 @@ http:
         frame-src: [ self, https://www.google.com/ ]
         child-src: [ self, https://www.google.com/ ]
         style-src: [ self, https://fonts.googleapis.com/ ]
-        script-src: [ nonce, strict-danamic, https://www.google.com/ ]
+        script-src: [ nonce, strict-dynamic, https://www.google.com/ ]
 
         base-uri: [ self ]
         form-action: [ self ]
