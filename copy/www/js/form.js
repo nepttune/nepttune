@@ -32,7 +32,7 @@ Nette.showFormErrors = function (form, errors)
     }
 };
 
-Nette.showFormErrorsBS4 = function (form, errors)
+showFormErrorsBS4 = function (form, errors)
 {
     $(form).find('.is-invalid').removeClass('is-invalid');
     $(form).find('.invalid-feedback').remove();
@@ -64,9 +64,10 @@ refreshPlugins = function (el)
     var selectInputs = $(el).find('select');
     selectInputs.select2(selectOptions);
 
+    $(el).find('[data-dependentselectbox]').dependentSelectBox();
+    
     if ($('.g-recaptcha').length !== 0)
     {
         g_ReCaptchaOnLoad();
-
     }
 };
