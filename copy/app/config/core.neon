@@ -12,8 +12,9 @@ extensions:
     rabbitmq: Kdyby\RabbitMq\DI\RabbitMqExtension
     translation: Kdyby\Translation\DI\TranslationExtension
     mobileDetect: IPub\MobileDetect\DI\MobileDetectExtension
-    recaptcha: ReCaptchaControl\DI\Extension
     nextrasForm: Nextras\Forms\Bridges\NetteDI\FormsExtension
+	dependentSelectBox: NasExt\Forms\DependentExtension
+    recaptcha: ReCaptchaControl\DI\Extension
 
 php:
     date.timezone: Europe/Prague
