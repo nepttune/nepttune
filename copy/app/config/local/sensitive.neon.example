@@ -16,3 +16,21 @@ rabbitmq:
             user: 'X'
             password: 'X'
             vhost: '/'
+
+gopay:
+    goId: 'X'
+    clientId: 'X'
+    clientSecret: 'X'
+    test: on
+
+
+parameters:
+    smsconnect:
+        login: 'X'
+        password: 'X'
+
+mail:
+    smtp: true
+    host: 'X'
+    username: 'X'
+    password: 'X'
