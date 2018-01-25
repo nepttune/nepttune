@@ -6,6 +6,7 @@ no: 'Ne'
 
 save: 'Uložit'
 save_next: 'Uložit a přidat další'
+save_list: 'Uložit a vrátit na seznam'
 
 confirm:
     delete: 'Opravdu chcete smazat tento záznam?'
