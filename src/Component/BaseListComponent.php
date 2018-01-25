@@ -97,14 +97,14 @@ abstract class BaseListComponent extends BaseComponent
         return $all;
     }
 
-    public function statusChange(int $id, int $status) : void
+    public function statusChange(int $id, int $status, string $column = 'active') : void
     {
         if (!in_array($status, [0, 1], true))
         {
             throw new \Nette\Application\BadRequestException();
         }
 
-        $this->repository->findRow($id)->update(['active' => $status]);
+        $this->repository->findRow($id)->update([$column => $status]);
         $this['list']->redrawItem($id);
     }
 
