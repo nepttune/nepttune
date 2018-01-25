@@ -35,4 +35,4 @@ translation:
     resolvers:
         session: off
         request: on
-        header: on
+        header: off
