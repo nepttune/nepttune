@@ -1,4 +1,4 @@
-# Nette-init
+# Nepttune
 
 ## Nette Initialization and base library
 
