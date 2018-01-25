@@ -28,4 +28,4 @@ Each project shares some base classes, configuration and practices with each oth
 
 ## How to use
 
-For technical information about this project, visit [documentation](https://github.com/peldax/nette-init/blob/master/DOC.md).
+For technical information about this project, visit [documentation](https://github.com/nepttune/nepttune/blob/master/DOC.md).
