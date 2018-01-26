@@ -29,7 +29,7 @@ final class Deploy
 
     public static function init()
     {
-        echo 'Peldax\Init handler started.' . PHP_EOL;
+        echo 'Nepttune handler started.' . PHP_EOL;
 
         self::checkDockerFiles();
 
@@ -37,7 +37,7 @@ final class Deploy
 
         self::createDirs();
 
-        echo 'Peldax\Init handler completed.' . PHP_EOL;
+        echo 'Nepttune handler completed.' . PHP_EOL;
     }
 
     private static function recurseCopy($src, $dst)
