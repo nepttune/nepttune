@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="peldax/nette-init">
-    <description>peldax/nette-init</description>
+<ruleset name="nepttune">
+    <description>nepttune</description>
 
     <rule ref="Generic.PHP.DisallowShortOpenTag"/>
     <!-- ... -->

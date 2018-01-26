@@ -1,6 +1,6 @@
 <?php
 
-namespace Peldax\NetteInit\Model;
+namespace Nepttune\Model;
 
 abstract class BaseModel
 {

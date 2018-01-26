@@ -1,6 +1,6 @@
 <?php
 
-namespace Peldax\NetteInit\Component;
+namespace Nepttune\Component;
 
 final class ConfigNavbar extends BaseComponent
 {

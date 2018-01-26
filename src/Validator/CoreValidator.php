@@ -1,10 +1,10 @@
 <?php
 
-namespace Peldax\NetteInit\Validator;
+namespace Nepttune\Validator;
 
 final class CoreValidator
 {
-    const SAME_LENGTH = 'Peldax\NetteInit\Validator\CoreValidator::sameLength';
+    const SAME_LENGTH = 'Nepttune\Validator\CoreValidator::sameLength';
     
     public static function sameLength(\Nette\Forms\IControl $control, string $controlName)
     {

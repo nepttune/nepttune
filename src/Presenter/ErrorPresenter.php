@@ -1,10 +1,10 @@
 <?php
 
-namespace Peldax\NetteInit\Presenter;
+namespace Nepttune\Presenter;
 
-abstract class ErrorPresenter extends \Peldax\NetteInit\Presenter\BasePresenter
+abstract class ErrorPresenter extends \Nepttune\Presenter\BasePresenter
 {
-    /** @var  \Peldax\NetteInit\Model\ErrorLogModel */
+    /** @var  \Nepttune\Model\ErrorLogModel */
     protected $errorLogModel;
 
     public function actionDefault($exception, $request)

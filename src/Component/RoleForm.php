@@ -1,12 +1,12 @@
 <?php
 
-namespace Peldax\NetteInit\Component;
+namespace Nepttune\Component;
 
 use \Nette\Application\UI\Form;
 
 final class RoleForm extends BaseFormComponent
 {
-    public function __construct(\Peldax\NetteInit\Model\RoleModel $roleModel)
+    public function __construct(\Nepttune\Model\RoleModel $roleModel)
     {
         $this->repository = $roleModel;
     }

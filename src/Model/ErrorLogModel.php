@@ -1,6 +1,6 @@
 <?php
 
-namespace Peldax\NetteInit\Model;
+namespace Nepttune\Model;
 
 class ErrorLogModel extends BaseModel
 {

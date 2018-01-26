@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="peldax/nette-init"
+<ruleset name="nepttune"
          xmlns="http://pmd.sf.net/ruleset/1.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0
                       http://pmd.sf.net/ruleset_xml_schema.xsd"
          xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
-    <description>peldax/nette-init</description>
+    <description>nepttune</description>
 
     <rule ref="rulesets/codesize.xml/CyclomaticComplexity" />
     <!-- ... -->

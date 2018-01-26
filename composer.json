@@ -1,5 +1,5 @@
 {
-  "name": "peldax/nette-init",
+  "name": "nepttune/nepttune",
   "description": "Nette initialization + core components",
   "homepage": "https://peldax.com",
   "type": "library",
@@ -26,7 +26,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Peldax\\NetteInit\\": "src/"
+      "Nepttune\\": "src/"
     }
   }
 }

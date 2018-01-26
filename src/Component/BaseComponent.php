@@ -1,6 +1,6 @@
 <?php
 
-namespace Peldax\NetteInit\Component;
+namespace Nepttune\Component;
 
 abstract class BaseComponent extends \Nette\Application\UI\Control
 {

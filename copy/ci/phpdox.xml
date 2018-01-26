@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpdox xmlns="http://xml.phpdox.net/config">
-    <project name="peldax/nette-init" source="src" workdir="build/phpdox">
+    <project name="nepttune" source="src" workdir="build/phpdox">
         <collector publiconly="false">
             <include mask="*.php" />
         </collector>

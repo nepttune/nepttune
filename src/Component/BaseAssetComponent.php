@@ -1,6 +1,6 @@
 <?php
 
-namespace Peldax\NetteInit\Component;
+namespace Nepttune\Component;
 
 abstract class BaseAssetComponent extends BaseComponent
 {
@@ -19,7 +19,7 @@ abstract class BaseAssetComponent extends BaseComponent
     {
         $cache = new \Nette\Caching\Cache($this->storage);
 
-        return $cache->call('Peldax\NetteInit\Component\BaseAssetComponent::generateChecksum', $path);
+        return $cache->call('Nepttune\Component\BaseAssetComponent::generateChecksum', $path);
     }
 
     public static function generateChecksum(string $path) : string

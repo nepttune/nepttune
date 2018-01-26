@@ -1,12 +1,12 @@
 <?php
 
-namespace Peldax\NetteInit\Component;
+namespace Nepttune\Component;
 
 use \Nette\Application\UI\Form;
 
 final class UserForm extends BaseFormComponent
 {
-    public function __construct(\Peldax\NetteInit\Model\UserModel $userModel)
+    public function __construct(\Nepttune\Model\UserModel $userModel)
     {
         $this->repository = $userModel;
     }

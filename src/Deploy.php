@@ -1,6 +1,6 @@
 <?php
 
-namespace Peldax\NetteInit;
+namespace Nepttune;
 
 final class Deploy
 {

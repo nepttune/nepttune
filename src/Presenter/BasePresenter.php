@@ -1,6 +1,6 @@
 <?php
 
-namespace Peldax\NetteInit\Presenter;
+namespace Nepttune\Presenter;
 
 abstract class BasePresenter extends \Nette\Application\UI\Presenter
 {

@@ -2,7 +2,7 @@
 
 namespace App\Presenter;
 
-final class ErrorPresenter extends \Peldax\NetteInit\Presenter\ErrorPresenter
+final class ErrorPresenter extends \Nepttune\Presenter\ErrorPresenter
 {
 
 }

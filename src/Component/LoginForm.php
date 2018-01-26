@@ -1,12 +1,12 @@
 <?php
 
-namespace Peldax\NetteInit\Component;
+namespace Nepttune\Component;
 
 use \Nette\Application\UI\Form;
 
 final class LoginForm extends BaseFormComponent
 {
-    /** @var  \Peldax\NetteInit\Model\LoginLogModel */
+    /** @var  \Nepttune\Model\LoginLogModel */
     protected $logLoginModel;
 
     protected function modifyForm(Form $form) : Form

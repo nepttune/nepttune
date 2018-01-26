@@ -1,6 +1,6 @@
 <?php
 
-namespace Peldax\NetteInit\Component;
+namespace Nepttune\Component;
 
 use \Nette\Application\UI\Form;
 
@@ -18,7 +18,7 @@ abstract class BaseFormComponent extends BaseComponent
     
     const PATTERN_PHONE = '^[+(]{0,2}[0-9 ().-]{9,}';
 
-    /** @var  \Peldax\NetteInit\Model\BaseModel */
+    /** @var  \Nepttune\Model\BaseModel */
     protected $repository;
 
     /** @var  \Kdyby\Translation\Translator */

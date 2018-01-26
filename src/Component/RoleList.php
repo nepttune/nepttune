@@ -1,6 +1,6 @@
 <?php
 
-namespace Peldax\NetteInit\Component;
+namespace Nepttune\Component;
 
 use \Ublaboo\DataGrid\DataGrid;
 
@@ -8,7 +8,7 @@ final class RoleList extends BaseListComponent
 {
     const INLINE = 0;
 
-    public function __construct(\Peldax\NetteInit\Model\RoleModel $roleModel)
+    public function __construct(\Nepttune\Model\RoleModel $roleModel)
     {
         $this->repository = $roleModel;
     }

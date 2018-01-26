@@ -1,6 +1,6 @@
 <?php
 
-namespace Peldax\NetteInit\Component;
+namespace Nepttune\Component;
 
 use \Ublaboo\DataGrid\DataGrid;
 
@@ -15,7 +15,7 @@ abstract class BaseListComponent extends BaseComponent
     const MESSAGE_SAVE = 'Successfully saved.';
     const MESSAGE_DELETE = 'Successfully deleted.';
 
-    /** @var  \Peldax\NetteInit\Model\BaseModel */
+    /** @var  \Nepttune\Model\BaseModel */
     protected $repository;
 
     /** @var  \Kdyby\Translation\Translator */
@@ -97,14 +97,14 @@ abstract class BaseListComponent extends BaseComponent
         return $all;
     }
 
-    public function statusChange(int $id, int $status, string $column = 'active') : void
+    public function statusChange(int $id, int $status) : void
     {
         if (!in_array($status, [0, 1], true))
         {
             throw new \Nette\Application\BadRequestException();
         }
 
-        $this->repository->findRow($id)->update([$column => $status]);
+        $this->repository->findRow($id)->update(['active' => $status]);
         $this['list']->redrawItem($id);
     }
 
