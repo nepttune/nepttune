@@ -15,8 +15,8 @@ error:
     numeric: 'Vložte číselnou hodnotu.'
     integer: 'Vložte celé číslo.'
     float: 'Vložte desetinné číslo.'
-    min: 'Vložte hodnotu větší než %d.'
-    max: 'Vložte hodnotu menší než %d.'
+    min: 'Vložte hodnotu nejméně %d.'
+    max: 'Vložte hodnotu nejvíce %d.'
 
     image: 'Zvolte obrázek.'
     mime_type: 'Zvolte soubor %d MIME typu.'
