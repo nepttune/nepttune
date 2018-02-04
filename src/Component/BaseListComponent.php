@@ -31,6 +31,7 @@ abstract class BaseListComponent extends BaseComponent
     protected function createComponentList() : DataGrid
     {
         $grid = new DataGrid();
+        $grid->setRememberState(false);
         $grid->setTranslator($this->translator);
         $grid->setDataSource($this->getDataSource());
 
