@@ -6,6 +6,9 @@ use \Nette\Application\UI\Form;
 
 final class LoginForm extends BaseFormComponent
 {
+    const SAVE_NEXT = false;
+    const SAVE_LIST = false;
+    
     /** @var  \Nepttune\Model\LoginLogModel */
     protected $logLoginModel;
 
