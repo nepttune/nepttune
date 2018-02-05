@@ -6,15 +6,16 @@ use \Nette\Application\UI\Form;
 
 abstract class BaseFormComponent extends BaseComponent
 {
-    const SAVE_NEXT = 1;
-    const SAVE_LIST = 1;
-
     const REDIRECT = ':default';
-    const REDIRECT_ID = 0;
-    const REDIRECT_NEXT = ':add';
-    const REDIRECT_NEXT_ID = 0;
-    const REDIRECT_LIST = ':list';
-    const REDIRECT_LIST_ID = 0;
+    const REDIRECT_ID = false;
+
+    const SAVE_NEXT = true;
+    const SAVE_NEXT_REDIRECT = ':add';
+    const SAVE_NEXT_ID = false;
+
+    const SAVE_LIST = true;
+    const SAVE_LIST_REDIRECT = ':list';
+    const SAVE_LIST_ID = false;
     
     const PATTERN_PHONE = '^[+(]{0,2}[0-9 ().-]{9,}';
 
@@ -72,12 +73,12 @@ abstract class BaseFormComponent extends BaseComponent
         switch ($form->isSubmitted()->name)
         {
             case 'save_next':
-                if (static::REDIRECT_NEXT_ID) { $params = ['id' => $row->id]; }
-                $redirect = static::REDIRECT_NEXT;
+                if (static::SAVE_NEXT_ID) { $params = ['id' => $row->id]; }
+                $redirect = static::SAVE_NEXT_REDIRECT;
                 break;
             case 'save_list':
-                if (static::REDIRECT_LIST_ID) { $params = ['id' => $row->id]; }
-                $redirect = static::REDIRECT_LIST;
+                if (static::SAVE_LIST_ID) { $params = ['id' => $row->id]; }
+                $redirect = static::SAVE_LIST_REDIRECT;
                 break;
             default:
                 if (static::REDIRECT_ID) { $params = ['id' => $row->id]; }
