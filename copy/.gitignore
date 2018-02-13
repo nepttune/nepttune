@@ -7,7 +7,6 @@ package-lock.json
 **/.htaccess
 
 .gitignore
-package.json
 
 docker.sh
 docker-composer.sh
