@@ -9,11 +9,11 @@ abstract class BaseFormComponent extends BaseComponent
     const REDIRECT = ':default';
     const REDIRECT_ID = false;
 
-    const SAVE_NEXT = true;
+    const SAVE_NEXT = false;
     const SAVE_NEXT_REDIRECT = ':add';
     const SAVE_NEXT_ID = false;
 
-    const SAVE_LIST = true;
+    const SAVE_LIST = false;
     const SAVE_LIST_REDIRECT = ':list';
     const SAVE_LIST_ID = false;
     
