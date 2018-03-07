@@ -21,18 +21,6 @@ else
     printf '\n---> SSL certificate already exists\n\n'̈́
 fi
 
-printf '\n---> Running Composer\n\n'
-sh /usr/local/bin/composer.sh
-
-printf '\n---> Running NPM\n\n'
-sh /usr/local/bin/npm.sh
-
-printf '\n---> Compiling SCSS\n\n'
-sh /usr/local/bin/scss.sh
-
-printf '\n---> Minifying JS\n\n'
-sh /usr/local/bin/js.sh
-
 printf '\n---> Fixing permissions\n\n'
 sh /usr/local/bin/permission.sh
 

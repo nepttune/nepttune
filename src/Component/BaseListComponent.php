@@ -6,10 +6,10 @@ use \Ublaboo\DataGrid\DataGrid;
 
 abstract class BaseListComponent extends BaseComponent
 {
-    const ACTIVE = 1;
-    const INLINE_ADD = 1;
-    const INLINE_EDIT = 1;
-    const DELETE = 1;
+    const ACTIVE = true;
+    const INLINE_ADD = true;
+    const INLINE_EDIT = true;
+    const DELETE = true;
     const SORT = ['active' => 'DESC'];
     
     const MESSAGE_SAVE = 'Successfully saved.';
@@ -31,6 +31,7 @@ abstract class BaseListComponent extends BaseComponent
     protected function createComponentList() : DataGrid
     {
         $grid = new DataGrid();
+        $grid->setRememberState(false);
         $grid->setTranslator($this->translator);
         $grid->setDataSource($this->getDataSource());
 
