@@ -46,18 +46,7 @@ app/module/AdminModule/presenter/SignPresenter.php
 
 www/index.php
 www/robots.txt
-www/image/logo*
-www/image/favicon*
-www/image/sign-background.jpg
 www/js/**/*.min.js
-www/js/common.js
-www/js/coreValidator.js
-www/js/form.js
-www/js/stat.js
-www/node_modules/*
 www/scss/**/*.css
 www/scss/**/*.map
-www/scss/common.scss
-www/scss/module/Admin.scss
-www/scss/presenter/Error.scss
-www/scss/presenter/Admin:Sign.scss
+www/node_modules/*
