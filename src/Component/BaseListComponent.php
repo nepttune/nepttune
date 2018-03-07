@@ -7,9 +7,9 @@ use \Ublaboo\DataGrid\DataGrid;
 abstract class BaseListComponent extends BaseComponent
 {
     const ACTIVE = true;
-    const INLINE_ADD = true;
-    const INLINE_EDIT = true;
     const DELETE = true;
+    const INLINE_ADD = false;
+    const INLINE_EDIT = false;
     const SORT = ['active' => 'DESC'];
     
     const MESSAGE_SAVE = 'Successfully saved.';
