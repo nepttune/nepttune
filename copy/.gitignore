@@ -15,7 +15,7 @@ docker-scss.sh
 docker-js.sh
 docker-permission.sh
 
-jenkins/*
+ci/*
 docker/*
 
 node_modules/*
