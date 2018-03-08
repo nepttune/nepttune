@@ -2,7 +2,7 @@
 
 namespace Nepttune\Presenter;
 
-abstract class ErrorPresenter extends \Nepttune\Presenter\BasePresenter
+final class ErrorPresenter extends \Nepttune\Presenter\BasePresenter
 {
     /** @var  \Nepttune\Model\ErrorLogModel */
     protected $errorLogModel;
