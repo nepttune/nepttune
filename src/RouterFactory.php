@@ -31,15 +31,6 @@ class RouterFactory
     public static function createStandardRouter()
     {
         $router = new RouteList();
-
-        $router[] = new Route('/[<locale [a-z]{2}>/]admin/<presenter>/<action>[/<id>]', [
-            'module' => 'Admin',
-            'presenter' => 'Default',
-            'action' => 'default',
-            'id' => [
-                Route::PATTERN => '\d+'
-            ]
-        ]);
         
         $router[] = new Route('/api/<presenter>/<action>', [
             'module' => 'Api',
