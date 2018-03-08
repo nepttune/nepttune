@@ -5,7 +5,7 @@ namespace Nepttune;
 use Nette\Application\Routers\RouteList,
     Nette\Application\Routers\Route;
 
-final class RouterFactory
+class RouterFactory
 {
     /**
      * @return \Nette\Application\IRouter
@@ -16,7 +16,10 @@ final class RouterFactory
 
         $router[] = new Route('//<module>.%domain%/[<locale [a-z]{2}>/]<presenter>/<action>[/<id>]', [
             'presenter' => 'Default',
-            'action' => 'default'
+            'action' => 'default',
+            'id' => [
+                Route::PATTERN => '\d+'
+            ]
         ]);
 
         return $router;
@@ -32,13 +35,25 @@ final class RouterFactory
         $router[] = new Route('/[<locale [a-z]{2}>/]admin/<presenter>/<action>[/<id>]', [
             'module' => 'Admin',
             'presenter' => 'Default',
+            'action' => 'default',
+            'id' => [
+                Route::PATTERN => '\d+'
+            ]
+        ]);
+        
+        $router[] = new Route('/api/<presenter>/<action>', [
+            'module' => 'Api',
+            'presenter' => 'Default',
             'action' => 'default'
         ]);
         
         $router[] = new Route('/[<locale [a-z]{2}>/]<presenter>/<action>[/<id>]', [
             'module' => 'Www',
             'presenter' => 'Default',
-            'action' => 'default'
+            'action' => 'default',
+            'id' => [
+                Route::PATTERN => '\d+'
+            ]
         ]);
 
         return $router;
