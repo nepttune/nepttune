@@ -25,7 +25,6 @@
 {/if}
 
 {var $presenterScript = '/js/presenter/' . $presenter->getName() . '.min.js'}
-{dump $presenterScript}
 {if file_exists(getcwd() . $presenterScript)}
     {php $scripts[] = $presenterScript}
 {elseif file_exists(getcwd() . '/node_modules/nepttune' . $presenterScript)}
