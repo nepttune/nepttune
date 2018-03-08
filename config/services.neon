@@ -8,6 +8,8 @@ services:
         class: Nepttune\Component\Script
     style:
         class: Nepttune\Component\Style
+        
+    - Nepttune\Model\ErrorLogModel
 
 decorator:
     Nepttune\Component\BaseAssetComponent:
