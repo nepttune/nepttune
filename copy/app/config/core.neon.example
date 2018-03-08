@@ -13,7 +13,7 @@ parameters:
     appNameShort: 'TES'
 
     configMenu:
-        Menu:
+        Menu!: # exclamation mark signs to replace previous option (options will be merged otherwise)
             order:
                 name: 'Order'
                 icon: comments
