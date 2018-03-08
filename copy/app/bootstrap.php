@@ -6,10 +6,19 @@ $configurator = new Nette\Configurator;
 $configurator->setDebugMode(true);
 $configurator->enableDebugger(__DIR__ . '/../log');
 $configurator->setTempDirectory(__DIR__ . '/../temp');
-$configurator->addConfig(__DIR__ . '/config/core.neon');
-$configurator->addConfig(__DIR__ . '/config/local/local.neon');
 $configurator->createRobotLoader()
     ->addDirectory(__DIR__)
     ->register();
+
+$configurator->addConfig(__DIR__ . '/../vendor/nepttune/nepttune/config/core.neon');
+foreach (['admin'] as $extension)
+{
+    $file = __DIR__ . "/../vendor/nepttune/{$extension}/config/core.neon";
+    if (file_exists($file))
+    {
+        $configurator->addConfig($file);
+    }
+}
+$configurator->addConfig(__DIR__ . '/config/core.neon');
 
 return $configurator->createContainer();
