@@ -1,6 +1,6 @@
 <?php
 
-namespace Nepttune\Presenter;
+namespace App\Presenter;
 
 final class ErrorPresenter extends \Nepttune\Presenter\BasePresenter
 {
@@ -19,10 +19,5 @@ final class ErrorPresenter extends \Nepttune\Presenter\BasePresenter
         {
             $this->template->msg = 'Invalid request';
         }
-    }
-
-    public function renderDefault()
-    {
-        $this->template->setFile(__DIR__ . '/../templates/Error/default.latte');
     }
 }
