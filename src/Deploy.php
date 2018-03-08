@@ -19,9 +19,11 @@ final class Deploy
     const DIRS = [
         'app/component',
         'app/config',
+        'app/interface',
         'app/lang',
         'app/model',
         'app/module',
+        'app/trait',
         'www/js/module',
         'www/js/presenter',
         'www/js/action',
