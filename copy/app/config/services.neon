@@ -3,6 +3,11 @@
 services:
     - Nepttune\RouterFactory
     router: @Nepttune\RouterFactory::createSubdomainRouter
+    
+    script:
+        class: Nepttune\Component\Script
+    style:
+        class: Nepttune\Component\Style
 
 decorator:
     Nepttune\Component\BaseAssetComponent:
