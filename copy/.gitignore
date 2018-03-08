@@ -24,16 +24,8 @@ temp/*
 log/*
 
 app/bootstrap.php
-app/config/core.neon
-app/config/forms.neon
-app/config/database.neon
-app/config/security.neon
-app/config/services.neon
-app/config/parameters.neon
-app/config/local/admin.neon
-app/config/local/local.neon.example
-app/config/local/sensitive.neon.example
-app/config/local/sensitive.neon
+app/config/core.neon.example
+app/config/sensitive.neon.example
 app/lang/global.cs.neon
 app/lang/global.en.neon
 app/lang/form.cs.neon
