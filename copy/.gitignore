@@ -30,6 +30,7 @@ app/config/database.neon
 app/config/security.neon
 app/config/services.neon
 app/config/parameters.neon
+app/config/local/admin.neon
 app/config/local/local.neon.example
 app/config/local/sensitive.neon.example
 app/config/local/sensitive.neon

@@ -136,11 +136,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         return static::getCoreLayout();
     }
 
-    public static function getAdminLayout() : string
-    {
-        return __DIR__ . '/../templates/@admin.latte';
-    }
-
     public static function getAjaxLayout() : string
     {
         return __DIR__ . '/../templates/@ajax.latte';
