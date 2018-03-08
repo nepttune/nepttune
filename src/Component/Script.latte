@@ -18,13 +18,25 @@
 {php $scripts[] = '/node_modules/nepttune/js/common.min.js'}
 
 {var $moduleScript = '/js/module/' . $presenter->getModule() . '.min.js'}
-{if file_exists(getcwd() . $moduleScript)}{php $scripts[] = $moduleScript}{/if}
+{if file_exists(getcwd() . $moduleScript)}
+    {php $scripts[] = $moduleScript}
+{elseif file_exists(getcwd() . '/node_modules/nepttune' . $moduleScript)}
+    {php $scripts[] = '/node_modules/nepttune' . $moduleScript}
+{/if}
 
 {var $presenterScript = '/js/presenter/' . $presenter->getName() . '.min.js'}
-{if file_exists(getcwd() . $presenterScript)}{php $scripts[] = $presenterScript}{/if}
+{if file_exists(getcwd() . $presenterScript)}
+    {php $scripts[] = $presenterScript}
+{elseif file_exists(getcwd() . '/node_modules/nepttune' . $presenterScript)}
+    {php $scripts[] = '/node_modules/nepttune' . $presenterScript}
+{/if}
 
 {var $actionScript = '/js/action/' . $presenter->getName() . $presenter->getAction() . '.min.js'}
-{if file_exists(getcwd() . $actionScript)}{php $scripts[] = $actionScript}{/if}
+{if file_exists(getcwd() . $actionScript)}
+    {php $scripts[] = $actionScript}
+{elseif file_exists(getcwd() . '/node_modules/nepttune' . $actionScript)}
+    {php $scripts[] = '/node_modules/nepttune' . $actionScript}
+{/if}
 
 {var $formScripts = [
     '/node_modules/nette-forms/src/assets/netteForms.min.js',

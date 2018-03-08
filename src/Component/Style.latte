@@ -17,13 +17,25 @@
 {php $styles[] = '/node_modules/nepttune/scss/common.min.css'}
 
 {var $moduleStyle = '/scss/module/' . $presenter->getModule() . '.min.css'}
-{if file_exists(getcwd() . $moduleStyle)}{php $styles[] = $moduleStyle}{/if}
+{if file_exists(getcwd() . $moduleStyle)}
+    {php $styles[] = $moduleStyle}
+{elseif file_exists(getcwd() . '/node_modules/nepttune' . $moduleStyle)}
+    {php $styles[] = '/node_modules/nepttune' . $moduleStyle}
+{/if}
 
 {var $presenterStyle = '/scss/presenter/' . $presenter->getName() . '.min.css'}
-{if file_exists(getcwd() . $presenterStyle)}{php $styles[] = $presenterStyle}{/if}
+{if file_exists(getcwd() . $presenterStyle)}
+    {php $styles[] = $presenterStyle}
+{elseif file_exists(getcwd() . '/node_modules/nepttune' . $presenterStyle)}
+    {php $styles[] = '/node_modules/nepttune' . $presenterStyle}
+{/if}
 
 {var $actionStyle = '/scss/action/' . $presenter->getName() . $presenter->getAction() . '.min.css'}
-{if file_exists(getcwd() . $actionStyle)}{php $styles[] = $actionStyle}{/if}
+{if file_exists(getcwd() . $actionStyle)}
+    {php $styles[] = $actionStyle}
+{elseif file_exists(getcwd() . '/node_modules/nepttune' . $actionStyle)}
+    {php $styles[] = '/node_modules/nepttune' . $actionStyle}
+{/if}
 
 {foreach $styles as $path}
     <link rel="stylesheet" type="text/css" crossorigin="anonymous" integrity="{$control->getIntegrity($path)}" href="{$path}" />
