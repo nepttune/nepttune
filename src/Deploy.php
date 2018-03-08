@@ -7,18 +7,21 @@ final class Deploy
     const TARGET_DIR = __DIR__ . '/../../../../';
     const SOURCE_DIR = __DIR__ . '/../copy/';
 
-    const DOCKER_TARGET_DIR = self::TARGET_DIR . 'docker/';
+    /*const DOCKER_TARGET_DIR = self::TARGET_DIR . 'docker/';
     const DOCKER_SOURCE_DIR = self::SOURCE_DIR . 'docker/';
     const DOCKER_FILES = [
         'apache2/000-default.conf',
         'bin/startup.sh',
         'docker-compose.yml',
         'dockerfile-apache-php'
-    ];
+    ];*/
 
     const DIRS = [
-        'app/model',
         'app/component',
+        'app/config',
+        'app/lang',
+        'app/model',
+        'app/module',
         'www/js/module',
         'www/js/presenter',
         'www/js/action',
@@ -31,7 +34,7 @@ final class Deploy
     {
         echo 'Nepttune handler started.' . PHP_EOL;
 
-        self::checkDockerFiles();
+        //self::checkDockerFiles();
 
         self::recurseCopy(self::SOURCE_DIR, self::TARGET_DIR);
 
