@@ -110,6 +110,11 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
     public function getNameWM() : string
     {
+        if (strpos($this->getName(), ':') === false)
+        {
+            return $this->getName();
+        }
+
         return substr($this->getName(), strpos($this->getName(), ':') + 1);
     }
 
