@@ -14,12 +14,3 @@ parameters:
     appAuthor: 'peldax.com'
 
     destHomepage: ':Www:Default:default'
-    destAuthHomepage: ':Admin:Default:default'
-    destUserProfile: ':Admin:Profile:view'   # false or dest
-    destSignIn: ':Admin:Sign:in'
-    destSignOut: ':Admin:Sign:out'
-
-    redirectSignIn: ':Admin:Default:default'
-    redirectSignOut: ':Admin:Sign:in'
-
-    configMenu: []
