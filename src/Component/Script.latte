@@ -15,7 +15,7 @@
     {php $scripts[] = '/node_modules/bootstrap-beta/dist/js/bootstrap.bundle.min.js'}
 {/if}
 
-{php $scripts[] = '/js/common.min.js'}
+{php $scripts[] = '/node_modules/nepttune/js/common.min.js'}
 
 {var $moduleScript = '/js/module/' . $presenter->getModule() . '.min.js'}
 {if file_exists(getcwd() . $moduleScript)}{php $scripts[] = $moduleScript}{/if}
@@ -35,8 +35,8 @@
     '/node_modules/icheck/icheck.min.js',
     '/node_modules/nas-ext-dependent-select-box/client-side/dependentSelectBox.js',
     '/node_modules/nextras-forms/js/nextras.netteForms.js',
-    '/js/coreValidator.min.js',
-    '/js/form.min.js'
+    '/node_modules/nepttune/js/coreValidator.min.js',
+    '/node_modules/nepttune/js/form.min.js'
 ]}
 
 {var $listScripts = [
@@ -46,7 +46,7 @@
 
 {var $statScripts = [
     '/node_modules/chart.js/dist/Chart.min.js',
-    '/js/stat.min.js'
+    '/node_modules/nepttune/js/stat.min.js'
 ]}
 
 {var $hasForm = false}
