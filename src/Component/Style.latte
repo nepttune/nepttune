@@ -14,7 +14,7 @@
     {php $styles[] = '/node_modules/bootstrap-beta/dist/css/bootstrap.min.css'}
 {/if}
 
-{php $styles[] = '/scss/common.min.css'}
+{php $styles[] = '/node_modules/nepttune/scss/common.min.css'}
 
 {var $moduleStyle = '/scss/module/' . $presenter->getModule() . '.min.css'}
 {if file_exists(getcwd() . $moduleStyle)}{php $styles[] = $moduleStyle}{/if}
