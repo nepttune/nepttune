@@ -11,9 +11,9 @@
     }
   ],
   "require": {
-    "php" : ">=7.1",
-    "nette/nette": ">=2.4.0",
-    "roave/security-advisories": "dev-master",
+    "nepttune/base-requirements" : "^4.0",
+    "nepttune/base-components" : "^4.0",
+    "nepttune/base-model" : "^4.0",
     "kdyby/redis": "dev-master",
     "kdyby/rabbitmq": "dev-master",
     "kdyby/translation": "dev-master",
