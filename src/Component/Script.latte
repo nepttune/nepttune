@@ -1,4 +1,4 @@
-{if $presenter->name !== 'Error'}
+{if $presenter->getNameWM() !== 'Error'}
     <script n:nonce>const redrawRowUrl = {plink :redrawRow!};const redrawControlUrl = {plink :redrawControl!};</script>
 {/if}
 
@@ -25,13 +25,14 @@
 {/if}
 
 {var $presenterScript = '/js/presenter/' . $presenter->getName() . '.min.js'}
+{dump $presenterScript}
 {if file_exists(getcwd() . $presenterScript)}
     {php $scripts[] = $presenterScript}
 {elseif file_exists(getcwd() . '/node_modules/nepttune' . $presenterScript)}
     {php $scripts[] = '/node_modules/nepttune' . $presenterScript}
 {/if}
 
-{var $actionScript = '/js/action/' . $presenter->getName() . $presenter->getAction() . '.min.js'}
+{var $actionScript = '/js/action/' . $presenter->getName() . '/' . $presenter->getAction() . '.min.js'}
 {if file_exists(getcwd() . $actionScript)}
     {php $scripts[] = $actionScript}
 {elseif file_exists(getcwd() . '/node_modules/nepttune' . $actionScript)}

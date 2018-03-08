@@ -30,7 +30,7 @@
     {php $styles[] = '/node_modules/nepttune' . $presenterStyle}
 {/if}
 
-{var $actionStyle = '/scss/action/' . $presenter->getName() . $presenter->getAction() . '.min.css'}
+{var $actionStyle = '/scss/action/' . $presenter->getName() . '/' . $presenter->getAction() . '.min.css'}
 {if file_exists(getcwd() . $actionStyle)}
     {php $styles[] = $actionStyle}
 {elseif file_exists(getcwd() . '/node_modules/nepttune' . $actionStyle)}
