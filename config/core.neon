@@ -21,9 +21,7 @@ php:
 
 application:
     catchExceptions: true
-    errorPresenter: 'Nepttune:Error'
+    errorPresenter: 'Error'
     mapping:
         *:
             [ 'App', '*Module', 'Presenter\*Presenter' ]
-        Nepttune:
-            [ 'Nepttune', '*Module', 'Presenter\*Presenter' ]
