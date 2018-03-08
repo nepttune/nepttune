@@ -8,6 +8,7 @@ $configurator->enableDebugger(__DIR__ . '/../log');
 $configurator->setTempDirectory(__DIR__ . '/../temp');
 $configurator->createRobotLoader()
     ->addDirectory(__DIR__)
+    ->addDirectory(__DIR__ . '/../vendor/nepttune/')
     ->register();
 
 $configurator->addConfig(__DIR__ . '/../vendor/nepttune/nepttune/config/core.neon');
