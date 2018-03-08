@@ -4,16 +4,6 @@ services:
     - Nepttune\RouterFactory
     router: @Nepttune\RouterFactory::createSubdomainRouter
 
-    - Nepttune\Authenticator
-    authenticator: @Nepttune\Authenticator
-
-    breadcrumb:
-        class: Nepttune\Component\Breadcrumb
-    script:
-        class: Nepttune\Component\Script
-    style:
-        class: Nepttune\Component\Style
-
 decorator:
     Nepttune\Component\BaseAssetComponent:
         setup:
