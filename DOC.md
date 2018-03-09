@@ -102,9 +102,94 @@ This project also includes several helper scripts to run usefull tools right ins
 
 ## BaseListComponent
 
-## ConfigMenu
+## Asset loaders (Script and Style)
 
-> 
+> Loaded by default.
+
+These components are used to load assets. If used correctly, programmer doesnt have to link any files to layout or anywhere else. In addition, specific files for forms and lists are loaded only if there is a form/list present on current page.
+
+The key is name convention. Assets are loaded using identificators of current view and loaded components.
+
+### View files
+
+### Component files
+
+
+
+### Example
+
+Current view is `Admin:User:list`. This page contains component called `UserList`.
+
+Style component first loads (or tries to load) files to page header:
+
+- common files eg. bootstrap
+- `/www/scss/module/Admin.min.css` - because of the `Admin` module
+- `/www/scss/presenter/Admin:User.min.css` - because of the `User` presenter
+- `/www/scss/action/Admin:User/list.min.css` - because of the `list` action
+
+Style component also loads component related files to the bottom of the page.
+
+- common files for list componenets
+- `/www/scss/component/Userlist.scss` - because of the `UserList` component
+
+Script component loads files to the bottom of the page:
+
+- common files eg. jquery
+- `/www/js/module/Admin.min.js` - because of the `Admin` module
+- `/www/js/presenter/Admin:User.min.js` - because of the `User` presenter
+- `/www/js/action/Admin:User/list.min.js` - because of the `list` action
+- `/www/js/component/Userlist.min.js` - because of the `UserList` component
+
+# Model
+
+# Form Validators
+
+Nepttune includes some extra form validators.
+
+## Same length
+
+This validator ensures that inputs from two controls has the same length - same number of characters. Required parameter is name of second control to test.
+```
+$form->addText('a', 'A');
+$form->addText('b', 'B')
+    ->addRule(\Peldax\NetteInit\Validator\CoreValidator::SAME_LENGTH, 'Message', 'a')
+```
+
+## Phone number pattern
+
+For validation of phone number inputs there is a constant in `BaseFormComponent` class with responding regex string.
+```
+$form->addText('phone', 'Phone')
+    ->addRule($form::PATTERN, 'Message', BaseFormComponent::PATTERN_PHONE)
+```
+
+# Latte extensions
+
+## Macros
+
+### Icon macro
+
+## Filters
+
+# Docker
+
+# Contignous Integration
+
+## Jenkins
+
+## Gitlab CI
+
+# Extensions
+
+## Admin extension (nepttune/admin)
+
+### Presenters
+
+### Components
+
+#### ConfigMenu
+
+> Loaded by default in `Admin` extension.
 
 Config Menu is simple component for generating static menu. It is designed to be used as static menu in admininstration layout, but can be used anywhere else. 
 
@@ -171,7 +256,7 @@ Which renders as following HTML.
   - `role` - Role required for user to have in order to display this link. (OPTIONAL)
   - `class` - HTML class added to the link element. (OPTIONAL)
 
-### Recommended usage
+##### Recommended usage
 
 ```
 services:
@@ -187,104 +272,27 @@ parameters:
                 role: 'user'
 ```
 
-
-
-## Breadcrumbs
+#### Breadcrumbs
 
 > Loaded by default in `Admin` extension.
 
 This component is used to generate breadcrumbs in admin environment, but can be used anywhere else. It is simple generator which considers current module, presenter and action.
 
-## Asset loaders (Script and Style)
+#### Login Form
 
-> Loaded by default.
+> Loaded by default in `Admin` extension.
 
-These components are used to load assets. If used correctly, programmer doesnt have to link any files to layout or anywhere else. In addition, specific files for forms and lists are loaded only if there is a form/list present on current page.
+#### User List & Form
 
-The key is name convention. Assets are loaded using identificators of current view and loaded components.
+> Loaded by default in `Admin` extension.
 
-### View files
-
-### Component files
-
-
-
-### Example
-
-Current view is `Admin:User:list`. This page contains component called `UserList`.
-
-Style component first loads (or tries to load) files to page header:
-
-- common files eg. bootstrap
-- `/www/scss/module/Admin.min.css` - because of the `Admin` module
-- `/www/scss/presenter/Admin:User.min.css` - because of the `User` presenter
-- `/www/scss/action/Admin:User/list.min.css` - because of the `list` action
-
-Style component also loads component related files to the bottom of the page.
-
-- common files for list componenets
-- `/www/scss/component/Userlist.scss` - because of the `UserList` component
-
-Script component loads files to the bottom of the page:
-
-- common files eg. jquery
-- `/www/js/module/Admin.min.js` - because of the `Admin` module
-- `/www/js/presenter/Admin:User.min.js` - because of the `User` presenter
-- `/www/js/action/Admin:User/list.min.js` - because of the `list` action
-- `/www/js/component/Userlist.min.js` - because of the `UserList` component
-
-## Login Form
-
-## User List & Form
-
-> Requires Admin extension.
-
-# Model
-
-# Form Validators
-
-Nepttune includes some extra form validators.
-
-## Same length
-
-This validator ensures that inputs from two controls has the same length - same number of characters. Required parameter is name of second control to test.
-```
-$form->addText('a', 'A');
-$form->addText('b', 'B')
-    ->addRule(\Peldax\NetteInit\Validator\CoreValidator::SAME_LENGTH, 'Message', 'a')
-```
-
-## Phone number pattern
-
-For validation of phone number inputs there is a constant in `BaseFormComponent` class with responding regex string.
-```
-$form->addText('phone', 'Phone')
-    ->addRule($form::PATTERN, 'Message', BaseFormComponent::PATTERN_PHONE)
-```
-
-# Latte extensions
-
-## Macros
-
-### Icon macro
-
-## Filters
-
-# Docker
-
-# Contignous Integration
-
-## Jenkins
-
-## Gitlab CI
-
-# Extensions
-
-## Admin extension
+### Models
 
 # Extra packages
 
-## Extra navbar
+Some components and other tools are excluded from core package. Can be downloaded as extras or used standalone.
+
+## Extra navbar (nepttune/extra-navbar)
 
 This package contains component designed for generating static Bootstrap 4 navbar.
 
