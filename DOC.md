@@ -93,6 +93,8 @@ This project also includes several helper scripts to run usefull tools right ins
 
 # Presenters
 
+# Layouts
+
 # Components
 
 ## BaseComponent
@@ -183,6 +185,8 @@ $form->addText('phone', 'Phone')
 ## Admin extension (nepttune/admin)
 
 ### Presenters
+
+### Layouts
 
 ### Components
 
@@ -295,7 +299,7 @@ Some components and other tools are excluded from core package. Can be downloade
 
 This package contains component designed for generating static Bootstrap 4 navbar.
 
-### Config navbar component
+### ConfigNavbar component
 
 Usage is similiar to ConfigMenu component from `Admin` extension.
 
