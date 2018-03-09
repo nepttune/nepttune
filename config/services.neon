@@ -21,6 +21,9 @@ decorator:
     Nepttune\Component\BaseListComponent:
         setup:
             - injectTranslator
+    Nepttune\Presenter\BasePresenter:
+        setup:
+            - injectParameters(%meta%, %dest%)
 
 latte:
     macros:
