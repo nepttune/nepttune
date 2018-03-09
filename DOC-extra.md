@@ -1,4 +1,4 @@
-# Extra navbar (nepttune/extra-navbar)
+# Extra navbar ([nepttune/extra-navbar](https://github.com/nepttune/extra-navbar))
 
 This package contains component designed for generating static Bootstrap 4 navbar.
 
