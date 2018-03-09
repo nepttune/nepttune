@@ -2,17 +2,17 @@
 {spaceless}
 <html lang="{$presenter->translator->getLocale()}">
     <head>
-        <title>{include #title} | {$appName}</title>
+        <title>{include #title} | {$meta['name']}</title>
         <base href="{$baseUrl}" />
         <meta charset="UTF-8" />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-        <meta name="description" content="{$appDescription}" />
-        <meta name="keywords" content="{$appKeywords}" />
-        <meta name="author" content="{$appAuthor}" />
-        <link rel="icon" type="image/x-icon" href="{$appFaviconIco}" sizes="48x48" />
-        <link rel="icon" type="image/png" href="{$appFaviconPng}" sizes="48x48" />
-        <link rel="apple-touch-icon" sizes="48x48" href="{$appFaviconPng}">
+        <meta name="description" content="{$meta['description']}" />
+        <meta name="keywords" content="{$meta['keywords']}" />
+        <meta name="author" content="{$meta['author']}" />
+        <link rel="icon" type="image/x-icon" href="{$meta['faviconIco']}" sizes="48x48" />
+        <link rel="icon" type="image/png" href="{$meta['faviconPng']}" sizes="48x48" />
+        <link rel="meta['apple-touch-icon" sizes="48x48" href="{$meta['faviconPng']}">
 
         {control style}
     </head>
