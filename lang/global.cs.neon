@@ -3,8 +3,6 @@ edit: 'Upravit'
 delete: 'Smazat'
 print: 'Tisknout'
 export: 'Exportovat'
-login: 'Přihlásit'
-logout: 'Odhlásit'
 
 yes: 'Ano'
 no: 'Ne'
