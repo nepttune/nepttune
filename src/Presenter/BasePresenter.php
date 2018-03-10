@@ -5,15 +5,10 @@ namespace Nepttune\Presenter;
 abstract class BasePresenter extends \Nette\Application\UI\Presenter
 {
     use \IPub\MobileDetect\TMobileDetect;
+    use \Nepttune\TTranslator;
 
     /** @persistent */
     public $locale;
-
-    /**
-     * @var \Kdyby\Translation\Translator
-     * @inject
-     */
-    public $translator;
 
     /** @var  array */
     protected $meta;
