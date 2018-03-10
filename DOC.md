@@ -113,13 +113,24 @@ The key is name convention. Assets are loaded using identificators of current vi
 
 ### View files
 
+Asset loader seeks assets for current module, presenter and action. 
+
+- Module files should be located in `/www/scss/module` and `/www/js/module`. Files should be named same as the module with `.min.js|css` file extension.
+- Presenter files should be located in `/www/scss/presenter` and `/www/js/presenter`. Files should be named same as the presenter (including module) with `.min.js|css` file extension.
+- Action files should be located in `/www/scss/action` and `/www/js/action`. Files should be named same as the module with `.min.js|css` file extension. Files also need to be divided into folders by presenters name.
+
 ### Component files
 
+Asset loader iterates through loaded componenets and seeks it's asset files in `/www/scss/component` and `/www/js/component`. Asset files must have same name as the component with `.min.js|css` file extension. 
 
+Additionally, the loader tries to identify type of component and include asset files for that type.
+- If the component name ends with `Form`, loader automatically adds form specific assets (such as `select2`, `icheck`).
+- If the component name ends with `List`, loader adds list specific assets as well as form specific assets. Form specific assets are required for inline editing and other list actions.
+- If the component name ends with `Stat`, loader automatically adds assets used for statistic components (`chart.js`).
 
 ### Example
 
-Current view is `Admin:User:list`. This page contains component called `UserList`.
+Current view is `:Admin:User:list`. This page contains component called `UserList`.
 
 Style component first loads (or tries to load) files to page header:
 
@@ -130,7 +141,8 @@ Style component first loads (or tries to load) files to page header:
 
 Style component also loads component related files to the bottom of the page.
 
-- common files for list componenets
+- common files for list components
+- common files for form components
 - `/www/scss/component/Userlist.scss` - because of the `UserList` component
 
 Script component loads files to the bottom of the page:
@@ -140,6 +152,8 @@ Script component loads files to the bottom of the page:
 - `/www/js/presenter/Admin:User.min.js` - because of the `User` presenter
 - `/www/js/action/Admin:User/list.min.js` - because of the `list` action
 - `/www/js/component/Userlist.min.js` - because of the `UserList` component
+
+> Loaded the files are not mandatory and can be ommitted if not needed. Most of the time only module files are used, sometimes component requires extra JS.
 
 # Model
 
@@ -172,7 +186,7 @@ Nepttune includes some common latte macros and filters.
 
 ### Icon macro
 
-This macro renders as font-awesome icon. First and mandatory icon argument is icon name, without the `fa-` prefix. Second optional parameter is icon size, which adds `fa-Sx` class, where `S` is provided parameter value.
+This macro renders as font-awesome icon. First and mandatory icon argument is icon name without the `fa-` prefix. Second optional parameter is icon size, which adds `fa-Sx` class, where `S` is provided parameter value.
 
 ```
 {icon user, size => 2}
