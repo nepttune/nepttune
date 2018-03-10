@@ -91,7 +91,7 @@ parameters:
                 role: 'user'
 ```
 
-### Breadcrumbs
+### Breadcrumb
 
 > Loaded by default in `Admin` extension.
 
