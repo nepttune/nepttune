@@ -57,7 +57,11 @@ There are also few disadvantages of this approach, but nepttune is designed to m
 
 First time setup requires some extra effort - manuall download of necessary [docker](#docker) files. Once the files are there, you dont have to follow this procedure again.
 
-1. Getting the docker files. Files can be manually downloaded from [nepttune/docker](https://github.com/nepttune/docker) package or using script with following content which does it for you.
+1. Getting the docker files. Files can be manually downloaded from [nepttune/docker](https://github.com/nepttune/docker) package.
+2. Starting docker container.
+3. Running helper scripts to install dependencies and prepare assets.
+
+Following script does all the steps for you.
 ```
 #!/usr/bin/env bash
 
@@ -84,6 +88,13 @@ cd ..
 mkdir ssl
 cd ssl
 curl -sO https://raw.githubusercontent.com/nepttune/docker/master/copy/docker/ssl/example
+
+cd ..
+docker-compose up -d
+
+#TODO ALL IN ONE SCRIPT
+#cd ..
+#sh docker-prepare.sh
 ```
 
 ### Project startup
@@ -108,9 +119,7 @@ Nepttune also includes several helper scripts to run usefull tools right inside 
 
 ## Running without Docker
 
-### Project initialization
-
-### Project startup
+Project can be run without docker as any other project using Apache (or other webserver), MariaDB and Redis.
 
 # Configuration
 
@@ -118,13 +127,35 @@ Nepttune also includes several helper scripts to run usefull tools right inside 
 - Sensitive configuration, such as database connection, should be placed in app/config/local/sensitive.neon. which is gitignored.
 (including configuration files). Configuration can be overriden in local config. Authorizator, router and other services can be overriden in configuration as well.
 
-## Extensions
+## Default extensions
+
+## Parameters
+
+## Services
+
+## Database
+
+## Forms
+
+## Security
 
 # Router
+
+Nepttune includes 2 simple router implementatitons. 
+
+## Subdomain
+
+> Used by default.
+
+## Standard
 
 # Authenticator
 
 # Presenters
+
+## BasePresenter
+
+## ErrorPresenter
 
 # Layouts
 
@@ -138,7 +169,7 @@ Nepttune also includes several helper scripts to run usefull tools right inside 
 
 ## BaseListComponent
 
-## Asset loaders (Script and Style)
+## AssetLoader
 
 > Loaded by default.
 
@@ -167,20 +198,20 @@ Additionally, the loader tries to identify type of component and include asset f
 
 Current view is `:Admin:User:list`. This page contains component called `UserList`.
 
-Style component first loads (or tries to load) files to page header:
+Stylesheet files are loaded into page header:
 
 - common files eg. bootstrap
 - `/www/scss/module/Admin.min.css` - because of the `Admin` module
 - `/www/scss/presenter/Admin:User.min.css` - because of the `User` presenter
 - `/www/scss/action/Admin:User/list.min.css` - because of the `list` action
 
-Style component also loads component related files to the bottom of the page.
+Component related files are linked in the bottom of the page.
 
 - common files for list components
 - common files for form components
 - `/www/scss/component/Userlist.scss` - because of the `UserList` component
 
-Script component loads files to the bottom of the page:
+Scripts are inserted to the bottom of the page:
 
 - common files eg. jquery
 - `/www/js/module/Admin.min.js` - because of the `Admin` module
@@ -213,13 +244,13 @@ $form->addText('phone', 'Phone')
 
 # Latte extensions
 
-> Loaded by default.
-
 Nepttune includes some common latte macros and filters.
 
 ## Macros
 
 ### Icon macro
+
+> Loaded by default.
 
 This macro renders as font-awesome icon. First and mandatory icon argument is icon name without the `fa-` prefix. Second optional parameter is icon size, which adds `fa-Sx` class, where `S` is provided parameter value.
 ```
