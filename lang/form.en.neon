@@ -23,3 +23,6 @@ error:
     max_file_size: 'Select a file of maximum size %d kb.'
 
     csrf: 'Security token has expired, submit the form again.'
+    recaptcha: 'Please prove you are not a robot.'
+
+recaptcha: 'Security check'
