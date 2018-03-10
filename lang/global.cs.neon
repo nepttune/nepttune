@@ -1,15 +1,10 @@
 add: 'Přidat'
 edit: 'Upravit'
 delete: 'Smazat'
+print: 'Tisknout'
+export: 'Exportovat'
+login: 'Přihlásit'
+logout: 'Odhlásit'
+
 yes: 'Ano'
 no: 'Ne'
-
-save: 'Uložit'
-save_next: 'Uložit a přidat další'
-save_list: 'Uložit a vrátit na seznam'
-
-confirm:
-    delete: 'Opravdu chcete smazat tento záznam?'
-
-flash:
-    save_success: 'Úspěšně uloženo.'

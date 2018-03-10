@@ -23,3 +23,11 @@ error:
     max_file_size: 'Zvolte soubor o maximální velikosti %d kb.'
 
     csrf: 'Bezpečnostní token vypršel, odešlete formulář znovu.'
+
+save: 'Uložit'
+save_next: 'Uložit a přidat další'
+save_list: 'Uložit a vrátit na seznam'
+
+flash:
+    save_success: 'Úspěšně uloženo.'
+    save_failure: 'Uložení se nezdařilo.'
