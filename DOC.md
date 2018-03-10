@@ -123,11 +123,57 @@ Project can be run without docker as any other project using Apache (or other we
 
 # Configuration
 
-- TODO
-- Sensitive configuration, such as database connection, should be placed in app/config/local/sensitive.neon. which is gitignored.
-(including configuration files). Configuration can be overriden in local config. Authorizator, router and other services can be overriden in configuration as well.
+Nepttune includes default configuration. Each setting can be overriden in project specific configuration file.
+Sensitive configuration, such as database login information, should be placed in `app/config/sensitive.neon` which is gitignored.
+
+## Core configuration
+
+### Error Presenter
+### Exceptions
+### PHP settings
 
 ## Default extensions
+
+Nepttune by default enables some Nette extensions which bring extra functionality. Some of them have to be configured and some have optional configuration. Each configuration option can be overriden. For more information explore respective documentation of each extension.
+
+### Redis ([kdyby/redis](https://github.com/Kdyby/Redis))
+
+This extension is required in order to connect to redis database.
+
+Nepttune configures redis server information. If running without docker, you also have to override redis host.
+```
+redis:
+    host: 'X'
+```
+
+### Translation ([kdyby/translation](https://github.com/Kdyby/Translation))
+
+This extension brings translator. Each rendered text which comes from Nepttune is translator enabled. Supported languges for now are English and Czech.
+
+Nepttune configures set of supported languages and a default language.
+
+### MobileDetect ([ipub/mobile-detect](https://github.com/iPublikuj/mobile-detect))
+
+This extension is used for client identification.
+
+### Nextras form ([nextras/forms](https://github.com/nextras/forms))
+
+This extenstion helps with form rendering and adds some common form controls.
+
+### Dependent selectbox ([nasext/dependent-select-box](https://github.com/NasExt/DependentSelectBox))
+
+This extenstion adds implementation of dependent selectbox as form control.
+
+### Recaptcha ([uestla/recaptcha-control](https://github.com/uestla/ReCaptchaControl))
+
+This extenstion adds form control which renders Google Recaptcha.
+
+For using this form control it is neccassary to set your recaptcha keys. Those keys should be placed in gitignored `app/config/sensitive.neon`.
+```
+recaptcha:
+    siteKey: 'X'
+    secretKey: 'X'
+```
 
 ## Parameters
 
@@ -135,9 +181,29 @@ Project can be run without docker as any other project using Apache (or other we
 
 ## Database
 
+Database configuration sets charset and SQL mode for database connection. It also disables PDO's emulated prepared statements.
+
+It is neccassary to set your project database login information. This information should be placed in gitignored `app/config/sensitive.neon`.
+
+```
+database:
+    default:
+        dsn: 'mysql:host=X;dbname=X'
+        user: 'X'
+        password: 'X'
+```
+
 ## Forms
 
+Form configuration sets default error messages.
+
 ## Security
+
+Security configuration enhances projects security by setting multiple security headers.
+
+## Sensitive configuration
+
+
 
 # Router
 
