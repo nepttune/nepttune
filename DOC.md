@@ -123,14 +123,28 @@ Project can be run without docker as any other project using Apache (or other we
 
 # Configuration
 
-Nepttune includes default configuration. Each setting can be overriden in project specific configuration file.
+Nepttune includes default configuration. **Each setting can be overriden in project specific configuration file.**
 Sensitive configuration, such as database login information, should be placed in `app/config/sensitive.neon` which is gitignored.
 
 ## Core configuration
 
-### Error Presenter
+This chapter describes common configuration of application.
+
 ### Exceptions
+
+By default, application exception catching is enabled. It is useful to override this option in development environment.
+
+### Error Presenter
+
+Nepttune includes its simple implementatiton of Error presenter. If you with to use your own specific presenter to handle errors override the `errorPresenter` configuration.
+```
+application:
+    errorPresenter: SomeOtherPresenter
+```
+
 ### PHP settings
+
+Nepttune sets php property `date.timezone: Europe/Prague`.
 
 ## Default extensions
 
@@ -175,10 +189,6 @@ recaptcha:
     secretKey: 'X'
 ```
 
-## Parameters
-
-## Services
-
 ## Database
 
 Database configuration sets charset and SQL mode for database connection. It also disables PDO's emulated prepared statements.
@@ -199,11 +209,25 @@ Form configuration sets default error messages.
 
 ## Security
 
-Security configuration enhances projects security by setting multiple security headers.
+Security configuration enhances projects security by setting up session and multiple security headers.
 
-## Sensitive configuration
+### Session
 
+Nepttune sets session name to the value of `sessionName` parameter and sets its expiration to 14 days.
 
+### Cookies
+
+Nepttune sets cookies to secure and httpOnly (HttpOnly option is already enabled by Nette.), sets cookie path to `/` and cookie domain to value of `domain` parameter (with dot prefix to allow subdomains).
+
+### Security headers
+
+Nepttune sets multiple security headers to recommended values (including `Content Security Policy`). The most important one `Strict Transport Security` is enabled by default, but only with max age 60. It is recommended to override this option and icrease the max age. 
+
+Review values for each header directly in [source code](https://github.com/nepttune/nepttune/blob/master/config/security.neon).
+
+## Parameters
+
+## Services
 
 # Router
 
