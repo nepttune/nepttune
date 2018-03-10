@@ -5,7 +5,28 @@
 - Files which are copied into project directory are gitignored and should not be edited.
 - Package already depends on Nette framework and some other libraries, so it's not needed to list them in `composer.json`.
 
-# Initialization
+# Basic usage
+
+This chapter describes Nepttune's dependencies and automation steps in project initialization and startup.
+
+## Running with Docker
+
+The only requirement for your machine is to have `docker` and `docker-compose` installed. Other tools needed by application are already present in docker container.
+
+### Docker introduction
+
+Nepttune is aimed to run in [docker](#docker) container. This approach brings many advantages, here are the most most notable ones.
+- The container is identical on all machines. Identical versions of PHP and other libraries make collaboration easier.
+- There is no need to install any development tools on your machine.
+- There is no need to have multiple services running on your machine (apache, mysql, redis, ...).
+
+There are also few disadvantages of this approach, but this project is designed to minimise their impact.
+- Docker is slow on Windows machines. 
+  - Whoever is using Windows obviously doesn't care about speed anyway.
+- Docker volumes have messy configuration of filesystem permissions.
+  - Project includes script to fix filesystem permissions.
+
+### Project initialization
 
 First time setup requires some extra effort - download of `composer.json` and other necessary [docker](#docker) files. Once your project is set up, you dont have to follow this procedure again.
 
@@ -42,28 +63,11 @@ curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/
 
 2. Go to docker directory and run `docker-compose up`.
 
-[Docker](#docker) executes `composer`, `npm` and other tools to initiate project automatically.
-
-# Basic usage
-
-## Docker introduction
-
-Project runs in [docker](#docker) container. This approach brings many advantages, here are the most most notable ones.
-- The container is identical on all machines. Identical versions of PHP and other libraries make collaboration easier.
-- There is no need to install any development tools on your machine.
-- There is no need to have multiple services running on your machine (apache, mysql, redis, ...).
-
-There are also few disadvantages of this approach, but this project is designed to minimise their impact.
-- Docker is slow on Windows machines. 
-  - Whoever is using Windows obviously doesn't care about speed anyway.
-- Docker volumes have messy configuration of filesystem permissions.
-  - Project includes script to fix filesystem permissions.
-
-### Starting Docker
+### Project startup
 
 Docker is manually started in step 2 of [initialization](#initialization) using `docker-compose up` run in `docker` directory. There is also a script in project root called `docker.sh`, which does it for you.
 
-## Helper scripts
+### Helper scripts
 
 This project also includes several helper scripts to run usefull tools right inside running docker container. Those scripts are located at project root.
 - `docker-composer.sh` executes `composer update`.
@@ -77,7 +81,13 @@ This project also includes several helper scripts to run usefull tools right ins
   - **All scripts above execute this script automaticaly**, there is no need to run it after running `composer` or `uglify-es`.
   - You ming need to call this script after adding a new file.
   
-**All helper scripts are automatically executed on container startup.** You dont have to call them manually on every startup.
+**The permission script is automatically executed on container startup.**
+
+## Running without Docker
+
+### Project initialization
+
+### Project startup
 
 # Configuration
 
@@ -94,6 +104,8 @@ This project also includes several helper scripts to run usefull tools right ins
 # Presenters
 
 # Layouts
+
+# Model
 
 # Components
 
@@ -155,8 +167,6 @@ Script component loads files to the bottom of the page:
 
 > Loaded the files are not mandatory and can be ommitted if not needed. Most of the time only module files are used, sometimes component requires extra JS.
 
-# Model
-
 # Form Validators
 
 Nepttune includes some extra form validators.
@@ -189,7 +199,6 @@ Nepttune includes some common latte macros and filters.
 ### Icon macro
 
 This macro renders as font-awesome icon. First and mandatory icon argument is icon name without the `fa-` prefix. Second optional parameter is icon size, which adds `fa-Sx` class, where `S` is provided parameter value.
-
 ```
 {icon user, size => 2}
 ```
@@ -201,14 +210,6 @@ Which renders as following HTML:
 ## Filters
 
 No filters at the moment.
-
-# Docker
-
-# Contignous Integration
-
-## Jenkins
-
-## Gitlab CI
 
 # Extensions
 
@@ -225,3 +226,9 @@ Documentation for this extension is located in [separate file](https://github.co
 Some components and other tools are excluded from core package. Can be downloaded as extras or used standalone.
 
 Documentation for extras is located in [separate file](https://github.com/nepttune/nepttune/blob/master/DOC-extra.md).
+
+# Contignous Integration
+
+## Jenkins
+
+## Gitlab CI
