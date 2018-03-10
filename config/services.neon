@@ -27,3 +27,6 @@ translation:
         session: off
         request: on
         header: off
+    dirs:
+        - '%appDir%/lang'
+        - '%appDir%/../vendor/nepttune/nepttune/lang'

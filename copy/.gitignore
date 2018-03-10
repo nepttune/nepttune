@@ -26,16 +26,6 @@ log/*
 app/bootstrap.php
 app/config/core.neon.example
 app/config/sensitive.neon.example
-app/lang/global.cs.neon
-app/lang/global.en.neon
-app/lang/form.cs.neon
-app/lang/form.en.neon
-app/lang/list.cs.neon
-app/lang/list.en.neon
-app/lang/ublaboo_datagrid.cs.neon
-app/lang/ublaboo_datagrid.en.neon
-app/presenter/ErrorPresenter.php
-app/module/AdminModule/presenter/SignPresenter.php
 
 www/index.php
 www/robots.txt
