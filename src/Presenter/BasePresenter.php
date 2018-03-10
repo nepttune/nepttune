@@ -24,10 +24,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
     protected function beforeRender()
     {
-        parent::beforeRender();
-
         $this->template->meta = $this->meta;
         $this->template->dest = $this->dest;
+        
+        parent::beforeRender();
     }
 
     public function flashMessage($message, $type = 'info') : \stdClass
