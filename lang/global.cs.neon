@@ -8,3 +8,16 @@ logout: 'Odhlásit'
 
 yes: 'Ano'
 no: 'Ne'
+
+save: 'Uložit'
+save_next: 'Uložit a přidat další'
+save_list: 'Uložit a vrátit na seznam'
+
+flash:
+    save_success: 'Úspěšně uloženo.'
+    save_failure: 'Uložení se nezdařilo.'
+    delete_success: 'Záznam úspěšně smazán.'
+    delete_failure: 'Smazání záznamu se nezdařilo.'
+
+confirm:
+    delete: 'Opravdu chcete smazat tento záznam?'

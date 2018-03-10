@@ -1,9 +1,2 @@
 column:
     active: 'Aktivní'
-
-confirm:
-    delete: 'Opravdu chcete smazat tento záznam?'
-
-flash:
-    delete_success: 'Záznam úspěšně smazán.'
-    delete_failure: 'Smazání záznamu se nezdařilo.'

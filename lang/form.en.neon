@@ -23,11 +23,3 @@ error:
     max_file_size: 'Select a file of maximum size %d kb.'
 
     csrf: 'Security token has expired, submit the form again.'
-
-save: 'Save'
-save_next: 'Save and add next'
-save_list: 'Save and return to list'
-
-flash:
-    save_success: 'Successfully saved.'
-    save_failure: 'Save failed.'
