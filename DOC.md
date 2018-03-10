@@ -3,7 +3,7 @@
 - Preferable way of running nepttune project is using [docker](#docker) container. `docker` and `docker-compose` are the **only** tools required on your machine.
 - HTTPS is standard. Self signed certificate is created if other isn't provided.
 - Files which are copied into project directory are gitignored and should not be edited.
-- Package already depends on Nette framework and some other libraries, so it's not needed to list them in `composer.json`.
+- Package already depends on Nette framework and some other libraries, so it's not needed to list them in `composer.json` pr `package.json`.
 
 # Basic usage
 
@@ -227,19 +227,52 @@ Review values for each header directly in [source code](https://github.com/neptt
 
 ## Parameters
 
+Some of the application specific settings are saved as parameters.
+
+- Meta information for page header
+- Special destinations in application (eg. homepage)
+- Domain (used for correct configuration of cookies)
+- Session name (used for correct cnfiguration of session)
+
+Review and override values for each parameter directly in [source code](https://github.com/nepttune/nepttune/blob/master/config/parameters.neon).
+
 ## Services
+
+Nepttune registers router factory, some models and component factories as services. Those services cannot be unset, but cause no harm and do not have to be used.
+
+Named service `router` is set to Nepttune's subdomain router. If you wish to use another custom router, register new router factory and override named service.
 
 # Router
 
-Nepttune includes 2 simple router implementatitons. 
+Nepttune includes 2 simple router implementatitons.
 
 ## Subdomain
 
 > Used by default.
 
+This router implementation is using following pattern:
+```
+//<module>.%domain%/[<locale [a-z]{2}>/]<presenter>/<action>[/<id>]
+```
+
+Requests subdomain is used as module identification. Www module is therefore frontend of application.
+
 ## Standard
 
-# Authenticator
+This router consists of 2 routes, one to Api module and second to Www module. They are using following patterns:
+```
+/api/<presenter>/<action>
+
+/[<locale [a-z]{2}>/]<presenter>/<action>[/<id>]
+``` 
+
+# Interfaces and Traits
+
+## ITranslatedComponent and TTranslator
+
+Trait `TTranslator` includes translator variable and function to inject Translator. Interface `ITranslatedComponent` gives hint to decorator to call the inject method.
+
+Whenever you need your componenet to have translator, just simply add trait and interface.
 
 # Presenters
 
@@ -255,9 +288,15 @@ Nepttune includes 2 simple router implementatitons.
 
 ## BaseComponent
 
+This component assists in rendering and in creation of subcomponents.
+
 ## BaseFormComponent
 
+> Uses TTranslator.
+
 ## BaseListComponent
+
+> Uses TTranslator.
 
 ## AssetLoader
 
