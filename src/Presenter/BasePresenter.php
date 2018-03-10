@@ -10,6 +10,12 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     /** @persistent */
     public $locale;
 
+    /**
+     * @inject
+     * @var  \Nepttune\Component\IAssetLoaderFactory
+     */
+    public $iAssetLoaderFactory;
+
     /** @var  array */
     protected $meta;
 
@@ -158,5 +164,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     public static function getFlashArea() : string
     {
         return __DIR__ . '/../templates/flasharea.latte';
+    }
+
+    protected function createComponentAssetLoader()
+    {
+        return $this->iAssetLoaderFactory->create();
     }
 }

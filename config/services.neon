@@ -3,27 +3,18 @@
 services:
     - Nepttune\RouterFactory
     router: @Nepttune\RouterFactory::createSubdomainRouter
-    
-    script:
-        class: Nepttune\Component\Script
-    style:
-        class: Nepttune\Component\Style
-        
+
     - Nepttune\Model\ErrorLogModel
 
+    - Nepttune\Component\IAssetLoaderFactory
+
 decorator:
-    Nepttune\Component\BaseAssetComponent:
-        setup:
-            - injectStorage
-    Nepttune\Component\BaseFormComponent:
-        setup:
-            - injectTranslator
-    Nepttune\Component\BaseListComponent:
-        setup:
-            - injectTranslator
     Nepttune\Presenter\BasePresenter:
         setup:
             - injectParameters(%meta%, %dest%)
+    Nepttune\Component\ITranslatedComponent:
+        setup:
+            - injectTranslator
 
 latte:
     macros:
