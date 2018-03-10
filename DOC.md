@@ -180,6 +180,8 @@ $form->addText('phone', 'Phone')
 
 # Latte extensions
 
+> Loaded by default.
+
 Nepttune includes some common latte macros and filters.
 
 ## Macros
