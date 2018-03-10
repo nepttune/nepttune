@@ -14,7 +14,7 @@
         <link rel="icon" type="image/png" href="{$meta['faviconPng']}" sizes="48x48" />
         <link rel="meta['apple-touch-icon" sizes="48x48" href="{$meta['faviconPng']}">
 
-        {control style}
+        {control assetLoader:style}
     </head>
     {ifset #bodyTag}
         {include #bodyTag}
@@ -26,9 +26,9 @@
         {else}
             {include #content}
         {/ifset}
-
-        {control style:component}
-        {control script}
+        
+        {control assetLoader:styleComponent}
+        {control assetLoader:script}
     </body>
 </html>
 {/spaceless}
