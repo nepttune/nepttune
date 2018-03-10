@@ -9,6 +9,8 @@
 
 This chapter describes Nepttune's dependencies and automation steps in project initialization and startup.
 
+## composer.json and package.json
+
 ## Running with Docker
 
 The only requirement for your machine is to have `docker` and `docker-compose` installed. Other tools needed by application are already present in docker container.
@@ -20,56 +22,52 @@ Nepttune is aimed to run in [docker](#docker) container. This approach brings ma
 - There is no need to install any development tools on your machine.
 - There is no need to have multiple services running on your machine (apache, mysql, redis, ...).
 
-There are also few disadvantages of this approach, but this project is designed to minimise their impact.
+There are also few disadvantages of this approach, but nepttune is designed to minimise their impact.
 - Docker is slow on Windows machines. 
   - Whoever is using Windows obviously doesn't care about speed anyway.
 - Docker volumes have messy configuration of filesystem permissions.
-  - Project includes script to fix filesystem permissions.
+  - Nepttune includes script to fix filesystem permissions.
 
 ### Project initialization
 
-First time setup requires some extra effort - download of `composer.json` and other necessary [docker](#docker) files. Once your project is set up, you dont have to follow this procedure again.
+First time setup requires some extra effort - manuall download of necessary [docker](#docker) files. Once the files are there, you dont have to follow this procedure again.
 
-1. Create script with following content in projects directory and run it.
+1. Getting the docker files. Files can be manually downloaded from [nepttune/docker](https://github.com/nepttune/docker) package or using script with following content which does it for you.
 ```
 #!/usr/bin/env bash
 
-curl -s https://raw.githubusercontent.com/peldax/nette-init/master/default-composer.json > composer.json
-
 mkdir docker
 cd docker
-curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/docker-compose.yml
-curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/dockerfile-apache-php
+curl -sO https://raw.githubusercontent.com/nepttune/docker/master/copy/docker/docker-compose.yml
+curl -sO https://raw.githubusercontent.com/nepttune/docker/master/copy/docker/dockerfile-apache-php
 
 mkdir apache2
 cd apache2
-curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/apache2/000-default.conf
+curl -sO https://raw.githubusercontent.com/nepttune/docker/master/copy/docker/apache2/000-default.conf
 cd ..
 
 mkdir bin
 cd bin
-curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/composer.sh
-curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/npm.sh
-curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/scss.sh
-curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/js.sh
-curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/permission.sh
-curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/bin/startup.sh
+curl -sO https://raw.githubusercontent.com/nepttune/docker/master/copy/docker/bin/composer.sh
+curl -sO https://raw.githubusercontent.com/nepttune/docker/master/copy/docker/bin/npm.sh
+curl -sO https://raw.githubusercontent.com/nepttune/docker/master/copy/docker/bin/scss.sh
+curl -sO https://raw.githubusercontent.com/nepttune/docker/master/copy/docker/bin/js.sh
+curl -sO https://raw.githubusercontent.com/nepttune/docker/master/copy/docker/bin/permission.sh
+curl -sO https://raw.githubusercontent.com/nepttune/docker/master/copy/docker/bin/startup.sh
 cd ..
 
 mkdir ssl
 cd ssl
-curl -sO https://raw.githubusercontent.com/peldax/nette-init/master/copy/docker/ssl/example
+curl -sO https://raw.githubusercontent.com/nepttune/docker/master/copy/docker/ssl/example
 ```
-
-2. Go to docker directory and run `docker-compose up`.
 
 ### Project startup
 
-Docker is manually started in step 2 of [initialization](#initialization) using `docker-compose up` run in `docker` directory. There is also a script in project root called `docker.sh`, which does it for you.
+Docker is started using `docker-compose up` run in `docker` directory. There is also a script in project root called `docker.sh`, which does it for you.
 
 ### Helper scripts
 
-This project also includes several helper scripts to run usefull tools right inside running docker container. Those scripts are located at project root.
+Nepttune also includes several helper scripts to run usefull tools right inside running docker container. Those scripts are located at projects root.
 - `docker-composer.sh` executes `composer update`.
 - `docker-npm.sh` executes `npm update`.
 - `docker-scss.sh` minimises `*.scss` files into `*.min.css`.
