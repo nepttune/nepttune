@@ -3,8 +3,6 @@ edit: 'Edit'
 delete: 'Delete'
 print: 'Print'
 export: 'Export'
-login: 'Login'
-logout: 'Logout'
 
 yes: 'Yes'
 no: 'No'
