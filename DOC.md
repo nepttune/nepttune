@@ -9,7 +9,32 @@
 
 This chapter describes Nepttune's dependencies and automation steps in project initialization and startup.
 
-## composer.json and package.json
+## Example composer.json and package.json
+
+Following snippets contain example `composer.json` and `package.json`. Composer file also includes deploy script which creates directory structure and copies some files into projects directory.
+```
+{
+  "require": {
+    "nepttune/nepttune": "^4.0",
+    "nepttune/admin": "^4.0",
+    "nepttune/extra-navbar": "^4.0"
+  },
+  "scripts": {
+    "post-update-cmd": "Nepttune\\Deploy::init",
+    "post-install-cmd": "Nepttune\\Deploy::init"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
+```
+```
+{
+  "dependencies": {
+    "nepttune": "^1.0.1"
+  }
+}
+
+```
 
 ## Running with Docker
 
