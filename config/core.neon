@@ -23,5 +23,6 @@ application:
     catchExceptions: true
     errorPresenter: 'Error'
     mapping:
-        *:
-            [ 'App', '*Module', 'Presenter\*Presenter' ]
+        *: [ 'App', '*Module', 'Presenter\*Presenter' ]
+    scanDirs:
+        - '%appDir%/../vendor/nepttune/'
