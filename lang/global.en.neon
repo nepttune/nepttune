@@ -7,6 +7,8 @@ export: 'Export'
 yes: 'Yes'
 no: 'No'
 
+all: 'All'
+
 save: 'Save'
 save_next: 'Save and add next'
 save_list: 'Save and return to list'
