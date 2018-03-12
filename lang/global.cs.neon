@@ -7,6 +7,8 @@ export: 'Exportovat'
 yes: 'Ano'
 no: 'Ne'
 
+all: 'Vše'
+
 save: 'Uložit'
 save_next: 'Uložit a přidat další'
 save_list: 'Uložit a vrátit na seznam'
