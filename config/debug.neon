@@ -1,0 +1,7 @@
+application:
+    catchExceptions: false
+
+http:
+    csp:
+        style-src: [ unsafe-inline ]
+        img-src: [ self, 'data:' ]
