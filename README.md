@@ -12,17 +12,18 @@ Each project shares some base classes, configuration and practices with each oth
 
 ### Library part
 
-- Base presenters and base components
-- Router
+- Base presenters and components
+- Premade componenets, including custom asset loader
+- Premade layout files
+- Configuration files with extensions and security headers
+- Multiple router implementaitons
 - Authenticator
-- Custom Form validators
-- Some Latte macros and filters
-- Layout files (with AdminLTE for non public part and custom componenent for asset loading)
+- Extra Form validators
+- Extra Latte macros and filters
 
 ### Copied part
 
 - Directory structure with standard files (bootstrap, index)
-- Configuration files with extensions and security headers
 - Docker image
 - CI configuration
 
