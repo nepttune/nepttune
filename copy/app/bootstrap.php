@@ -1,9 +1,11 @@
 <?php
 
+$debugMode = true;
+
 require __DIR__ . '/../vendor/autoload.php';
 
 $configurator = new Nette\Configurator;
-$configurator->setDebugMode(true);
+$configurator->setDebugMode($debugMode);
 $configurator->enableDebugger(__DIR__ . '/../log');
 $configurator->setTempDirectory(__DIR__ . '/../temp');
 $configurator->createRobotLoader()
@@ -11,13 +13,19 @@ $configurator->createRobotLoader()
     ->addDirectory(__DIR__ . '/../vendor/nepttune/')
     ->register();
 
-$configurator->addConfig(__DIR__ . '/../vendor/nepttune/nepttune/config/core.neon');
-foreach (['admin'] as $extension)
+foreach (['nepttune', 'admin'] as $extension)
 {
-    $file = __DIR__ . "/../vendor/nepttune/{$extension}/config/core.neon";
-    if (file_exists($file))
+    $coreFile = __DIR__ . "/../vendor/nepttune/{$extension}/config/core.neon";
+    $debugFile = __DIR__ . "/../vendor/nepttune/{$extension}/config/debug.neon";
+
+    if (file_exists($coreFile))
     {
-        $configurator->addConfig($file);
+        $configurator->addConfig($coreFile);
+    }
+
+    if ($debugMode && file_exists($debugFile))
+    {
+        $configurator->addConfig($debugFile);
     }
 }
 $configurator->addConfig(__DIR__ . '/config/core.neon');
