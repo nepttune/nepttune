@@ -35,7 +35,7 @@ http:
         frame-src: [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com ]
         child-src: [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com ]
         style-src: [ self, https://fonts.googleapis.com/ ]
-        script-src: [ nonce, strict-dynamic, https://www.google.com/ ]
+        script-src: [ nonce, strict-dynamic, self, https://www.google.com/, https://www.gstatic.com/, unsafe-inline ]
 
         base-uri: [ self ]
         form-action: [ self ]
