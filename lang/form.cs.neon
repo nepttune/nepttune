@@ -24,5 +24,6 @@ error:
 
     csrf: 'Bezpečnostní token vypršel, odešlete formulář znovu.'
     recaptcha: 'Dokažte že nejste robot.'
+    unique: 'Záznam s touto hodnotou již existuje.'
 
 recaptcha: 'Bezpečnostní kontrola'

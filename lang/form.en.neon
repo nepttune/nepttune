@@ -24,5 +24,6 @@ error:
 
     csrf: 'Security token has expired, submit the form again.'
     recaptcha: 'Please prove you are not a robot.'
+    unique: 'There already exists an entry with this value.'
 
 recaptcha: 'Security check'
