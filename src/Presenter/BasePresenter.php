@@ -130,6 +130,11 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     
     public function findLayoutTemplateFile() : string
     {
+        if ($this->layout)
+        {
+            return $this->layout;
+        }
+        
         $dir = dirname(static::getReflection()->getFileName());
         $primary = $dir . '/../templates/@layout.latte';
 
