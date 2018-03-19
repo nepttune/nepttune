@@ -32,8 +32,8 @@ http:
         connect-src: [ self ]
 
         font-src: [ self, https://fonts.gstatic.com/ ]
-        frame-src: [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com ]
-        child-src: [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com ]
+        frame-src: [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com/, https://*.gopay.cz/ ]
+        child-src: [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com/, https://*.gopay.cz/ ]
         style-src: [ self, https://fonts.googleapis.com/ ]
         script-src: [ nonce, strict-dynamic, self, https://www.google.com/, https://www.gstatic.com/, unsafe-inline ]
 
