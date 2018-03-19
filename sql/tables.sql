@@ -5,4 +5,4 @@ CREATE TABLE IF NOT EXISTS `log_error`
   `url`        VARCHAR(255)                NOT NULL,
   `return_code`VARCHAR(10)                 NOT NULL,
   `datetime`   DATETIME                    NOT NULL
-);
+) ENGINE = INNODB;
