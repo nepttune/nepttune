@@ -14,6 +14,12 @@
         <link rel="icon" type="image/png" href="{$meta['faviconPng']}" sizes="48x48" />
         <link rel="apple-touch-icon" sizes="48x48" href="{$meta['faviconPng']}">
 
+        {ifset #font}
+            {include #font}
+        {else}
+            <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
+        {/ifset}
+
         {control assetLoader:style}
     </head>
     {ifset #bodyTag}
