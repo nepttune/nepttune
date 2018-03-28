@@ -8,6 +8,8 @@ services:
     - Nepttune\Model\PushNotificationModel(%vapid%)
     - Nepttune\Model\SubscriptionModel
 
+    - App\Presenter\SubscribePresenter(%vapid.publicKey%)
+
     - Nepttune\Component\IAssetLoaderFactory
 
 decorator:
