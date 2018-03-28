@@ -5,6 +5,8 @@ services:
     router: @Nepttune\RouterFactory::createSubdomainRouter
 
     - Nepttune\Model\ErrorLogModel
+    - Nepttune\Model\PushNotificationModel(%vapid%)
+    - Nepttune\Model\SubscriptionModel
 
     - Nepttune\Component\IAssetLoaderFactory
 
