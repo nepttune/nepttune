@@ -108,29 +108,25 @@ final class PushNotificationModel
             return;
         }
 
+        $row = $this->subscriptionModel->getActive()->where('endpoint', $data['endpoint'])->fetch();
+
         switch ($this->request->getMethod()) {
             case 'POST':
-                $this->subscriptionModel->insert([
-                    'user_id' => $userId,
-                    'endpoint' => $data['endpoint'],
-                    'key' => $data['publicKey'],
-                    'token' => $data['authToken'],
-                    'encoding' => $data['contentEncoding']
-                ]);
-                break;
             case 'PUT':
-                $row = $this->subscriptionModel->getActive()->where('endpoint', $data['endpoint'])->fetch();
-
+            {
                 if (!$row)
                 {
-                    $this->subscriptionModel->insert([
+                    $row = $this->subscriptionModel->insert([
                         'user_id' => $userId,
                         'endpoint' => $data['endpoint'],
                         'key' => $data['publicKey'],
                         'token' => $data['authToken'],
                         'encoding' => $data['contentEncoding']
                     ]);
-                    break;
+
+                    $this->sendNotification($row, 'Notifications enabled!', true);
+
+                    return;
                 }
 
                 $row->update([
@@ -139,12 +135,21 @@ final class PushNotificationModel
                     'token' => $data['authToken'],
                     'encoding' => $data['contentEncoding']
                 ]);
-                break;
+
+                return;
+            }
             case 'DELETE':
-                $this->subscriptionModel->findBy('endpoint', $data['endpoint'])->update([
+            {
+                if (!$row)
+                {
+                    return;
+                }
+
+                $row->update([
                     'active' => 0
                 ]);
                 return;
+            }
             default:
                 throw new \Nette\Application\BadRequestException();
         }
