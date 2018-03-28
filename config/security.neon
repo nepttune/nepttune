@@ -25,11 +25,11 @@ http:
 
         object-src: [ none ]
         worker-src: [ none ]
-        manifest-src: [ none ]
-
+        
         img-src: [ self ]
         media-src: [ self ]
         connect-src: [ self ]
+        manifest-src: [ self ]
 
         font-src: [ self, https://fonts.gstatic.com/ ]
         frame-src: [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com/, https://*.gopay.cz/ ]
