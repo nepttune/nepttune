@@ -1,0 +1,25 @@
+self.addEventListener('install', function(event) {
+    event.waitUntil(self.skipWaiting());
+});
+
+self.addEventListener('activate', function(event) {
+    event.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('push', function(event) {
+    const payload = event.data ? event.data.text() : 'no payload';
+        event.waitUntil(
+        self.registration.showNotification('peldax.com notification', { body: payload })
+    );
+});
+
+self.addEventListener('notificationclick', function(event) {
+    event.waitUntil(
+        self.clients.matchAll().then(function(clientList) {
+            if (clientList.length > 0) {
+                return clientList[0].focus();
+            }
+            return self.clients.openWindow("{plink :Www:Default:default}");
+        })
+    );
+});
