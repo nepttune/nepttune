@@ -28,6 +28,11 @@ parameters:
     smsconnect:
         login: 'X'
         password: 'X'
+    vapid:
+        subject: '%domain%'
+        publicKey: 'X'
+        privateKey: 'X'
+
 
 mail:
     smtp: true
