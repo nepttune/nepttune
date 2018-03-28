@@ -24,10 +24,10 @@ http:
         default-src: [ none ]
 
         object-src: [ none ]
-        worker-src: [ none ]
         
         img-src: [ self ]
         media-src: [ self ]
+        worker-src: [ self ]
         connect-src: [ self ]
         manifest-src: [ self ]
 
