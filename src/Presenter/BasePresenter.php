@@ -63,29 +63,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         return $this->context->createService($name);
     }
 
-    public function handleRedrawControl(string $control = null) : void
-    {
-        if ($control && $this->isAjax())
-        {
-            if (method_exists($this, 'redraw'.ucfirst($control)))
-            {
-                $this->{'redraw'.ucfirst($control)}();
-            }
-
-            $this->redrawControl($control);
-        }
-    }
-
-    public function handleRedrawRow(string $control = null, int $rowId = null) : void
-    {
-        if ($this->isAjax() && $control && $rowId)
-        {
-            $grid = $this[$control]['dataGrid'];
-
-            $grid->redrawRow($rowId);
-        }
-    }
-
     public function actionCloseFancy($control = null, $rowId = null) : void
     {
         $this->getFlashSession()->setExpiration(time() + 5);
