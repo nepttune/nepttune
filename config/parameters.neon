@@ -11,9 +11,14 @@ parameters:
         description: 'peldax.com - personal multi-purpose webpage'
         keywords: 'personal, webpage, peldax, application'
         author: 'peldax.com'
-        robots: 'index. follow'
+        robots: 'index, follow'
         viewport: 'width=device-width, initial-scale=1, maximum-scale=2'
         color: '#ffffff'
+        
+    robots:
+        all:
+            name: '*'
+            disallow:
 
     dest:
         homepage: ':Www:Default:default'
