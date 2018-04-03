@@ -17,7 +17,8 @@
     RewriteRule /\.|^\.(?!well-known/) - [F]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule !\.(ttf|woff|woff2|js|ico|gif|jpg|png|css|map)$ /index.php [L]
+    RewriteCond %{REQUEST_FILENAME} !\.(ttf|woff|woff2|ico|jpg|jpeg|png|gif|svg|js|css|map)$
+    RewriteRule . /index.php [L]
 </IfModule>
 
 <IfModule mod_deflate.c>
