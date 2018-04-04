@@ -7,12 +7,23 @@ use Nette\Application\Routers\RouteList,
 
 class RouterFactory
 {
+    protected static function createRouteList() : RouteList
+    {
+        $router = new RouteList();
+
+        $router[] = new Route('/robots.txt', 'Tool:robots');
+        $router[] = new Route('/sitemap.xml', 'Tool:sitemap');
+        $router[] = new Route('/worker.js', 'Tool:worker');
+
+        return $router;
+    }
+
     /**
      * @return \Nette\Application\IRouter
      */
-    public static function createSubdomainRouter()
+    public static function createSubdomainRouter() : \Nette\Application\IRouter
     {
-        $router = new RouteList();
+        $router = static::createRouteList();
 
         $router[] = new Route('//<module>.%domain%/[<locale [a-z]{2}>/]<presenter>/<action>[/<id>]', [
             'presenter' => 'Default',
@@ -28,9 +39,9 @@ class RouterFactory
     /**
      * @return \Nette\Application\IRouter
      */
-    public static function createStandardRouter()
+    public static function createStandardRouter() : \Nette\Application\IRouter
     {
-        $router = new RouteList();
+        $router = static::createRouteList();
         
         $router[] = new Route('/api/<presenter>/<action>', [
             'module' => 'Api',
