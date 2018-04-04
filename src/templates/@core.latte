@@ -29,7 +29,7 @@
             <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
         {/ifset}
 
-        {control assetLoader:style}
+        {control assetLoader:head}
     </head>
     {ifset #bodyTag}
         {include #bodyTag}
@@ -42,8 +42,7 @@
             {include #content}
         {/ifset}
         
-        {control assetLoader:styleComponent}
-        {control assetLoader:script}
+        {control assetLoader:body}
     </body>
 </html>
 {/spaceless}
