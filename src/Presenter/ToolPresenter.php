@@ -39,9 +39,9 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
     {
         $pages = [];
 
-        foreach ($this->context->findByType('\Nepttune\ISitemap') as $name)
+        foreach ($this->context->findByType('\Nepttune\TI\ISitemap') as $name)
         {
-            /** @var \Nepttune\ISitemap $presenter */
+            /** @var \Nepttune\TI\ISitemap $presenter */
             $presenter = $this->context->getService($name);
             $pages += $presenter->getSitemap();
         }
