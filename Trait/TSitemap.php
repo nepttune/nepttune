@@ -1,6 +1,6 @@
 <?php
 
-namespace Nepttune\Trait;
+namespace Nepttune\TI;
 
 trait TSitemap
 {
