@@ -16,7 +16,7 @@ decorator:
     Nepttune\Presenter\BasePresenter:
         setup:
             - injectParameters(%meta%, %dest%)
-    Nepttune\Component\ITranslatedComponent:
+    Nepttune\ITranslator:
         setup:
             - injectTranslator
 
