@@ -1,0 +1,13 @@
+Sitemap: {$baseUrl}/sitemap.xml
+
+{foreach $robots as $robot}
+User-agent: {$robot['name']}
+{if is_array($robot['disallow'])}
+{foreach $robot['disallow'] as $rule}
+Disallow: {$rule}
+{/foreach}
+{else}
+Disallow:
+{/if}
+
+{/foreach}

@@ -1,0 +1,58 @@
+self.addEventListener('install', function(event) {
+    event.waitUntil(self.skipWaiting());
+});
+
+self.addEventListener('activate', function(event) {
+    event.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('push', function(event) {
+    const payload = event.data ? event.data.text() : 'no payload';
+    event.waitUntil(
+        self.registration.showNotification('peldax.com notification', { body: payload })
+    );
+});
+
+self.addEventListener('notificationclick', function(event) {
+    event.waitUntil(
+        self.clients.matchAll().then(function(clientList) {
+            if (clientList.length > 0) {
+                return clientList[0].focus();
+            }
+            return self.clients.openWindow("{plink :Www:Default:default}");
+        })
+    );
+});
+
+self.addEventListener('fetch', function(event) {
+    const CACHE_NAME = 'dependencies-cache';
+    return;
+    if (event.request.method !== 'GET' || !event.request.url.startsWith("{$baseUrl}"))
+    {
+        return;
+    }
+
+    event.respondWith(
+        caches.match(event.request).then(function(response) {
+            if (response) {
+                return response;
+            }
+
+            var fetchRequest = event.request.clone();
+
+            return fetch(fetchRequest).then(function(response) {
+                if(!response || response.status !== 200 || response.type !== 'basic') {
+                    return response;
+                }
+
+                var responseToCache = response.clone();
+
+                caches.open(CACHE_NAME).then(function(cache) {
+                    cache.put(event.request, responseToCache);
+                });
+
+                return response;
+            });
+        })
+    );
+});
