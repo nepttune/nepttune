@@ -268,11 +268,11 @@ This router consists of 2 routes, one to Api module and second to Www module. Th
 
 # Interfaces and Traits
 
-## ITranslatedComponent and TTranslator
+## ITranslator and TTranslator
 
-Trait `TTranslator` includes translator variable and function to inject Translator. Interface `ITranslatedComponent` gives hint to decorator to call the inject method.
+Trait `TTranslator` includes translator variable and function to inject Translator. Interface `ITranslator` gives hint to decorator to call the inject method.
 
-Whenever you need your componenet to have translator, just simply add trait and interface.
+Whenever you need your component to have translator, just simply add trait and interface.
 
 # Presenters
 
