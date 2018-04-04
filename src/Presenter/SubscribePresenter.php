@@ -1,6 +1,6 @@
 <?php
 
-namespace App\WwwModule\Presenter;
+namespace App\Presenter;
 
 final class SubscribePresenter extends \Nepttune\Presenter\BasePresenter
 {
