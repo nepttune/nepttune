@@ -25,12 +25,6 @@ final class SubscribePresenter extends \Nepttune\Presenter\BasePresenter
         $this->template->publicKey = $this->publicKey;
     }
 
-    public function actionWorker()
-    {
-        $this->getHttpResponse()->addHeader('Service-Worker-Allowed', '/');
-        $this->getHttpResponse()->setContentType('application/javascript');
-    }
-
     public function handleSubscribe()
     {
         $this->pushNotificationModel->saveSubscription();
