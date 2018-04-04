@@ -43,7 +43,7 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
         {
             /** @var \Nepttune\TI\ISitemap $presenter */
             $presenter = $this->context->getService($name);
-            $pages += $presenter->getSitemap();
+            $pages = array_merge($pages, $presenter->getSitemap());
         }
 
         return $pages;
