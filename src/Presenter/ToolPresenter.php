@@ -23,7 +23,7 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
 
     public function actionSitemap()
     {
-        //$this->getHttpResponse()->setContentType('application/xml');
+        $this->getHttpResponse()->setContentType('application/xml');
 
         $this->template->pages = $this->getPages();
         $this->template->date = new \Nette\Utils\DateTime();
