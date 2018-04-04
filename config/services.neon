@@ -9,6 +9,7 @@ services:
     - Nepttune\Model\SubscriptionModel
 
     - App\Presenter\SubscribePresenter(%vapid.publicKey%)
+    - App\Presenter\ToolPresenter(%robots%)
 
     - Nepttune\Component\IAssetLoaderFactory
 
