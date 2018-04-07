@@ -25,12 +25,11 @@ class RouterFactory
     {
         $router = static::createRouteList();
 
-        $router[] = new Route('//<module>.%domain%/[<locale [a-z]{2}>/]<presenter>/<action>[/<id>]', [
+        $router[] = new Route('//<module>.%domain%/[<locale>/]<presenter>/<action>[/<id>]', [
+            'locale' => [Route::PATTERN => '[a-z]{2}'],
             'presenter' => 'Default',
             'action' => 'default',
-            'id' => [
-                Route::PATTERN => '\d+'
-            ]
+            'id' => [Route::PATTERN => '\d+']
         ]);
 
         return $router;
@@ -49,13 +48,12 @@ class RouterFactory
             'action' => 'default'
         ]);
         
-        $router[] = new Route('/[<locale [a-z]{2}>/]<presenter>/<action>[/<id>]', [
+        $router[] = new Route('/[<locale>/]<presenter>/<action>[/<id>]', [
+            'locale' => [Route::PATTERN => '[a-z]{2}'],
             'module' => 'Www',
             'presenter' => 'Default',
             'action' => 'default',
-            'id' => [
-                Route::PATTERN => '\d+'
-            ]
+            'id' => [Route::PATTERN => '\d+']
         ]);
 
         return $router;
