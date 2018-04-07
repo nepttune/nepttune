@@ -18,10 +18,7 @@ class RouterFactory
         return $router;
     }
 
-    /**
-     * @return \Nette\Application\IRouter
-     */
-    public static function createSubdomainRouter() : \Nette\Application\IRouter
+    public static function createSubdomainRouter() : RouteList
     {
         $router = static::createRouteList();
 
@@ -35,10 +32,7 @@ class RouterFactory
         return $router;
     }
 
-    /**
-     * @return \Nette\Application\IRouter
-     */
-    public static function createStandardRouter() : \Nette\Application\IRouter
+    public static function createStandardRouter() : RouteList
     {
         $router = static::createRouteList();
         
