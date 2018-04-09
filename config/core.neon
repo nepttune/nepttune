@@ -15,6 +15,7 @@ extensions:
     nextrasForm: Nextras\Forms\Bridges\NetteDI\FormsExtension
     dependentSelectBox: NasExt\Forms\DependentExtension
     recaptcha: ReCaptchaControl\DI\Extension
+    mongo: Nepttune\Mongo\DI\MongoExtension
 
 php:
     date.timezone: Europe/Prague
