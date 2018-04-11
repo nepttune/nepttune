@@ -1,8 +1,20 @@
 <?php
 
+/**
+ * This file is part of Nepttune (https://www.peldax.com)
+ *
+ * Copyright (c) 2018 Václav Pelíšek (info@peldax.com)
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license. For more information, see
+ * <https://www.peldax.com>.
+ */
+
+declare(strict_types = 1);
+
 namespace Nepttune\Presenter;
 
-abstract class BasePresenter extends \Nette\Application\UI\Presenter
+abstract class BasePresenter extends \Nette\Application\UI\Presenter implements \Nepttune\ITranslator
 {
     use \IPub\MobileDetect\TMobileDetect;
     use \Nepttune\TTranslator;
@@ -32,7 +44,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     {
         $this->template->meta = $this->meta;
         $this->template->dest = $this->dest;
-        
+
         parent::beforeRender();
     }
 
@@ -112,7 +124,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
             return $this->layout;
         }
         
-        $dir = dirname(static::getReflection()->getFileName());
+        $dir = \dirname(static::getReflection()->getFileName());
         $primary = $dir . '/../templates/@layout.latte';
 
         if (is_file($primary))

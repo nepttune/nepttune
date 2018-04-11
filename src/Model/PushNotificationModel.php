@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * This file is part of Nepttune (https://www.peldax.com)
+ *
+ * Copyright (c) 2018 Václav Pelíšek (info@peldax.com)
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license. For more information, see
+ * <https://www.peldax.com>.
+ */
+
+declare(strict_types = 1);
+
 namespace Nepttune\Model;
 
 use Minishlink\WebPush\WebPush;
@@ -71,7 +83,7 @@ final class PushNotificationModel
      */
     public function sendByType(string $msg, int $typeId, bool $flush = false) : void
     {
-        $subscriptions = $this->subscriptionModel->getTable()
+        $subscriptions = $this->subscriptionModel->findAll()
             ->where('subscription.active', 1)
             ->where('user.active', 1)
             ->where('user:user_subscription_type.subscription_type_id', $typeId);
@@ -94,7 +106,7 @@ final class PushNotificationModel
      */
     public function saveSubscription(int $userId = null) : void
     {
-        $json = file_get_contents("php://input");
+        $json = file_get_contents('php://input');
 
         if (!$json)
         {

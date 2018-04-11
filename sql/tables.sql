@@ -1,4 +1,12 @@
-CREATE TABLE IF NOT EXISTS `log_error` 
+# This file is part of Nepttune (https://www.peldax.com)
+#
+# Copyright (c) 2018 Václav Pelíšek (info@peldax.com)
+#
+# This software consists of voluntary contributions made by many individuals
+# and is licensed under the MIT license. For more information, see
+# <https://www.peldax.com>.
+
+CREATE TABLE IF NOT EXISTS `log_error`
 (
   `id`          INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   `ip_address`  VARBINARY(16)               NOT NULL,
