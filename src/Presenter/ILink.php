@@ -14,7 +14,7 @@ declare(strict_types = 1);
 
 namespace Nepttune\Presenter;
 
-interface ILinkPresenter
+interface ILink
 {
     const INVALID_LINK_SILENT = 0b0000,
         INVALID_LINK_WARNING = 0b0001,
