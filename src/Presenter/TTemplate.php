@@ -23,16 +23,23 @@ use Nette\Application\Helpers;
 
 trait TTemplate
 {
+    /** @var  \Nette\Bridges\ApplicationLatte\ILatteFactory */
+    private $latteFactory;
+
     /** @var \Kdyby\Redis\RedisStorage */
     private $cacheStorage;
 
     /** @var \Nette\Application\UI\ITemplate */
     private $template;
 
+    /** @var  string */
     private $layout;
 
-    public function injectTemplate(\Kdyby\Redis\RedisStorage $storage)
+    public function injectTemplate(
+        \Nette\Bridges\ApplicationLatte\ILatteFactory $latteFactory,
+        \Kdyby\Redis\RedisStorage $storage)
     {
+        $this->latteFactory = $latteFactory;
         $this->cacheStorage = $storage;
     }
 
@@ -119,7 +126,7 @@ trait TTemplate
 
     public function createTemplate() : \Nette\Bridges\ApplicationLatte\Template
     {
-        $latte = new \Latte\Engine();
+        $latte = $this->latteFactory->create();
         $template = new \Nette\Bridges\ApplicationLatte\Template($latte);
         $presenter = $control = $this;
 
