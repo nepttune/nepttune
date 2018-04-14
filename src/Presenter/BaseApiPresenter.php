@@ -62,19 +62,15 @@ abstract class BaseApiPresenter implements \Nette\Application\IPresenter
     public function run(\Nette\Application\Request $request) : \Nette\Application\IResponse
     {
         $this->request = $request;
+        $this->payload = new \stdClass();
         $this->name = $request->getPresenterName();
         $this->action = $request->getParameters()[static::ACTION_KEY] ?? static::DEFAULT_ACTION;
-        $this->payload = new \stdClass();
+        unset($request->parameters[static::ACTION_KEY]);
 
         try
         {
             $this->startup();
-
-            $method = 'action' . ucfirst($this->action);
-            if (method_exists($this, $method))
-            {
-                $this->{$method}();
-            }
+            $this->tryCall(static::ACTION_KEY . ucfirst($this->action), $request->getParameters());
         }
         catch (\Nette\Application\AbortException $e)
         {}
@@ -130,5 +126,18 @@ abstract class BaseApiPresenter implements \Nette\Application\IPresenter
     public function error($message = null, $httpCode = \Nette\Http\IResponse::S404_NOT_FOUND)
     {
         throw new \Nette\Application\BadRequestException($message, $httpCode);
+    }
+    
+    protected function tryCall($method, array $params) : bool
+    {
+        $rc = new \Nette\Application\UI\ComponentReflection($this);
+        if ($rc->hasMethod($method)) {
+            $rm = $rc->getMethod($method);
+            if ($rm->isPublic() && !$rm->isAbstract() && !$rm->isStatic()) {
+                $rm->invokeArgs($this, $rc::combineArgs($rm, $params));
+                return true;
+            }
+        }
+        return false;
     }
 }
