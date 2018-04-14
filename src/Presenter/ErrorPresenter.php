@@ -19,35 +19,31 @@ final class ErrorPresenter extends \Nepttune\Presenter\BasePresenter
     /** @var  \Nepttune\Model\ErrorLogModel */
     protected $errorLogModel;
 
-    /** @var \Nette\Http\Request */
-    protected $request;
-
-    public function __construct(
-        \Nepttune\Model\ErrorLogModel $errorLogModel,
-        \Nette\Http\Request $request)
+    public function __construct(\Nepttune\Model\ErrorLogModel $errorLogModel)
     {
         $this->errorLogModel = $errorLogModel;
-        $this->request = $request;
     }
 
-    public function actionDefault($exception, $request)
+    public function actionDefault($exception)
     {
         $this->errorLogModel->insert([
             'datetime' => new \Nette\Utils\DateTime(),
             'return_code' => $exception->getCode(),
-            'ip_address' => inet_pton($this->request->getRemoteAddress()),
-            'url' => $this->request->getUrl()
+            'ip_address' => inet_pton($this->getHttpRequest()->getRemoteAddress()),
+            'url' => $this->getHttpRequest()->getUrl()
         ]);
-        
-        $this->template->code = $exception->getCode();
 
-        if ($exception->getCode() >= 500)
-        {
-            $this->template->msg = 'Internal error';
-        }
-        if ($exception->getCode() >= 400)
+        $code = $exception->getCode() >= 400 ? $exception->getCode() : 500;
+        
+        $this->template->code = $code;
+
+        if ($code < 500)
         {
             $this->template->msg = 'Invalid request';
+        }
+        else
+        {
+            $this->template->msg = 'Internal error';
         }
     }
 }
