@@ -155,7 +155,7 @@ trait TTemplate
         $latte->addProvider('uiNonce', $nonce);
         $latte->addProvider('cacheStorage', $this->cacheStorage);
 
-        if (\in_array('Nepttune\Presenter\TLinkPresenter', \class_uses($this), true))
+        if (\in_array('Nepttune\Presenter\TLink', \class_uses($this), true))
         {
             $latte->addProvider('uiControl', $control);
             $latte->addProvider('uiPresenter', $presenter);
