@@ -60,6 +60,8 @@ final class ToolPresenter extends \Nepttune\Presenter\BaseApiPresenter implement
     {
         $this->getHttpResponse()->addHeader('Service-Worker-Allowed', '/');
         $this->getHttpResponse()->setContentType('application/javascript');
+        
+        $this->sendTemplate();
     }
 
     public function getPages() : array
