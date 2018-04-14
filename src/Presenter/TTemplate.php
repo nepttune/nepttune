@@ -21,7 +21,7 @@ namespace Nepttune\Presenter;
 
 use Nette\Application\Helpers;
 
-trait TTemplatePresenter
+trait TTemplate
 {
     /** @var \Kdyby\Redis\RedisStorage */
     private $cacheStorage;
