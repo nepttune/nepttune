@@ -14,8 +14,11 @@ declare(strict_types = 1);
 
 namespace App\Presenter;
 
-final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
+final class ToolPresenter extends \Nepttune\Presenter\BaseApiPresenter implements \Nepttune\Presenter\ILink
 {
+    use \Nepttune\Presenter\TLink;
+    use \Nepttune\Presenter\TTemplate;
+    
     /** @var array */
     protected $robots;
 
@@ -25,20 +28,32 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
 
         $this->robots = $robots;
     }
+    
+    public function startup()
+    {
+        parent::startup();
+        $this->getTemplate();
+    }
 
     public function actionRobots()
     {
         $this->getHttpResponse()->setContentType('text/plain');
 
         $this->template->robots = $this->robots;
+        
+        $this->sendTemplate();
     }
 
     public function actionSitemap()
     {
         $this->getHttpResponse()->setContentType('application/xml');
 
-        $this->template->pages = $this->getPages();
+        $cache = new \Nette\Caching\Cache($this->cacheStorage);
+
+        $this->template->pages = $cache->call([$this, 'getPages']);
         $this->template->date = new \Nette\Utils\DateTime();
+
+        $this->sendTemplate();
     }
 
     public function actionWorker()
