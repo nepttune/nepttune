@@ -24,7 +24,7 @@ use Nette\Application\Request;
 use Nette\Application\UI\InvalidLinkException;
 use Nette\Application\UI\ComponentReflection;
 
-trait TLinkPresenter
+trait TLink
 {
     /** @var bool  use absolute Urls or paths? */
     public $absoluteUrls = false;
