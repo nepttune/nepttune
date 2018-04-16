@@ -35,3 +35,9 @@ cookiePopup:
     confirm: 'Rozumím'
 
 language: 'Jazyk'
+
+error:
+    link: 'Zpátky domů'
+    text: 'Pardon, stala se chyba.'
+    400: 'Stránka nenalezena'
+    500: 'Interní chyba'
