@@ -16,15 +16,7 @@ namespace Nepttune\Component;
 
 final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLists
 {
-    /** @var \Kdyby\Redis\RedisStorage */
-    private $cacheStorage;
-
-    public function __construct(\Kdyby\Redis\RedisStorage $redisStorage)
-    {
-        $this->storage = $redisStorage;
-    }
-
-    /*** @var bool */
+    /** @var bool */
     protected $admin;
 
     /** @var  array */
@@ -33,32 +25,42 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
     /** @var array  */
     protected $viewScripts = [];
 
+    /** @var  string */
+    protected $adminModule;
+
+    /** @var \Kdyby\Redis\RedisStorage */
+    private $cacheStorage;
+
+    public function __construct(string $adminModule, \Kdyby\Redis\RedisStorage $redisStorage)
+    {
+        $this->adminModule = ucfirst($adminModule);
+        $this->cacheStorage = $redisStorage;
+    }
+
     public function attached($presenter)
     {
-        $this->admin = $presenter instanceof \Nepttune\Presenter\BaseAuthPresenter;
-
-        $module = $presenter->getModule();
+        $this->admin = \class_exists('\Nepttune\Presenter\BaseAuthPresenter') && $presenter instanceof \Nepttune\Presenter\BaseAuthPresenter;
+        $module = $presenter->getModule() ?: $this->adminModule;
         $presen = $presenter->getName();
         $action = $presenter->getAction();
 
-        $moduleStyle = '/scss/module/' . $module . '.min.css';
-        if (file_exists(getcwd() . '/node_modules/nepttune' . $moduleStyle))
+        if ($module)
         {
-            $this->viewStyles[] = '/node_modules/nepttune' . $moduleStyle;
-        }
-        if (file_exists(getcwd() . $moduleStyle))
-        {
-            $this->viewStyles[] = $moduleStyle;
-        }
+            $moduleStyle = '/scss/module/' . $module . '.min.css';
+            if (file_exists(getcwd() . '/node_modules/nepttune' . $moduleStyle)) {
+                $this->viewStyles[] = '/node_modules/nepttune' . $moduleStyle;
+            }
+            if (file_exists(getcwd() . $moduleStyle)) {
+                $this->viewStyles[] = $moduleStyle;
+            }
 
-        $moduleScript = '/js/module/' . $module . '.min.js';
-        if (file_exists(getcwd() . '/node_modules/nepttune' . $moduleScript))
-        {
-            $this->viewScripts[] = '/node_modules/nepttune' . $moduleScript;
-        }
-        if (file_exists(getcwd() . $moduleScript))
-        {
-            $this->viewScripts[] = $moduleScript;
+            $moduleScript = '/js/module/' . $module . '.min.js';
+            if (file_exists(getcwd() . '/node_modules/nepttune' . $moduleScript)) {
+                $this->viewScripts[] = '/node_modules/nepttune' . $moduleScript;
+            }
+            if (file_exists(getcwd() . $moduleScript)) {
+                $this->viewScripts[] = $moduleScript;
+            }
         }
 
         $presenStyle = '/scss/presenter/' . $presen . '.min.css';
