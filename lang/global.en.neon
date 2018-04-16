@@ -35,3 +35,9 @@ cookiePopup:
     confirm: 'Understood'
 
 language: 'Language'
+
+error:
+    link: 'Take me home'
+    text: 'Sorry, an error has occurred.'
+    400: 'Requested page not found'
+    500: 'Internal error'
