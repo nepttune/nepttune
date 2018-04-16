@@ -14,10 +14,10 @@ declare(strict_types = 1);
 
 namespace Nepttune\Presenter;
 
-abstract class BasePresenter extends \Nette\Application\UI\Presenter implements \Nepttune\ITranslator
+abstract class BasePresenter extends \Nette\Application\UI\Presenter implements \Nepttune\TI\ITranslator
 {
     use \IPub\MobileDetect\TMobileDetect;
-    use \Nepttune\TTranslator;
+    use \Nepttune\TI\TTranslator;
 
     /** @persistent */
     public $locale;
