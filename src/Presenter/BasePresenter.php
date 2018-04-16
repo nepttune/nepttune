@@ -166,7 +166,12 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     public static function getFlashArea() : string
     {
-        return __DIR__ . '/../templates/flasharea.latte';
+        return __DIR__ . '/../templates/flashArea.latte';
+    }
+    
+    public static function getCookiePopup() : string
+    {
+        return __DIR__ . '/../templates/cookiePopup.latte';
     }
 
     protected function createComponentAssetLoader()
