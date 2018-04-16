@@ -12,14 +12,16 @@
     <link rel="stylesheet" type="text/css" crossorigin="anonymous" integrity="{$control->getIntegrity($path)}" href="{$path}" />
 {/foreach}
 
-{if $variables}
-    <script n:nonce>const workerUrl = {plink :Tool:worker};</script>
-{/if}
-
 {foreach $scripts as $path}
     <script n:nonce type="text/javascript" crossorigin="anonymous" integrity="{$control->getIntegrity($path)}" src="{$path}"></script>
 {/foreach}
 
 {if $recaptcha}
     <script n:nonce async defer type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+{/if}
+
+{if $variables}
+    <script n:nonce>
+        $(document).ready(function(){ navigator.serviceWorker.register({plink :Tool:worker}, { scope: '/' });});
+    </script>
 {/if}
