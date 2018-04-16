@@ -39,11 +39,11 @@ final class ErrorPresenter extends \Nepttune\Presenter\BasePresenter
 
         if ($code < 500)
         {
-            $this->template->msg = 'Invalid request';
+            $this->template->msg = $this->translator->translate('global.error.400');
         }
         else
         {
-            $this->template->msg = 'Internal error';
+            $this->template->msg = $this->translator->translate('global.error.500');
         }
     }
 }
