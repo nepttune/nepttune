@@ -19,92 +19,70 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
     /** @var bool */
     protected $admin;
 
-    /** @var  array */
-    protected $viewStyles = [];
+    /** @var  string */
+    protected $module;
 
-    /** @var array  */
-    protected $viewScripts = [];
+    /** @var  string */
+    protected $presen;
+
+    /** @var  string */
+    protected $action;
 
     /** @var  string */
     protected $adminModule;
 
-    /** @var \Kdyby\Redis\RedisStorage */
-    private $cacheStorage;
+    /** @var \Nette\Caching\Cache */
+    private $cache;
 
     public function __construct(string $adminModule, \Kdyby\Redis\RedisStorage $redisStorage)
     {
         $this->adminModule = ucfirst($adminModule);
-        $this->cacheStorage = $redisStorage;
+        $this->cache = new \Nette\Caching\Cache($redisStorage);
     }
 
-    public function attached($presenter)
+    public function attached($presenter) : void
     {
         $this->admin = \class_exists('\Nepttune\Presenter\BaseAuthPresenter') && $presenter instanceof \Nepttune\Presenter\BaseAuthPresenter;
-        $module = $presenter->getModule() ?: $this->adminModule;
-        $presen = $presenter->getName();
-        $action = $presenter->getAction();
-
-        if ($module)
-        {
-            $moduleStyle = '/scss/module/' . $module . '.min.css';
-            if (file_exists(getcwd() . '/node_modules/nepttune' . $moduleStyle)) {
-                $this->viewStyles[] = '/node_modules/nepttune' . $moduleStyle;
-            }
-            if (file_exists(getcwd() . $moduleStyle)) {
-                $this->viewStyles[] = $moduleStyle;
-            }
-
-            $moduleScript = '/js/module/' . $module . '.min.js';
-            if (file_exists(getcwd() . '/node_modules/nepttune' . $moduleScript)) {
-                $this->viewScripts[] = '/node_modules/nepttune' . $moduleScript;
-            }
-            if (file_exists(getcwd() . $moduleScript)) {
-                $this->viewScripts[] = $moduleScript;
-            }
-        }
-
-        $presenStyle = '/scss/presenter/' . $presen . '.min.css';
-        if (file_exists(getcwd() . '/node_modules/nepttune' . $presenStyle))
-        {
-            $this->viewStyles[] = '/node_modules/nepttune' . $presenStyle;
-        }
-        if (file_exists(getcwd() . $presenStyle))
-        {
-            $this->viewStyles[] = $presenStyle;
-        }
-
-        $presenScript = '/js/presenter/' . $presen . '.min.js';
-        if (file_exists(getcwd() . '/node_modules/nepttune' . $presenScript))
-        {
-            $this->viewScripts[] = '/node_modules/nepttune' . $presenScript;
-        }
-        if (file_exists(getcwd() . $presenScript))
-        {
-            $this->viewScripts[] = $presenScript;
-        }
-
-        $actionStyle = '/scss/action/' . $presen . '/' . $action . '.min.css';
-        if (file_exists(getcwd() . '/node_modules/nepttune' . $actionStyle))
-        {
-            $this->viewStyles[] = '/node_modules/nepttune' . $actionStyle;
-        }
-        if (file_exists(getcwd() . $actionStyle))
-        {
-            $this->viewStyles[] = $actionStyle;
-        }
-
-        $actionScript = '/js/action/' . $presen . '/' . $action . '.min.js';
-        if (file_exists(getcwd() . '/node_modules/nepttune' . $actionScript))
-        {
-            $this->viewScripts[] = '/node_modules/nepttune' . $actionScript;
-        }
-        if (file_exists(getcwd() . $actionScript))
-        {
-            $this->viewScripts[] = $actionScript;
-        }
+        $this->module = $presenter->getModule() ?: $this->adminModule;
+        $this->presen = $presenter->getName();
+        $this->action = $presenter->getAction();
     }
 
-    public function renderHead()
+    public function renderHead() : void
+    {
+        $assets = $this->cache->call([$this, 'getAssetsHead']);
+
+        $this->template->variables = false;
+        $this->template->styles = $assets[0];
+        $this->template->scripts = $assets[1];
+        $this->template->recaptcha = false;
+
+        parent::render();
+    }
+
+    public function renderBody() : void
+    {
+        $assets = $this->cache->call([$this, 'getAssetsBody']);
+
+        $this->template->variables = true;
+        $this->template->styles = $assets[0];
+        $this->template->scripts = $assets[1];
+        $this->template->recaptcha = $assets[2];
+
+        parent::render();
+    }
+
+    public function getIntegrity(string $path) : string
+    {
+        return $this->cache->call('Nepttune\Component\AssetLoader::generateChecksum', $path);
+    }
+
+    public static function generateChecksum(string $path) : string
+    {
+        return 'sha256-' . base64_encode(hash_file('sha256', getcwd() . $path, true));
+    }
+
+    public function getAssetsHead() : array
     {
         $styles = static::STYLE_HEAD;
         $scripts = static::SCRIPT_HEAD;
@@ -120,17 +98,41 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
             $scripts = array_merge($scripts, static::SCRIPT_HEAD_FRONT);
         }
 
-        $styles = array_merge($styles, $this->viewStyles);
+        if ($this->module)
+        {
+            $moduleStyle = '/scss/module/' . $this->module . '.min.css';
+            if (file_exists(getcwd() . '/node_modules/nepttune' . $moduleStyle)) {
+                $styles[] = '/node_modules/nepttune' . $moduleStyle;
+            }
+            if (file_exists(getcwd() . $moduleStyle)) {
+                $styles[] = $moduleStyle;
+            }
+        }
 
-        $this->template->variables = false;
-        $this->template->recaptcha = false;
-        $this->template->styles = $styles;
-        $this->template->scripts = $scripts;
+        $presenStyle = '/scss/presenter/' . $this->presen . '.min.css';
+        if (file_exists(getcwd() . '/node_modules/nepttune' . $presenStyle))
+        {
+            $styles[] = '/node_modules/nepttune' . $presenStyle;
+        }
+        if (file_exists(getcwd() . $presenStyle))
+        {
+            $styles[] = $presenStyle;
+        }
 
-        parent::render();
+        $actionStyle = '/scss/action/' . $this->presen . '/' . $this->action . '.min.css';
+        if (file_exists(getcwd() . '/node_modules/nepttune' . $actionStyle))
+        {
+            $styles[] = '/node_modules/nepttune' . $actionStyle;
+        }
+        if (file_exists(getcwd() . $actionStyle))
+        {
+            $styles[] = $actionStyle;
+        }
+
+        return [$styles, $scripts];
     }
 
-    public function renderBody()
+    public function getAssetsBody() : array
     {
         $styles = static::STYLE_BODY;
         $scripts = static::SCRIPT_BODY;
@@ -145,8 +147,6 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
             $styles = array_merge($styles, static::STYLE_BODY_FRONT);
             $scripts = array_merge($scripts, static::SCRIPT_BODY_FRONT);
         }
-
-        $scripts = array_merge($scripts, $this->viewScripts);
 
         $hasForm = false;
         $hasList = false;
@@ -202,23 +202,37 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
             $scripts = array_merge($scripts, static::SCRIPT_STAT);
         }
 
-        $this->template->variables = true;
-        $this->template->recaptcha = $hasForm;
-        $this->template->styles = $styles;
-        $this->template->scripts = $scripts;
+        if ($this->module)
+        {
+            $moduleScript = '/js/module/' . $this->module . '.min.js';
+            if (file_exists(getcwd() . '/node_modules/nepttune' . $moduleScript)) {
+                $scripts[] = '/node_modules/nepttune' . $moduleScript;
+            }
+            if (file_exists(getcwd() . $moduleScript)) {
+                $scripts[] = $moduleScript;
+            }
+        }
 
-        parent::render();
-    }
+        $presenScript = '/js/presenter/' . $this->presen . '.min.js';
+        if (file_exists(getcwd() . '/node_modules/nepttune' . $presenScript))
+        {
+            $scripts[] = '/node_modules/nepttune' . $presenScript;
+        }
+        if (file_exists(getcwd() . $presenScript))
+        {
+            $scripts[] = $presenScript;
+        }
 
-    public function getIntegrity(string $path) : string
-    {
-        $cache = new \Nette\Caching\Cache($this->storage);
+        $actionScript = '/js/action/' . $this->presen . '/' . $this->action . '.min.js';
+        if (file_exists(getcwd() . '/node_modules/nepttune' . $actionScript))
+        {
+            $scripts[] = '/node_modules/nepttune' . $actionScript;
+        }
+        if (file_exists(getcwd() . $actionScript))
+        {
+            $scripts[] = $actionScript;
+        }
 
-        return $cache->call('Nepttune\Component\AssetLoader::generateChecksum', $path);
-    }
-
-    public static function generateChecksum(string $path) : string
-    {
-        return 'sha256-' . base64_encode(hash_file('sha256', getcwd() . $path, true));
+        return [$styles, $scripts, $hasForm];
     }
 }
