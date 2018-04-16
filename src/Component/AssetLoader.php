@@ -17,7 +17,7 @@ namespace Nepttune\Component;
 final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLists
 {
     /** @var \Kdyby\Redis\RedisStorage */
-    public $storage;
+    private $cacheStorage;
 
     public function __construct(\Kdyby\Redis\RedisStorage $redisStorage)
     {
