@@ -173,6 +173,11 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     {
         return __DIR__ . '/../templates/cookiePopup.latte';
     }
+    
+    public static function getLocaleSelect() : string
+    {
+        return __DIR__ . '/../templates/localeSelect.latte';
+    }
 
     protected function createComponentAssetLoader()
     {
