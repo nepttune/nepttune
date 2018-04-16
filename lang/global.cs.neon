@@ -33,3 +33,5 @@ confirm:
 cookiePopup:
     text: 'Tato webová stránka používá cookies za účelem zdokonalení jejich vlastností.'
     confirm: 'Rozumím'
+
+language: 'Jazyk'
