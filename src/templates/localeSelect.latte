@@ -1,0 +1,28 @@
+{*
+ * This file is part of Nepttune (https://www.peldax.com)
+ *
+ * Copyright (c) 2018 Václav Pelíšek (info@peldax.com)
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license. For more information, see
+ * <https://www.peldax.com>.
+*}
+
+{var $flagMap = [ 'cs' => 'cz', 'en' => 'gb', 'de' => 'de', 'es' => 'es', 'ru' => 'ru']}
+{var $nameMap = [ 'cs' => 'Čeština', 'en' => 'English', 'de' => 'Deutsch', 'es' => 'Español', 'ru' => 'русский']}
+
+<div class="dropdown us-none">
+    <a class="btn dropdown-toggle bg-white" href="#" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="dark">{_global.language}</span>
+        {if $presenter->locale}
+            <span class="flag-icon flag-icon-{$flagMap[$presenter->locale]}"></span>
+        {else}
+            <span class="flag-icon flag-icon-{$flagMap[$presenter->translator->getDefaultLocale()]}"></span>
+        {/if}
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        {foreach $presenter->translator->getAvailableLocales() as $locale}
+            <a class="dropdown-item link" n:href="this, locale => $locale"><span class="flag-icon flag-icon-{$flagMap[$locale]} mr-1"></span>{$nameMap[$locale]}</a>
+        {/foreach}
+    </div>
+</div>
