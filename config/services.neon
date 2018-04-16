@@ -23,7 +23,7 @@ decorator:
     Nepttune\Presenter\BasePresenter:
         setup:
             - injectParameters(%meta%, %dest%)
-    Nepttune\ITranslator:
+    Nepttune\TI\ITranslator:
         setup:
             - injectTranslator
 
