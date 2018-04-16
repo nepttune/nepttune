@@ -22,11 +22,14 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     /** @persistent */
     public $locale;
 
-    /**
-     * @inject
-     * @var  \Nepttune\Component\IAssetLoaderFactory
-     */
-    public $iAssetLoaderFactory;
+    /** @var  string */
+    public $module;
+
+    /** @var  string */
+    public $nameWM;
+
+    /** @var  \Nepttune\Component\IAssetLoaderFactory */
+    protected $iAssetLoaderFactory;
 
     /** @var  array */
     protected $meta;
@@ -34,10 +37,21 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     /** @var  array */
     protected $dest;
 
-    public function injectParameters(array $meta, array $dest)
+    public function injectParameters(array $meta, array $dest, \Nepttune\Component\IAssetLoaderFactory $IAssetLoaderFactory)
     {
         $this->meta = $meta;
         $this->dest = $dest;
+        $this->iAssetLoaderFactory = $IAssetLoaderFactory;
+    }
+    
+    protected function startup()
+    {
+        $pos = strpos($this->getName(), ':');
+
+        $this->module = $pos === false ? '' :               substr($this->getName(), 0, $pos);
+        $this->nameWM = $pos === false ? $this->getName() : substr($this->getName(), $pos + 1);
+
+        parent::startup();
     }
 
     protected function beforeRender()
@@ -99,17 +113,12 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     public function getModule() : string
     {
-        return substr($this->getName(), 0, strpos($this->getName(), ':'));
+        return $this->module;
     }
 
     public function getNameWM() : string
     {
-        if (strpos($this->getName(), ':') === false)
-        {
-            return $this->getName();
-        }
-
-        return substr($this->getName(), strpos($this->getName(), ':') + 1);
+        return $this->nameWM;
     }
 
     public function getId() : int
