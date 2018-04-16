@@ -24,8 +24,6 @@ final class ToolPresenter extends \Nepttune\Presenter\BaseApiPresenter implement
 
     public function __construct(array $robots)
     {
-        parent::__construct();
-
         $this->robots = $robots;
     }
     
