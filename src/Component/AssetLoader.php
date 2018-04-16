@@ -50,7 +50,14 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
 
     public function renderHead() : void
     {
-        $assets = $this->cache->call([$this, 'getAssetsHead']);
+        $cacheName = "{$this->module}_{$this->presen}_{$this->action}_head";
+        $assets = $this->cache->load($cacheName);
+
+        if (!$assets)
+        {
+            $assets = $this->getAssetsHead();
+            $this->cache->save($cacheName, $assets);
+        }
 
         $this->template->variables = false;
         $this->template->styles = $assets[0];
@@ -62,7 +69,14 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
 
     public function renderBody() : void
     {
-        $assets = $this->cache->call([$this, 'getAssetsBody']);
+        $cacheName = "{$this->module}_{$this->presen}_{$this->action}_body";
+        $assets = $this->cache->load($cacheName);
+
+        if (!$assets)
+        {
+            $assets = $this->getAssetsBody();
+            $this->cache->save($cacheName, $assets);
+        }
 
         $this->template->variables = true;
         $this->template->styles = $assets[0];
