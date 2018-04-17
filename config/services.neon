@@ -15,8 +15,12 @@ services:
     - Nepttune\Model\SubscriptionModel
 
     - App\Presenter\SubscribePresenter(%vapid.publicKey%)
-    - App\Presenter\ToolPresenter(%robots%)
 
+    - Nepttune\Component\ISitemapFactory
+    robotsFactory:
+        implement: Nepttune\Component\IRobotsFactory
+        arguments:
+            - '%robots%'
     assetLoaderFactory:
         implement: Nepttune\Component\IAssetLoaderFactory
         arguments:
