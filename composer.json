@@ -20,9 +20,9 @@
     "nepttune/sitemap" : "^1.0",
     "nepttune/robots" : "^1.0",
     
-    "kdyby/redis": "dev-master",
-    "kdyby/rabbitmq": "dev-master",
-    "kdyby/elastic-search": "dev-master",
+    "kdyby/redis": "^4.0",
+    "kdyby/rabbitmq": "^1.2",
+    "kdyby/elastic-search": "^2.0",
     "ipub/mobile-detect": "^2.0",
     "minishlink/web-push": "^4.0"
   },
