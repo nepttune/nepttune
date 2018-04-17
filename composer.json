@@ -13,6 +13,8 @@
   "require": {
     "nepttune/base-requirements" : "^4.0",
     "nepttune/base-components" : "^4.0",
+    "nepttune/base-form-component" : "^4.0",
+    "nepttune/base-list-component" : "^4.0",
     "nepttune/base-model" : "^4.0",
     "nepttune/mongo" : "^1.0",
     "nepttune/sitemap" : "^1.0",
