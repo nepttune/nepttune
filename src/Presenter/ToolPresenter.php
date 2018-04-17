@@ -14,65 +14,45 @@ declare(strict_types = 1);
 
 namespace App\Presenter;
 
-final class ToolPresenter extends \Nepttune\Presenter\BaseApiPresenter implements \Nepttune\Presenter\ILink
+final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
 {
-    use \Nepttune\Presenter\TLink;
-    use \Nepttune\Presenter\TTemplate;
-    
-    /** @var array */
-    protected $robots;
+    /** @var  \Nepttune\Component\ISitemapFactory */
+    protected $iSitemapFactory;
 
-    public function __construct(array $robots)
+    /** @var  \Nepttune\Component\IRobotsFactory */
+    protected $iRobotsFactory;
+
+    public function __construct(
+        \Nepttune\Component\ISitemapFactory $ISitemapFactory,
+        \Nepttune\Component\IRobotsFactory $IRobotsFactory)
     {
-        $this->robots = $robots;
-    }
-    
-    public function startup()
-    {
-        parent::startup();
-        $this->getTemplate();
+        $this->iSitemapFactory = $ISitemapFactory;
+        $this->iRobotsFactory = $IRobotsFactory;
     }
 
     public function actionRobots()
     {
         $this->getHttpResponse()->setContentType('text/plain');
-
-        $this->template->robots = $this->robots;
-        
-        $this->sendTemplate();
     }
 
     public function actionSitemap()
     {
         $this->getHttpResponse()->setContentType('application/xml');
-
-        $cache = new \Nette\Caching\Cache($this->cacheStorage);
-
-        $this->template->pages = $cache->call([$this, 'getPages']);
-        $this->template->date = new \Nette\Utils\DateTime();
-
-        $this->sendTemplate();
     }
 
     public function actionWorker()
     {
         $this->getHttpResponse()->addHeader('Service-Worker-Allowed', '/');
         $this->getHttpResponse()->setContentType('application/javascript');
-        
-        $this->sendTemplate();
     }
 
-    public function getPages() : array
+    protected function createComponentSitemap()
     {
-        $pages = [];
+        return $this->iSitemapFactory->create();
+    }
 
-        foreach ($this->context->findByType('\Nepttune\TI\ISitemap') as $name)
-        {
-            /** @var \Nepttune\TI\ISitemap $presenter */
-            $presenter = $this->context->getService($name);
-            $pages = array_merge($pages, $presenter->getSitemap());
-        }
-
-        return $pages;
+    protected function createComponentRobots()
+    {
+        return $this->iRobotsFactory->create();
     }
 }
