@@ -34,10 +34,10 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
     /** @var \Nette\Caching\Cache */
     private $cache;
 
-    public function __construct(string $adminModule, \Kdyby\Redis\RedisStorage $redisStorage)
+    public function __construct(string $adminModule, \Nette\Caching\IStorage $storage)
     {
         $this->adminModule = ucfirst($adminModule);
-        $this->cache = new \Nette\Caching\Cache($redisStorage);
+        $this->cache = new \Nette\Caching\Cache($storage);
     }
 
     public function attached($presenter) : void
