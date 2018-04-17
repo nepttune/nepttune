@@ -22,7 +22,6 @@
     
     "kdyby/redis": "dev-master",
     "kdyby/rabbitmq": "dev-master",
-    "kdyby/translation": "dev-master",
     "kdyby/elastic-search": "dev-master",
     "ipub/mobile-detect": "^2.0",
     "minishlink/web-push": "^4.0"
