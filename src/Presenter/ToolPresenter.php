@@ -30,16 +30,6 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
         $this->iRobotsFactory = $IRobotsFactory;
     }
 
-    public function actionRobots()
-    {
-        $this->getHttpResponse()->setContentType('text/plain');
-    }
-
-    public function actionSitemap()
-    {
-        $this->getHttpResponse()->setContentType('application/xml');
-    }
-
     public function actionWorker()
     {
         $this->getHttpResponse()->addHeader('Service-Worker-Allowed', '/');
