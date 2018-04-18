@@ -36,6 +36,8 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
 
     public function __construct(string $adminModule, \Nette\Caching\IStorage $storage)
     {
+        parent::__construct();
+        
         $this->adminModule = ucfirst($adminModule);
         $this->cache = new \Nette\Caching\Cache($storage);
     }
