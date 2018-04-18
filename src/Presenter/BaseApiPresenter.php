@@ -71,7 +71,7 @@ abstract class BaseApiPresenter implements \Nette\Application\IPresenter
         catch (\Nette\Application\AbortException $e)
         {}
 
-        if (!$this->response)
+        if ($this->response === null)
         {
             $this->error('Page not found. No response given.');
         }
