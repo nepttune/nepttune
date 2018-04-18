@@ -44,11 +44,11 @@ final class PushNotificationModel
 
     /**
      * Send notification to all active subscriptions.
-     * @param $msg
+     * @param string $msg
      */
     public function sendAll($msg) : void
     {
-        foreach ($this->subscriptionModel->getActive() as $row)
+        foreach ($this->subscriptionModel->findActive() as $row)
         {
             $this->sendNotification($row, $msg, false);
         }
@@ -58,13 +58,13 @@ final class PushNotificationModel
 
     /**
      * Send notification to all subscriptions paired with specific user.
-     * @param $msg
-     * @param $userId
+     * @param string $msg
+     * @param int $userId
      * @param bool $flush
      */
     public function sendByUserId(string $msg, int $userId, bool $flush = false) : void
     {
-        foreach ($this->subscriptionModel->getActive()->where('user_id', $userId) as $row)
+        foreach ($this->subscriptionModel->findActive()->where('user_id', $userId) as $row)
         {
             $this->sendNotification($row, $msg, false);
         }
@@ -77,8 +77,8 @@ final class PushNotificationModel
 
     /**
      * Send notification to all users subscribed to specific type.
-     * @param $msg
-     * @param $typeId
+     * @param string $msg
+     * @param int $typeId
      * @param bool $flush
      */
     public function sendByType(string $msg, int $typeId, bool $flush = false) : void
@@ -102,7 +102,7 @@ final class PushNotificationModel
     /**
      * Save or update subscriber information.
      * @throws \Nette\Application\BadRequestException
-     * @param $userId
+     * @param int $userId
      */
     public function saveSubscription(int $userId = null) : void
     {
@@ -120,7 +120,7 @@ final class PushNotificationModel
             return;
         }
 
-        $row = $this->subscriptionModel->getActive()->where('endpoint', $data['endpoint'])->fetch();
+        $row = $this->subscriptionModel->findActive()->where('endpoint', $data['endpoint'])->fetch();
 
         switch ($this->request->getMethod()) {
             case 'POST':
