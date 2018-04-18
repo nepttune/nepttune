@@ -19,6 +19,7 @@
     "nepttune/mongo" : "^1.0",
     "nepttune/sitemap" : "^1.0",
     "nepttune/robots" : "^1.0",
+    "nepttune/macro" : "^1.0",
     
     "kdyby/redis": "^4.0",
     "kdyby/rabbitmq": "^1.2",
