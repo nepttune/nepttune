@@ -18,11 +18,7 @@ abstract class BaseApiPresenter implements \Nette\Application\IPresenter
 {
     use \Nette\SmartObject;
 
-    const NAME_SEPARATOR = '-';
-
-    const SIGNAL_KEY = 'do';
     const ACTION_KEY = 'action';
-    const FLASH_KEY = '_fid';
     const DEFAULT_ACTION = 'default';
 
     /** @var \Nette\DI\Container */
