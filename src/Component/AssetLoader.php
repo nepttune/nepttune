@@ -52,14 +52,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
 
     public function renderHead() : void
     {
-        $cacheName = "{$this->module}_{$this->presen}_{$this->action}_head";
-        $assets = $this->cache->load($cacheName);
-
-        if (!$assets)
-        {
-            $assets = $this->getAssetsHead();
-            $this->cache->save($cacheName, $assets);
-        }
+        $assets = $this->getAssetsHead();
 
         $this->template->variables = false;
         $this->template->styles = $assets[0];
@@ -71,14 +64,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
 
     public function renderBody() : void
     {
-        $cacheName = "{$this->module}_{$this->presen}_{$this->action}_body";
-        $assets = $this->cache->load($cacheName);
-
-        if (!$assets)
-        {
-            $assets = $this->getAssetsBody();
-            $this->cache->save($cacheName, $assets);
-        }
+        $assets = $this->getAssetsBody();
 
         $this->template->variables = true;
         $this->template->styles = $assets[0];
@@ -100,6 +86,14 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
 
     public function getAssetsHead() : array
     {
+        $cacheName = "{$this->module}_{$this->presen}_{$this->action}_head";
+        $assets = $this->cache->load($cacheName);
+
+        if ($assets)
+        {
+            return $assets;
+        }
+        
         $styles = static::STYLE_HEAD;
         $scripts = static::SCRIPT_HEAD;
 
@@ -145,11 +139,21 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
             $styles[] = $actionStyle;
         }
 
-        return [$styles, $scripts];
+        $assets = [$styles, $scripts];
+        $this->cache->save($cacheName, $assets);
+        return $assets;
     }
 
     public function getAssetsBody() : array
     {
+        $cacheName = "{$this->module}_{$this->presen}_{$this->action}_body";
+        $assets = $this->cache->load($cacheName);
+
+        if ($assets)
+        {
+            return $assets;
+        }
+        
         $styles = static::STYLE_BODY;
         $scripts = static::SCRIPT_BODY;
 
@@ -249,6 +253,8 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
             $scripts[] = $actionScript;
         }
 
-        return [$styles, $scripts, $hasForm];
+        $assets = [$styles, $scripts, $hasForm];
+        $this->cache->save($cacheName, $assets);
+        return $assets;
     }
 }
