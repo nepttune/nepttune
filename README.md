@@ -1,5 +1,7 @@
 # Nepttune
 
+:ocean: :trident: Nepttune core package
+
 ## Nette Initialization and base library
 
 This package aims to make creating new projects easier. It includes some base library files (presenters and base components), which I use in every project. Then it initializes project with some non-library files and basic directory structure.
