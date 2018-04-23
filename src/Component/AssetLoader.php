@@ -39,7 +39,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
         parent::__construct();
         
         $this->adminModule = ucfirst($adminModule);
-        $this->cache = new \Nette\Caching\Cache($storage);
+        $this->cache = new \Nette\Caching\Cache($storage, 'Nepttune.AssetLoader');
     }
 
     public function attached($presenter) : void
