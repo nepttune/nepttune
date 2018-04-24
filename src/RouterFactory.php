@@ -20,7 +20,6 @@ use Nette\Application\Routers\RouteList,
 class RouterFactory
 {
     const DEFAULT_MODULE = 'Www';
-    const API_MODULE = 'Api';
     
     protected static function createRouteList() : RouteList
     {
@@ -48,7 +47,7 @@ class RouterFactory
     protected static function addStandardRoutes(RouteList $router) : RouteList
     {
         $router[] = new Route('/api/<presenter>/<action>', [
-            'module' => static::API_MODULE,
+            'module' => 'Api',
             'presenter' => 'Default',
             'action' => 'default'
         ]);
