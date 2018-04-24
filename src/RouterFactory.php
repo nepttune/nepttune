@@ -19,6 +19,9 @@ use Nette\Application\Routers\RouteList,
 
 class RouterFactory
 {
+    const DEFAULT_MODULE = 'Www';
+    const API_MODULE = 'Api';
+    
     protected static function createRouteList() : RouteList
     {
         $router = new RouteList();
@@ -30,33 +33,29 @@ class RouterFactory
         return $router;
     }
 
-    public static function createSubdomainRouter() : RouteList
+    protected static function addSubdomainRoutes(RouteList $router) : RouteList
     {
-        $router = static::createRouteList();
-
         $router[] = new Route('//<module>.%domain%/[<locale>/]<presenter>/<action>[/<id>]', [
             'locale' => [Route::PATTERN => '[a-z]{2}'],
             'presenter' => 'Default',
             'action' => 'default',
             'id' => [Route::PATTERN => '\d+']
         ]);
-
+        
         return $router;
     }
 
-    public static function createStandardRouter() : RouteList
+    protected static function addStandardRoutes(RouteList $router) : RouteList
     {
-        $router = static::createRouteList();
-        
         $router[] = new Route('/api/<presenter>/<action>', [
-            'module' => 'Api',
+            'module' => static::API_MODULE,
             'presenter' => 'Default',
             'action' => 'default'
         ]);
-        
+
         $router[] = new Route('/[<locale>/]<presenter>/<action>[/<id>]', [
             'locale' => [Route::PATTERN => '[a-z]{2}'],
-            'module' => 'Www',
+            'module' => static::DEFAULT_MODULE,
             'presenter' => 'Default',
             'action' => 'default',
             'id' => [Route::PATTERN => '\d+']
@@ -64,4 +63,19 @@ class RouterFactory
 
         return $router;
     }
+
+    public static function createSubdomainRouter() : RouteList
+    {
+        $router = static::createRouteList();
+        $router = static::addSubdomainRoutes($router);
+        return $router;
+    }
+
+    public static function createStandardRouter() : RouteList
+    {
+        $router = static::createRouteList();
+        $router = static::addStandardRoutes($router);
+        return $router;
+    }
 }
+
