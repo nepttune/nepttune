@@ -16,5 +16,5 @@ database:
 redis:
     host: redis
     journal: on
-    storage: on
+    storage: [ locks: off ]
     session: [ native: off ]
