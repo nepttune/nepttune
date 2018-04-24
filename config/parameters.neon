@@ -28,5 +28,3 @@ parameters:
 
     dest:
         homepage: ':Www:Default:default'
-
-    adminModule: ''
