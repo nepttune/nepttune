@@ -7,8 +7,8 @@
 # <https://www.peldax.com>.
 
 services:
-    - Nepttune\RouterFactory
-    router: @Nepttune\RouterFactory::createSubdomainRouter
+    routerFactory: Nepttune\RouterFactory
+    router: @routerFactory:createSubdomainRouter
 
     - Nepttune\Model\ErrorLogModel
     - Nepttune\Model\PushNotificationModel(%vapid%)
@@ -24,7 +24,7 @@ services:
     assetLoaderFactory:
         implement: Nepttune\Component\IAssetLoaderFactory
         arguments:
-            - '%adminModule%'
+            - @routerFactory
 
 decorator:
     Nepttune\Presenter\BasePresenter:
