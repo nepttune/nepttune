@@ -14,17 +14,12 @@ services:
     - Nepttune\Model\PushNotificationModel(%vapid%)
     - Nepttune\Model\SubscriptionModel
 
-    - App\Presenter\SubscribePresenter(%vapid.publicKey%)
-
     - Nepttune\Component\ISitemapFactory
+    - Nepttune\Component\IAssetLoaderFactory
     robotsFactory:
         implement: Nepttune\Component\IRobotsFactory
         arguments:
             - '%robots%'
-    assetLoaderFactory:
-        implement: Nepttune\Component\IAssetLoaderFactory
-        arguments:
-            - @routerFactory
 
 decorator:
     Nepttune\Presenter\BasePresenter:
