@@ -44,7 +44,7 @@ class RouterFactory
         return $router;
     }
 
-    protected static function addStandardRoutes(RouteList $router) : RouteList
+    protected static function addStandardRoutes(RouteList $router, string $defaultModule = null) : RouteList
     {
         $router[] = new Route('/api/<presenter>/<action>', [
             'module' => 'Api',
@@ -54,7 +54,7 @@ class RouterFactory
 
         $router[] = new Route('/[<locale>/]<presenter>/<action>[/<id>]', [
             'locale' => [Route::PATTERN => '[a-z]{2}'],
-            'module' => static::DEFAULT_MODULE,
+            'module' => $defaultModule ?: static::DEFAULT_MODULE,
             'presenter' => 'Default',
             'action' => 'default',
             'id' => [Route::PATTERN => '\d+']
@@ -70,10 +70,10 @@ class RouterFactory
         return $router;
     }
 
-    public static function createStandardRouter() : RouteList
+    public static function createStandardRouter(string $defaultModule = null) : RouteList
     {
         $router = static::createRouteList();
-        $router = static::addStandardRoutes($router);
+        $router = static::addStandardRoutes($router, $defaultModule);
         return $router;
     }
 }
