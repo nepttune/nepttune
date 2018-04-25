@@ -28,17 +28,13 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
     /** @var  string */
     protected $action;
 
-    /** @var  string */
-    protected $adminModule;
-
     /** @var \Nette\Caching\Cache */
     private $cache;
 
-    public function __construct(\Nepttune\RouterFactory $routerFactory, \Nette\Caching\IStorage $storage)
+    public function __construct(\Nette\Caching\IStorage $storage)
     {
         parent::__construct();
 
-        $this->adminModule = defined(get_class($routerFactory) . '::ADMIN_MODULE') ? ucfirst($routerFactory::ADMIN_MODULE) : null;
         $this->cache = new \Nette\Caching\Cache($storage, 'Nepttune.AssetLoader');
     }
 
@@ -47,7 +43,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
         $this->admin =
             \class_exists('\Nepttune\Presenter\BaseAuthPresenter') &&
             $presenter instanceof \Nepttune\Presenter\BaseAuthPresenter;
-        $this->module = $presenter->getModule() ?: $this->adminModule;
+        $this->module = $presenter->getModule();
         $this->presen = $presenter->getName();
         $this->action = $presenter->getAction();
 
