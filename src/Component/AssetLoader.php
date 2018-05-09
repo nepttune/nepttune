@@ -177,14 +177,22 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
 
         foreach ($this->getPresenter()->getComponents() as $name => $component)
         {
-            $componentStyle = '/scss/component/' . $name . '.min.css';
-            $componentScript = '/js/component/' . $name . '.min.js';
+            $componentStyle = '/scss/component/' . ucfirst($name) . '.min.css';
+            $componentScript = '/js/component/' . ucfirst($name) . '.min.js';
 
+            if (file_exists(getcwd() . '/node_modules/nepttune' . $componentStyle))
+            {
+                $styles[] = '/node_modules/nepttune' . $componentStyle;
+            }
             if (file_exists(getcwd() . $componentStyle))
             {
                 $styles[] = $componentStyle;
             }
 
+            if (file_exists(getcwd() . '/node_modules/nepttune' . $componentScript))
+            {
+                $scripts[] = '/node_modules/nepttune' . $componentScript;
+            }
             if (file_exists(getcwd() . $componentScript))
             {
                 $scripts[] = $componentScript;
