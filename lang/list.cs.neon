@@ -10,4 +10,4 @@ column:
     active: 'Aktivní'
     name: 'Jméno'
     description: 'Popis'
-    
+    type: 'Typ'
