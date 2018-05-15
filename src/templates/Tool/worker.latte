@@ -38,9 +38,11 @@ self.addEventListener('notificationclick', function(event) {
 
 self.addEventListener('fetch', function(event) {
     const CACHE_NAME = 'dependencies-cache';
-    return;
-    if (event.request.method !== 'GET' || !event.request.url.startsWith("{$baseUrl}"))
-    {
+    
+    if (event.request.method !== 'GET' || 
+    	event.request.url.startsWith({$baseUrl}) === false || 
+    	event.request.headers.get('Accept').indexOf('text/html') !== -1 )
+	{
         return;
     }
 
