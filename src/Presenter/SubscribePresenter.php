@@ -14,7 +14,7 @@ declare(strict_types = 1);
 
 namespace App\Presenter;
 
-final class SubscribePresenter extends \Nepttune\Presenter\BasePresenter
+abstract class SubscribePresenter extends \Nepttune\Presenter\BasePresenter
 {
     /**
      * @inject
