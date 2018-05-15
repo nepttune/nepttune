@@ -33,7 +33,6 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
     public function actionWorker()
     {
         $this->getHttpResponse()->addHeader('Service-Worker-Allowed', '/');
-        $this->getHttpResponse()->setContentType('application/javascript');
     }
 
     protected function createComponentSitemap()
