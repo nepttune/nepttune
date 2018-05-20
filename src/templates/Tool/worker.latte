@@ -39,10 +39,12 @@ self.addEventListener('notificationclick', function(event) {
 self.addEventListener('fetch', function(event) {
     const CACHE_NAME = 'dependencies-cache';
     
+    // is not GET, is HTML, is not local, is AJAX
     if (event.request.method !== 'GET' || 
-    	event.request.url.startsWith({$baseUrl}) === false || 
-    	event.request.headers.get('Accept').indexOf('text/html') !== -1 )
-	{
+    	event.request.headers.get('Accept').indexOf('text/html') !== -1 ||
+    	event.request.url.startsWith("https:\/\/www.realstream.cz") === false ||
+    	event.request.url.includes('?do=') || event.request.url.includes('&do='))
+    {
         return;
     }
 
