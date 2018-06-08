@@ -11,6 +11,7 @@ edit: 'Upravit'
 delete: 'Smazat'
 print: 'Tisknout'
 export: 'Exportovat'
+duplicate: 'Duplikovat'
 
 yes: 'Ano'
 no: 'Ne'
