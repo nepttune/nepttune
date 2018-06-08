@@ -11,6 +11,7 @@ edit: 'Edit'
 delete: 'Delete'
 print: 'Print'
 export: 'Export'
+duplicate: 'Duplicate'
 
 yes: 'Yes'
 no: 'No'
