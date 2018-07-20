@@ -84,7 +84,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
 
     public static function generateChecksum(string $path) : string
     {
-        return 'sha256-' . base64_encode(hash_file('sha256', getcwd() . $path, true));
+        return 'sha256-' . base64_encode(hash_file('sha256', __DIR__ . '/../../../../../www/' . $path, true));
     }
 
     public function getAssetsHead() : array
