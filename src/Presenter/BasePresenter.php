@@ -37,7 +37,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     /** @var  array */
     protected $dest;
 
-    public function injectParameters(array $meta, array $dest, \Nepttune\Component\IAssetLoaderFactory $IAssetLoaderFactory)
+    public function injectParameters(
+        array $meta, 
+        array $dest, 
+        \Nepttune\Component\IAssetLoaderFactory $IAssetLoaderFactory)
     {
         $this->meta = $meta;
         $this->dest = $dest;
@@ -182,5 +185,17 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     protected function createComponentAssetLoader()
     {
         return $this->iAssetLoaderFactory->create();
+    }
+    
+    public function mockProperty(string $name, $value) : void
+    {
+        if (getenv(\Tester\Environment::RUNNER))
+        {
+            $this->{$name} = $value;
+
+            return;
+        }
+
+        throw new \Nette\InvalidStateException();
     }
 }
