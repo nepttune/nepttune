@@ -31,7 +31,7 @@ self.addEventListener('notificationclick', function(event) {
             if (clientList.length > 0) {
                 return clientList[0].focus();
             }
-            return self.clients.openWindow("{plink $dest['homepage']}");
+            return self.clients.openWindow({plink $dest['homepage']});
         })
     );
 });
@@ -42,7 +42,7 @@ self.addEventListener('fetch', function(event) {
     // is not GET, is HTML, is not local, is AJAX
     if (event.request.method !== 'GET' || 
     	event.request.headers.get('Accept').indexOf('text/html') !== -1 ||
-    	event.request.url.startsWith("https:\/\/www.realstream.cz") === false ||
+    	event.request.url.startsWith({plink $dest['homepage']}) === false ||
     	event.request.url.includes('?do=') || event.request.url.includes('&do='))
     {
         return;
