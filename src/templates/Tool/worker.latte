@@ -21,7 +21,7 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('push', function(event) {
     const payload = event.data ? event.data.text() : 'no payload';
     event.waitUntil(
-        self.registration.showNotification('peldax.com notification', { body: payload })
+        self.registration.showNotification({$meta['name']} + ' notification', { body: payload })
     );
 });
 
@@ -42,7 +42,7 @@ self.addEventListener('fetch', function(event) {
     // is not GET, is HTML, is not local, is AJAX
     if (event.request.method !== 'GET' || 
     	event.request.headers.get('Accept').indexOf('text/html') !== -1 ||
-    	event.request.url.startsWith({plink $dest['homepage']}) === false ||
+    	event.request.url.startsWith({$baseUrl}) === false ||
     	event.request.url.includes('?do=') || event.request.url.includes('&do='))
     {
         return;
