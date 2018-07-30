@@ -28,6 +28,8 @@ class RouterFactory
         $router[] = new Route('/robots.txt', 'Tool:robots');
         $router[] = new Route('/sitemap.xml', 'Tool:sitemap');
         $router[] = new Route('/worker.js', 'Tool:worker');
+        $router[] = new Route('/manifest.json', 'Tool:manifest');
+        $router[] = new Route('/browserconfig.xml', 'Tool:browserconfig');
 
         return $router;
     }
