@@ -11,16 +11,16 @@
 {contentType application/manifest+json}
 
 {
-	"name": {$meta['name']},
-	"short_name": {$meta['nameShort']},
-	"description": {$meta['description']},
-	"scope": {$dest['homepage']},
-	"startUrl": {$dest['homepage']},
-	"theme_color": {$meta['color']},
-	"background_color": {$meta['color']},
+	"name": "{$meta['name']}",
+	"short_name": "{$meta['nameShort']}",
+	"description": "{$meta['description']}",
+	"scope": "{plink $dest['homepage']}",
+	"start_url": "{plink $dest['homepage']}",
+	"theme_color": "{$meta['color']}",
+	"background_color": "{$meta['color']}",
+        "lang": "{$presenter->translator->getDefaultLocale()}",
 	"display": "standalone",
 	"orientation": "any",
-	"lang": {$presenter->translator->getDefaultLocale()},
 	"icons": [
         {
             "src": "favicon-16x16.png",
