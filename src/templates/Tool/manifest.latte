@@ -1,0 +1,66 @@
+{*
+ * This file is part of Nepttune (https://www.peldax.com)
+ *
+ * Copyright (c) 2018 Václav Pelíšek (info@peldax.com)
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license. For more information, see
+ * <https://www.peldax.com>.
+*}
+
+{contentType application/manifest+json}
+
+{
+	"name": {$meta['name']},
+	"short_name": {$meta['nameShort']},
+	"description": {$meta['description']},
+	"scope": {$dest['homepage']},
+	"startUrl": {$dest['homepage']},
+	"theme_color": {$meta['color']},
+	"background_color": {$meta['color']},
+	"display": "standalone",
+	"orientation": "any",
+	"lang": {$presenter->translator->getDefaultLocale()},
+	"icons": [
+    {
+	    "src": "favicon-16x16.png",
+	    "type": "image/png",
+	    "sizes": "16x16"
+	  },
+	  {
+	    "src": "favicon-32x32.png",
+	    "type": "image/png",
+	    "sizes": "32x32"
+	  },
+	  {
+	    "src": "favicon.ico",
+	    "sizes": "16x16 32x32 48x48 72x72 96x96 128x128 256x256",
+	    "type": "image/x-icon"
+	  },
+	  {
+	    "src": "apple-touch-icon.png",
+	    "type": "image/png",
+	    "sizes": "180x180"
+	  },
+	  {
+	    "src": "safari-pinned-tab.svg",
+	    "type": "image/svg+xml",
+	    "sizes": "1024x1024"
+	  },
+	  {
+	    "src": "android-chrome-192x192.png",
+	    "type": "image/png",
+	    "sizes": "192x192"
+	  },
+	  {
+	    "src": "android-chrome-512x512.png",
+	    "type": "image/png",
+	    "sizes": "512x512"
+	  },
+	  {
+	    "src": "mstile-150x150.png",
+	    "type": "image/png",
+	    "sizes": "150x150"
+	  }
+	]
+}
