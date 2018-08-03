@@ -13,6 +13,7 @@ docker-composer.sh
 docker-npm.sh
 docker-scss.sh
 docker-js.sh
+docker-tests.sh
 docker-permission.sh
 
 ci/*
