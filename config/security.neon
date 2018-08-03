@@ -23,6 +23,7 @@ http:
 
         #Public-Key-Pins:
         Strict-Transport-Security: 'max-age=60; includeSubDomains; preload'
+        Expect-CT: 'max-age=60; enforce;'
         X-Xss-Protection: '1; mode=block'
         X-Content-Type-Options: 'nosniff'
         Referrer-Policy: 'strict-origin'
