@@ -77,6 +77,16 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
         return $flash;
     }
 
+    public function redirect($code, $destination = null, $args = [])
+    {
+        if ($this->isAjax())
+        {
+            $this->terminate();
+        }
+
+        parent::redirect($code, $destination);
+    }
+    
     public function createComponent($name, array $args = null)
     {
         if (method_exists($this, 'createComponent'.ucfirst($name)))
