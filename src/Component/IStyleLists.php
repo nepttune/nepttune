@@ -25,10 +25,8 @@ interface IStyleLists
         '/node_modules/bootstrap-beta/dist/css/bootstrap.min.css'];
 
     const STYLE_BODY = [
-        '/node_modules/@fortawesome/fontawesome-free-webfonts/css/fontawesome.css',
-        '/node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-brands.css',
-        '/node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-regular.css',
-        '/node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css',
+        '/node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css',
+        '/node_modules/@fortawesome/fontawesome-free/css/all.min.css',
         '/node_modules/flag-icon-css/css/flag-icon.min.css',
         '/node_modules/magnific-popup/dist/magnific-popup.css',
         '/node_modules/nepttune/scss/common.min.css'];
