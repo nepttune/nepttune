@@ -37,6 +37,7 @@ interface IStyleLists
     const STYLE_FORM = [
         '/node_modules/pickadate/lib/themes/classic.css',
         '/node_modules/pickadate/lib/themes/classic.date.css',
+        '/node_modules/pickadate/lib/themes/classic.time.css',
         '/node_modules/select2/dist/css/select2.min.css',
         '/node_modules/icheck/skins/square/red.css'];
     const STYLE_LIST = [
