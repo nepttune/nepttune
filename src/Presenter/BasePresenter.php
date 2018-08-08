@@ -46,16 +46,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
         $this->dest = $dest;
         $this->iAssetLoaderFactory = $IAssetLoaderFactory;
     }
-    
-    protected function startup()
-    {
-        $pos = strpos($this->getName(), ':');
-
-        $this->module = $pos === false ? '' :               substr($this->getName(), 0, $pos);
-        $this->nameWM = $pos === false ? $this->getName() : substr($this->getName(), $pos + 1);
-
-        parent::startup();
-    }
 
     protected function beforeRender()
     {
@@ -75,16 +65,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
         }
 
         return $flash;
-    }
-
-    public function redirect($code, $destination = null, $args = [])
-    {
-        if ($this->isAjax())
-        {
-            $this->terminate();
-        }
-
-        parent::redirect($code, $destination);
     }
     
     public function createComponent($name, array $args = null)
@@ -126,11 +106,23 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     public function getModule() : string
     {
+        if (!$this->module)
+        {
+            $pos = strpos($this->getName(), ':');
+            $this->module = $pos === false ? '' : substr($this->getName(), 0, $pos);
+        }
+
         return $this->module;
     }
 
     public function getNameWM() : string
     {
+        if (!$this->nameWM)
+        {
+            $pos = strpos($this->getName(), ':');
+            $this->nameWM = $pos === false ? $this->getName() : substr($this->getName(), $pos + 1);
+        }
+
         return $this->nameWM;
     }
 
