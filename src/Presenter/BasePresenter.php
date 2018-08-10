@@ -183,6 +183,11 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     {
         return __DIR__ . '/../templates/localeSelect.latte';
     }
+    
+    public static function getPaginator() : string
+    {
+        return __DIR__ . '/../templates/paginator.latte';
+    }
 
     protected function createComponentAssetLoader()
     {
