@@ -14,14 +14,15 @@ includes:
     - parameters.neon
 
 extensions:
+    mongo: Nepttune\Mongo\DI\MongoExtension
     redis: Kdyby\Redis\DI\RedisExtension
     rabbitmq: Kdyby\RabbitMq\DI\RabbitMqExtension
+    elasticsearch: Kdyby\ElasticSearch\DI\SearchExtension
     translation: Kdyby\Translation\DI\TranslationExtension
     mobileDetect: IPub\MobileDetect\DI\MobileDetectExtension
+    recaptcha: ReCaptchaControl\DI\Extension
     nextrasForm: Nextras\Forms\Bridges\NetteDI\FormsExtension
     dependentSelectBox: NasExt\Forms\DependentExtension
-    recaptcha: ReCaptchaControl\DI\Extension
-    mongo: Nepttune\Mongo\DI\MongoExtension
 
 php:
     date.timezone: Europe/Prague
