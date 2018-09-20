@@ -8,6 +8,12 @@ database:
         user: 'X'
         password: 'X'
 
+redis:
+    host: 'redis'
+
+elasticsearch:
+    host: 'elasticsearch'
+
 rabbitmq:
     connection:
         default:
