@@ -14,7 +14,6 @@ database:
              sqlmode: 'STRICT_ALL_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,NO_UNSIGNED_SUBTRACTION,ERROR_FOR_DIVISION_BY_ZERO'
 
 redis:
-    host: redis
     journal: on
     storage: [ locks: off ]
     session: [ native: off ]
