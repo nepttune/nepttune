@@ -8,6 +8,7 @@ package-lock.json
 
 .gitignore
 
+docker/apache/*
 docker.sh
 docker-composer.sh
 docker-npm.sh
