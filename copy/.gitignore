@@ -16,9 +16,6 @@ docker-js.sh
 docker-tests.sh
 docker-permission.sh
 
-ci/*
-docker/*
-
 node_modules/*
 vendor/*
 temp/*
@@ -29,7 +26,6 @@ app/config/core.neon.example
 app/config/sensitive.neon.example
 
 www/index.php
-www/robots.txt
 www/js/**/*.min.js
 www/scss/**/*.css
 www/scss/**/*.map
