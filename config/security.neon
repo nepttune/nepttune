@@ -14,8 +14,10 @@ session:
     cookieDomain: '.%domain%'
     cookieSecure: true
     cookieHttpOnly: true
+    cookieSamesite: Lax
 
 http:
+    sameSiteProtection: true
     frames: 'SAMEORIGIN'
     headers:
         Server: '%domain%'
