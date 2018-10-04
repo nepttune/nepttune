@@ -17,6 +17,7 @@ session:
     cookieSamesite: Lax
 
 http:
+    cookieSecure: true
     sameSiteProtection: true
     frames: 'SAMEORIGIN'
     headers:
@@ -49,7 +50,7 @@ http:
         form-action:     [ self ]
         frame-ancestors: [ self ]
         require-sri-for: [ script, style ]
-        block-all-mixed-content: []
+        block-all-mixed-content: true
     featurePolicy:
         geolocation:   [ none ]
         midi:          [ none ]
