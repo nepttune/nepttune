@@ -14,12 +14,12 @@ includes:
     - parameters.neon
 
 extensions:
-    mongo: Nepttune\Mongo\DI\MongoExtension
     redis: Kdyby\Redis\DI\RedisExtension
     rabbitmq: Kdyby\RabbitMq\DI\RabbitMqExtension
     elasticsearch: Kdyby\ElasticSearch\DI\SearchExtension
-    translation: Kdyby\Translation\DI\TranslationExtension
     mobileDetect: IPub\MobileDetect\DI\MobileDetectExtension
+    console: Contributte\Console\DI\ConsoleExtension(true)
+    translation: Kdyby\Translation\DI\TranslationExtension
     recaptcha: ReCaptchaControl\DI\Extension
     nextrasForm: Nextras\Forms\Bridges\NetteDI\FormsExtension
     dependentSelectBox: NasExt\Forms\DependentExtension
@@ -34,3 +34,9 @@ application:
         *: [ 'App', '*Module', 'Presenter\*Presenter' ]
     scanDirs:
         - '%appDir%/../vendor/nepttune/'
+
+console:
+    name: '%meta.name%'
+    version: '%meta.version%'
+    url: 'https://%domain%'
+    lazy: true
