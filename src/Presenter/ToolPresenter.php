@@ -37,22 +37,22 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
         $this->pushNotificationModel = $pushNotificationModel;
     }
 
-    public function actionWorker()
+    public function actionWorker() : void
     {
         $this->getHttpResponse()->addHeader('Service-Worker-Allowed', '/');
     }
     
-    public function actionSubscribe()
+    public function actionSubscribe() : void
     {
         $this->pushNotificationModel->saveSubscription();
     }
 
-    protected function createComponentSitemap()
+    protected function createComponentSitemap() : \Nepttune\Component\Sitemap
     {
         return $this->iSitemapFactory->create();
     }
 
-    protected function createComponentRobots()
+    protected function createComponentRobots() : \Nepttune\Component\Robots
     {
         return $this->iRobotsFactory->create();
     }
