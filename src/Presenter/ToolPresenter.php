@@ -21,18 +21,30 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
 
     /** @var  \Nepttune\Component\IRobotsFactory */
     protected $iRobotsFactory;
+    
+    /** @var \Nepttune\Model\PushNotificationModel */
+    protected $pushNotificationModel;
 
     public function __construct(
         \Nepttune\Component\ISitemapFactory $ISitemapFactory,
-        \Nepttune\Component\IRobotsFactory $IRobotsFactory)
+        \Nepttune\Component\IRobotsFactory $IRobotsFactory,
+        \Nepttune\Model\PushNotificationModel $pushNotificationModel)
     {
+        parent::__construct();
+        
         $this->iSitemapFactory = $ISitemapFactory;
         $this->iRobotsFactory = $IRobotsFactory;
+        $this->pushNotificationModel = $pushNotificationModel;
     }
 
     public function actionWorker()
     {
         $this->getHttpResponse()->addHeader('Service-Worker-Allowed', '/');
+    }
+    
+    public function actionSubscribe()
+    {
+        $this->pushNotificationModel->saveSubscription();
     }
 
     protected function createComponentSitemap()
