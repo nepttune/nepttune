@@ -16,11 +16,13 @@ docker-scss.sh
 docker-js.sh
 docker-tests.sh
 docker-permission.sh
+docker-console.sh
 
 node_modules/*
 vendor/*
 temp/*
 log/*
+bin/*
 
 app/bootstrap.php
 app/config/core.neon.example
