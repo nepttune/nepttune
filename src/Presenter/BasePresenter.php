@@ -47,7 +47,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
         $this->iAssetLoaderFactory = $IAssetLoaderFactory;
     }
 
-    protected function beforeRender()
+    protected function beforeRender() : void
     {
         $this->template->meta = $this->meta;
         $this->template->dest = $this->dest;
@@ -188,8 +188,13 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     {
         return __DIR__ . '/../templates/paginator.latte';
     }
+    
+    public static function getSubscribeButton() : string
+    {
+        return __DIR__ . '/../templates/subscribeButton.latte';
+    }
 
-    protected function createComponentAssetLoader()
+    protected function createComponentAssetLoader() : \Nepttune\Component\AssetLoader
     {
         return $this->iAssetLoaderFactory->create();
     }
