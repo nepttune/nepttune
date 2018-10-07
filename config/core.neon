@@ -18,7 +18,6 @@ extensions:
     rabbitmq: Kdyby\RabbitMq\DI\RabbitMqExtension
     elasticsearch: Kdyby\ElasticSearch\DI\SearchExtension
     mobileDetect: IPub\MobileDetect\DI\MobileDetectExtension
-    console: Contributte\Console\DI\ConsoleExtension(true)
     translation: Kdyby\Translation\DI\TranslationExtension
     recaptcha: ReCaptchaControl\DI\Extension
     nextrasForm: Nextras\Forms\Bridges\NetteDI\FormsExtension
@@ -34,9 +33,3 @@ application:
         *: [ 'App', '*Module', 'Presenter\*Presenter' ]
     scanDirs:
         - '%appDir%/../vendor/nepttune/'
-
-console:
-    name: '%meta.name%'
-    version: '%meta.version%'
-    url: 'https://%domain%'
-    lazy: true
