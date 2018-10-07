@@ -1,0 +1,8 @@
+extensions:
+    console: Contributte\Console\DI\ConsoleExtension(true)
+
+console:
+    name: '%meta.name%'
+    version: '%meta.version%'
+    url: 'https://%domain%'
+    lazy: true
