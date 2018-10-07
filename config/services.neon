@@ -24,7 +24,7 @@ services:
 decorator:
     Nepttune\Presenter\BasePresenter:
         setup:
-            - injectParameters(%meta%, %dest%)
+            - injectParameters(%meta%, %dest%, %vapid.publicKey%)
     Nepttune\TI\ITranslator:
         setup:
             - injectTranslator
