@@ -36,14 +36,19 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     /** @var  array */
     protected $dest;
+    
+    /** @var string */
+    protected $vapidPublicKey;
 
     public function injectParameters(
         array $meta, 
-        array $dest, 
+        array $dest,
+        string $vapidPublicKey,
         \Nepttune\Component\IAssetLoaderFactory $IAssetLoaderFactory)
     {
         $this->meta = $meta;
         $this->dest = $dest;
+        $this->vapidPublicKey = $vapidPublicKey;
         $this->iAssetLoaderFactory = $IAssetLoaderFactory;
     }
 
@@ -51,6 +56,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     {
         $this->template->meta = $this->meta;
         $this->template->dest = $this->dest;
+        $this->template->vapidPublicKey = $this->vapidPublicKey;
 
         parent::beforeRender();
     }
