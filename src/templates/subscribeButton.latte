@@ -12,7 +12,7 @@
 
 <script n:nonce>
     const pushButton = document.querySelector('#push-subscription-button');
-    const applicationServerKey = {$publicKey};
+    const applicationServerKey = {$vapidPublicKey};
     let isPushEnabled = false;
 
     function changePushButtonState (state) {
@@ -114,7 +114,7 @@
         const token = subscription.getKey('auth');
         const contentEncoding = (PushManager.supportedContentEncodings || ['aesgcm'])[0];
 
-        return fetch({plink Tool:subscribe}, {
+        return fetch({plink :Tool:subscribe}, {
             method,
             body: JSON.stringify({
                 endpoint: subscription.endpoint,
@@ -158,7 +158,7 @@
             return;
         }
 
-        navigator.serviceWorker.register({plink Tool:worker}, { scope: '/' }).then(() =>
+        navigator.serviceWorker.register({plink :Tool:worker}, { scope: '/' }).then(() =>
         {
             push_updateSubscription();
         }, e =>
