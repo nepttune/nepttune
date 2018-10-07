@@ -30,6 +30,7 @@ class RouterFactory
         $router[] = new Route('/worker.js', 'Tool:worker');
         $router[] = new Route('/manifest.json', 'Tool:manifest');
         $router[] = new Route('/browserconfig.xml', 'Tool:browserconfig');
+        $router[] = new Route('/push-subscribe', 'Tool:subscribe');
 
         return $router;
     }
