@@ -22,18 +22,23 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
     /** @var  \Nepttune\Component\IRobotsFactory */
     protected $iRobotsFactory;
     
+    /** @var \Nepttune\Model\Authorizator */
+    protected $authorizator;
+    
     /** @var \Nepttune\Model\PushNotificationModel */
     protected $pushNotificationModel;
 
     public function __construct(
         \Nepttune\Component\ISitemapFactory $ISitemapFactory,
         \Nepttune\Component\IRobotsFactory $IRobotsFactory,
+        \Nepttune\Model\Authorizator $authorizator,
         \Nepttune\Model\PushNotificationModel $pushNotificationModel)
     {
         parent::__construct();
         
         $this->iSitemapFactory = $ISitemapFactory;
         $this->iRobotsFactory = $IRobotsFactory;
+        $this->authorizator = $authorizator;
         $this->pushNotificationModel = $pushNotificationModel;
     }
 
@@ -44,7 +49,8 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
     
     public function actionSubscribe() : void
     {
-        $this->pushNotificationModel->saveSubscription();
+        $this->pushNotificationModel->saveSubscription($this->authorizator->getUserId());
+        $this->terminate();
     }
 
     protected function createComponentSitemap() : \Nepttune\Component\Sitemap
