@@ -49,19 +49,17 @@ http:
         base-uri:        [ self ]
         form-action:     [ self ]
         frame-ancestors: [ self ]
-        require-sri-for: [ script, style ]
+        #require-sri-for: [ script, style ]
         block-all-mixed-content: true
     featurePolicy:
+        sync-xhr:      [ self ]
+    
         geolocation:   [ none ]
         midi:          [ none ]
-        notifications: [ none ]
-        push:          [ none ]
-        sync-xhr:      [ none ]
         microphone:    [ none ]
         camera:        [ none ]
         magnetometer:  [ none ]
         gyroscope:     [ none ]
         speaker:       [ none ]
-        vibrate:       [ none ]
         fullscreen:    [ none ]
         payment:       [ none ]
