@@ -22,6 +22,9 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
     /** @var  \Nepttune\Component\IRobotsFactory */
     protected $iRobotsFactory;
     
+    /** @var  \Nepttune\Component\ISecurityFactory */
+    protected $iSecurityFactory;
+    
     /** @var \Nepttune\Model\Authorizator */
     protected $authorizator;
     
@@ -31,6 +34,7 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
     public function __construct(
         \Nepttune\Component\ISitemapFactory $ISitemapFactory,
         \Nepttune\Component\IRobotsFactory $IRobotsFactory,
+        \Nepttune\Component\ISecurityFactory $ISecurityFactory,
         \Nepttune\Model\Authorizator $authorizator,
         \Nepttune\Model\PushNotificationModel $pushNotificationModel)
     {
@@ -38,6 +42,7 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
         
         $this->iSitemapFactory = $ISitemapFactory;
         $this->iRobotsFactory = $IRobotsFactory;
+        $this->iSecurityFactory = $ISecurityFactory;
         $this->authorizator = $authorizator;
         $this->pushNotificationModel = $pushNotificationModel;
     }
@@ -61,5 +66,10 @@ final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
     protected function createComponentRobots() : \Nepttune\Component\Robots
     {
         return $this->iRobotsFactory->create();
+    }
+    
+    protected function createComponentSecurity() : \Nepttune\Component\Security
+    {
+        return $this->iSecurityFactory->create();
     }
 }
