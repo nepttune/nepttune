@@ -27,7 +27,7 @@ parameters:
             disallow:
 
     security:
-        contact: 'peldax@info.com'
+        contact: 'peldax@gmail.com'
         acknowledgements: 'https://github.com/nepttune/nepttune/graphs/contributors'
 
     dest:
