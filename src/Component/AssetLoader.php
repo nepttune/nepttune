@@ -28,13 +28,17 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
     /** @var  string */
     protected $action;
 
-    /** @var \Nette\Caching\Cache */
-    private $cache;
+    /** @var string */
+    protected $vapidPublicKey;
 
-    public function __construct(\Nette\Caching\IStorage $storage)
+    /** @var \Nette\Caching\Cache */
+    protected $cache;
+
+    public function __construct(string $vapidPublicKey, \Nette\Caching\IStorage $storage)
     {
         parent::__construct();
 
+        $this->vapidPublicKey = $vapidPublicKey;
         $this->cache = new \Nette\Caching\Cache($storage, 'Nepttune.AssetLoader');
     }
 
@@ -70,6 +74,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
         $assets = $this->getAssetsBody();
 
         $this->template->variables = true;
+        $this->template->vapidPublicKey = $this->vapidPublicKey;
         $this->template->styles = $assets[0];
         $this->template->scripts = $assets[1];
         $this->template->recaptcha = $assets[2];
