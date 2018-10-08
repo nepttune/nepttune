@@ -9,7 +9,6 @@
 *}
 
 {contentType application/javascript}
-
 self.addEventListener('install', function(event) {
     event.waitUntil(self.skipWaiting());
 });
@@ -19,19 +18,34 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('push', function(event) {
-    const payload = event.data ? event.data.text() : 'no payload';
+    let payload = {};
+    try {
+        payload = event.data.json();
+    } catch (e) {
+        payload = { text: event.data.text(), destination: '/' }
+    }
     event.waitUntil(
-        self.registration.showNotification({$meta['name']} + ' notification', { body: payload })
+        self.registration.showNotification({$meta['name']} + ' notification', {
+            body: payload.text,
+            badge: "{$baseUrl|noescape}/favicon-32x32.png",
+            icon: "{$baseUrl|noescape}/favicon-32x32.png",
+            data: { destination: payload.destination }
+        })
     );
 });
 
 self.addEventListener('notificationclick', function(event) {
+    const notification = event.notification;
+    const destination = notification.data.destination;
+    notification.close();
     event.waitUntil(
         self.clients.matchAll().then(function(clientList) {
             if (clientList.length > 0) {
                 return clientList[0].focus();
             }
-            return self.clients.openWindow({plink $dest['homepage']});
+            if (destination) {
+                return self.clients.openWindow(destination);
+            }
         })
     );
 });
