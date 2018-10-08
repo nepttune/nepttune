@@ -15,7 +15,10 @@ services:
     - Nepttune\Model\SubscriptionModel
 
     - Nepttune\Component\ISitemapFactory
-    - Nepttune\Component\IAssetLoaderFactory
+    assetLoaderFactory:
+        implement: Nepttune\Component\IAssetLoaderFactory
+        arguments:
+            - %vapid.publicKey%
     robotsFactory:
         implement: Nepttune\Component\IRobotsFactory
         arguments:
@@ -24,7 +27,7 @@ services:
 decorator:
     Nepttune\Presenter\BasePresenter:
         setup:
-            - injectParameters(%meta%, %dest%, %vapid.publicKey%)
+            - injectParameters(%meta%, %dest%)
     Nepttune\TI\ITranslator:
         setup:
             - injectTranslator
