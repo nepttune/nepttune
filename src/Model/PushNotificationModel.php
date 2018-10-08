@@ -126,40 +126,39 @@ final class PushNotificationModel
             case 'POST':
             case 'PUT':
             {
-                if (!$row)
+                if ($row)
                 {
-                    $row = $this->subscriptionModel->insert([
-                        'user_id' => $userId,
-                        'endpoint' => $data['endpoint'],
+                    $row->update([
+                        'user_id' => $userId ?: $row->user_id ?: null,
                         'key' => $data['publicKey'],
                         'token' => $data['authToken'],
                         'encoding' => $data['contentEncoding']
                     ]);
-
-                    $this->sendNotification($row, 'Notifications enabled!', true);
-
+                    
                     return;
                 }
 
-                $row->update([
-                    'user_id' => $userId ?: $row->user_id ?: null,
+                $row = $this->subscriptionModel->insert([
+                    'user_id' => $userId,
+                    'endpoint' => $data['endpoint'],
                     'key' => $data['publicKey'],
                     'token' => $data['authToken'],
                     'encoding' => $data['contentEncoding']
                 ]);
 
+                $this->sendNotification($row, 'Notifications enabled!', true);
+
                 return;
             }
             case 'DELETE':
             {
-                if (!$row)
+                if ($row)
                 {
-                    return;
+                    $row->update([
+                        'active' => 0
+                    ]);
                 }
 
-                $row->update([
-                    'active' => 0
-                ]);
                 return;
             }
             default:
