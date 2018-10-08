@@ -26,5 +26,9 @@ parameters:
             name: '*'
             disallow:
 
+    security:
+        contact: 'peldax@info.com'
+        acknowledgements: 'https://github.com/nepttune/nepttune/graphs/contributors'
+
     dest:
         homepage: ':Www:Default:default'
