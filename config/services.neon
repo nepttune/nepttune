@@ -23,6 +23,10 @@ services:
         implement: Nepttune\Component\IRobotsFactory
         arguments:
             - '%robots%'
+    securityFactory:
+        implement: Nepttune\Component\ISecurityFactory
+        arguments:
+          - '%security%'
 
 decorator:
     Nepttune\Presenter\BasePresenter:
