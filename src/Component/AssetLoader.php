@@ -42,7 +42,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
         $this->cache = new \Nette\Caching\Cache($storage, 'Nepttune.AssetLoader');
     }
 
-    public function attached($presenter) : void
+    protected function attached($presenter) : void
     {
         $this->admin =
             \class_exists('\Nepttune\Presenter\BaseAuthPresenter') &&
