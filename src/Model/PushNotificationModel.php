@@ -17,23 +17,21 @@ namespace Nepttune\Model;
 use Minishlink\WebPush\WebPush;
 use Minishlink\WebPush\Subscription;
 
-final class PushNotificationModel
+final class PushNotificationModel extends BaseModel
 {
+    const TABLE_NAME = 'subscription';
+
     /** @var  WebPush */
     private $webPush;
-
-    /** @var  SubscriptionModel */
-    private $subscriptionModel;
 
     /** @var  \Nette\Http\Request */
     private $request;
 
-    public function __construct(array $parameters, SubscriptionModel $subscriptionModel, \Nette\Http\Request $request)
+    public function __construct(array $parameters, \Nette\Http\Request $request)
     {
-        $auth = ['VAPID' => $parameters];
+        parent::_construct();
 
-        $this->webPush = new WebPush($auth);
-        $this->subscriptionModel = $subscriptionModel;
+        $this->webPush = new WebPush(['VAPID' => $parameters]);
         $this->request = $request;
     }
 
@@ -49,14 +47,14 @@ final class PushNotificationModel
     {
         $this->webPush->flush();
     }
-    
+
     /**
      * Send notification to all active subscriptions.
      * @param string $msg
      */
-    public function sendAll($msg, bool $flush = false) : void
+    public function sendAll($msg) : void
     {
-        foreach ($this->subscriptionModel->findActive() as $row)
+        foreach ($this->findActive() as $row)
         {
             $this->sendNotification($row, $msg, false);
         }
@@ -78,7 +76,7 @@ final class PushNotificationModel
     {
         $msg = $this->composeMsg($msg, $dest);
 
-        foreach ($this->subscriptionModel->findActive()->where('user_id', $userId) as $row)
+        foreach ($this->findActive()->where('user_id', $userId) as $row)
         {
             $this->sendNotification($row, $msg, false);
         }
@@ -100,7 +98,7 @@ final class PushNotificationModel
     {
         $msg = $this->composeMsg($msg, $dest);
 
-        $subscriptions = $this->subscriptionModel->findAll()
+        $subscriptions = $this->findAll()
             ->where('subscription.active', 1)
             ->where('user.active', 1)
             ->where('user:user_subscription_type.subscription_type_id', $typeId);
@@ -137,7 +135,7 @@ final class PushNotificationModel
             return;
         }
 
-        $row = $this->subscriptionModel->findActive()->where('endpoint', $data['endpoint'])->fetch();
+        $row = $this->findActive()->where('endpoint', $data['endpoint'])->fetch();
 
         switch ($this->request->getMethod()) {
             case 'POST':
@@ -155,7 +153,7 @@ final class PushNotificationModel
                     return;
                 }
 
-                $row = $this->subscriptionModel->insert([
+                $row = $this->insert([
                     'user_id' => $userId,
                     'endpoint' => $data['endpoint'],
                     'key' => $data['publicKey'],
