@@ -29,7 +29,7 @@ final class PushNotificationModel extends BaseModel
 
     public function __construct(array $parameters, \Nette\Http\Request $request)
     {
-        parent::_construct();
+        parent::__construct();
 
         $this->webPush = new WebPush(['VAPID' => $parameters]);
         $this->request = $request;
