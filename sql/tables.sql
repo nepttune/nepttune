@@ -11,7 +11,14 @@ CREATE TABLE IF NOT EXISTS `log_error`(
   `ip_address`  VARBINARY(16)               NOT NULL,
   `url`         VARCHAR(255)                NOT NULL,
   `return_code` VARCHAR(10)                 NOT NULL,
-  `datetime`    DATETIME                    NOT NULL
+  `datetime`    DATETIME                    NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE = INNODB;
+
+CREATE TABLE IF NOT EXISTS `log_cron`(
+    `id`          INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `name`        VARCHAR(100)                NOT NULL,
+    `value`       VARCHAR(100)                         DEFAULT NULL,
+    `datetime`    DATETIME                    NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE = INNODB;
 
 CREATE TABLE IF NOT EXISTS `subscription` (
