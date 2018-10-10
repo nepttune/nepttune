@@ -11,6 +11,8 @@ services:
     router: @routerFactory:createSubdomainRouter
 
     - Nepttune\Model\ErrorLogModel
+    - Nepttune\Model\CronLogModel
+    
     - Nepttune\Model\PushNotificationModel(%vapid%)
     - Nepttune\Model\SubscriptionModel
 
