@@ -45,8 +45,8 @@ interface IScriptLists
         '/node_modules/nepttune/js/coreValidator.min.js',
         '/node_modules/nepttune/js/form.min.js'];
     const SCRIPT_LIST = [
-        '/node_modules/ublaboo-datagrid/assets/dist/datagrid.min.js',
-        '/node_modules/ublaboo-datagrid/assets/dist/datagrid-spinners.min.js'];
+        '/node_modules/ublaboo-datagrid/assets/dist/datagrid.js',
+        '/node_modules/ublaboo-datagrid/assets/dist/datagrid-spinners.js'];
     const SCRIPT_STAT = [
         '/node_modules/chart.js/dist/Chart.min.js',
         '/node_modules/nepttune/js/stat.min.js'];
