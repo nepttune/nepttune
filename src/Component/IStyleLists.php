@@ -41,7 +41,7 @@ interface IStyleLists
         '/node_modules/select2/dist/css/select2.min.css',
         '/node_modules/icheck/skins/square/red.css'];
     const STYLE_LIST = [
-        '/node_modules/ublaboo-datagrid/assets/dist/datagrid.min.css',
-        '/node_modules/ublaboo-datagrid/assets/dist/datagrid-spinners.min.css'];
+        '/node_modules/ublaboo-datagrid/assets/dist/datagrid.css',
+        '/node_modules/ublaboo-datagrid/assets/dist/datagrid-spinners.css'];
     const STYLE_STAT = [];
 }
