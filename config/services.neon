@@ -8,7 +8,7 @@
 
 services:
     routerFactory: Nepttune\RouterFactory
-    router: @routerFactory:createSubdomainRouter
+    router: @routerFactory::createSubdomainRouter
 
     - Nepttune\Model\ErrorLogModel
     - Nepttune\Model\CronLogModel
