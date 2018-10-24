@@ -35,6 +35,9 @@ decorator:
     Nepttune\TI\ITranslator:
         setup:
             - injectTranslator
+    Nepttune\RouterFactory:
+        setup:
+            - injectConfig(%router%)
 
 latte:
     macros:
