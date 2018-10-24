@@ -32,3 +32,10 @@ parameters:
 
     dest:
         homepage: ':Www:Default:default'
+        
+    router:
+        defaultModule: 'Www'
+        hashids: false
+        hashidsSalt: 'nGXWFaJfxlMCkn9aU8XK'
+        hashidsPadding: 10
+        hashidsCharset: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
