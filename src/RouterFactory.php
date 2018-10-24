@@ -19,8 +19,28 @@ use Nette\Application\Routers\RouteList,
 
 class RouterFactory
 {
-    const DEFAULT_MODULE = 'Www';
-    
+    /** @var array */
+    protected $config;
+
+    public function injectConfig(array $config) : void
+    {
+        $this->config = $config;
+    }
+
+    public function createSubdomainRouter() : RouteList
+    {
+        $router = static::createRouteList();
+        $router = $this->addSubdomainRoutes($router);
+        return $router;
+    }
+
+    public function createStandardRouter() : RouteList
+    {
+        $router = static::createRouteList();
+        $router = $this->addStandardRoutes($router);
+        return $router;
+    }
+
     protected static function createRouteList() : RouteList
     {
         $router = new RouteList();
@@ -38,19 +58,19 @@ class RouterFactory
         return $router;
     }
 
-    protected static function addSubdomainRoutes(RouteList $router) : RouteList
+    protected function addSubdomainRoutes(RouteList $router) : RouteList
     {
         $router[] = new Route('//<module>.%domain%/[<locale>/]<presenter>/<action>[/<id>]', [
             'locale' => [Route::PATTERN => '[a-z]{2}'],
             'presenter' => 'Default',
             'action' => 'default',
-            'id' => [Route::PATTERN => '\d+']
+            'id' => $this->getIdConfig()
         ]);
         
         return $router;
     }
 
-    protected static function addStandardRoutes(RouteList $router, string $defaultModule = null) : RouteList
+    protected function addStandardRoutes(RouteList $router) : RouteList
     {
         $router[] = new Route('/api/<presenter>/<action>', [
             'module' => 'Api',
@@ -60,27 +80,44 @@ class RouterFactory
 
         $router[] = new Route('/[<locale>/]<presenter>/<action>[/<id>]', [
             'locale' => [Route::PATTERN => '[a-z]{2}'],
-            'module' => $defaultModule ?: static::DEFAULT_MODULE,
+            'module' => $this->config['defaultModule'],
             'presenter' => 'Default',
             'action' => 'default',
-            'id' => [Route::PATTERN => '\d+']
+            'id' => $this->getIdConfig()
         ]);
 
         return $router;
     }
 
-    public static function createSubdomainRouter() : RouteList
+    public function filterIdIn(string $id) : int
     {
-        $router = static::createRouteList();
-        $router = static::addSubdomainRoutes($router);
-        return $router;
+        $hashIds = $this->getHashIds();
+        return $hashIds->decode($id)[0];
     }
 
-    public static function createStandardRouter(string $defaultModule = null) : RouteList
+    public function filterIdOut(int $id) : string
     {
-        $router = static::createRouteList();
-        $router = static::addStandardRoutes($router, $defaultModule);
-        return $router;
+        $hashIds = $this->getHashIds();
+        return $hashIds->encode($id);
+    }
+
+    protected function getHashIds() : \Hashids\Hashids
+    {
+        return new \Hashids\Hashids(
+            $this->config['hashidsSalt'],
+            $this->config['hashidsPadding'],
+            $this->config['hashidsCharset']
+        );
+    }
+
+    protected function getIdConfig() : array
+    {
+        if ($this->config['hashids'])
+        {
+            return [Route::FILTER_IN => [$this, 'filterIdIn'], Route::FILTER_OUT => [$this, 'filterIdOut']];
+        }
+
+        return [Route::PATTERN => '\d+'];
     }
 }
 
