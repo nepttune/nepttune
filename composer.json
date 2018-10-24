@@ -27,6 +27,7 @@
     "contributte/console": "^0.5",
     "ipub/mobile-detect": "^2.0",
     "minishlink/web-push": "^4.0",
+    "hashids/hashids": "^3.0",
     
     "ext-json": ">=1.6"
   },
