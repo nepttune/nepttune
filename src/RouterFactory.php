@@ -52,7 +52,6 @@ class RouterFactory
         $router[] = new Route('/browserconfig.xml', 'Tool:browserconfig');
         $router[] = new Route('/security.txt', 'Tool:security');
         $router[] = new Route('/.well-known/security.txt', 'Tool:security');
-        
         $router[] = new Route('/push-subscribe', 'Tool:subscribe');
 
         return $router;
@@ -64,7 +63,8 @@ class RouterFactory
             'locale' => [Route::PATTERN => '[a-z]{2}'],
             'presenter' => 'Default',
             'action' => 'default',
-            'id' => $this->getIdConfig()
+            'id' => $this->getIdConfig(),
+            null => $this->getGlobalConfig()
         ]);
         
         return $router;
@@ -83,41 +83,63 @@ class RouterFactory
             'module' => $this->config['defaultModule'],
             'presenter' => 'Default',
             'action' => 'default',
-            'id' => $this->getIdConfig()
+            'id' => $this->getIdConfig(),
+            null => $this->getGlobalConfig()
         ]);
 
         return $router;
-    }
-
-    public function filterIdIn(string $id) : int
-    {
-        $hashIds = $this->getHashIds();
-        return $hashIds->decode($id)[0];
-    }
-
-    public function filterIdOut(int $id) : string
-    {
-        $hashIds = $this->getHashIds();
-        return $hashIds->encode($id);
-    }
-
-    protected function getHashIds() : \Hashids\Hashids
-    {
-        return new \Hashids\Hashids(
-            $this->config['hashidsSalt'],
-            $this->config['hashidsPadding'],
-            $this->config['hashidsCharset']
-        );
     }
 
     protected function getIdConfig() : array
     {
         if ($this->config['hashids'])
         {
-            return [Route::FILTER_IN => [$this, 'filterIdIn'], Route::FILTER_OUT => [$this, 'filterIdOut']];
+            return [];
         }
 
         return [Route::PATTERN => '\d+'];
     }
-}
 
+    protected function getGlobalConfig() : array
+    {
+        if ($this->config['hashids'])
+        {
+            return [Route::FILTER_IN => [$this, 'filterIn'], Route::FILTER_OUT => [$this, 'filterOut']];
+        }
+
+        return [];
+    }
+
+    protected function getHashIds(array $parameters) : \Hashids\Hashids
+    {
+        $dest = "{$parameters['module']}:{$parameters['presenter']}:{$parameters['action']}";
+
+        return new \Hashids\Hashids(
+            $this->config['hashidsSalt'] . $dest,
+            $this->config['hashidsPadding'],
+            $this->config['hashidsCharset']
+        );
+    }
+
+    public function filterIn(array $parameters) : array
+    {
+        if (!empty($parameters['id']))
+        {
+            $hashIds = $this->getHashIds($parameters);
+            $parameters['id'] = (int) $hashIds->decode($parameters['id'])[0];
+        }
+
+        return $parameters;
+    }
+
+    public function filterOut(array $parameters) : array
+    {
+        if (!empty($parameters['id']))
+        {
+            $hashIds = $this->getHashIds($parameters);
+            $parameters['id'] = (string) $hashIds->encode($parameters['id']);
+        }
+
+        return $parameters;
+    }
+}
