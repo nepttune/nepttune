@@ -34,6 +34,8 @@ parameters:
         homepage: ':Www:Default:default'
         
     router:
+        subdomain: false
+        apimodule: true
         defaultModule: 'Www'
         hashids: false
         hashidsSalt: 'nGXWFaJfxlMCkn9aU8XK'
