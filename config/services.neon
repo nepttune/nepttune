@@ -7,7 +7,10 @@
 # <https://www.peldax.com>.
 
 services:
-    routerFactory: Nepttune\RouterFactory
+    routerFactory:
+        class: Nepttune\RouterFactory
+        arguments: 
+            - %router%
     router: @routerFactory::createSubdomainRouter
 
     - Nepttune\Model\ErrorLogModel
@@ -35,9 +38,6 @@ decorator:
     Nepttune\TI\ITranslator:
         setup:
             - injectTranslator
-    Nepttune\RouterFactory:
-        setup:
-            - injectConfig(%router%)
 
 latte:
     macros:
