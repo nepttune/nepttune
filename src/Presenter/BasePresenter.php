@@ -188,6 +188,11 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     {
         return __DIR__ . '/../templates/paginator.latte';
     }
+    
+    public static function getPhotoswipe() : string
+    {
+        return __DIR__ . '/../templates/photoswipe.latte';
+    }
 
     protected function createComponentAssetLoader() : \Nepttune\Component\AssetLoader
     {
