@@ -27,8 +27,10 @@ interface IStyleLists
     const STYLE_BODY = [
         '/node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css',
         '/node_modules/@fortawesome/fontawesome-free/css/all.min.css',
-        '/node_modules/flag-icon-css/css/flag-icon.min.css',
         '/node_modules/magnific-popup/dist/magnific-popup.css',
+        '/node_modules/photoswipe/dist/photoswipe.css',
+        '/node_modules/photoswipe/dist/default-skin/default-skin.css',
+        '/node_modules/flag-icon-css/css/flag-icon.min.css',
         '/node_modules/nepttune/scss/common.min.css'];
     const STYLE_BODY_ADMIN = [];
     const STYLE_BODY_FRONT = [];
