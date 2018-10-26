@@ -24,6 +24,8 @@ interface IScriptLists
         '/node_modules/jquery/dist/jquery.min.js',
         '/node_modules/nette.ajax.js/nette.ajax.js',
         '/node_modules/magnific-popup/dist/jquery.magnific-popup.min.js',
+        '/node_modules/photoswipe/dist/photoswipe.min.js',
+        '/node_modules/photoswipe/dist/photoswipe-ui-default.min.js',
         '/node_modules/js-cookie/src/js.cookie.js',
         '/node_modules/nepttune/js/common.min.js'];
     const SCRIPT_BODY_ADMIN = [
