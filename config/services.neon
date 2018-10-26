@@ -11,7 +11,7 @@ services:
         class: Nepttune\RouterFactory
         arguments: 
             - %router%
-    router: @routerFactory::createSubdomainRouter
+    router: @routerFactory::createRouter
 
     - Nepttune\Model\ErrorLogModel
     - Nepttune\Model\CronLogModel
