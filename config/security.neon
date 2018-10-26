@@ -53,6 +53,7 @@ http:
         block-all-mixed-content: true
     featurePolicy:
         sync-xhr:      [ self ]
+        fullscreen:    [ self ]
     
         geolocation:   [ none ]
         midi:          [ none ]
@@ -61,5 +62,4 @@ http:
         magnetometer:  [ none ]
         gyroscope:     [ none ]
         speaker:       [ none ]
-        fullscreen:    [ none ]
         payment:       [ none ]
