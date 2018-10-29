@@ -118,7 +118,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
 
         if ($this->module)
         {
-            $moduleStyle = '/scss/module/' . $this->module . '.min.css';
+            $moduleStyle = '/scss/module/' . $this->module . '.css';
             if (file_exists(getcwd() . '/node_modules/nepttune' . $moduleStyle)) {
                 $styles[] = '/node_modules/nepttune' . $moduleStyle;
             }
@@ -127,7 +127,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
             }
         }
 
-        $presenStyle = '/scss/presenter/' . $this->presen . '.min.css';
+        $presenStyle = '/scss/presenter/' . $this->presen . '.css';
         if (file_exists(getcwd() . '/node_modules/nepttune' . $presenStyle))
         {
             $styles[] = '/node_modules/nepttune' . $presenStyle;
@@ -137,7 +137,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
             $styles[] = $presenStyle;
         }
 
-        $actionStyle = '/scss/action/' . $this->presen . '/' . $this->action . '.min.css';
+        $actionStyle = '/scss/action/' . $this->presen . '/' . $this->action . '.css';
         if (file_exists(getcwd() . '/node_modules/nepttune' . $actionStyle))
         {
             $styles[] = '/node_modules/nepttune' . $actionStyle;
@@ -182,8 +182,8 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
 
         foreach ($this->getPresenter()->getComponents() as $name => $component)
         {
-            $componentStyle = '/scss/component/' . ucfirst($name) . '.min.css';
-            $componentScript = '/js/component/' . ucfirst($name) . '.min.js';
+            $componentStyle = '/scss/component/' . ucfirst($name) . '.css';
+            $componentScript = '/js/component/' . ucfirst($name) . '.js';
 
             if (file_exists(getcwd() . '/node_modules/nepttune' . $componentStyle))
             {
@@ -240,7 +240,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
 
         if ($this->module)
         {
-            $moduleScript = '/js/module/' . $this->module . '.min.js';
+            $moduleScript = '/js/module/' . $this->module . '.js';
             if (file_exists(getcwd() . '/node_modules/nepttune' . $moduleScript)) {
                 $scripts[] = '/node_modules/nepttune' . $moduleScript;
             }
@@ -249,7 +249,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
             }
         }
 
-        $presenScript = '/js/presenter/' . $this->presen . '.min.js';
+        $presenScript = '/js/presenter/' . $this->presen . '.js';
         if (file_exists(getcwd() . '/node_modules/nepttune' . $presenScript))
         {
             $scripts[] = '/node_modules/nepttune' . $presenScript;
@@ -259,7 +259,7 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
             $scripts[] = $presenScript;
         }
 
-        $actionScript = '/js/action/' . $this->presen . '/' . $this->action . '.min.js';
+        $actionScript = '/js/action/' . $this->presen . '/' . $this->action . '.js';
         if (file_exists(getcwd() . '/node_modules/nepttune' . $actionScript))
         {
             $scripts[] = '/node_modules/nepttune' . $actionScript;
