@@ -27,7 +27,7 @@ interface IScriptLists
         '/node_modules/photoswipe/dist/photoswipe.min.js',
         '/node_modules/photoswipe/dist/photoswipe-ui-default.min.js',
         '/node_modules/js-cookie/src/js.cookie.js',
-        '/node_modules/nepttune/js/common.min.js'];
+        '/node_modules/nepttune/js/common.js'];
     const SCRIPT_BODY_ADMIN = [
         '/node_modules/bootstrap/dist/js/bootstrap.min.js',
         '/node_modules/admin-lte/dist/js/adminlte.min.js'];
@@ -44,12 +44,12 @@ interface IScriptLists
         '/node_modules/pickadate/lib//translations/cs_CZ.js',
         '/node_modules/select2/dist/js/select2.min.js',
         '/node_modules/icheck/icheck.min.js',
-        '/node_modules/nepttune/js/coreValidator.min.js',
-        '/node_modules/nepttune/js/form.min.js'];
+        '/node_modules/nepttune/js/coreValidator.js',
+        '/node_modules/nepttune/js/form.js'];
     const SCRIPT_LIST = [
         '/node_modules/ublaboo-datagrid/assets/dist/datagrid.js',
         '/node_modules/ublaboo-datagrid/assets/dist/datagrid-spinners.js'];
     const SCRIPT_STAT = [
         '/node_modules/chart.js/dist/Chart.min.js',
-        '/node_modules/nepttune/js/stat.min.js'];
+        '/node_modules/nepttune/js/stat.js'];
 }
