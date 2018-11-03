@@ -22,6 +22,7 @@ services:
         implement: Nepttune\Component\IAssetLoaderFactory
         arguments:
             - %vapid.publicKey%
+            - %googleApi.key%
     robotsFactory:
         implement: Nepttune\Component\IRobotsFactory
         arguments:
