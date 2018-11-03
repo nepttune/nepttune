@@ -38,6 +38,8 @@ parameters:
         subject: '%domain%'
         publicKey: 'X'
         privateKey: 'X'
+    googleApi:
+        key: ''
 
 
 mail:
