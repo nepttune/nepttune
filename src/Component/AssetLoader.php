@@ -16,6 +16,9 @@ namespace Nepttune\Component;
 
 final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLists
 {
+    /** @var \Nette\Caching\Cache */
+    protected $cache;
+
     /** @var bool */
     protected $admin;
 
@@ -31,14 +34,18 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
     /** @var string */
     protected $vapidPublicKey;
 
-    /** @var \Nette\Caching\Cache */
-    protected $cache;
+    /** @var string */
+    protected $googleApiKey;
 
-    public function __construct(string $vapidPublicKey, \Nette\Caching\IStorage $storage)
+    public function __construct(
+        string $vapidPublicKey,
+        string $googleApiKey,
+        \Nette\Caching\IStorage $storage)
     {
         parent::__construct();
 
         $this->vapidPublicKey = $vapidPublicKey;
+        $this->googleApiKey = $googleApiKey;
         $this->cache = new \Nette\Caching\Cache($storage, 'Nepttune.AssetLoader');
     }
 
@@ -61,10 +68,12 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
     {
         $assets = $this->getAssetsHead();
 
-        $this->template->variables = false;
         $this->template->styles = $assets[0];
         $this->template->scripts = $assets[1];
+
         $this->template->recaptcha = false;
+        $this->template->maps = false;
+        $this->template->worker = false;
 
         parent::render();
     }
@@ -73,11 +82,15 @@ final class AssetLoader extends BaseComponent implements IStyleLists, IScriptLis
     {
         $assets = $this->getAssetsBody();
 
-        $this->template->variables = true;
-        $this->template->vapidPublicKey = $this->vapidPublicKey;
         $this->template->styles = $assets[0];
         $this->template->scripts = $assets[1];
+
         $this->template->recaptcha = $assets[2];
+        $this->template->maps = (bool) strlen($this->googleApiKey);
+        $this->template->worker = (bool) strlen($this->vapidPublicKey);
+
+        $this->template->mapsKey = $this->googleApiKey;
+        $this->template->workerKey = $this->vapidPublicKey;
 
         parent::render();
     }
