@@ -17,16 +17,20 @@
 {/foreach}
 
 {if $recaptcha}
-    <script n:nonce async defer type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+    <script n:nonce type="text/javascript" async defer src="https://www.google.com/recaptcha/api.js"></script>
 {/if}
 
-{if $variables}
+{if $maps}
+    <script n:nonce type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key={$mapsKey}&callback=initGoogleMaps"></script>
+{/if}
+
+{if $worker}
     <script n:nonce>
         $(document).ready(function(){ navigator.serviceWorker.register({plink :Tool:worker}, { scope: '/' });});
     </script>
     <script n:nonce>
         const pushButton = document.querySelector('#push-subscription-button');
-        const applicationServerKey = {$vapidPublicKey};
+        const applicationServerKey = {$workerKey};
         let isPushEnabled = false;
 
         function changePushButtonState (state) {
