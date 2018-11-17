@@ -19,39 +19,31 @@ final class Deploy
     const TARGET_DIR = __DIR__ . '/../../../../';
     const SOURCE_DIR = __DIR__ . '/../copy/';
 
-    /*const DOCKER_TARGET_DIR = self::TARGET_DIR . 'docker/';
-    const DOCKER_SOURCE_DIR = self::SOURCE_DIR . 'docker/';
-    const DOCKER_FILES = [
-        'apache2/000-default.conf',
-        'bin/startup.sh',
-        'docker-compose.yml',
-        'dockerfile-apache-php'
-    ];*/
-
     const DIRS = [
-        'app/component',
+        'app/command',
         'app/config',
-        'app/interface',
+        'app/consumer',
         'app/lang',
+        'app/enum',
         'app/model',
         'app/module',
-        'app/trait',
+        'app/table',
+        'app/TI',
+        'www/js/action',
+        'www/js/component',
         'www/js/module',
         'www/js/presenter',
-        'www/js/action',
+        'www/scss/action',
+        'www/scss/component',
         'www/scss/module',
-        'www/scss/presenter',
-        'www/scss/action'
+        'www/scss/presenter'
     ];
 
     public static function init()
     {
         echo 'Nepttune handler started.' . PHP_EOL;
 
-        //self::checkDockerFiles();
-
         self::recurseCopy(self::SOURCE_DIR, self::TARGET_DIR);
-
         self::createDirs();
 
         echo 'Nepttune handler completed.' . PHP_EOL;
@@ -93,19 +85,6 @@ final class Deploy
             if (!is_dir($dst))
             {
                 mkdir($dst);
-            }
-        }
-    }
-
-    private static function checkDockerFiles()
-    {
-        foreach (self::DOCKER_FILES as $file)
-        {
-            if (!file_exists(self::DOCKER_TARGET_DIR . $file) ||
-                md5_file(self::DOCKER_SOURCE_DIR . $file) !== md5_file(self::DOCKER_TARGET_DIR . $file))
-            {
-                echo "\033[31m WARNING: Docker files has changed, reload docker container. \033[0m" . PHP_EOL;
-                return;
             }
         }
     }
