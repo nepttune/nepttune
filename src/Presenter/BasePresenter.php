@@ -22,19 +22,19 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     /** @persistent */
     public $locale;
 
-    /** @var  string */
+    /** @var string */
     public $module;
 
-    /** @var  string */
+    /** @var string */
     public $nameWM;
 
-    /** @var  \Nepttune\Component\IAssetLoaderFactory */
+    /** @var \Nepttune\Component\IAssetLoaderFactory */
     protected $iAssetLoaderFactory;
 
-    /** @var  array */
+    /** @var array */
     protected $meta;
 
-    /** @var  array */
+    /** @var array */
     protected $dest;
 
     public function injectParameters(
@@ -57,7 +57,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     public function flashMessage($message, $type = 'info') : \stdClass
     {
-        $flash = parent::flashMessage($message, $type);
+        $flash = parent::flashMessage($this->translator->translate($message), $type);
 
         if ($this->isAjax())
         {
