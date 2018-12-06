@@ -18,8 +18,11 @@ docker-tests.sh
 docker-permission.sh
 docker-console.sh
 
+analysis/build/*
+analysis/docs/*
 node_modules/*
 vendor/*
+vendor-bin/*
 temp/*
 log/*
 bin/*
