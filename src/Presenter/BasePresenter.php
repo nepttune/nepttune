@@ -14,6 +14,11 @@ declare(strict_types = 1);
 
 namespace Nepttune\Presenter;
 
+/**
+ * Class BasePresenter
+ * @package Nepttune\Presenter
+ * @property \Nette\Bridges\ApplicationLatte\Template $template
+ */
 abstract class BasePresenter extends \Nette\Application\UI\Presenter implements \Nepttune\TI\ITranslator
 {
     use \IPub\MobileDetect\TMobileDetect;
