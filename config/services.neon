@@ -15,6 +15,7 @@ services:
 
     - Nepttune\Model\ErrorLogTable
     - Nepttune\Model\CronLogTable
+    - Nepttune\Model\SubscriptionTable
     - Nepttune\Model\PushNotificationModel(%vapid%)
 
     - Nepttune\Component\ISitemapFactory
