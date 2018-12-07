@@ -12,7 +12,7 @@
 
 declare(strict_types = 1);
 
-namespace Nepttune\Model;
+namespace Nepttune\Table;
 
 final class ErrorLogTable extends BaseTable
 {
