@@ -13,9 +13,9 @@
   "require": {
     "nepttune/base-requirements" : "^4.0",
     "nepttune/base-component" : "^4.0",
-    "nepttune/base-form-component" : "^4.0",
-    "nepttune/base-list-component" : "^5.0",
-    "nepttune/base-model" : "^4.0",
+    "nepttune/base-form-component" : "^5.0",
+    "nepttune/base-list-component" : "^6.0",
+    "nepttune/base-model" : "^5.0",
     "nepttune/sitemap" : "^1.0",
     "nepttune/robots" : "^1.0",
     "nepttune/security" : "^1.0",
