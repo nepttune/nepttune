@@ -17,9 +17,12 @@ namespace Nepttune\Model;
 use Minishlink\WebPush\WebPush;
 use Minishlink\WebPush\Subscription;
 
-final class PushNotificationModel extends BaseModel
+final class PushNotificationModel
 {
-    const TABLE_NAME = 'subscription';
+    use \Nette\SmartObject;
+
+    /** @var SubscriptionTable */
+    private $subscriptionTable;
 
     /** @var  WebPush */
     private $webPush;
@@ -27,10 +30,13 @@ final class PushNotificationModel extends BaseModel
     /** @var  \Nette\Http\Request */
     private $request;
 
-    public function __construct(array $parameters, \Nette\Http\Request $request, \Nette\Database\Context $context)
+    public function __construct(
+        array $parameters,
+        SubscriptionTable $subscriptionTable,
+        \Nette\Http\Request $request
+    )
     {
-        parent::__construct($context);
-
+        $this->subscriptionTable = $subscriptionTable;
         $this->webPush = new WebPush(['VAPID' => $parameters]);
         $this->request = $request;
     }
@@ -54,7 +60,7 @@ final class PushNotificationModel extends BaseModel
      */
     public function sendAll($msg) : void
     {
-        foreach ($this->findActive() as $row)
+        foreach ($this->subscriptionTable->findActive() as $row)
         {
             $this->sendNotification($row, $msg, false);
         }
@@ -76,7 +82,7 @@ final class PushNotificationModel extends BaseModel
     {
         $msg = $this->composeMsg($msg, $dest);
 
-        foreach ($this->findActive()->where('user_id', $userId) as $row)
+        foreach ($this->subscriptionTable->findActive()->where('user_id', $userId) as $row)
         {
             $this->sendNotification($row, $msg, false);
         }
@@ -98,7 +104,7 @@ final class PushNotificationModel extends BaseModel
     {
         $msg = $this->composeMsg($msg, $dest);
 
-        $subscriptions = $this->findAll()
+        $subscriptions = $this->subscriptionTable->findAll()
             ->where('subscription.active', 1)
             ->where('user.active', 1)
             ->where('user:user_subscription_type.subscription_type_id', $typeId);
@@ -121,21 +127,21 @@ final class PushNotificationModel extends BaseModel
      */
     public function saveSubscription(int $userId = null) : void
     {
-        $json = file_get_contents('php://input');
+        $json = \file_get_contents('php://input');
 
         if (!$json)
         {
             return;
         }
 
-        $data = json_decode($json, true);
+        $data = \json_decode($json, true);
 
         if (!$data || empty($data['endpoint']) || empty($data['publicKey']) || empty($data['authToken']))
         {
             return;
         }
 
-        $row = $this->findActive()->where('endpoint', $data['endpoint'])->fetch();
+        $row = $this->subscriptionTable->findActive()->where('endpoint', $data['endpoint'])->fetch();
 
         switch ($this->request->getMethod()) {
             case 'POST':
@@ -153,7 +159,7 @@ final class PushNotificationModel extends BaseModel
                     return;
                 }
 
-                $row = $this->insert([
+                $row = $this->subscriptionTable->insert([
                     'user_id' => $userId,
                     'endpoint' => $data['endpoint'],
                     'key' => $data['publicKey'],
