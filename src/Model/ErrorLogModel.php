@@ -14,7 +14,7 @@ declare(strict_types = 1);
 
 namespace Nepttune\Model;
 
-final class ErrorLogModel extends BaseModel
+final class ErrorLogTable extends BaseTable
 {
     const TABLE_NAME = 'log_error';
 }
