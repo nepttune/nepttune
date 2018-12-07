@@ -14,7 +14,7 @@ declare(strict_types = 1);
 
 namespace Nepttune\Model;
 
-final class CronLogModel extends BaseModel
+final class CronLogTable extends BaseTable
 {
     const TABLE_NAME = 'log_cron';
 }
