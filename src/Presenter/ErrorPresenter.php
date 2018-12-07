@@ -19,7 +19,7 @@ final class ErrorPresenter extends \Nepttune\Presenter\BasePresenter
     /** @var  \Nepttune\Model\ErrorLogModel */
     protected $errorLogModel;
 
-    public function __construct(\Nepttune\Model\ErrorLogModel $errorLogModel)
+    public function __construct(\Nepttune\Model\ErrorLogTable $errorLogModel)
     {
         $this->errorLogModel = $errorLogModel;
     }
