@@ -13,8 +13,8 @@ services:
             - %router%
     router: @routerFactory::createRouter
 
-    - Nepttune\Model\ErrorLogModel
-    - Nepttune\Model\CronLogModel
+    - Nepttune\Model\ErrorLogTable
+    - Nepttune\Model\CronLogTable
     - Nepttune\Model\PushNotificationModel(%vapid%)
 
     - Nepttune\Component\ISitemapFactory
@@ -30,7 +30,7 @@ services:
     securityFactory:
         implement: Nepttune\Component\ISecurityFactory
         arguments:
-          - '%security%'
+            - '%security%'
 
 decorator:
     Nepttune\Presenter\BasePresenter:
