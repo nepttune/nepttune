@@ -13,7 +13,7 @@ session:
     cookiePath: '/'
     cookieDomain: '.%domain%'
     cookieSecure: true
-    cookieHttpOnly: true
+    cookieHttponly: true
     cookieSamesite: Lax
 
 http:
