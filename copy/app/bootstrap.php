@@ -45,7 +45,7 @@ $configurator->addConfig(__DIR__ . '/config/core.neon');
 if (\PHP_SAPI === 'cli') {
     $configurator->addConfig(__DIR__ . '/../vendor/nepttune/nepttune/config/cli.neon');
     $configurator->addConfig(__DIR__ . '/config/cli.neon');
+    $configurator->setTempDirectory(__DIR__ . '/../temp/console');
 }
 
 return $configurator->createContainer();
-
