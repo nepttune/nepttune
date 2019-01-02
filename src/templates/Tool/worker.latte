@@ -52,14 +52,24 @@ self.addEventListener('notificationclick', function(event) {
 
 self.addEventListener('fetch', function(event) {
     const CACHE_NAME = 'dependencies-cache';
-    
     const requestedWith = event.request.headers.get('X-Requested-With');
 
-    // is not GET, is not local, is HTML, is AJAX
+    // is not GET, is HTML, is AJAX
     if (event.request.method !== 'GET' ||
-        event.request.url.startsWith({$baseUrl}) === false ||
-    	event.request.headers.get('Accept').indexOf('text/html') !== -1 ||
+        event.request.headers.get('Accept').indexOf('text/html') !== -1 ||
         (requestedWith !== null && requestedWith.indexOf('XMLHttpRequest') !== -1))
+    {
+        return;
+    }
+
+    const options = { mode: 'same-origin', credentials: 'same-origin' };
+
+    if (event.request.url.startsWith('https://fonts.googleapis.com/') !== false)
+    {
+        options.mode = 'cors';
+        options.credentials = 'omit';
+    }
+    else if (event.request.url.startsWith("https:\/\/www.realstream.cz") === false)
     {
         return;
     }
@@ -72,8 +82,8 @@ self.addEventListener('fetch', function(event) {
 
             var fetchRequest = event.request.clone();
 
-            return fetch(fetchRequest).then(function(response) {
-                if(!response || response.status !== 200 || response.type !== 'basic') {
+            return fetch(fetchRequest, options).then(function(response) {
+                if(!response || response.status !== 200 || (response.type !== 'basic' && response.type !== 'cors')) {
                     return response;
                 }
 
@@ -88,3 +98,4 @@ self.addEventListener('fetch', function(event) {
         })
     );
 });
+
