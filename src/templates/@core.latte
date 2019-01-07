@@ -25,6 +25,11 @@
         <meta name="author" content="{$meta['author']}" />
         <meta name="theme-color" content="{$meta['color']}" />
 
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="{$meta['color']}" />
+
         {isMobileOs iOS}
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -40,13 +45,11 @@
         <link rel="apple-touch-startup-image" href="/splashscreens/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" />
         <link rel="apple-touch-startup-image" href="/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" />
         {/isMobileOs}
-
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="{$meta['color']}" />
+        
+        {isMobileOs Windows}
         <meta name="msapplication-TileColor" content="{$meta['color']}" />
         <meta name="msapplication-TileImage" content="/mstile-150x150.png" />
+        {/isMobileOs}
 
         {ifset #font}
             {include #font}
