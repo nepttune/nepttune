@@ -36,11 +36,11 @@ http:
         
         media-src:       [ self ]
         worker-src:      [ self ]
-        connect-src:     [ self ]
         manifest-src:    [ self ]
 
         font-src:        [ self, https://fonts.gstatic.com/ ]
         style-src:       [ self, https://fonts.googleapis.com/ ]
+        connect-src:     [ self, https://fonts.googleapis.com/ ]
         img-src:         [ self, https://*.googleapis.com/, https://*.gstatic.com ]
         frame-src:       [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com/, https://*.gopay.cz/ ]
         child-src:       [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com/, https://*.gopay.cz/ ]
