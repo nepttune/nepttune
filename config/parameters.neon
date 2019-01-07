@@ -18,7 +18,7 @@ parameters:
         keywords: 'personal, webpage, peldax, application'
         author: 'peldax.com'
         robots: 'index, follow'
-        viewport: 'width=device-width, initial-scale=1, maximum-scale=2'
+        viewport: 'width=device-width, initial-scale=1, maximum-scale=2, viewport-fit=cover'
         color: '#ffffff'
         
     robots:
