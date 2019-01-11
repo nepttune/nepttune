@@ -18,12 +18,15 @@ services:
     - Nepttune\Model\SubscriptionTable
     - Nepttune\Model\PushNotificationModel(%vapid%)
 
-    - Nepttune\Component\ISitemapFactory
     assetLoaderFactory:
         implement: Nepttune\Component\IAssetLoaderFactory
         arguments:
             - %vapid.publicKey%
             - %googleApi.key%
+    sitemapFactory:
+            implement: Nepttune\Component\ISitemapFactory
+            arguments:
+                - '%sitemap%'
     robotsFactory:
         implement: Nepttune\Component\IRobotsFactory
         arguments:
