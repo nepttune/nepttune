@@ -16,10 +16,6 @@ namespace Nepttune\Component;
 
 interface IScriptLists
 {
-    const SCRIPT_HEAD = [];
-    const SCRIPT_HEAD_ADMIN = [];
-    const SCRIPT_HEAD_FRONT = [];
-
     const SCRIPT_BODY = [
         '/node_modules/jquery/dist/jquery.min.js',
         '/node_modules/nette.ajax.js/nette.ajax.js',
