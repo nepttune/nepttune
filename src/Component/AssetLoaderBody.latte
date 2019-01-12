@@ -16,6 +16,10 @@
     <script n:nonce type="text/javascript" crossorigin="anonymous" integrity="{$control->getIntegrity($path)}" src="{$path}"></script>
 {/foreach}
 
+<script n:nonce>
+    $(document).ready(function(){ navigator.serviceWorker.register({plink :Tool:worker}, { scope: '/' });});
+</script>
+
 {if $recaptcha}
     <script n:nonce type="text/javascript" async defer src="https://www.google.com/recaptcha/api.js"></script>
 {/if}
@@ -24,10 +28,7 @@
     <script n:nonce type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key={$mapsKey}&callback=initGoogleMaps"></script>
 {/if}
 
-{if $worker}
-    <script n:nonce>
-        $(document).ready(function(){ navigator.serviceWorker.register({plink :Tool:worker}, { scope: '/' });});
-    </script>
+{if $subscribe}
     <script n:nonce>
         const pushButton = document.querySelector('#push-subscription-button');
         const applicationServerKey = {$workerKey};
@@ -180,13 +181,15 @@
                 return;
             }
 
-            navigator.serviceWorker.register({plink :Tool:worker}, { scope: '/' }).then(() =>
-            {
+            navigator.serviceWorker.register({plink :Tool:worker}, { scope: '/' }).then(() => {
                 push_updateSubscription();
-            }, e =>
-            {
+            }, e => {
                 changePushButtonState('incompatible');
             });
         });
     </script>
+{/if}
+
+{if $photoswipe}
+    {include $presenter::getPhotoswipe()}
 {/if}
