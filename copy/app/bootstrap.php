@@ -12,7 +12,7 @@
 
 declare(strict_types = 1);
 
-$debugMode = true;
+$debugMode = false;
 
 require __DIR__ . '/../vendor/autoload.php';
 
