@@ -32,6 +32,18 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     /** @var string */
     public $nameWM;
+    
+    /** @var bool */
+    public $assetsPhotoswipe = false;
+
+    /** @var bool */
+    public $assetsSubscribe = false;
+
+    /** @var bool */
+    public $assetsRecaptcha = false;
+
+    /** @var bool */
+    public $assetsMaps = false;
 
     /** @var \Nepttune\Component\IAssetLoaderFactory */
     protected $iAssetLoaderFactory;
