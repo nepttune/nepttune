@@ -32,7 +32,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     /** @var string */
     public $nameWM;
-    
+
     /** @var bool */
     public $assetsPhotoswipe = false;
 
@@ -76,8 +76,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     {
         $flash = parent::flashMessage($this->translator->translate($message), $type);
 
-        if ($this->isAjax())
-        {
+        if ($this->isAjax()) {
             $this->redrawControl('flashMessages');
         }
 
@@ -86,13 +85,11 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     
     public function createComponent($name, array $args = null)
     {
-        if (method_exists($this, 'createComponent'.ucfirst($name)))
-        {
+        if (\method_exists($this, 'createComponent' . \ucfirst($name))) {
             return parent::createComponent($name);
         }
 
-        if ($args !== null)
-        {
+        if ($args !== null) {
             return $this->context->createService($name, $args);
         }
 
@@ -101,21 +98,19 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     public function actionCloseFancy($control = null, $rowId = null) : void
     {
-        $this->getFlashSession()->setExpiration(time() + 5);
+        $this->getFlashSession()->setExpiration(\time() + 5);
 
         $this->template->setFile(__DIR__.'/../templates/closeFancy.latte');
 
         $this->template->redrawControl = false;
         $this->template->redrawRow = false;
 
-        if ($control && $rowId)
-        {
+        if ($control && $rowId) {
             $this->template->redrawRow = true;
             $this->template->control = $control;
             $this->template->rowId = $rowId;
         }
-        elseif ($control)
-        {
+        elseif ($control) {
             $this->template->redrawControl = true;
             $this->template->control = $control;
         }
@@ -123,10 +118,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     public function getModule() : string
     {
-        if (!$this->module)
-        {
-            $pos = strpos($this->getName(), ':');
-            $this->module = $pos === false ? '' : substr($this->getName(), 0, $pos);
+        if (!$this->module) {
+            $pos = \strpos($this->getName(), ':');
+            $this->module = $pos === false ? '' : \substr($this->getName(), 0, $pos);
         }
 
         return $this->module;
@@ -134,10 +128,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     public function getNameWM() : string
     {
-        if (!$this->nameWM)
-        {
-            $pos = strpos($this->getName(), ':');
-            $this->nameWM = $pos === false ? $this->getName() : substr($this->getName(), $pos + 1);
+        if (!$this->nameWM) {
+            $pos = \strpos($this->getName(), ':');
+            $this->nameWM = $pos === false ? $this->getName() : \substr($this->getName(), $pos + 1);
         }
 
         return $this->nameWM;
@@ -150,16 +143,14 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     
     public function findLayoutTemplateFile() : string
     {
-        if ($this->layout)
-        {
+        if ($this->layout) {
             return $this->layout;
         }
         
         $dir = \dirname(static::getReflection()->getFileName());
         $primary = $dir . '/../templates/@layout.latte';
 
-        if (is_file($primary))
-        {
+        if (\is_file($primary)) {
             return $primary;
         }
 
@@ -214,17 +205,5 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     protected function createComponentAssetLoader() : \Nepttune\Component\AssetLoader
     {
         return $this->iAssetLoaderFactory->create();
-    }
-    
-    public function mockProperty(string $name, $value) : void
-    {
-        if (getenv(\Tester\Environment::RUNNER))
-        {
-            $this->{$name} = $value;
-
-            return;
-        }
-
-        throw new \Nette\InvalidStateException();
     }
 }
