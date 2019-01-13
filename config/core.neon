@@ -22,6 +22,7 @@ extensions:
     recaptcha: ReCaptchaControl\DI\Extension
     nextrasForm: Nextras\Forms\Bridges\NetteDI\FormsExtension
     dependentSelectBox: NasExt\Forms\DependentExtension
+    ajaxSelect: Nepttune\DI\AjaxSelectExtension
 
 php:
     date.timezone: Europe/Prague
