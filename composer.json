@@ -19,6 +19,7 @@
     "nepttune/sitemap" : "^1.0",
     "nepttune/robots" : "^1.0",
     "nepttune/security" : "^1.0",
+    "nepttune/ajaxselect" : "^1.0",
     "nepttune/router": "^1.0",
     "nepttune/macro" : "^1.0",
     
