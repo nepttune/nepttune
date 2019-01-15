@@ -10,6 +10,7 @@ database:
     default:
         options:
              PDO::ATTR_EMULATE_PREPARES: false
+             lazy: true
              charset: 'utf8mb4'
              sqlmode: 'STRICT_ALL_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,NO_UNSIGNED_SUBTRACTION,ERROR_FOR_DIVISION_BY_ZERO'
 
