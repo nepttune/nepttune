@@ -21,6 +21,7 @@ services:
     assetLoaderFactory:
         implement: Nepttune\Component\IAssetLoaderFactory
         arguments:
+            - %meta.version%
             - %vapid.publicKey%
             - %googleApi.key%
     sitemapFactory:
