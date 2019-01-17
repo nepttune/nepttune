@@ -23,11 +23,11 @@ docker:
 
 ########################################################################################################################
 
-dirs := analysis App bin data docker log node_modules sql temp tests vendor vendor-bin
-subdirs := App/Command App/config App/Consumer App/lang App/Enum App/Model App/Module App/Table App/TI\
+dirs := analysis app bin data docker log node_modules sql temp tests vendor vendor-bin
+subdirs := app/Command app/config app/Consumer app/lang app/Enum app/Model app/Module app/Table app/TI\
 	www/js/action www/js/component www/js/module www/js/presenter\
 	www/scss/action www/scss/component www/scss/module www/scss/presenter
-download := App/bootstrap.php bin/console www/index.php .gitignore\
+download := app/bootstrap.php bin/console www/index.php .gitignore\
  	www/js/.htaccess www/scss/.htaccess www/webloader/.htaccess www/.htaccess .htaccess
 
 structure:
@@ -138,7 +138,7 @@ tools-update: composer-install
 dephpend: tools-install
 	mkdir --parents analysis/docs
 	docker-compose -f docker/docker-compose.yml exec apache php\
-		vendor/bin/dephpend dsm App --no-classes > analysis/docs/dsm.html
+		vendor/bin/dephpend dsm app --no-classes > analysis/docs/dsm.html
 
 gitstat: tools-install
 	mkdir --parents analysis/docs
@@ -152,7 +152,7 @@ pdepend: tools-install
         --summary-xml=analysis/build/pdepend.xml \
         --jdepend-chart=analysis/build/pdepend.svg \
         --overview-pyramid=analysis/build/pdepend-pyramid.svg \
-        App
+        app
 
 phan: tools-install
 	mkdir --parents analysis/build
@@ -164,24 +164,24 @@ phan: tools-install
 
 phpa: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
-	 	vendor/bin/phpa /var/www/html/App
+	 	vendor/bin/phpa /var/www/html/app
 
 phpcbf: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
-	 	vendor/bin/phpcbf --parallel=4 --standard=analysis/phpcs-standard.xml --extensions=php App
+	 	vendor/bin/phpcbf --parallel=4 --standard=analysis/phpcs-standard.xml --extensions=php app
 
 phpcpd: tools-install
 	mkdir --parents analysis/build
-	docker-compose exec apache php /var/www/html/vendor/bin/phpcpd --log-pmd analysis/build/phpcpd.xml App
+	docker-compose exec apache php /var/www/html/vendor/bin/phpcpd --log-pmd analysis/build/phpcpd.xml app
 
 phpcs: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
-	 	vendor/bin/phpcs --parallel=4 --standard=analysis/phpcs-standard.xml --extensions=php App
+	 	vendor/bin/phpcs --parallel=4 --standard=analysis/phpcs-standard.xml --extensions=php app
 
 phpcs-xml: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
 		vendor/bin/phpcs --parallel=4 --standard=analysis/phpcs-standard.xml --extensions=php\
-        --report=checkstyle --report-file=analysis/build/phpcs.xml App
+        --report=checkstyle --report-file=analysis/build/phpcs.xml app
 
 phpdox: tools-install
 	mkdir --parents analysis/docs
@@ -190,17 +190,17 @@ phpdox: tools-install
 
 phploc: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
-		vendor/bin/phploc --count-tests --log-xml /var/www/html/analysis/build/phploc.xml App
+		vendor/bin/phploc --count-tests --log-xml /var/www/html/analysis/build/phploc.xml app
 
 phpmd: tools-install
 	mkdir --parents analysis/build
 	docker-compose -f docker/docker-compose.yml exec apache php\
-		vendor/bin/phpmd App xml cleancode,codesize,controversial,design,naming,unusedcode\
+		vendor/bin/phpmd app xml cleancode,codesize,controversial,design,naming,unusedcode\
         --reportfile analysis/build/phpmd.xml
 
 phpstan: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
-		vendor/bin/phpstan analyse --level max --error-format=table -c analysis/phpstan.neon App
+		vendor/bin/phpstan analyse --level max --error-format=table -c analysis/phpstan.neon app
 
 psalm: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
