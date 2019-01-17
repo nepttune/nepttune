@@ -47,7 +47,7 @@ structure:
 	) &&) :
 	$(foreach file, $(download),(\
 		if [ ! -f "$(file)" ]; then\
-			wget -O $(file) https://github.com/nepttune/nepttune/tree/master/copy/$(file)\
+			wget -O $(file) https://github.com/nepttune/nepttune/blob/master/copy/$(file)\
 		fi\
 	) &&) :
 
