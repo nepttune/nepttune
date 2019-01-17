@@ -27,5 +27,5 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'], $_SERVER['SERVER_PORT']))
 }
 
 /** @noinspection UsingInclusionReturnValueInspection */
-$container = require __DIR__ . '/../App/bootstrap.php';
+$container = require __DIR__ . '/../app/bootstrap.php';
 $container->getService('application')->run();
