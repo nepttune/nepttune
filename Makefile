@@ -67,7 +67,7 @@ structure-overwrite:
 ########################################################################################################################
 
 composer: docker
-	docker-compose -f docker/docker-compose.yml exec apache composer update;\
+	docker-compose -f docker/docker-compose.yml exec apache composer update
 
 composer-install: docker
 	@if [ ! "$$(docker-compose -f docker/docker-compose.yml exec apache composer show)" ]; then\
@@ -98,47 +98,47 @@ build: structure composer-install npm-install
 
 tools-install: composer-install
 	@if [ ! -d "vendor-bin/other" ]; then\
-		docker-compose -f docker/docker-compose.yml exec apache composer bin other require\
-		 	dephpend/dephpend phan/phan;\
+		docker-compose -f docker/docker-compose.yml exec apache composer bin other require --no-dev\
+		 	dephpend/dephpend phan/phan rskuipers/php-assumptions;\
 	fi
 	@if [ ! -d "vendor-bin/phpcs" ]; then\
-		docker-compose -f docker/docker-compose.yml exec apache composer bin phpcs require\
+		docker-compose -f docker/docker-compose.yml exec apache composer bin phpcs require --no-dev\
 			 squizlabs/php_codesniffer slevomat/coding-standard consistence/coding-standard;\
 	fi
 	@if [ ! -d "vendor-bin/phpdox" ]; then\
-		docker-compose -f docker/docker-compose.yml exec apache composer bin phpdox require\
+		docker-compose -f docker/docker-compose.yml exec apache composer bin phpdox require --no-dev\
 			 theseer/phpdox;\
 	fi
 	@if [ ! -d "vendor-bin/phploc" ]; then\
-		docker-compose -f docker/docker-compose.yml exec apache composer bin phploc require\
+		docker-compose -f docker/docker-compose.yml exec apache composer bin phploc require --no-dev\
 			phploc/phploc sebastian/phpcpd;\
 	fi
 	@if [ ! -d "vendor-bin/phpmd" ]; then\
-		docker-compose -f docker/docker-compose.yml exec apache composer bin phpmd require\
+		docker-compose -f docker/docker-compose.yml exec apache composer bin phpmd require --no-dev\
 			phpmd/phpmd pdepend/pdepend;\
 	fi
 	@if [ ! -d "vendor-bin/phpstan" ]; then\
-		docker-compose -f docker/docker-compose.yml exec apache composer bin phpstan require\
+		docker-compose -f docker/docker-compose.yml exec apache composer bin phpstan require --no-dev\
 		 	phpstan/phpstan phpstan/phpstan-nette phpstan/phpstan-strict-rules phpstan/phpstan-deprecation-rules;\
 	fi
 	@if [ ! -d "vendor-bin/psalm" ]; then\
-		docker-compose -f docker/docker-compose.yml exec apache composer bin psalm require\
+		docker-compose -f docker/docker-compose.yml exec apache composer bin psalm require --no-dev\
 		 	vimeo/psalm;\
 	fi
 	@if [ ! -d "vendor-bin/tests" ]; then\
-		docker-compose -f docker/docker-compose.yml exec apache composer bin tests require\
+		docker-compose -f docker/docker-compose.yml exec apache composer bin tests require --no-dev\
 		 	mockery/mockery nette/tester infection/infection j6s/phparch;\
 	fi
 
 tools-update: composer-install
-	docker-compose -f docker/docker-compose.yml exec apache composer bin all update
+	docker-compose -f docker/docker-compose.yml exec apache composer bin all update --no-dev
 
 ########################################################################################################################
 
 dephpend: tools-install
 	mkdir --parents analysis/docs
 	docker-compose -f docker/docker-compose.yml exec apache php\
-		vendor/bin/dephpend dsm app --no-classes > analysis/docs/dsm.html
+		vendor/bin/dephpend dsm App --no-classes > analysis/docs/dsm.html
 
 gitstat: tools-install
 	mkdir --parents analysis/docs
@@ -152,7 +152,7 @@ pdepend: tools-install
         --summary-xml=analysis/build/pdepend.xml \
         --jdepend-chart=analysis/build/pdepend.svg \
         --overview-pyramid=analysis/build/pdepend-pyramid.svg \
-        app
+        App
 
 phan: tools-install
 	mkdir --parents analysis/build
@@ -162,22 +162,26 @@ phan: tools-install
         -k analysis/phan.php
 		--output-mode checkstyle \ > analysis/build/phan.xml
 
+phpa: tools-install
+	docker-compose -f docker/docker-compose.yml exec apache php\
+	 	vendor/bin/phpa /var/www/html/App
+
 phpcbf: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
-	 	vendor/bin/phpcbf --parallel=4 --standard=analysis/phpcs-standard.xml --extensions=php app
+	 	vendor/bin/phpcbf --parallel=4 --standard=analysis/phpcs-standard.xml --extensions=php App
 
 phpcpd: tools-install
 	mkdir --parents analysis/build
-	docker-compose exec apache php /var/www/html/vendor/bin/phpcpd --log-pmd analysis/build/phpcpd.xml app
+	docker-compose exec apache php /var/www/html/vendor/bin/phpcpd --log-pmd analysis/build/phpcpd.xml App
 
 phpcs: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
-	 	vendor/bin/phpcs --parallel=4 --standard=analysis/phpcs-standard.xml --extensions=php app
+	 	vendor/bin/phpcs --parallel=4 --standard=analysis/phpcs-standard.xml --extensions=php App
 
 phpcs-xml: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
 		vendor/bin/phpcs --parallel=4 --standard=analysis/phpcs-standard.xml --extensions=php\
-        --report=checkstyle --report-file=analysis/build/phpcs.xml app
+        --report=checkstyle --report-file=analysis/build/phpcs.xml App
 
 phpdox: tools-install
 	mkdir --parents analysis/docs
@@ -186,17 +190,17 @@ phpdox: tools-install
 
 phploc: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
-		vendor/bin/phploc --count-tests --log-xml /var/www/html/analysis/build/phploc.xml app
+		vendor/bin/phploc --count-tests --log-xml /var/www/html/analysis/build/phploc.xml App
 
 phpmd: tools-install
 	mkdir --parents analysis/build
 	docker-compose -f docker/docker-compose.yml exec apache php\
-		vendor/bin/phpmd app xml cleancode,codesize,controversial,design,naming,unusedcode\
+		vendor/bin/phpmd App xml cleancode,codesize,controversial,design,naming,unusedcode\
         --reportfile analysis/build/phpmd.xml
 
 phpstan: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
-		vendor/bin/phpstan analyse --level max --error-format=table -c analysis/phpstan.neon app
+		vendor/bin/phpstan analyse --level max --error-format=table -c analysis/phpstan.neon App
 
 psalm: tools-install
 	docker-compose -f docker/docker-compose.yml exec apache php\
