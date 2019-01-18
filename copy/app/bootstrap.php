@@ -36,7 +36,7 @@ $load = function (string $file) use ($configurator) {
 
     $appConfig = __DIR__ . '/config/' . $file . '.neon';
 
-    if (\file_exists($libConfig)) {
+    if (\file_exists($appConfig)) {
         $configurator->addConfig($appConfig);
     }
 };
