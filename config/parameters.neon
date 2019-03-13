@@ -25,14 +25,9 @@ parameters:
         color: '#ffffff'
 
     assetLoader: []
-
+    sitemap: []
     robots: []
-
-    sitemap:
-        hreflang: true
-
-    router:
-        hashidsSalt: 'nGXWFaJfxlMCkn9aU8XK'
+    router: []
 
     security:
         contact: 'peldax@gmail.com'
