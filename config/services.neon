@@ -21,13 +21,14 @@ services:
     assetLoaderFactory:
         implement: Nepttune\Component\IAssetLoaderFactory
         arguments:
+            - %assetLoader%
             - %meta.version%
             - %vapid.publicKey%
             - %googleApi.key%
     sitemapFactory:
-            implement: Nepttune\Component\ISitemapFactory
-            arguments:
-                - '%sitemap%'
+        implement: Nepttune\Component\ISitemapFactory
+        arguments:
+            - '%sitemap%'
     robotsFactory:
         implement: Nepttune\Component\IRobotsFactory
         arguments:
