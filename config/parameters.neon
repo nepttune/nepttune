@@ -28,6 +28,8 @@ parameters:
         all:
             name: '*'
             disallow:
+            
+    assetLoader: []
 
     security:
         contact: 'peldax@gmail.com'
