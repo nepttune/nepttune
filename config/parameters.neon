@@ -10,6 +10,9 @@ parameters:
     domain: 'peldax.com'
     sessionName: 'peldaxcom'
 
+    dest:
+        homepage: ':Www:Default:default'
+
     meta:
         name: 'peldax.com'
         nameShort: 'PLX'
@@ -20,23 +23,17 @@ parameters:
         robots: 'index, follow'
         viewport: 'width=device-width, initial-scale=1, maximum-scale=2, viewport-fit=cover'
         color: '#ffffff'
-        
+
+    assetLoader: []
+
+    robots: []
+
     sitemap:
         hreflang: true
-        
-    robots:
-        all:
-            name: '*'
-            disallow:
-            
-    assetLoader: []
+
+    router:
+        hashidsSalt: 'nGXWFaJfxlMCkn9aU8XK'
 
     security:
         contact: 'peldax@gmail.com'
         acknowledgements: 'https://github.com/nepttune/nepttune/graphs/contributors'
-
-    dest:
-        homepage: ':Www:Default:default'
-        
-    router:
-        hashidsSalt: 'nGXWFaJfxlMCkn9aU8XK'
