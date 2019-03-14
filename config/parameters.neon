@@ -24,7 +24,71 @@ parameters:
         viewport: 'width=device-width, initial-scale=1, maximum-scale=2, viewport-fit=cover'
         color: '#ffffff'
 
-    assetLoader: []
+    assetLoader:
+        global:
+            styleBody:
+                - '/node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css'
+                - '/node_modules/@fortawesome/fontawesome-free/css/all.min.css'
+                - '/node_modules/magnific-popup/dist/magnific-popup.css'
+                - '/node_modules/photoswipe/dist/photoswipe.css'
+                - '/node_modules/photoswipe/dist/default-skin/default-skin.css'
+                - '/node_modules/flag-icon-css/css/flag-icon.min.css'
+                - '/node_modules/nepttune/scss/common.min.css'
+            script:
+                - '/node_modules/jquery/dist/jquery.min.js'
+                - '/node_modules/nette.ajax.js/nette.ajax.js'
+                - '/node_modules/magnific-popup/dist/jquery.magnific-popup.min.js'
+                - '/node_modules/photoswipe/dist/photoswipe.min.js'
+                - '/node_modules/photoswipe/dist/photoswipe-ui-default.min.js'
+                - '/node_modules/@shopify/draggable/lib/draggable.bundle.legacy.js'
+                - '/node_modules/@shopify/draggable/lib/sortable.js'
+                - '/node_modules/js-cookie/src/js.cookie.js'
+                - '/node_modules/nepttune/js/common.js'
+        module:
+            www:
+                styleHead:
+                    - '/node_modules/bootstrap-beta/dist/css/bootstrap.min.css'
+                script:
+                    - '/node_modules/bootstrap-beta/dist/js/bootstrap.bundle.min.js'
+            admin:
+                styleHead:
+                    - '/node_modules/bootstrap/dist/css/bootstrap.min.css'
+                    - '/node_modules/admin-lte/dist/css/AdminLTE.min.css'
+                    - '/node_modules/admin-lte/dist/css/skins/skin-red.min.css'
+                script:
+                    - '/node_modules/bootstrap/dist/js/bootstrap.min.js'
+                    - '/node_modules/admin-lte/dist/js/adminlte.min.js'
+        form:
+            styleBody:
+                - '/node_modules/pickadate/lib/themes/classic.css'
+                - '/node_modules/pickadate/lib/themes/classic.date.css'
+                - '/node_modules/pickadate/lib/themes/classic.time.css'
+                - '/node_modules/select2/dist/css/select2.min.css'
+                - '/node_modules/icheck/skins/square/red.css'
+            script:
+                - '/node_modules/nette-forms/src/assets/netteForms.min.js'
+                - '/node_modules/nextras-forms/js/nextras.netteForms.js'
+                - '/node_modules/nas-ext-dependent-select-box/client-side/dependentSelectBox.js'
+                - '/node_modules/pickadate/lib/picker.js'
+                - '/node_modules/pickadate/lib/picker.date.js'
+                - '/node_modules/pickadate/lib/picker.time.js'
+                - '/node_modules/pickadate/lib//translations/cs_CZ.js'
+                - '/node_modules/select2/dist/js/select2.min.js'
+                - '/node_modules/icheck/icheck.min.js'
+                - '/node_modules/nepttune/js/coreValidator.js'
+                - '/node_modules/nepttune/js/form.js'
+        list:
+            styleBody:
+                - '/node_modules/ublaboo-datagrid/assets/dist/datagrid.css'
+                - '/node_modules/ublaboo-datagrid/assets/dist/datagrid-spinners.css'
+            script:
+                - '/node_modules/ublaboo-datagrid/assets/dist/datagrid.js'
+                - '/node_modules/ublaboo-datagrid/assets/dist/datagrid-spinners.js'
+        stat:
+            script:
+                - '/node_modules/chart.js/dist/Chart.min.js'
+                - '/node_modules/nepttune/js/stat.js'
+
     sitemap: []
     robots: []
     router: []
