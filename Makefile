@@ -83,6 +83,7 @@ npm-install: docker
 	fi
 
 permission: docker
+	docker-compose -f docker/docker-compose.yml exec mariadb chown -R mysql /var/lib/mysql
 	docker-compose -f docker/docker-compose.yml exec apache sh /usr/local/bin/permission.sh
 
 ########################################################################################################################
