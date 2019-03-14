@@ -19,34 +19,15 @@ namespace Nepttune\Presenter;
  * @package Nepttune\Presenter
  * @property \Nette\Bridges\ApplicationLatte\Template $template
  */
-abstract class BasePresenter extends \Nette\Application\UI\Presenter implements \Nepttune\TI\ITranslator
+abstract class BasePresenter extends \Nette\Application\UI\Presenter
+    implements \Nepttune\TI\IAssetPresenter, \Nepttune\TI\ITranslator
 {
     use \IPub\MobileDetect\TMobileDetect;
+    use \Nepttune\TI\TAssetPresenter;
     use \Nepttune\TI\TTranslator;
 
     /** @persistent */
     public $locale;
-
-    /** @var string */
-    public $module;
-
-    /** @var string */
-    public $nameWM;
-
-    /** @var bool */
-    public $assetsPhotoswipe = false;
-
-    /** @var bool */
-    public $assetsSubscribe = false;
-
-    /** @var bool */
-    public $assetsRecaptcha = false;
-
-    /** @var bool */
-    public $assetsMaps = false;
-
-    /** @var \Nepttune\Component\IAssetLoaderFactory */
-    protected $iAssetLoaderFactory;
 
     /** @var array */
     protected $meta;
@@ -54,14 +35,10 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     /** @var array */
     protected $dest;
 
-    public function injectParameters(
-        array $meta, 
-        array $dest,
-        \Nepttune\Component\IAssetLoaderFactory $IAssetLoaderFactory)
+    public function injectParameters(array $meta, array $dest)
     {
         $this->meta = $meta;
         $this->dest = $dest;
-        $this->iAssetLoaderFactory = $IAssetLoaderFactory;
     }
 
     protected function beforeRender() : void
@@ -116,26 +93,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
         }
     }
 
-    public function getModule() : string
-    {
-        if (!$this->module) {
-            $pos = \strpos($this->getName(), ':');
-            $this->module = $pos === false ? '' : \substr($this->getName(), 0, $pos);
-        }
-
-        return $this->module;
-    }
-
-    public function getNameWM() : string
-    {
-        if (!$this->nameWM) {
-            $pos = \strpos($this->getName(), ':');
-            $this->nameWM = $pos === false ? $this->getName() : \substr($this->getName(), $pos + 1);
-        }
-
-        return $this->nameWM;
-    }
-
     public function getId() : int
     {
         return (int) $this->getParameter('id');
@@ -146,9 +103,8 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
         if ($this->layout) {
             return $this->layout;
         }
-        
-        $dir = \dirname(static::getReflection()->getFileName());
-        $primary = $dir . '/../templates/@layout.latte';
+
+        $primary = \dirname(static::getReflection()->getFileName()) . '/../templates/@layout.latte';
 
         if (\is_file($primary)) {
             return $primary;
@@ -195,15 +151,5 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     public static function getPaginator() : string
     {
         return __DIR__ . '/../templates/paginator.latte';
-    }
-    
-    public static function getPhotoswipe() : string
-    {
-        return __DIR__ . '/../templates/photoswipe.latte';
-    }
-
-    protected function createComponentAssetLoader() : \Nepttune\Component\AssetLoader
-    {
-        return $this->iAssetLoaderFactory->create();
     }
 }
