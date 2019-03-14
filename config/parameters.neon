@@ -40,8 +40,6 @@ parameters:
                 - '/node_modules/magnific-popup/dist/jquery.magnific-popup.min.js'
                 - '/node_modules/photoswipe/dist/photoswipe.min.js'
                 - '/node_modules/photoswipe/dist/photoswipe-ui-default.min.js'
-                - '/node_modules/@shopify/draggable/lib/draggable.bundle.legacy.js'
-                - '/node_modules/@shopify/draggable/lib/sortable.js'
                 - '/node_modules/js-cookie/src/js.cookie.js'
                 - '/node_modules/nepttune/js/common.js'
         module:
