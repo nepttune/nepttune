@@ -45,16 +45,16 @@ parameters:
         module:
             www:
                 styleHead:
-                    - '/node_modules/bootstrap-beta/dist/css/bootstrap.min.css'
+                    - '/node_modules/bootstrap/dist/css/bootstrap.min.css'
                 script:
-                    - '/node_modules/bootstrap-beta/dist/js/bootstrap.bundle.min.js'
+                    - '/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
             admin:
                 styleHead:
-                    - '/node_modules/bootstrap/dist/css/bootstrap.min.css'
+                    - '/node_modules/bootstrap337/dist/css/bootstrap.min.css'
                     - '/node_modules/admin-lte/dist/css/AdminLTE.min.css'
                     - '/node_modules/admin-lte/dist/css/skins/skin-red.min.css'
                 script:
-                    - '/node_modules/bootstrap/dist/js/bootstrap.min.js'
+                    - '/node_modules/bootstrap337/dist/js/bootstrap.min.js'
                     - '/node_modules/admin-lte/dist/js/adminlte.min.js'
         form:
             styleBody:
