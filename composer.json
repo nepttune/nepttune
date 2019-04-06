@@ -31,7 +31,7 @@
     "ipub/mobile-detect": "^2.0",
     "minishlink/web-push": "^4.0",
     
-    "ext-json": ">=1.6"
+    "ext-json": ">=1.5"
   },
   "autoload": {
     "psr-4": {
