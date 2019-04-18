@@ -33,7 +33,7 @@
 	  
     "kdyby/redis": "dev-master",
     "kdyby/rabbitmq": "dev-master",
-    "kdyby/translation": "dev-master",
+    "kdyby/translation": "dev-master#601e2594b916f76942b84969d6341d0cc12268e1",
     "kdyby/elastic-search": "dev-master#729022b31dcb63251caa543496853ea106fc4883",
 
     "contributte/console": "^0.5",
