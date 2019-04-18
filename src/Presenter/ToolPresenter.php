@@ -16,48 +16,60 @@ namespace App\Presenter;
 
 final class ToolPresenter extends \Nepttune\Presenter\BasePresenter
 {
-    /** @var array */
-    protected $robots;
+    /** @var  \Nepttune\Component\ISitemapFactory */
+    protected $iSitemapFactory;
 
-    public function __construct(array $robots)
+    /** @var  \Nepttune\Component\IRobotsFactory */
+    protected $iRobotsFactory;
+    
+    /** @var  \Nepttune\Component\ISecurityFactory */
+    protected $iSecurityFactory;
+    
+    /** @var \Nepttune\Model\Authorizator */
+    protected $authorizator;
+    
+    /** @var \Nepttune\Model\PushNotificationModel */
+    protected $pushNotificationModel;
+
+    public function __construct(
+        \Nepttune\Component\ISitemapFactory $ISitemapFactory,
+        \Nepttune\Component\IRobotsFactory $IRobotsFactory,
+        \Nepttune\Component\ISecurityFactory $ISecurityFactory,
+        \Nepttune\Model\Authorizator $authorizator,
+        \Nepttune\Model\PushNotificationModel $pushNotificationModel)
     {
         parent::__construct();
-
-        $this->robots = $robots;
+        
+        $this->iSitemapFactory = $ISitemapFactory;
+        $this->iRobotsFactory = $IRobotsFactory;
+        $this->iSecurityFactory = $ISecurityFactory;
+        $this->authorizator = $authorizator;
+        $this->pushNotificationModel = $pushNotificationModel;
     }
 
-    public function actionRobots()
-    {
-        $this->getHttpResponse()->setContentType('text/plain');
-
-        $this->template->robots = $this->robots;
-    }
-
-    public function actionSitemap()
-    {
-        $this->getHttpResponse()->setContentType('application/xml');
-
-        $this->template->pages = $this->getPages();
-        $this->template->date = new \Nette\Utils\DateTime();
-    }
-
-    public function actionWorker()
+    public function actionWorker() : void
     {
         $this->getHttpResponse()->addHeader('Service-Worker-Allowed', '/');
-        $this->getHttpResponse()->setContentType('application/javascript');
+    }
+    
+    public function actionSubscribe() : void
+    {
+        $this->pushNotificationModel->saveSubscription($this->authorizator->getUserId());
+        $this->terminate();
     }
 
-    public function getPages() : array
+    protected function createComponentSitemap() : \Nepttune\Component\Sitemap
     {
-        $pages = [];
+        return $this->iSitemapFactory->create();
+    }
 
-        foreach ($this->context->findByType('\Nepttune\TI\ISitemap') as $name)
-        {
-            /** @var \Nepttune\TI\ISitemap $presenter */
-            $presenter = $this->context->getService($name);
-            $pages = array_merge($pages, $presenter->getSitemap());
-        }
-
-        return $pages;
+    protected function createComponentRobots() : \Nepttune\Component\Robots
+    {
+        return $this->iRobotsFactory->create();
+    }
+    
+    protected function createComponentSecurity() : \Nepttune\Component\Security
+    {
+        return $this->iSecurityFactory->create();
     }
 }

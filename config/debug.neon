@@ -12,4 +12,24 @@ application:
 http:
     csp:
         style-src: [ unsafe-inline ]
-        img-src: [ self, 'data:' ]
+        img-src: [ 'data:' ]
+        
+parameters:
+    domain: 'localhost.localhost'
+
+database:
+    default:
+        dsn: 'mysql:host=mariadb;dbname=%sessionName%'
+        user: 'root'
+        password: 'example'
+
+elasticsearch:
+    host: 'elasticsearch'
+
+redis:
+    host: 'redis'
+
+rabbitmq:
+    connection:
+        default:
+            host: 'rabbitmq'

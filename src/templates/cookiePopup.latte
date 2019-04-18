@@ -8,9 +8,7 @@
  * <https://www.peldax.com>.
 *}
 
-<div class="white-popup">
-    <header>
-        <h2>{include #title}</h2>
-    </header>
-    {include #content}
+<div class="fixed-bottom d-none w-100 justify-content-between px-5 py-4 bg-white" id="cookie-popup">
+    <p class="p-0 m-0">{_global.cookiePopup.text}</p>
+    <button>{_global.cookiePopup.confirm}</button>
 </div>

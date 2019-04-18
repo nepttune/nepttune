@@ -14,24 +14,25 @@ declare(strict_types = 1);
 
 namespace Nepttune\Presenter;
 
-abstract class BasePresenter extends \Nette\Application\UI\Presenter implements \Nepttune\ITranslator
+/**
+ * Class BasePresenter
+ * @package Nepttune\Presenter
+ * @property \Nette\Bridges\ApplicationLatte\Template $template
+ */
+abstract class BasePresenter extends \Nette\Application\UI\Presenter
+    implements \Nepttune\TI\IAssetPresenter, \Nepttune\TI\ITranslator
 {
     use \IPub\MobileDetect\TMobileDetect;
-    use \Nepttune\TTranslator;
+    use \Nepttune\TI\TAssetPresenter;
+    use \Nepttune\TI\TTranslator;
 
     /** @persistent */
     public $locale;
 
-    /**
-     * @inject
-     * @var  \Nepttune\Component\IAssetLoaderFactory
-     */
-    public $iAssetLoaderFactory;
-
-    /** @var  array */
+    /** @var array */
     protected $meta;
 
-    /** @var  array */
+    /** @var array */
     protected $dest;
 
     public function injectParameters(array $meta, array $dest)
@@ -40,7 +41,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
         $this->dest = $dest;
     }
 
-    protected function beforeRender()
+    protected function beforeRender() : void
     {
         $this->template->meta = $this->meta;
         $this->template->dest = $this->dest;
@@ -50,25 +51,22 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     public function flashMessage($message, $type = 'info') : \stdClass
     {
-        $flash = parent::flashMessage($message, $type);
+        $flash = parent::flashMessage($this->translator->translate($message), $type);
 
-        if ($this->isAjax())
-        {
+        if ($this->isAjax()) {
             $this->redrawControl('flashMessages');
         }
 
         return $flash;
     }
-
+    
     public function createComponent($name, array $args = null)
     {
-        if (method_exists($this, 'createComponent'.ucfirst($name)))
-        {
+        if (\method_exists($this, 'createComponent' . \ucfirst($name))) {
             return parent::createComponent($name);
         }
 
-        if ($args !== null)
-        {
+        if ($args !== null) {
             return $this->context->createService($name, $args);
         }
 
@@ -77,39 +75,22 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     public function actionCloseFancy($control = null, $rowId = null) : void
     {
-        $this->getFlashSession()->setExpiration(time() + 5);
+        $this->getFlashSession()->setExpiration(\time() + 5);
 
         $this->template->setFile(__DIR__.'/../templates/closeFancy.latte');
 
         $this->template->redrawControl = false;
         $this->template->redrawRow = false;
 
-        if ($control && $rowId)
-        {
+        if ($control && $rowId) {
             $this->template->redrawRow = true;
             $this->template->control = $control;
             $this->template->rowId = $rowId;
         }
-        elseif ($control)
-        {
+        elseif ($control) {
             $this->template->redrawControl = true;
             $this->template->control = $control;
         }
-    }
-
-    public function getModule() : string
-    {
-        return substr($this->getName(), 0, strpos($this->getName(), ':'));
-    }
-
-    public function getNameWM() : string
-    {
-        if (strpos($this->getName(), ':') === false)
-        {
-            return $this->getName();
-        }
-
-        return substr($this->getName(), strpos($this->getName(), ':') + 1);
     }
 
     public function getId() : int
@@ -119,16 +100,13 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
     
     public function findLayoutTemplateFile() : string
     {
-        if ($this->layout)
-        {
+        if ($this->layout) {
             return $this->layout;
         }
-        
-        $dir = \dirname(static::getReflection()->getFileName());
-        $primary = $dir . '/../templates/@layout.latte';
 
-        if (is_file($primary))
-        {
+        $primary = \dirname(static::getReflection()->getFileName()) . '/../templates/@layout.latte';
+
+        if (\is_file($primary)) {
             return $primary;
         }
 
@@ -157,11 +135,21 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter implements 
 
     public static function getFlashArea() : string
     {
-        return __DIR__ . '/../templates/flasharea.latte';
+        return __DIR__ . '/../templates/flashArea.latte';
     }
-
-    protected function createComponentAssetLoader()
+    
+    public static function getCookiePopup() : string
     {
-        return $this->iAssetLoaderFactory->create();
+        return __DIR__ . '/../templates/cookiePopup.latte';
+    }
+    
+    public static function getLocaleSelect() : string
+    {
+        return __DIR__ . '/../templates/localeSelect.latte';
+    }
+    
+    public static function getPaginator() : string
+    {
+        return __DIR__ . '/../templates/paginator.latte';
     }
 }

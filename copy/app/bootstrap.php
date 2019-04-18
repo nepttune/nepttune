@@ -12,11 +12,11 @@
 
 declare(strict_types = 1);
 
-$debugMode = true;
+$debugMode = false;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$configurator = new Nette\Configurator;
+$configurator = new Nette\Configurator();
 $configurator->setDebugMode($debugMode);
 $configurator->enableDebugger(__DIR__ . '/../log');
 $configurator->setTempDirectory(__DIR__ . '/../temp');
@@ -25,21 +25,32 @@ $configurator->createRobotLoader()
     ->addDirectory(__DIR__ . '/../vendor/nepttune/')
     ->register();
 
-foreach (['nepttune', 'admin'] as $extension)
-{
-    $coreFile = __DIR__ . "/../vendor/nepttune/{$extension}/config/core.neon";
-    $debugFile = __DIR__ . "/../vendor/nepttune/{$extension}/config/debug.neon";
+$load = function (string $file) use ($configurator) {
+    foreach (['nepttune', 'admin'] as $extension) {
+        $libConfig = __DIR__ . '/../vendor/nepttune/' . $extension . '/config/' . $file . '.neon';
 
-    if (file_exists($coreFile))
-    {
-        $configurator->addConfig($coreFile);
+        if (\file_exists($libConfig)) {
+            $configurator->addConfig($libConfig);
+        }
     }
 
-    if ($debugMode && file_exists($debugFile))
-    {
-        $configurator->addConfig($debugFile);
+    $appConfig = __DIR__ . '/config/' . $file . '.neon';
+
+    if (\file_exists($appConfig)) {
+        $configurator->addConfig($appConfig);
     }
+};
+
+$load('core');
+
+if (\PHP_SAPI === 'cli') {
+    $load('cli');
+    $configurator->setTempDirectory(__DIR__ . '/../temp/console');
 }
-$configurator->addConfig(__DIR__ . '/config/core.neon');
+
+if ($debugMode) {
+    $load('debug');
+}
 
 return $configurator->createContainer();
+

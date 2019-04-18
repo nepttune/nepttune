@@ -19,21 +19,25 @@ use Minishlink\WebPush\Subscription;
 
 final class PushNotificationModel
 {
+    use \Nette\SmartObject;
+
+    /** @var SubscriptionTable */
+    private $subscriptionTable;
+
     /** @var  WebPush */
     private $webPush;
-
-    /** @var  SubscriptionModel */
-    private $subscriptionModel;
 
     /** @var  \Nette\Http\Request */
     private $request;
 
-    public function __construct(array $parameters, SubscriptionModel $subscriptionModel, \Nette\Http\Request $request)
+    public function __construct(
+        array $parameters,
+        SubscriptionTable $subscriptionTable,
+        \Nette\Http\Request $request
+    )
     {
-        $auth = ['VAPID' => $parameters];
-
-        $this->webPush = new WebPush($auth);
-        $this->subscriptionModel = $subscriptionModel;
+        $this->subscriptionTable = $subscriptionTable;
+        $this->webPush = new WebPush(['VAPID' => $parameters]);
         $this->request = $request;
     }
 
@@ -43,28 +47,42 @@ final class PushNotificationModel
     }
 
     /**
+     * Output msg queue
+     */
+    public function flush() : void
+    {
+        $this->webPush->flush();
+    }
+
+    /**
      * Send notification to all active subscriptions.
-     * @param $msg
+     * @param string $msg
      */
     public function sendAll($msg) : void
     {
-        foreach ($this->subscriptionModel->getActive() as $row)
+        foreach ($this->subscriptionTable->findActive() as $row)
         {
             $this->sendNotification($row, $msg, false);
         }
 
-        $this->flush();
+        if ($flush)
+        {
+            $this->flush();
+        }
     }
 
     /**
      * Send notification to all subscriptions paired with specific user.
-     * @param $msg
-     * @param $userId
+     * @param int $userId
+     * @param string $msg
+     * @param string $dest
      * @param bool $flush
      */
-    public function sendByUserId(string $msg, int $userId, bool $flush = false) : void
+    public function sendByUserId(int $userId, string $msg, ?string $dest = null, bool $flush = false) : void
     {
-        foreach ($this->subscriptionModel->getActive()->where('user_id', $userId) as $row)
+        $msg = $this->composeMsg($msg, $dest);
+
+        foreach ($this->subscriptionTable->findActive()->where('user_id', $userId) as $row)
         {
             $this->sendNotification($row, $msg, false);
         }
@@ -77,13 +95,16 @@ final class PushNotificationModel
 
     /**
      * Send notification to all users subscribed to specific type.
-     * @param $msg
-     * @param $typeId
+     * @param int $typeId
+     * @param string $msg
+     * @param string $dest
      * @param bool $flush
      */
-    public function sendByType(string $msg, int $typeId, bool $flush = false) : void
+    public function sendByType(int $typeId, string $msg, ?string $dest = null, bool $flush = false) : void
     {
-        $subscriptions = $this->subscriptionModel->findAll()
+        $msg = $this->composeMsg($msg, $dest);
+
+        $subscriptions = $this->subscriptionTable->findAll()
             ->where('subscription.active', 1)
             ->where('user.active', 1)
             ->where('user:user_subscription_type.subscription_type_id', $typeId);
@@ -102,64 +123,63 @@ final class PushNotificationModel
     /**
      * Save or update subscriber information.
      * @throws \Nette\Application\BadRequestException
-     * @param $userId
+     * @param int $userId
      */
     public function saveSubscription(int $userId = null) : void
     {
-        $json = file_get_contents('php://input');
+        $json = \file_get_contents('php://input');
 
         if (!$json)
         {
             return;
         }
 
-        $data = json_decode($json, true);
+        $data = \json_decode($json, true);
 
         if (!$data || empty($data['endpoint']) || empty($data['publicKey']) || empty($data['authToken']))
         {
             return;
         }
 
-        $row = $this->subscriptionModel->getActive()->where('endpoint', $data['endpoint'])->fetch();
+        $row = $this->subscriptionTable->findActive()->where('endpoint', $data['endpoint'])->fetch();
 
         switch ($this->request->getMethod()) {
             case 'POST':
             case 'PUT':
             {
-                if (!$row)
+                if ($row)
                 {
-                    $row = $this->subscriptionModel->insert([
-                        'user_id' => $userId,
-                        'endpoint' => $data['endpoint'],
+                    $row->update([
+                        'user_id' => $userId ?: $row->user_id ?: null,
                         'key' => $data['publicKey'],
                         'token' => $data['authToken'],
                         'encoding' => $data['contentEncoding']
                     ]);
-
-                    $this->sendNotification($row, 'Notifications enabled!', true);
-
+                    
                     return;
                 }
 
-                $row->update([
-                    'user_id' => $userId ?: $row->user_id ?: null,
+                $row = $this->subscriptionTable->insert([
+                    'user_id' => $userId,
+                    'endpoint' => $data['endpoint'],
                     'key' => $data['publicKey'],
                     'token' => $data['authToken'],
                     'encoding' => $data['contentEncoding']
                 ]);
 
+                $this->sendNotification($row, 'Notifications enabled!', true);
+
                 return;
             }
             case 'DELETE':
             {
-                if (!$row)
+                if ($row)
                 {
-                    return;
+                    $row->update([
+                        'active' => 0
+                    ]);
                 }
 
-                $row->update([
-                    'active' => 0
-                ]);
                 return;
             }
             default:
@@ -179,8 +199,8 @@ final class PushNotificationModel
         $this->webPush->sendNotification($subscription, $msg, $flush);
     }
 
-    private function flush() : void
+    private function composeMsg(string $msg, ?string $dest) : string
     {
-        $this->webPush->flush();
+        return $dest ? \json_encode(['text' => $msg, 'destination' => $dest]) : $msg;
     }
 }

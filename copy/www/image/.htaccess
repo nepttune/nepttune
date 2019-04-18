@@ -1,6 +1,0 @@
-Order deny,allow
-Deny from all
-
-<Files ~ "\.(ico|jpg|jpeg|png|gif|svg)$">
-	Allow from all
-</Files>

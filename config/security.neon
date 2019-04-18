@@ -13,37 +13,53 @@ session:
     cookiePath: '/'
     cookieDomain: '.%domain%'
     cookieSecure: true
-    cookieHttpOnly: true
+    cookieHttponly: true
+    cookieSamesite: Lax
 
 http:
+    cookieSecure: true
+    sameSiteProtection: true
     frames: 'SAMEORIGIN'
     headers:
         Server: '%domain%'
         X-Powered-By: '%domain%'
 
         #Public-Key-Pins:
-        Strict-Transport-Security: 'max-age=60; includeSubDomains; preload'
+        Strict-Transport-Security: 'max-age=31536000; includeSubDomains; preload'
+        Expect-CT: 'max-age=31536000; enforce;'
         X-Xss-Protection: '1; mode=block'
         X-Content-Type-Options: 'nosniff'
         Referrer-Policy: 'strict-origin'
     csp:
-        default-src:  [ none ]
-        object-src:   [ none ]
+        default-src:     [ none ]
+        object-src:      [ none ]
         
-        img-src:      [ self ]
-        media-src:    [ self ]
-        worker-src:   [ self ]
-        connect-src:  [ self ]
-        manifest-src: [ self ]
+        media-src:       [ self ]
+        worker-src:      [ self ]
+        manifest-src:    [ self ]
 
-        font-src:   [ self, https://fonts.gstatic.com/ ]
-        style-src:  [ self, https://fonts.googleapis.com/ ]
-        frame-src:  [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com/, https://*.gopay.cz/ ]
-        child-src:  [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com/, https://*.gopay.cz/ ]
-        script-src: [ nonce, strict-dynamic, self, https://www.google.com/, https://www.gstatic.com/, unsafe-inline ]
+        font-src:        [ self, https://fonts.gstatic.com/ ]
+        style-src:       [ self, https://fonts.googleapis.com/ ]
+        connect-src:     [ self, https://fonts.googleapis.com/ ]
+        img-src:         [ self, https://*.googleapis.com/, https://*.gstatic.com ]
+        frame-src:       [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com/, https://*.gopay.cz/ ]
+        child-src:       [ self, https://www.google.com/, https://www.youtube.com/, https://*.gopay.com/, https://*.gopay.cz/ ]
+        script-src:      [ nonce, strict-dynamic, self, https://www.google.com/, https://www.gstatic.com/, unsafe-inline ]
 
         base-uri:        [ self ]
         form-action:     [ self ]
         frame-ancestors: [ self ]
-        require-sri-for: [ script, style ]
-        block-all-mixed-content: []
+        #require-sri-for: [ script, style ]
+        block-all-mixed-content: true
+    featurePolicy:
+        sync-xhr:      [ self ]
+        fullscreen:    [ self ]
+    
+        geolocation:   [ none ]
+        midi:          [ none ]
+        microphone:    [ none ]
+        camera:        [ none ]
+        magnetometer:  [ none ]
+        gyroscope:     [ none ]
+        speaker:       [ none ]
+        payment:       [ none ]

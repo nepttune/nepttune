@@ -1,0 +1,35 @@
+{*
+ * This file is part of Nepttune (https://www.peldax.com)
+ *
+ * Copyright (c) 2018 Václav Pelíšek (info@peldax.com)
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license. For more information, see
+ * <https://www.peldax.com>.
+*}
+
+{var $parameters = $parameters ?? []}
+
+<nav aria-label="Page navigation" n:if="$paginator->itemsPerPage < $paginator->itemCount">
+    <ul class="pagination">
+        <li {if $paginator->first}class="disabled"{/if}>
+            <a {if !$paginator->first}href="{link page!, $paginator->page - 1, (expand) $parameters}" class="ajax"{/if} aria-label="Previous">
+                <span aria-hidden="true">{icon angle-double-left}</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        {for $i = 1; $i <= $paginator->pageCount; $i++}
+            {if $paginator->page === $i}
+                <li class="active"><a>{$i}</a></li>
+            {else}
+                <li><a href="{link page!, $i, (expand) $parameters}" class="ajax">{$i}</a></li>
+            {/if}
+        {/for}
+        <li {if $paginator->last}class="disabled"{/if}>
+            <a {if !$paginator->last}href="{link page!, $paginator->page + 1, (expand) $parameters}" class="ajax"{/if} aria-label="Next">
+                <span aria-hidden="true">{icon angle-double-right}</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>

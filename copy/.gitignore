@@ -8,27 +8,30 @@ package-lock.json
 
 .gitignore
 
+docker/apache/*
 docker.sh
 docker-composer.sh
 docker-npm.sh
 docker-scss.sh
 docker-js.sh
+docker-tests.sh
 docker-permission.sh
+docker-console.sh
 
-ci/*
-docker/*
-
+analysis/build/*
+analysis/docs/*
 node_modules/*
 vendor/*
+vendor-bin/*
 temp/*
 log/*
+bin/*
 
 app/bootstrap.php
 app/config/core.neon.example
 app/config/sensitive.neon.example
 
 www/index.php
-www/robots.txt
 www/js/**/*.min.js
 www/scss/**/*.css
 www/scss/**/*.map

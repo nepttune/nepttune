@@ -12,10 +12,9 @@
 
 declare(strict_types = 1);
 
-namespace Nepttune\Component;
+namespace Nepttune\Model;
 
-interface IAssetLoaderFactory
+final class SubscriptionTable extends BaseTable
 {
-    /** @return AssetLoader */
-    public function create() : AssetLoader;
+    const TABLE_NAME = 'subscription';
 }

@@ -7,23 +7,42 @@
 # <https://www.peldax.com>.
 
 services:
-    - Nepttune\RouterFactory
-    router: @Nepttune\RouterFactory::createSubdomainRouter
+    routerFactory:
+        class: Nepttune\RouterFactory
+        arguments: 
+            - %router%
+    router: @routerFactory::createRouter
 
-    - Nepttune\Model\ErrorLogModel
+    - Nepttune\Model\ErrorLogTable
+    - Nepttune\Model\CronLogTable
+    - Nepttune\Model\SubscriptionTable
     - Nepttune\Model\PushNotificationModel(%vapid%)
-    - Nepttune\Model\SubscriptionModel
 
-    - App\Presenter\SubscribePresenter(%vapid.publicKey%)
-    - App\Presenter\ToolPresenter(%robots%)
-
-    - Nepttune\Component\IAssetLoaderFactory
+    assetLoaderFactory:
+        implement: Nepttune\Component\IAssetLoaderFactory
+        arguments:
+            - %assetLoader%
+            - %meta.version%
+            - %vapid.publicKey%
+            - %googleApi.key%
+    sitemapFactory:
+        implement: Nepttune\Component\ISitemapFactory
+        arguments:
+            - '%sitemap%'
+    robotsFactory:
+        implement: Nepttune\Component\IRobotsFactory
+        arguments:
+            - '%robots%'
+    securityFactory:
+        implement: Nepttune\Component\ISecurityFactory
+        arguments:
+            - '%security%'
 
 decorator:
     Nepttune\Presenter\BasePresenter:
         setup:
             - injectParameters(%meta%, %dest%)
-    Nepttune\ITranslator:
+    Nepttune\TI\ITranslator:
         setup:
             - injectTranslator
 

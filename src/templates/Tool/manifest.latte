@@ -1,0 +1,36 @@
+{*
+ * This file is part of Nepttune (https://www.peldax.com)
+ *
+ * Copyright (c) 2018 Václav Pelíšek (info@peldax.com)
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license. For more information, see
+ * <https://www.peldax.com>.
+*}
+
+{contentType application/manifest+json}
+
+{
+    "name": "{$meta['name']}",
+    "short_name": "{$meta['nameShort']}",
+    "description": "{$meta['description']}",
+    "scope": "{plink $dest['homepage']}",
+    "start_url": "{plink $dest['homepage']}",
+    "theme_color": "{$meta['color']}",
+    "background_color": "{$meta['color']}",
+    "lang": "{$presenter->translator->getDefaultLocale()}",
+    "display": "standalone",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "android-chrome-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "android-chrome-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}

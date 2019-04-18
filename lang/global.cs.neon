@@ -11,6 +11,7 @@ edit: 'Upravit'
 delete: 'Smazat'
 print: 'Tisknout'
 export: 'Exportovat'
+duplicate: 'Duplikovat'
 
 yes: 'Ano'
 no: 'Ne'
@@ -29,3 +30,15 @@ flash:
 
 confirm:
     delete: 'Opravdu chcete smazat tento záznam?'
+
+cookiePopup:
+    text: 'Tato webová stránka používá cookies za účelem zdokonalení jejich vlastností.'
+    confirm: 'Rozumím'
+
+language: 'Jazyk'
+
+error:
+    link: 'Zpátky domů'
+    text: 'Pardon, stala se chyba.'
+    400: 'Stránka nenalezena'
+    500: 'Interní chyba'

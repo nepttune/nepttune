@@ -8,6 +8,7 @@
  * <https://www.peldax.com>.
 *}
 
+{contentType application/javascript}
 self.addEventListener('install', function(event) {
     event.waitUntil(self.skipWaiting());
 });
@@ -17,27 +18,58 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('push', function(event) {
-    const payload = event.data ? event.data.text() : 'no payload';
+    let payload = {};
+    try {
+        payload = event.data.json();
+    } catch (e) {
+        payload = { text: event.data.text(), destination: '/' }
+    }
     event.waitUntil(
-        self.registration.showNotification('peldax.com notification', { body: payload })
+        self.registration.showNotification({$meta['name']} + ' notification', {
+            body: payload.text,
+            badge: "{$baseUrl|noescape}/favicon-32x32.png",
+            icon: "{$baseUrl|noescape}/favicon-32x32.png",
+            data: { destination: payload.destination }
+        })
     );
 });
 
 self.addEventListener('notificationclick', function(event) {
+    const notification = event.notification;
+    const destination = notification.data.destination;
+    notification.close();
     event.waitUntil(
         self.clients.matchAll().then(function(clientList) {
             if (clientList.length > 0) {
                 return clientList[0].focus();
             }
-            return self.clients.openWindow("{plink :Www:Default:default}");
+            if (destination) {
+                return self.clients.openWindow(destination);
+            }
         })
     );
 });
 
 self.addEventListener('fetch', function(event) {
     const CACHE_NAME = 'dependencies-cache';
-    return;
-    if (event.request.method !== 'GET' || !event.request.url.startsWith("{$baseUrl}"))
+    const requestedWith = event.request.headers.get('X-Requested-With');
+
+    // is not GET, is HTML, is AJAX
+    if (event.request.method !== 'GET' ||
+        event.request.headers.get('Accept').indexOf('text/html') !== -1 ||
+        (requestedWith !== null && requestedWith.indexOf('XMLHttpRequest') !== -1))
+    {
+        return;
+    }
+
+    const options = { mode: 'same-origin', credentials: 'same-origin' };
+
+    if (event.request.url.startsWith('https://fonts.googleapis.com/') !== false)
+    {
+        options.mode = 'cors';
+        options.credentials = 'omit';
+    }
+    else if (event.request.url.startsWith("https:\/\/www.realstream.cz") === false)
     {
         return;
     }
@@ -50,8 +82,8 @@ self.addEventListener('fetch', function(event) {
 
             var fetchRequest = event.request.clone();
 
-            return fetch(fetchRequest).then(function(response) {
-                if(!response || response.status !== 200 || response.type !== 'basic') {
+            return fetch(fetchRequest, options).then(function(response) {
+                if(!response || response.status !== 200 || (response.type !== 'basic' && response.type !== 'cors')) {
                     return response;
                 }
 
@@ -66,3 +98,4 @@ self.addEventListener('fetch', function(event) {
         })
     );
 });
+

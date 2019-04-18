@@ -38,20 +38,7 @@ Following snippets contain example `composer.json` and `package.json`. Composer 
 
 ## Running with Docker
 
-The only requirement for your machine is to have `docker` and `docker-compose` installed. Other tools needed by application are already present in docker container.
-
-### Docker introduction
-
-Nepttune is aimed to run in [docker](#docker) container. This approach brings many advantages, here are the most most notable ones.
-- The container is identical on all machines. Identical versions of PHP and other libraries make collaboration easier.
-- There is no need to install any development tools on your machine.
-- There is no need to have multiple services running on your machine (apache, mysql, redis, ...).
-
-There are also few disadvantages of this approach, but nepttune is designed to minimise their impact.
-- Docker is slow on Windows machines. 
-  - Whoever is using Windows obviously doesn't care about speed anyway.
-- Docker volumes have messy configuration of filesystem permissions.
-  - Nepttune includes script to fix filesystem permissions.
+Nepttune is aimed to run in [docker](#docker) container. The only requirement for your machine is to have `docker` and `docker-compose` installed. Other tools needed by application are already present in docker container.
 
 ### Project initialization
 
@@ -119,7 +106,7 @@ Nepttune also includes several helper scripts to run usefull tools right inside 
 
 ## Running without Docker
 
-Project can be run without docker as any other project using Apache (or other webserver), MariaDB and Redis.
+Project can be run without docker as any other project. Use your preffered webserver, database, but also install redis, which is required by default.
 
 # Configuration
 
@@ -266,14 +253,6 @@ This router consists of 2 routes, one to Api module and second to Www module. Th
 /[<locale [a-z]{2}>/]<presenter>/<action>[/<id>]
 ``` 
 
-# Interfaces and Traits
-
-## ITranslator and TTranslator
-
-Trait `TTranslator` includes translator variable and function to inject Translator. Interface `ITranslator` gives hint to decorator to call the inject method.
-
-Whenever you need your component to have translator, just simply add trait and interface.
-
 # Presenters
 
 ## BasePresenter
@@ -281,22 +260,6 @@ Whenever you need your component to have translator, just simply add trait and i
 ## ErrorPresenter
 
 # Layouts
-
-# Model
-
-# Components
-
-## BaseComponent
-
-This component assists in rendering and in creation of subcomponents.
-
-## BaseFormComponent
-
-> Uses TTranslator.
-
-## BaseListComponent
-
-> Uses TTranslator.
 
 ## AssetLoader
 
@@ -350,50 +313,6 @@ Scripts are inserted to the bottom of the page:
 
 > Loaded the files are not mandatory and can be ommitted if not needed. Most of the time only module files are used, sometimes component requires extra JS.
 
-# Form Validators
-
-Nepttune includes some extra form validators.
-
-## Same length
-
-This validator ensures that inputs from two controls has the same length - same number of characters. Required parameter is name of second control to test.
-```
-$form->addText('a', 'A');
-$form->addText('b', 'B')
-    ->addRule(\Peldax\NetteInit\Validator\CoreValidator::SAME_LENGTH, 'Message', 'a')
-```
-
-## Phone number pattern
-
-For validation of phone number inputs there is a constant in `BaseFormComponent` class with responding regex string.
-```
-$form->addText('phone', 'Phone')
-    ->addRule($form::PATTERN, 'Message', BaseFormComponent::PATTERN_PHONE)
-```
-
-# Latte extensions
-
-Nepttune includes some common latte macros and filters.
-
-## Macros
-
-### Icon macro
-
-> Loaded by default.
-
-This macro renders as font-awesome icon. First and mandatory icon argument is icon name without the `fa-` prefix. Second optional parameter is icon size, which adds `fa-Sx` class, where `S` is provided parameter value.
-```
-{icon user, size => 2}
-```
-Which renders as following HTML:
-```
-<i class="fa fa-fw fa-user fa-2x"></i>
-```
-
-## Filters
-
-No filters at the moment.
-
 # Extensions
 
 Some bigger parts were removed from core package and are available as extensions. The reason behind this is to make Nepttune as lightweight as possible.
@@ -403,12 +322,6 @@ Some bigger parts were removed from core package and are available as extensions
 This extension introduces full administration environment including user management and roles.
 
 Documentation for this extension is located in [separate file](https://github.com/nepttune/nepttune/blob/master/DOC-admin.md).
-
-# Extra packages
-
-Some components and other tools are excluded from core package. Can be downloaded as extras or used standalone.
-
-Documentation for extras is located in [separate file](https://github.com/nepttune/nepttune/blob/master/DOC-extra.md).
 
 # Contignous Integration
 
