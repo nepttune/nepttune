@@ -24,11 +24,20 @@
     "latte/latte": "2.4.8",
     "tracy/tracy": "^2.4.0",
     
+    "nepttune/asset-loader" : "^2.0",
+    "nepttune/sitemap" : "^2.0",
+    "nepttune/robots" : "^2.0",
+    "nepttune/security" : "^2.0",
+    "nepttune/ajaxselect" : "^2.0",
+    "nepttune/router": "^2.0",
+    "nepttune/macro" : "^2.0",
+	  
     "kdyby/redis": "dev-master",
     "kdyby/rabbitmq": "dev-master",
     "kdyby/translation": "dev-master",
     "kdyby/elastic-search": "dev-master",
 
+    "contributte/console": "^0.5",
     "ipub/mobile-detect": "^2.0",
     "minishlink/web-push": "^4.0",
 
