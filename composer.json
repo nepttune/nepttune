@@ -41,7 +41,7 @@
     "minishlink/web-push": "^4.0",
 
     "nextras/forms": "^2.0",
-    "uestla/recaptcha-control": "^6.0",
+    "uestla/recaptcha-control": "^7.0",
     "nasext/dependent-select-box": "^3.1",
 
     "ublaboo/datagrid": "^5.4.0",
