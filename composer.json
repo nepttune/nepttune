@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "nepttune/base-requirements" : "^4.0",
+    "nepttune/base-requirements" : "^5.0",
     "nepttune/base-component" : "^4.0",
     "nepttune/base-form-component" : "^5.0",
     "nepttune/base-list-component" : "^6.0",
