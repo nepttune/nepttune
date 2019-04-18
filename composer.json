@@ -21,7 +21,7 @@
     "nette/robot-loader": "^3.0",
     "nette/security": "^3.0",
     "nette/tokenizer": "^3.0",
-    "latte/latte": "3.0",
+    "latte/latte": "^3.0",
     "tracy/tracy": "^3.0",
     
     "nepttune/asset-loader" : "^2.0",
