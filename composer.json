@@ -34,10 +34,10 @@
     "kdyby/redis": "dev-master",
     "kdyby/rabbitmq": "dev-master",
     "kdyby/translation": "dev-master",
-    "kdyby/elastic-search": "dev-master",
+    "kdyby/elastic-search": "dev-master#729022b31dcb63251caa543496853ea106fc4883",
 
     "contributte/console": "^0.5",
-    "ipub/mobile-detect": "^2.0",
+    "ipub/mobile-detect": "dev-master#04d201345bb6533915b26c89064fe4e795f73f7e",
     "minishlink/web-push": "^4.0",
 
     "nextras/forms": "^2.0",
