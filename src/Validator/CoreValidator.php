@@ -16,10 +16,13 @@ namespace Nepttune\Validator;
 
 final class CoreValidator
 {
-    const SAME_LENGTH = 'Nepttune\Validator\CoreValidator::sameLength';
-    
-    public static function sameLength(\Nette\Forms\IControl $control, string $controlName)
+    public static function sameLength(\Nette\Forms\IControl $control, string $controlName) : bool
     {
-        return mb_strlen($control->getValue()) === mb_strlen($control->getForm()[$controlName]->getValue());
+        return \mb_strlen($control->getValue()) === \mb_strlen($control->getForm()[$controlName]->getValue());
+    }
+    
+    public static function isIn(\Nette\Forms\IControl $control, string $value) : bool
+    {
+        return \is_array($control->getValue()) && \in_array($value, $control->getValue(), true);
     }
 }
