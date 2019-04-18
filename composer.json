@@ -11,17 +11,37 @@
     }
   ],
   "require": {
-    "nepttune/base-requirements" : "^4.0",
-    "nepttune/base-components" : "^4.0",
-    "nepttune/base-model" : "^4.0",
-    "nepttune/mongo" : "^1.0",
+    "php": "^7.2",
+    "nette/application": "^2.4.0",
+    "nette/bootstrap": "^2.4.0",
+    "nette/database": "^2.4.0",
+    "nette/di": "^2.4.0",
+    "nette/forms": "^2.4.0",
+    "nette/reflection": "^2.4.0",
+    "nette/robot-loader": ">=2.4.0",
+    "nette/security": "^2.4.0",
+    "nette/tokenizer": ">=2.4.0",
+    "latte/latte": "2.4.8",
+    "tracy/tracy": "^2.4.0",
     
     "kdyby/redis": "dev-master",
     "kdyby/rabbitmq": "dev-master",
     "kdyby/translation": "dev-master",
     "kdyby/elastic-search": "dev-master",
+
     "ipub/mobile-detect": "^2.0",
-    "minishlink/web-push": "^4.0"
+    "minishlink/web-push": "^4.0",
+
+	"nextras/forms": "^2.0",
+    "uestla/recaptcha-control": "^6.0",
+    "nasext/dependent-select-box": "^3.1",
+
+	"ublaboo/datagrid": "^5.4.0",
+
+    "roave/security-advisories": "dev-master"
+  },
+  "suggest": {
+    "nepttune/mongo": "Support for mongo DB"
   },
   "autoload": {
     "psr-4": {
