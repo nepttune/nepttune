@@ -24,7 +24,7 @@
     "latte/latte": "^2.5 | ^3.0",
     "tracy/tracy": "^3.0",
     
-    "nepttune/asset-loader" : "^2.0",
+    "nepttune/asset-loader" : "^2.0.2",
     "nepttune/sitemap" : "^2.0",
     "nepttune/robots" : "^2.0",
     "nepttune/security" : "^2.0",
