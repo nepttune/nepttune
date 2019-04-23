@@ -32,13 +32,13 @@
     "nepttune/router": "^2.0",
     "nepttune/macro" : "^2.0",
 	  
-    "kdyby/redis": "dev-upgrade-nette#9017658ba963dcc3db75534a179bb839c79c96f3",
+    "peldax/redis": "dev-master",
     "peldax/rabbitmq": "dev-master",
-    "kdyby/translation": "dev-master#601e2594b916f76942b84969d6341d0cc12268e1",
-    "kdyby/elastic-search": "dev-master#729022b31dcb63251caa543496853ea106fc4883",
+    "peldax/translation": "dev-master",
+    "peldax/elastic-search": "dev-master",
+    "peldax/mobile-detect": "dev-master",
 
     "contributte/console": "^0.5",
-    
     "minishlink/web-push": "^4.0",
 
     "nextras/forms": "^2.0",
