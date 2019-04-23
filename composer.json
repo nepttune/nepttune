@@ -32,7 +32,7 @@
     "nepttune/macro" : "^2.0",
 	  
     "kdyby/redis": "dev-upgrade-nette#9017658ba963dcc3db75534a179bb839c79c96f3",
-    "kdyby/rabbitmq": "dev-master",
+    "kdyby/rabbitmq": "dev-master#e899f416fe4a9d5d8b6876f898be7b3dd2f175f0",
     "kdyby/translation": "dev-master#601e2594b916f76942b84969d6341d0cc12268e1",
     "kdyby/elastic-search": "dev-master#729022b31dcb63251caa543496853ea106fc4883",
 
