@@ -41,7 +41,6 @@
     "contributte/console": "dev-next",
     "minishlink/web-push": "^4.0",
 
-    "nextras/forms": "^2.0",
     "uestla/recaptcha-control": "^7.0",
     "nasext/dependent-select-box": "^3.1",
 
@@ -50,7 +49,8 @@
     "roave/security-advisories": "dev-master"
   },
   "suggest": {
-    "nepttune/mongo": "Support for mongo DB"
+    "nepttune/mongo": "Support for mongo DB",
+    "nextras/forms": "^2.0",
   },
   "autoload": {
     "psr-4": {
