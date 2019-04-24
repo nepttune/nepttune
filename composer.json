@@ -40,9 +40,9 @@
     "peldax/mobile-detect": "dev-master",
 
     "contributte/console": "dev-next",
+	"ublaboo/datagrid": "dev-v6.x",  
     "uestla/recaptcha-control": "^7.0",
     "nasext/dependent-select-box": "^3.1",
-    "ublaboo/datagrid": "^6.0",
           
     "minishlink/web-push": "^4.0-stable",
 
