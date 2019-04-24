@@ -23,14 +23,14 @@ abstract class BaseComponent extends \Nette\Application\UI\Control
 {
     protected const TEMPLATE_PATH = false;
     
-    protected function createComponent($name, array $args = null)
+    protected function createComponent(string $name) : ?\Nette\ComponentModel\IComponent
     {
-        if (method_exists($this, 'createComponent'.ucfirst($name)))
+        if (\method_exists($this, 'createComponent'.ucfirst($name)))
         {
             return parent::createComponent($name);
         }
 
-        return $this->getPresenter()->createComponent($name, $args);
+        return $this->getPresenter()->createComponent($name);
     }
 
     protected function beforeRender() : void
