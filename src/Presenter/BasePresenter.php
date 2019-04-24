@@ -60,7 +60,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         return $flash;
     }
     
-    public function createComponent($name, array $args = null)
+    public function createComponent(string $name) : ?\Nette\ComponentModel\IComponent
     {
         if (\method_exists($this, 'createComponent' . \ucfirst($name))) {
             return parent::createComponent($name);
