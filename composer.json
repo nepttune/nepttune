@@ -42,7 +42,7 @@
     "contributte/console": "dev-next",
     "uestla/recaptcha-control": "^7.0",
     "nasext/dependent-select-box": "^3.1",
-    "ublaboo/datagrid": "^5.4.0",
+    "ublaboo/datagrid": "^6.0",
           
     "minishlink/web-push": "^4.0-stable",
 
