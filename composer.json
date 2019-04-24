@@ -38,7 +38,7 @@
     "peldax/elastic-search": "dev-master",
     "peldax/mobile-detect": "dev-master",
 
-    "contributte/console": "^0.5",
+    "contributte/console": "dev-next",
     "minishlink/web-push": "^4.0",
 
     "nextras/forms": "^2.0",
