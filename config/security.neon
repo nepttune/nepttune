@@ -18,7 +18,6 @@ session:
 
 http:
     cookieSecure: true
-    sameSiteProtection: true
     frames: 'SAMEORIGIN'
     headers:
         Server: '%domain%'
