@@ -39,7 +39,7 @@
     "peldax/elastic-search": "dev-master",
     "peldax/mobile-detect": "dev-master",
     "peldax/forms": "dev-master",
-    "peldax/datagrid": "dev-v5.x",
+    "peldax/datagrid": "v5.x-dev",
 
     "contributte/console": "dev-next",
     "uestla/recaptcha-control": "dev-master",
