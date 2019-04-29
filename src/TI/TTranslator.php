@@ -19,7 +19,7 @@ trait TTranslator
     /** @var \Kdyby\Translation\Translator */
     public $translator;
 
-    public function injectTranslator(\Kdyby\Translation\Translator $translator)
+    public function decorateTranslator(\Kdyby\Translation\Translator $translator)
     {
         $this->translator = $translator;
     }
