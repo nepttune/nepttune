@@ -39,9 +39,9 @@
     "peldax/elastic-search": "dev-master",
     "peldax/mobile-detect": "dev-master",
     "peldax/forms": "dev-master",
+    "peldax/datagrid": "dev-v5.x",
 
     "contributte/console": "dev-next",
-    "ublaboo/datagrid": "v6.x-dev",
     "uestla/recaptcha-control": "dev-master",
     "nasext/dependent-select-box": "^3.1",
           
@@ -50,9 +50,7 @@
     "roave/security-advisories": "dev-master"
   },
   "suggest": {
-    "nepttune/mongo": "Support for mongo DB",
-    "nextras/forms": "^2.0",
-    "ublaboo/datagrid": "^6.0"
+    "nepttune/mongo": "Support for mongo DB"
   },
   "autoload": {
     "psr-4": {
