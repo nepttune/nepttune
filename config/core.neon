@@ -82,6 +82,10 @@ search:
         in: '../app/Repository'
         classes:
             - 'App\Repository\*Repository'
+    consumer:
+        in: '../app/Consumer'
+        classes:
+            - 'App\Consumer\*Consumer'
 
 decorator:
     Nepttune\Presenter\BasePresenter:
