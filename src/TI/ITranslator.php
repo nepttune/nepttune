@@ -16,5 +16,5 @@ namespace Nepttune\TI;
 
 interface ITranslator
 {
-    public function injectTranslator(\Kdyby\Translation\Translator $translator);
+    public function decorateTranslator(\Kdyby\Translation\Translator $translator);
 }
