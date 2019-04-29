@@ -66,10 +66,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
             return parent::createComponent($name);
         }
 
-        if ($args !== null) {
-            return $this->context->createService($name, $args);
-        }
-
         return $this->context->createService($name);
     }
 
