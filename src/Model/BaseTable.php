@@ -60,7 +60,6 @@ abstract class BaseTable implements IBaseRepository
 
     public function findRow(int $rowId) : \Nette\Database\Table\Selection
     {
-        $rowId = (int) $rowId;
         return $this->findAll()->wherePrimary($rowId);
     }
 
@@ -68,7 +67,7 @@ abstract class BaseTable implements IBaseRepository
     {
         $row = $this->findRow($rowId)->fetch();
 
-        if ($row === false)
+        if ($row === null)
         {
             throw new \Nette\InvalidStateException('Row doesnt exist.');
         }
