@@ -124,7 +124,7 @@ abstract class BaseListComponent extends BaseComponent implements \Nepttune\TI\I
                 ->setIcon('trash-alt')
                 ->setTitle('global.delete')
                 ->setClass('btn btn-xs btn-danger' . ($this->delete === true ? ' ajax' : ''))
-                ->setConfirmation(new \Ublaboo\DataGrid\Column\Action\Confirmation\StringConfirmation('global.confirm.delete'));
+                ->setConfirm('global.confirm.delete');
         }
 
         if (static::SORT)
@@ -186,8 +186,10 @@ abstract class BaseListComponent extends BaseComponent implements \Nepttune\TI\I
         $this['list']->redrawControl();
     }
 
-    public function saveInlineEdit(int $id, \stdClass $values) : void
+    public function saveInlineEdit($id, \stdClass $values) : void
     {
+        $id = (int) $id;
+
         $this->repository->update($id, (array) $values);
         $this['list']->redrawItem($id);
     }
