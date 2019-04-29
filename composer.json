@@ -40,7 +40,8 @@
     "peldax/mobile-detect": "dev-master",
     "peldax/forms": "dev-master",
 
-    "contributte/console": "dev-next",  
+    "contributte/console": "dev-next",
+    "ublaboo/datagrid": "v6.x-dev",
     "uestla/recaptcha-control": "dev-master",
     "nasext/dependent-select-box": "^3.1",
           
