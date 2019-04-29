@@ -35,7 +35,7 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     /** @var array */
     protected $dest;
 
-    public function injectParameters(array $meta, array $dest)
+    public function decorateParameters(array $meta, array $dest)
     {
         $this->meta = $meta;
         $this->dest = $dest;
