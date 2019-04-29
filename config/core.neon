@@ -86,10 +86,10 @@ search:
 decorator:
     Nepttune\Presenter\BasePresenter:
         setup:
-            - injectParameters(%meta%, %dest%)
+            - decorateParameters(%meta%, %dest%)
     Nepttune\TI\ITranslator:
         setup:
-            - injectTranslator
+            - decorateTranslator
 
 database:
     default:
