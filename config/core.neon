@@ -7,22 +7,9 @@
 # <https://www.peldax.com>.
 
 includes:
-    - database.neon
-    - security.neon
-    - services.neon
-    - forms.neon
-    - parameters.neon
-
-extensions:
-    redis: Kdyby\Redis\DI\RedisExtension
-    rabbitmq: Kdyby\RabbitMq\DI\RabbitMqExtension
-    elasticsearch: Kdyby\ElasticSearch\DI\SearchExtension
-    mobileDetect: IPub\MobileDetect\DI\MobileDetectExtension
-    translation: Kdyby\Translation\DI\TranslationExtension
-    recaptcha: ReCaptchaControl\DI\Extension
-    nextrasForm: Nextras\Forms\Bridges\NetteDI\FormsExtension
-    dependentSelectBox: NasExt\Forms\DependentExtension
-    ajaxSelect: Nepttune\DI\AjaxSelectExtension
+    - security.neon   #http headers, cookies and session
+    - forms.neon      #forms error messsages
+    - parameters.neon #parameters
 
 php:
     date.timezone: Europe/Prague
@@ -35,3 +22,99 @@ application:
     scanDirs:
         - '%appDir%/Module/'
         - '%appDir%/../vendor/nepttune/'
+
+extensions:
+    redis: Kdyby\Redis\DI\RedisExtension
+    rabbitmq: Kdyby\RabbitMq\DI\RabbitMqExtension
+    elasticsearch: Kdyby\ElasticSearch\DI\SearchExtension
+    mobileDetect: IPub\MobileDetect\DI\MobileDetectExtension
+    translation: Kdyby\Translation\DI\TranslationExtension
+    recaptcha: ReCaptchaControl\DI\Extension
+    #nextrasForm: Nextras\Forms\Bridges\NetteDI\FormsExtension
+    dependentSelectBox: NasExt\Forms\DependentExtension
+    ajaxSelect: Nepttune\DI\AjaxSelectExtension
+
+services:
+    - Nepttune\Model\ErrorLogTable
+    - Nepttune\Model\CronLogTable
+    - Nepttune\Model\SubscriptionTable
+    - Nepttune\Model\PushNotificationModel(%vapid%)
+
+    routerFactory:
+        class: Nepttune\RouterFactory
+        arguments:
+            - %router%
+    router: @routerFactory::createRouter
+    assetLoaderFactory:
+        implement: Nepttune\Component\IAssetLoaderFactory
+        arguments:
+            - %assetLoader%
+            - %meta.version%
+            - %vapid.publicKey%
+            - %googleApi.key%
+    sitemapFactory:
+        implement: Nepttune\Component\ISitemapFactory
+        arguments:
+            - '%sitemap%'
+    robotsFactory:
+        implement: Nepttune\Component\IRobotsFactory
+        arguments:
+            - '%robots%'
+    securityFactory:
+        implement: Nepttune\Component\ISecurityFactory
+        arguments:
+            - '%security%'
+
+search:
+    index:
+        in: '../app/Index'
+        classes:
+            - 'App\Index\*Index'
+    table:
+        in: '../app/Table'
+        classes:
+            - 'App\Table\*Table'
+    model:
+        in: '../app/Model'
+        classes:
+            - 'App\Model\*Model'
+    repository:
+        in: '../app/Repository'
+        classes:
+            - 'App\Repository\*Repository'
+
+decorator:
+    Nepttune\Presenter\BasePresenter:
+        setup:
+            - injectParameters(%meta%, %dest%)
+    Nepttune\TI\ITranslator:
+        setup:
+            - injectTranslator
+
+database:
+    default:
+        options:
+             PDO::ATTR_EMULATE_PREPARES: false
+             lazy: true
+             charset: 'utf8mb4'
+             sqlmode: 'STRICT_ALL_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,NO_UNSIGNED_SUBTRACTION,ERROR_FOR_DIVISION_BY_ZERO'
+
+redis:
+    journal: on
+    storage: [ locks: off ]
+    session: [ native: off ]
+
+latte:
+    macros:
+        - Nepttune\Latte\IconMacro::install
+
+translation:
+    default: en
+    whitelist: [en, cs, de, es, fr, ru]
+    resolvers:
+        session: off
+        request: on
+        header: off
+    dirs:
+        - '%appDir%/lang'
+        - '%appDir%/../vendor/nepttune/nepttune/lang'
