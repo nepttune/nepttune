@@ -22,8 +22,8 @@
     "nette/security": "^3.0-stable",
     "nette/tokenizer": "^3.0-stable",
     "nette/utils": "^3.0-stable",
-    "latte/latte": "^2.5-stable | ^3.0-stable",
-    "tracy/tracy": "^2.5-stable | ^3.0-stable",
+    "latte/latte": "^2.5-stable || ^3.0-stable",
+    "tracy/tracy": "^2.5-stable || ^3.0-stable",
     
     "nepttune/asset-loader" : "^2.0.2",
     "nepttune/sitemap" : "^2.0",
@@ -38,9 +38,10 @@
     "peldax/translation": "dev-master",
     "peldax/elastic-search": "dev-master",
     "peldax/mobile-detect": "dev-master",
+    "peldax/forms": "dev-master",
 
     "contributte/console": "dev-next",  
-    "uestla/recaptcha-control": "^7.0",
+    "uestla/recaptcha-control": "dev-master",
     "nasext/dependent-select-box": "^3.1",
           
     "minishlink/web-push": "^4.0-stable",
