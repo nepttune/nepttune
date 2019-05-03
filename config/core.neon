@@ -30,7 +30,7 @@ extensions:
     mobileDetect: IPub\MobileDetect\DI\MobileDetectExtension
     translation: Kdyby\Translation\DI\TranslationExtension
     recaptcha: ReCaptchaControl\DI\Extension
-    #nextrasForm: Nextras\Forms\Bridges\NetteDI\FormsExtension
+    nextrasForm: Nextras\Forms\Bridges\NetteDI\FormsExtension
     dependentSelectBox: NasExt\Forms\DependentExtension
     ajaxSelect: Nepttune\DI\AjaxSelectExtension
 
