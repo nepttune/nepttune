@@ -12,14 +12,18 @@ CREATE TABLE IF NOT EXISTS `log_error`(
   `url`         VARCHAR(255)                NOT NULL,
   `return_code` VARCHAR(10)                 NOT NULL,
   `datetime`    DATETIME                    NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE = INNODB;
+) ENGINE = INNODB 
+  CHARACTER SET `utf8mb4`
+  COLLATE `utf8mb4_general_ci`;
 
 CREATE TABLE IF NOT EXISTS `log_cron`(
     `id`          INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `name`        VARCHAR(100)                NOT NULL,
     `value`       VARCHAR(100)                         DEFAULT NULL,
     `datetime`    DATETIME                    NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE = INNODB;
+) ENGINE = INNODB 
+  CHARACTER SET `utf8mb4`
+  COLLATE `utf8mb4_general_ci`;
 
 CREATE TABLE IF NOT EXISTS `subscription` (
   `id`          INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -28,8 +32,10 @@ CREATE TABLE IF NOT EXISTS `subscription` (
   `key`         VARCHAR(255)                NOT NULL,
   `token`       VARCHAR(255)                NOT NULL,
   `encoding`    VARCHAR(255)                NOT NULL,
-  `active`      TINYINT DEFAULT 1           NOT NULL,
+  `active`      TINYINT(1) DEFAULT 1           NOT NULL,
   
   CONSTRAINT `subscription_endpoint_uindex` UNIQUE (`endpoint`),
   INDEX `subscription_active_index` (`active`)
-) ENGINE = INNODB;
+) ENGINE = INNODB 
+  CHARACTER SET `utf8mb4`
+  COLLATE `utf8mb4_general_ci`;
