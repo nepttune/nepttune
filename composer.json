@@ -42,7 +42,7 @@
     "peldax/datagrid": "v5.x-dev",
 
     "contributte/console": "dev-next",
-    "uestla/recaptcha-control": "dev-master",
+    "uestla/recaptcha-control": "^8.0",
     "nasext/dependent-select-box": "^3.1",
           
     "minishlink/web-push": "^4.0-stable",
