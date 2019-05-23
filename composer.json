@@ -43,7 +43,7 @@
 
     "contributte/console": "dev-next",
     "uestla/recaptcha-control": "^8.0",
-    "nasext/dependent-select-box": "^3.1",
+    "nasext/dependent-select-box": "dev-master",
           
     "minishlink/web-push": "^4.0-stable",
 
