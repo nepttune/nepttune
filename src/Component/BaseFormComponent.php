@@ -59,7 +59,7 @@ abstract class BaseFormComponent extends BaseComponent implements \Nepttune\TI\I
     {
         $this['form']->setDefaults($this->repository->getRow($rowId));
     }
-    
+
     public function setAjax() : void
     {
         $this['form']->getElementPrototype()->appendAttribute('class', 'ajax');
@@ -74,12 +74,10 @@ abstract class BaseFormComponent extends BaseComponent implements \Nepttune\TI\I
         
         $form = $this->modifyForm($form);
         
-        if (static::SAVE_NEXT)
-        {
+        if (static::SAVE_NEXT) {
             $form->addSubmit('save_next', 'global.save_next');
         }
-        if (static::SAVE_LIST)
-        {
+        if (static::SAVE_LIST) {
             $form->addSubmit('save_list', 'global.save_list');
         }
         
@@ -96,41 +94,31 @@ abstract class BaseFormComponent extends BaseComponent implements \Nepttune\TI\I
     
     public function formSuccess(Form $form, \stdClass $values) : void
     {
-        $values = (array) $values;
-        $values = \array_map(static function($value) {
-            return $value === "" ? null : $value;
-        }, $values);
-
+        $values = \array_map(static function($value) {return $value === "" ? null : $value;}, (array) $values);
         $rowId = 0;
 
-        if ($this->rowId)
-        {
+        if ($this->rowId) {
             $rowId = $this->rowId;
             $this->repository->update($this->rowId, $values);
-        }
-        else
-        {
+        } else {
             $rowId = $this->repository->insert($values);
         }
 
-        if ($this->saveCallback)
-        {
+        if ($this->saveCallback) {
             $this->saveCallback($form, $values, $rowId);
         }
     }
 
     public function formError(Form $form, string $msg = '') : void
     {
-        if ($this->failureCallback)
-        {
+        if ($this->failureCallback) {
             $this->failureCallback($form, $msg);
         }
     }
     
     public function __call($name, $args)
     {
-        if (\in_array($name, ['saveCallback', 'failureCallback'], true))
-        {
+        if (\in_array($name, ['saveCallback', 'failureCallback'], true)) {
             return \call_user_func_array($this->$name, $args);
         }
 
