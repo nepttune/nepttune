@@ -60,6 +60,11 @@ abstract class BaseFormComponent extends BaseComponent implements \Nepttune\TI\I
         $this['form']->setDefaults($this->repository->getRow($rowId));
     }
     
+    public function setAjax() : void
+    {
+        $this['form']->getElementPrototype()->appendAttribute('class', 'ajax');
+    }
+    
     protected function createComponentForm() : Form
     {
         $form = new Form();
