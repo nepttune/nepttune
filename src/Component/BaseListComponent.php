@@ -124,7 +124,7 @@ abstract class BaseListComponent extends BaseComponent implements \Nepttune\TI\I
                 ->setIcon('trash-alt')
                 ->setTitle('global.delete')
                 ->setClass('btn btn-xs btn-danger' . ($this->delete === true ? ' ajax' : ''))
-                ->setConfirm('global.confirm.delete');
+                ->setConfirmation(new \Ublaboo\DataGrid\Column\Action\Confirmation\StringConfirmation('global.confirm.delete'));
         }
 
         if (static::SORT)
