@@ -169,15 +169,26 @@ abstract class BaseTable implements IBaseRepository
     
     public function transaction(callable $function) : void
     {
+        static $transactionLevel = 0;
+
         try
         {
-            $this->context->beginTransaction();
+            if ($transactionLevel === 0) {
+                $this->context->beginTransaction();
+            }
+
+            $transactionLevel++;
             $function();
-            $this->context->commit();
+            $transactionLevel--;
+
+            if ($transactionLevel === 0) {
+                $this->context->commit();
+            }
         }
         catch (\PDOException $e)
         {
             $this->context->rollBack();
+            $transactionLevel = 0;
             throw $e;
         }
     }
