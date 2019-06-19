@@ -167,32 +167,30 @@ abstract class BaseTable implements IBaseRepository
         return $this->context->getStructure()->getColumns(static::TABLE_NAME);
     }
     
+    protected static $transactionLevel = 0;
+
     public function transaction(callable $function) : void
     {
-        static $transactionLevel = 0;
-
         try
         {
-            if ($transactionLevel === 0) {
+            if (static::$transactionLevel === 0) {
                 $this->context->beginTransaction();
             }
 
-            $transactionLevel++;
+            static::$transactionLevel++;
             $function();
-            $transactionLevel--;
+            static::$transactionLevel--;
 
-            if ($transactionLevel === 0) {
+            if (static::$transactionLevel === 0) {
                 $this->context->commit();
             }
         }
         catch (\PDOException $e)
         {
-            if ($transactionLevel > 0) {
+            if (static::$transactionLevel > 0) {
                 $this->context->rollBack();
             }
-            
-            $transactionLevel = 0;
-            
+            static::$transactionLevel = 0;
             throw $e;
         }
     }
