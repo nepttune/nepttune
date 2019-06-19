@@ -187,8 +187,12 @@ abstract class BaseTable implements IBaseRepository
         }
         catch (\PDOException $e)
         {
-            $this->context->rollBack();
+            if ($transactionLevel > 0) {
+                $this->context->rollBack();
+            }
+            
             $transactionLevel = 0;
+            
             throw $e;
         }
     }
