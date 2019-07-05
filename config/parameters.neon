@@ -77,11 +77,11 @@ parameters:
                 - '/node_modules/nepttune/js/form.js'
         list:
             styleBody:
-                - '/node_modules/ublaboo-datagrid/assets/dist/datagrid.css'
-                - '/node_modules/ublaboo-datagrid/assets/dist/datagrid-spinners.css'
+                - '/node_modules/ublaboo-datagrid/assets/datagrid.css'
+                - '/node_modules/ublaboo-datagrid/assets/datagrid-spinners.css'
             script:
-                - '/node_modules/ublaboo-datagrid/assets/dist/datagrid.js'
-                - '/node_modules/ublaboo-datagrid/assets/dist/datagrid-spinners.js'
+                - '/node_modules/ublaboo-datagrid/assets/datagrid.js'
+                - '/node_modules/ublaboo-datagrid/assets/datagrid-spinners.js'
         stat:
             script:
                 - '/node_modules/chart.js/dist/Chart.min.js'
