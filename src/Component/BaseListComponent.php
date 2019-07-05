@@ -87,7 +87,7 @@ abstract class BaseListComponent extends BaseComponent implements \Nepttune\TI\I
         {
             $grid->addInlineAdd()
                 ->setTitle('global.add')
-                ->setClass('btn btn-md btn-primary')
+                ->setClass('btn btn-md btn-primary ajax')
                 ->onControlAdd[] = [$this, 'modifyInlineForm'];
             $grid->getInlineAdd()->onSubmit[] = [$this, 'saveInlineAdd'];
         }
