@@ -131,6 +131,11 @@ abstract class BaseTable implements IBaseRepository
     {
         return $this->findAll()->count();
     }
+    
+    public function pairs($key, $value) : array
+    {
+        return $this->findAll()->fetchPairs($key, $value);
+    }
 
     public function query(string $sql, ...$params) : \Nette\Database\ResultSet
     {
