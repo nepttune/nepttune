@@ -67,8 +67,7 @@ abstract class BaseTable implements IBaseRepository
     {
         $row = $this->findRow($rowId)->fetch();
 
-        if ($row === null)
-        {
+        if (!$row instanceof \Nette\Database\Table\ActiveRow) {
             throw new \Nette\InvalidStateException('Row doesnt exist.');
         }
 
