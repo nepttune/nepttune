@@ -55,10 +55,10 @@ abstract class BaseListComponent extends BaseComponent implements \Nepttune\TI\I
     {
         $grid = new DataGrid();
         $grid->setRememberState(false);
-        $grid->setItemsPerPageList(static::PER_PAGE, $this->getDataSource()->count('*') <= static::PER_PAGE_ALL_LIMIT);
-        $grid->setDefaultPerPage(static::PER_PAGE_DEFAULT);
         $grid->setTranslator($this->translator);
+        $grid->setDefaultPerPage(static::PER_PAGE_DEFAULT);
         $grid->setDataSource($this->getDataSource());
+        $grid->setItemsPerPageList(static::PER_PAGE, $grid->getDataSource()->getCount() <= static::PER_PAGE_ALL_LIMIT);
 
         $grid = $this->modifyList($grid);
 
@@ -142,9 +142,9 @@ abstract class BaseListComponent extends BaseComponent implements \Nepttune\TI\I
 
     abstract protected function modifyList(DataGrid $grid) : DataGrid;
 
-    public function getDataSource() : \Nette\Database\Table\Selection
+    public function getDataSource()
     {
-        $all = $this->repository->getNetteSelection();
+        $all = $this->repository->findAll();
 
         if (static::ACTIVE)
         {
