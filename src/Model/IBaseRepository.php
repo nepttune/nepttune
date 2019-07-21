@@ -14,84 +14,76 @@ declare(strict_types = 1);
 
 namespace Nepttune\Model;
 
-interface IBaseRepository extends IListRepository
+interface IBaseRepository
 {
+    /**
+     * Returns row from table by its id
+     *
+     * @param int $rowId
+     * @return mixed
+     */
+    public function getRow(int $rowId);
+
     /**
      * Returns selection of all entries
      * 
      * @return mixed
      */
-    public function findAll();
-    
-    /**
-     * Returns selection of entries by custom condition
-     * 
-     * @param string $column
-     * @param $value
-     * @return mixed
-     */
-    public function findBy(string $column, $value);
+    public function findAll();// : \Countable;
 
     /**
-     * Returns selection of active entries
-     * 
-     * @return mixed
-     */
-    public function findActive();
-
-    /**
-     * Returns selection of entries found by id
-     * 
-     * @param int $rowId
-     * @return mixed
-     */
-    public function findRow(int $rowId);
-
-    /**
-     * Inserts multiple rows
-     * 
-     * @param array $data
-     * @return mixed
-     */
-    public function insertMany(array $data);
-
-    /**
-     * Updates entries found by associative array
-     * 
+     * Returns selection of entries found by associative array
+     *
      * @param array $filter
-     * @param array $data
      * @return mixed
      */
-    public function updateByArray(array $filter, array $data);
+    public function findByArray(array $filter);// : \Countable;
+
+    /**
+     * Inserts data into table
+     *
+     * @param array $data
+     * @return int
+     */
+    public function insert(array $data) : int;
+
+    /**
+     * Updates row
+     *
+     * @param int $rowId
+     * @param array $data
+     * @return int
+     */
+    public function update(int $rowId, array $data) : int;
 
     /**
      * Inserts data if no id provided, updates otherwise
-     * 
-     * @param array $data
+     *
+     * @param int $id
+     * @param array $values
      * @return mixed
      */
-    public function upsert(array $data);
+    public function upsert(?int $id, array $values) : int;
 
     /**
-     * Deletes entries fourd by associative array
-     * 
-     * @param array $filter
+     * Deletes row
+     *
+     * @param int $rowId
      */
-    public function deleteByArray(array $filter) : void;
+    public function delete(int $rowId) : void;
 
     /**
-     * Returns count of entries
-     * 
-     * @return int
+     * Sets state
+     *
+     * @param int $rowId
+     * @param int $active
      */
-    public function count() : int;
+    public function setActive(int $rowId, int $active) : void;
 
     /**
-     * Performs custom query
-     * 
-     * @param string $query
-     * @param mixed ...$params
-     * @return mixed
+     * Returns table name
+     *
+     * @return string
      */
-    public function query(string $query, ...$params);
+    public function getName() : string;
 }

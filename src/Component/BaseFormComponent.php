@@ -36,7 +36,7 @@ abstract class BaseFormComponent extends BaseComponent implements \Nepttune\TI\I
     public const VALIDATOR_IS_IN = 'Nepttune\Validator\CoreValidator::isIn';
     public const VALIDATOR_IN_IN_MSG = 'form.error.is_in';
     
-    /** @var \Nepttune\Model\IFormRepository */
+    /** @var \Nepttune\Model\IBaseRepository */
     protected $repository;
     
     /** @var int */
@@ -47,6 +47,11 @@ abstract class BaseFormComponent extends BaseComponent implements \Nepttune\TI\I
 
     /** @var callable */
     public $failureCallback;
+
+    public function __construct(\Nepttune\Model\IBaseRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     public function setDefaults(int $rowId) : void
     {
@@ -95,14 +100,8 @@ abstract class BaseFormComponent extends BaseComponent implements \Nepttune\TI\I
     public function formSuccess(Form $form, \stdClass $values) : void
     {
         $values = \array_map(static function($value) {return $value === "" ? null : $value;}, (array) $values);
-        $rowId = 0;
 
-        if ($this->rowId) {
-            $rowId = $this->rowId;
-            $this->repository->update($this->rowId, $values);
-        } else {
-            $rowId = $this->repository->insert($values);
-        }
+        $rowId = $this->repository->upsert($this->rowId, $values);
 
         if ($this->saveCallback) {
             $this->saveCallback($form, $values, $rowId);
@@ -124,14 +123,14 @@ abstract class BaseFormComponent extends BaseComponent implements \Nepttune\TI\I
 
         return parent::__call($name, $args);
     }
-    
+
     public function validateUnique(\Nette\Forms\IControl $control)
     {
         $id = $this->rowId ?: 0;
-        
-        return $this->repository->findByArray([
-            $control->getName() => $control->getValue(),
-            'id != ?' => $id
-        ])->count() === 0;
+
+        return \count($this->repository->findByArray([
+                $control->getName() => $control->getValue(),
+                'id != ?' => $id
+            ])) === 0;
     }
 }

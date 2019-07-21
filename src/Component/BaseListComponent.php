@@ -48,15 +48,21 @@ abstract class BaseListComponent extends BaseComponent implements \Nepttune\TI\I
     /** @var bool */
     protected $activeSwitch = true;
 
-    /** @var  \Nepttune\Model\IListRepository */
+    /** @var  \Nepttune\Model\IBaseRepository */
     protected $repository;
+
+    public function __construct(\Nepttune\Model\IBaseRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     protected function createComponentList() : DataGrid
     {
         $grid = new DataGrid();
         $grid->setRememberState(false);
-        $grid->setTranslator($this->translator);
         $grid->setDefaultPerPage(static::PER_PAGE_DEFAULT);
+        $grid->setTranslator($this->translator);
+
         $grid->setDataSource($this->getDataSource());
         $grid->setItemsPerPageList(static::PER_PAGE, $grid->getDataSource()->getCount() <= static::PER_PAGE_ALL_LIMIT);
 
