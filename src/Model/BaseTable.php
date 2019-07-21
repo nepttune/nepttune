@@ -33,22 +33,17 @@ abstract class BaseTable implements IBaseRepository
         return static::TABLE_NAME;
     }
 
-    public function getNetteSelection() : \Nette\Database\Table\Selection
-    {
-        return $this->findAll();
-    }
-    
-    public function findAll() : \Nette\Database\Table\Selection
+    public function findAll()
     {
         return $this->context->table(static::TABLE_NAME);
     }
 
-    public function findBy(string $column, $value) : \Nette\Database\Table\Selection
+    public function findBy(string $column, $value)
     {
         return $this->findAll()->where($column, $value);
     }
 
-    public function findByArray(array $filter) : \Nette\Database\Table\Selection
+    public function findByArray(array $filter)
     {
         return $this->findAll()->where($filter);
     }
@@ -63,7 +58,7 @@ abstract class BaseTable implements IBaseRepository
         return $this->findAll()->wherePrimary($rowId);
     }
 
-    public function getRow(int $rowId) : \Nette\Database\Table\ActiveRow
+    public function getRow(int $rowId)
     {
         $row = $this->findRow($rowId)->fetch();
 
@@ -74,21 +69,38 @@ abstract class BaseTable implements IBaseRepository
         return $row;
     }
 
-    public function insert(array $data) : \Nette\Database\Table\ActiveRow
+    public function insert(array $data) : int
     {
-        return $this->findAll()->insert($data);
+        $row = $this->findAll()->insert($data);
+
+        if (!$row instanceof \Nette\Database\Table\ActiveRow) {
+            throw new \Nette\InvalidStateException('Insert has failed.');
+        }
+
+        return $row->id;
     }
 
-    public function insertMany(array $data) : \Nette\Database\Table\ActiveRow
+    public function insertMany(array $data) : int
     {
-        return $this->findAll()->insert($data);
+        $result = $this->findAll()->insert($data);
+
+        if ($result instanceof \Nette\Database\Table\ActiveRow) {
+            return 1;
+        }
+
+        if (\is_int($result)) {
+            return $result;
+        }
+
+        throw new \Nette\InvalidStateException('Insert has failed.');
     }
 
-    public function update(int $rowId, array $data) : \Nette\Database\Table\ActiveRow
+    public function update(int $rowId, array $data) : int
     {
         $row = $this->findRow($rowId);
         $row->update($data);
-        return $row->fetch();
+
+        return $rowId;
     }
 
     public function updateByArray(array $filter, array $data) : \Nette\Database\Table\Selection
@@ -98,17 +110,15 @@ abstract class BaseTable implements IBaseRepository
         return $rows;
     }
 
-    public function upsert(array $data) : \Nette\Database\Table\ActiveRow
+    public function upsert(?int $id, array $values) : int
     {
-        if (!empty($data['id']))
-        {
-            $row = $this->findRow($data['id']);
-            unset($data['id']);
-            $row->update($data);
-            return $row->fetch();
+        if (\is_int($id)) {
+            $this->update($id, $values);
+
+            return $id;
         }
-        unset($data['id']);
-        return $this->insert($data);
+
+        return $this->insert($values);
     }
 
     public function delete(int $rowId) : void
@@ -128,7 +138,7 @@ abstract class BaseTable implements IBaseRepository
 
     public function count() : int
     {
-        return $this->findAll()->count();
+        return $this->findAll()->count('*');
     }
     
     public function pairs($key, $value) : array
