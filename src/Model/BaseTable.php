@@ -33,17 +33,17 @@ abstract class BaseTable implements IBaseRepository
         return static::TABLE_NAME;
     }
 
-    public function findAll()
+    public function findAll() : \Nette\Database\Table\Selection
     {
         return $this->context->table(static::TABLE_NAME);
     }
 
-    public function findBy(string $column, $value)
+    public function findBy(string $column, $value) : \Nette\Database\Table\Selection
     {
         return $this->findAll()->where($column, $value);
     }
 
-    public function findByArray(array $filter)
+    public function findByArray(array $filter) : \Nette\Database\Table\Selection
     {
         return $this->findAll()->where($filter);
     }
@@ -58,7 +58,7 @@ abstract class BaseTable implements IBaseRepository
         return $this->findAll()->wherePrimary($rowId);
     }
 
-    public function getRow(int $rowId)
+    public function getRow(int $rowId) : \Nette\Database\Table\ActiveRow
     {
         $row = $this->findRow($rowId)->fetch();
 
@@ -103,11 +103,12 @@ abstract class BaseTable implements IBaseRepository
         return $rowId;
     }
 
-    public function updateByArray(array $filter, array $data) : \Nette\Database\Table\Selection
+    public function updateByArray(array $filter, array $data) : int
     {
         $rows = $this->findByArray($filter);
         $rows->update($data);
-        return $rows;
+
+        return $rows->count('*');
     }
 
     public function upsert(?int $id, array $values) : int
