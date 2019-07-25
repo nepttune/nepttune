@@ -103,25 +103,16 @@ abstract class BaseFormComponent extends BaseComponent implements \Nepttune\TI\I
 
         $rowId = $this->repository->upsert($this->rowId, $values);
 
-        if ($this->saveCallback) {
-            $this->saveCallback($form, $values, $rowId);
+        if (\is_callable($this->saveCallback)) {
+            \call_user_func($this->saveCallback, $form, $values, $rowId);
         }
     }
 
     public function formError(Form $form, string $msg = '') : void
     {
-        if ($this->failureCallback) {
-            $this->failureCallback($form, $msg);
+        if (\is_callable($this->failureCallback)) {
+            \call_user_func($this->failureCallback, $form, $msg);
         }
-    }
-    
-    public function __call($name, $args)
-    {
-        if (\in_array($name, ['saveCallback', 'failureCallback'], true)) {
-            return \call_user_func_array($this->$name, $args);
-        }
-
-        return parent::__call($name, $args);
     }
 
     public function validateUnique(\Nette\Forms\IControl $control)
