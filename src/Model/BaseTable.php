@@ -184,7 +184,11 @@ abstract class BaseTable implements IBaseRepository
     
     protected static $transactionLevel = 0;
 
-    public function transaction(callable $function) : void
+    /**
+     * @param callable $function
+     * @return mixed
+     */
+    public function transaction(callable $function)
     {
         try
         {
@@ -193,18 +197,21 @@ abstract class BaseTable implements IBaseRepository
             }
 
             static::$transactionLevel++;
-            $function();
+            $result = $function();
             static::$transactionLevel--;
 
             if (static::$transactionLevel === 0) {
                 $this->context->commit();
             }
+
+            return $result;
         }
         catch (\PDOException $e)
         {
             if (static::$transactionLevel > 0) {
                 $this->context->rollBack();
             }
+
             static::$transactionLevel = 0;
             throw $e;
         }
