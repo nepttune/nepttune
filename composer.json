@@ -16,7 +16,7 @@
     "nette/application": "^3.0-stable",
     "nette/bootstrap": "^3.0-stable",
     "nette/database": "^3.0-stable",
-    "nette/di": "^3.0-stable",
+    "nette/di": "^3.0.1-stable",
     "nette/forms": "^3.0-stable",
     "nette/robot-loader": "^3.0-stable",
     "nette/security": "^3.0-stable",
