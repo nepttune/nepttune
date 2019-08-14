@@ -86,6 +86,14 @@ search:
         in: '../app/Consumer'
         classes:
             - 'App\Consumer\*Consumer'
+    latte:
+        in: '../app/Latte'
+        classes:
+            - 'App\Latte\*Renderer'
+    factory:
+        in: '../app/Module'
+        classes:
+            - 'App\*Module\Component\*Factory'
 
 decorator:
     Nepttune\Presenter\BasePresenter:
