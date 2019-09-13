@@ -68,8 +68,11 @@ abstract class BaseListComponent extends BaseComponent implements \Nepttune\TI\I
         return $all;
     }
 
-    public function statusChange(int $id, int $status, string $column = 'active') : void
+    public function statusChange($id, $status, string $column = 'active') : void
     {
+        $id = (int) $id;
+        $status = (int) $status;
+
         if (!\in_array($status, [0, 1], true)) {
             throw new \Nette\Application\BadRequestException();
         }
@@ -78,8 +81,10 @@ abstract class BaseListComponent extends BaseComponent implements \Nepttune\TI\I
         $this['list']->redrawItem($id);
     }
 
-    public function handleDelete(int $id) : void
+    public function handleDelete($id) : void
     {
+        $id = (int) $id;
+
         if (static::ACTIVE) {
             $this->repository->setActive($id, -1);
         }
