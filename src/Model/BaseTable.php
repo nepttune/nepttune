@@ -206,7 +206,7 @@ abstract class BaseTable implements IBaseRepository
 
             return $result;
         }
-        catch (\PDOException $e)
+        catch (\Throwable $e)
         {
             if (static::$transactionLevel > 0) {
                 $this->context->rollBack();
