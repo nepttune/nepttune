@@ -48,7 +48,9 @@ trait TFileSaver
 
     public static function getFilePath(string $file) : string
     {
-        $file = \ltrim($file, '/');
+        if ($file[0] === '/') {
+            return $file;
+        }
         
         if (\mb_substr($file, 0, 6) === 'static') {
             return \getcwd() . '/' . $file;
