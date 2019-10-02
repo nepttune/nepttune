@@ -20,20 +20,17 @@ trait TFileSaver
 
     public function saveFile(\Nette\Http\FileUpload $file, string $subPath = '') : string
     {
-        if (!$file->isOk())
-        {
+        if (!$file->isOk()) {
             throw new \Nette\Application\BadRequestException('Bad request', 400);
         }
 
         $name = $file->getSanitizedName();
         $extension = \substr($name, \strrpos($name, '.') + 1);
 
-        do
-        {
+        do {
             $fileName = ($subPath ? $subPath . '/' : '') . \Nette\Utils\Random::generate(10) . '.' . $extension;
             $filePath = static::getFilePath($fileName);
-        }
-        while(\file_exists($filePath));
+        } while(\file_exists($filePath));
 
         $file->move($filePath);
 
@@ -42,16 +39,17 @@ trait TFileSaver
 
     public function saveImage(\Nette\Http\FileUpload $image, string $subPath = '') : string
     {
-        if (!$image->isImage())
-        {
-            throw new \Nette\Application\BadRequestException('Bad request', 400);
+        if ($image->isImage()) {
+            return $this->saveFile($image, $subPath);
         }
 
-        return $this->saveFile($image, $subPath);
+        throw new \Nette\Application\BadRequestException('Bad request', 400);
     }
 
     public static function getFilePath(string $file) : string
     {
+        \ltrim($file, '/');
+        
         if (\mb_substr($file, 0, 6) === 'static') {
             return \getcwd() . '/' . $file;
         }
