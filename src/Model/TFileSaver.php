@@ -58,4 +58,19 @@ trait TFileSaver
 
         return \getcwd() . self::$filePath . $file;
     }
+    
+    public static function getRelPath(string $file) : string
+    {
+        if ($file[0] !== '/') {
+            return $file;
+        }
+
+        $file = \mb_substr($file, \strlen(\getcwd()) + 1);
+
+        if (\mb_substr($file, 0, 6) === 'static') {
+            return $file;
+        }
+
+        return \mb_substr($file, \strlen(self::$filePath()));
+    }
 }
