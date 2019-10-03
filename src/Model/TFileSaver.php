@@ -56,7 +56,7 @@ trait TFileSaver
             return \getcwd() . '/' . $file;
         }
 
-        return \getcwd() . self::$filePath . $file;
+        return \getcwd() . '/' . self::$filePath . $file;
     }
     
     public static function getRelPath(string $file) : string
