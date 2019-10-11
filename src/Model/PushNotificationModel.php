@@ -17,7 +17,7 @@ namespace Nepttune\Model;
 use Minishlink\WebPush\WebPush;
 use Minishlink\WebPush\Subscription;
 
-final class PushNotificationModel
+class PushNotificationModel
 {
     use \Nette\SmartObject;
 
