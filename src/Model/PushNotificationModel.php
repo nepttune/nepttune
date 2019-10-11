@@ -22,13 +22,13 @@ class PushNotificationModel
     use \Nette\SmartObject;
 
     /** @var SubscriptionTable */
-    private $subscriptionTable;
+    protected $subscriptionTable;
 
     /** @var  WebPush */
-    private $webPush;
+    protected $webPush;
 
     /** @var  \Nette\Http\Request */
-    private $request;
+    protected $request;
 
     public function __construct(
         array $parameters,
