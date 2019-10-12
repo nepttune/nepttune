@@ -18,38 +18,31 @@ abstract class BaseIndex
 {
     use \Nette\SmartObject;
 
-    /** @var \Nette\Database\Context */
-    protected $client;
+    /** @var \Elastica\Index */
+    protected $index;
 
     public function __construct(\Kdyby\ElasticSearch\Client $client)
     {
-        $this->client = $client;
+        $this->index = $client->getIndex(static::INDEX_NAME);
     }
 
     public function search(array $query) : \Elastica\ResultSet
     {
-        $index = $this->client->getIndex(static::INDEX_NAME);
-
-        if (!$index->exists())
-        {
-            $index = $this->createIndex();
+        if (!$this->index->exists()) {
+            $this->createIndex();
         }
 
-        $type = $index->getType('doc');
-
-        return $type->search($query);
+        return $this->index->getType('doc')->search($query);
     }
 
-    public function createIndex() : \Elastica\Index
+    public function createIndex() : void
     {
-        $index = $this->client->getIndex(static::INDEX_NAME);
-        $index->create(static::PROPERTIES);
+        $this->index->create(static::PROPERTIES);
 
-        $doc = $index->getType('doc');
+        $doc = $this->index->getType('doc');
         $docMapping = new \Elastica\Type\Mapping($doc, static::MAPPING);
         $doc->setMapping($docMapping);
 
-        $index->refresh();
-        return $index;
+        $this->index->refresh();
     }
 }
