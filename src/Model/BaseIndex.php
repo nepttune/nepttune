@@ -38,8 +38,18 @@ abstract class BaseIndex
 
         return $this->index->getType('doc')->search($query);
     }
+    
+    public function insert(array $data) : void
+    {
+        $this->index->addDocuments([new \Elastica\Document('', $data)]);
+    }
 
-    public function createIndex() : void
+    public function update($id, array $data) : void
+    {
+        $this->index->updateDocuments([new \Elastica\Document($id, $data)]);
+    }
+
+    protected function createIndex() : void
     {
         $this->index->create(static::PROPERTIES);
 
