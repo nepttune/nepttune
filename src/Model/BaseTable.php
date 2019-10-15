@@ -18,7 +18,7 @@ abstract class BaseTable implements IBaseRepository
 {
     use \Nette\SmartObject;
     
-    const TABLE_NAME = '';
+    public const TABLE_NAME = self::TABLE_NAME;
     
     /** @var \Nette\Database\Context */
     protected $context;
