@@ -32,25 +32,29 @@ abstract class BaseIndex
 
     public function search(array $query) : \Elastica\ResultSet
     {
-        if (!$this->index->exists()) {
-            $this->createIndex();
-        }
+        $this->createIndex();
 
         return $this->index->getType('doc')->search($query);
     }
     
     public function insert(array $data) : void
     {
+        $this->createIndex();
         $this->index->addDocuments([new \Elastica\Document('', $data)]);
     }
 
     public function update($id, array $data) : void
     {
+        $this->createIndex();
         $this->index->updateDocuments([new \Elastica\Document($id, $data)]);
     }
 
     protected function createIndex() : void
     {
+        if ($this->index->exists()) {
+            return;
+        }
+        
         $this->index->create(static::PROPERTIES);
 
         $doc = $this->index->getType('doc');
