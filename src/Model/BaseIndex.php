@@ -18,9 +18,9 @@ abstract class BaseIndex
 {
     use \Nette\SmartObject;
 
-    protected const INDEX_NAME = self::INDEX_NAME;
-    protected const PROPERTIES = self::PROPERTIES;
-    protected const MAPPING = self::MAPPING;
+    protected const INDEX_NAME = '';
+    protected const PROPERTIES = [];
+    protected const MAPPING = [];
     
     /** @var \Elastica\Index */
     protected $index;
