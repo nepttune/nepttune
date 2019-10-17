@@ -37,16 +37,30 @@ abstract class BaseIndex
         return $this->index->getType('doc')->search($query);
     }
     
-    public function insert(array $data) : void
+    public function insert($id = '', array $data = []) : void
     {
         $this->createIndex();
-        $this->index->addDocuments([new \Elastica\Document('', $data)]);
+        $this->index->addDocuments([new \Elastica\Document($id, $data)]);
     }
 
     public function update($id, array $data) : void
     {
         $this->createIndex();
         $this->index->updateDocuments([new \Elastica\Document($id, $data)]);
+    }
+    
+    public function upsert($id, array $data) : void
+    {
+        $this->createIndex();
+        $doc = new \Elastica\Document($id, $data);
+        $doc->setDocAsUpsert(true);
+        $this->index->updateDocuments([$doc]);
+    }
+
+    public function delete($id) : void
+    {
+        $this->createIndex();
+        $this->index->deleteDocuments([new \Elastica\Document($id)]);
     }
 
     protected function createIndex() : void
