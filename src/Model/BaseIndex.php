@@ -34,33 +34,40 @@ abstract class BaseIndex
     {
         $this->createIndex();
 
-        return $this->index->getType('doc')->search($query);
+        return $this->index->getType('_doc')->search($query);
     }
     
     public function insert($id = '', array $data = []) : void
     {
         $this->createIndex();
-        $this->index->addDocuments([new \Elastica\Document($id, $data)]);
+        $this->index->getType('_doc')->addDocument(new \Elastica\Document($id, $data));
     }
 
     public function update($id, array $data) : void
     {
         $this->createIndex();
-        $this->index->updateDocuments([new \Elastica\Document($id, $data)]);
+        $this->index->getType('_doc')->updateDocument(new \Elastica\Document($id, $data));
     }
     
     public function upsert($id, array $data) : void
     {
         $this->createIndex();
+
         $doc = new \Elastica\Document($id, $data);
         $doc->setDocAsUpsert(true);
-        $this->index->updateDocuments([$doc]);
+
+        $this->index->getType('_doc')->updateDocument($doc);
     }
 
     public function delete($id) : void
     {
         $this->createIndex();
-        $this->index->deleteDocuments([new \Elastica\Document($id)]);
+        
+        try {
+            $this->index->getType('_doc')->deleteDocument(new \Elastica\Document($id));
+        } catch (\Elastica\Exception\NotFoundException $e) {
+            return;
+        }
     }
 
     protected function createIndex() : void
@@ -71,7 +78,7 @@ abstract class BaseIndex
         
         $this->index->create(static::PROPERTIES);
 
-        $doc = $this->index->getType('doc');
+        $doc = $this->index->getType('_doc');
         $docMapping = new \Elastica\Type\Mapping($doc, static::MAPPING);
         $doc->setMapping($docMapping);
 
