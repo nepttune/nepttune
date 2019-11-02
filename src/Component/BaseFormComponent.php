@@ -24,10 +24,10 @@ abstract class BaseFormComponent extends BaseComponent implements \Nepttune\TI\I
     protected const SAVE_NEXT = false;
     protected const SAVE_LIST = false;
     
-    public const PATTERN_PHONE = '^[+(]{0,2}[0-9 ().-]{9,}$';
-    public const PATTERN_FILE = '^[\w,\s-]+\.[A-Za-z]{3,}$';
-    public const PATTERN_USERNAME = '^(?=.{4,20}$)(?![_.\-])(?!.*[_.\-]{2})[a-zA-Z0-9._\-]+(?<![_.])$';
-    public const PATTERN_PASSWORD = '^[a-zA-Z0-9._!?@#%&\-\$\^\*]{8,50}$';
+    public const PATTERN_PHONE = '[+(]{0,2}[0-9 ().-]{9,}';
+    public const PATTERN_FILE = '[\w,\s-]+\.[A-Za-z]{3,}';
+    public const PATTERN_USERNAME = '[a-zA-Z0-9._@\-\*]{4,50}';
+    public const PATTERN_PASSWORD = '[a-zA-Z0-9._!?@#%&\-\$\^\*]{8,50}';
     
     public const VALIDATOR_UNIQUE = 'validateUnique';
     public const VALIDATOR_UNIQUE_MSG = 'form.error.unique';
