@@ -40,13 +40,29 @@ abstract class BaseIndex
     public function insert($id = '', array $data = []) : void
     {
         $this->createIndex();
-        $this->index->getType('_doc')->addDocument(new \Elastica\Document($id, $data));
+
+        $doc = new \Elastica\Document($id, $data);
+        $routing = $this->getRouting();
+
+        if ($routing !== null) {
+            $doc->setRouting($routing);
+        }
+
+        $this->index->getType('_doc')->addDocument($doc);
     }
 
     public function update($id, array $data) : void
     {
         $this->createIndex();
-        $this->index->getType('_doc')->updateDocument(new \Elastica\Document($id, $data));
+
+        $doc = new \Elastica\Document($id, $data);
+        $routing = $this->getRouting();
+
+        if ($routing !== null) {
+            $doc->setRouting($routing);
+        }
+
+        $this->index->getType('_doc')->updateDocument($doc);
     }
     
     public function upsert($id, array $data) : void
@@ -55,6 +71,11 @@ abstract class BaseIndex
 
         $doc = new \Elastica\Document($id, $data);
         $doc->setDocAsUpsert(true);
+        $routing = $this->getRouting();
+
+        if ($routing !== null) {
+            $doc->setRouting($routing);
+        }
 
         $this->index->getType('_doc')->updateDocument($doc);
     }
@@ -62,9 +83,16 @@ abstract class BaseIndex
     public function delete($id) : void
     {
         $this->createIndex();
-        
+
+        $doc = new \Elastica\Document($id);
+        $routing = $this->getRouting();
+
+        if ($routing !== null) {
+            $doc->setRouting($routing);
+        }
+
         try {
-            $this->index->getType('_doc')->deleteDocument(new \Elastica\Document($id));
+            $this->index->getType('_doc')->deleteDocument($doc);
         } catch (\Elastica\Exception\NotFoundException $e) {
             return;
         }
@@ -83,5 +111,10 @@ abstract class BaseIndex
         $doc->setMapping($docMapping);
 
         $this->index->refresh();
+    }
+
+    protected function getRouting()
+    {
+        return null;
     }
 }
