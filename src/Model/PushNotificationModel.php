@@ -129,15 +129,13 @@ class PushNotificationModel
     {
         $json = \file_get_contents('php://input');
 
-        if (!$json)
-        {
+        if (!$json) {
             return;
         }
 
         $data = \json_decode($json, true);
 
-        if (!$data || empty($data['endpoint']) || empty($data['publicKey']) || empty($data['authToken']))
-        {
+        if (!$data || empty($data['endpoint']) || empty($data['publicKey']) || empty($data['authToken'])) {
             return;
         }
 
@@ -147,8 +145,7 @@ class PushNotificationModel
             case 'POST':
             case 'PUT':
             {
-                if ($row)
-                {
+                if ($row instanceof \Nette\Database\Table\ActiveRow) {
                     $row->update([
                         'user_id' => $userId ?: $row->user_id ?: null,
                         'key' => $data['publicKey'],
@@ -159,22 +156,21 @@ class PushNotificationModel
                     return;
                 }
 
-                $row = $this->subscriptionTable->insert([
+                $rowId = $this->subscriptionTable->insert([
                     'user_id' => $userId,
                     'endpoint' => $data['endpoint'],
                     'key' => $data['publicKey'],
                     'token' => $data['authToken'],
                     'encoding' => $data['contentEncoding']
                 ]);
-
+                $row = $this->subscriptionTable->getRow($rowId);
                 $this->sendNotification($row, 'Notifications enabled!', true);
 
                 return;
             }
             case 'DELETE':
             {
-                if ($row)
-                {
+                if ($row instanceof \Nette\Database\Table\ActiveRow) {
                     $row->update([
                         'active' => 0
                     ]);
