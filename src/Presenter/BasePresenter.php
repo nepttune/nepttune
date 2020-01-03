@@ -22,6 +22,7 @@ namespace Nepttune\Presenter;
 abstract class BasePresenter extends \Nette\Application\UI\Presenter
     implements \Nepttune\TI\IAssetPresenter, \Nepttune\TI\ITranslator
 {
+    use \IPub\FlashMessages\TFlashMessages;
     use \IPub\MobileDetect\TMobileDetect;
     use \Nepttune\TI\TAssetPresenter;
     use \Nepttune\TI\TTranslator;
@@ -34,6 +35,15 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
     /** @var array */
     protected $dest;
+
+    public function startup()
+    {
+        parent::startup();
+
+        if ($this->isAjax()) {
+            $this->getComponent('flashMessages');
+        }
+    }
 
     public function decorateParameters(array $meta, array $dest)
     {
@@ -48,17 +58,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
         parent::beforeRender();
     }
-
-    public function flashMessage($message, $type = 'info') : \stdClass
-    {
-        $flash = parent::flashMessage($this->translator->translate($message), $type);
-
-        if ($this->isAjax()) {
-            $this->redrawControl('flashMessages');
-        }
-
-        return $flash;
-    }
     
     public function createComponent(string $name) : ?\Nette\ComponentModel\IComponent
     {
@@ -67,26 +66,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
         }
 
         return $this->context->createService($name);
-    }
-
-    public function actionCloseFancy($control = null, $rowId = null) : void
-    {
-        $this->getFlashSession()->setExpiration(\time() + 5);
-
-        $this->template->setFile(__DIR__.'/../templates/closeFancy.latte');
-
-        $this->template->redrawControl = false;
-        $this->template->redrawRow = false;
-
-        if ($control && $rowId) {
-            $this->template->redrawRow = true;
-            $this->template->control = $control;
-            $this->template->rowId = $rowId;
-        }
-        elseif ($control) {
-            $this->template->redrawControl = true;
-            $this->template->control = $control;
-        }
     }
 
     public function getId() : int
@@ -127,11 +106,6 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
     public static function getCoreLayout() : string
     {
         return __DIR__ .'/../templates/@core.latte';
-    }
-
-    public static function getFlashArea() : string
-    {
-        return __DIR__ . '/../templates/flashArea.latte';
     }
     
     public static function getCookiePopup() : string
