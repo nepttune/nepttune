@@ -102,6 +102,9 @@ decorator:
     Nepttune\TI\ITranslator:
         setup:
             - decorateTranslator
+    Nepttune\TI\IFlash:
+        setup:
+            - decorateFlash
 
 database:
     default:
