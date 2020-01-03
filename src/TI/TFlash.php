@@ -24,4 +24,3 @@ trait TFlash
         $this->flash = $flashNotifier;
     }
 }
-
