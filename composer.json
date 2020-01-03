@@ -36,7 +36,6 @@
     "peldax/redis": "dev-master",
     "peldax/rabbitmq": "dev-master",
     "peldax/elastic-search": "dev-master",
-    "peldax/mobile-detect": "dev-master",
     "peldax/forms": "dev-master",
 
     "nasext/dependent-select-box": "dev-master",
@@ -44,6 +43,9 @@
     "contributte/console": "^0.6-stable",
     "ublaboo/datagrid": "^6.1-stable",
     "kdyby/translation": "^3.0.3",
+    "ipub/mobile-detect": "^3.0",
+    "ipub/flash-messages": "^3.0",
+  
 	  
     "minishlink/web-push": "^4.0-stable"
   },
