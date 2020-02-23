@@ -10,55 +10,6 @@
       "homepage": "https://www.peldax.com"
     }
   ],
-  "require": {
-    "php": "^7.2",
-	  
-    "nette/application": "^3.0-stable",
-    "nette/bootstrap": "^3.0-stable",
-    "nette/database": "^3.0-stable",
-    "nette/di": "^3.0.1-stable",
-    "nette/forms": "^3.0-stable",
-    "nette/robot-loader": "^3.0-stable",
-    "nette/security": "^3.0-stable",
-    "nette/tokenizer": "^3.0-stable",
-    "nette/utils": "^3.0-stable",
-    "latte/latte": "^2.5-stable || ^3.0-stable",
-    "tracy/tracy": "^2.6-stable || ^3.0-stable",
-    
-    "nepttune/asset-loader" : "^2.0.2",
-    "nepttune/sitemap" : "^2.0",
-    "nepttune/robots" : "^2.0",
-    "nepttune/security" : "^2.0",
-    "nepttune/ajaxselect" : "^2.0",
-    "nepttune/router": "^2.0",
-    "nepttune/macro" : "^2.0",
-	  
-    "peldax/redis": "dev-master",
-    "peldax/rabbitmq": "dev-master",
-    "peldax/elastic-search": "dev-master",
-    "peldax/forms": "dev-master",
-
-    "nasext/dependent-select-box": "dev-master",
-    "uestla/recaptcha-control": "^8.0-stable",
-    "contributte/console": "^0.6-stable",
-    "ublaboo/datagrid": "^6.1-stable",
-    "kdyby/translation": "^3.0.3",
-    "infinityloop-dev/client-detect": "^3.0",
-    "ipub/flash-messages": "^3.0",
-	  
-    "minishlink/web-push": "^4.0-stable"
-  },
-  "require-dev": {
-    "bamarni/composer-bin-plugin": "^1.2",
-    "roave/security-advisories": "dev-master",
-
-    "phpunit/phpunit": "^8",
-    "infection/infection": "^0.13.4",
-    "mockery/mockery": "^1.2"
-  },
-  "suggest": {
-    "nepttune/mongo": "Support for mongo DB"
-  },
   "autoload": {
     "psr-4": {
       "Nepttune\\": "src/"
